@@ -10,4 +10,12 @@ $(document).ready(function(){
 			self.removeClass('active');
 		});
 	});
+
+
+	// === Dev ===
+	// Reducing markup a tad.
+
+	var list = $('.month-range').first().find('ul').clone();
+	list.appendTo($('.month-range.hidden'));
+
 });

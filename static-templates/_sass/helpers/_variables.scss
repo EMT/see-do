@@ -7,21 +7,14 @@ $off-black: rgb(31,31,31);
 $highlight: rgb(243,105,105);
 
 //Typography
-$typeface--heading: sans-serif;
-$typeface--body: sans-serif;
+$typeface--heading: 'Newzald', serif; // Need some more fall back options here ?
+$typeface--body: 'Graphik', sans-serif; // ^
+$typeface--mono: 'Pressura', monospace; // ^
 
-// $heading--xx-large: 80px/80px $typeface--heading;
-// $heading--x-large: 70px/70px $typeface--heading;
-$heading--x-large: 2.45rem/1.1 $typeface--heading;
-$heading--large: 2.15rem/1.1 $typeface--heading;
+$heading--large: 3.125em/0.9 $typeface--heading;
 $heading--normal: 1.75rem/1.2 $typeface--heading;
-$heading--small: 1.5rem/1.2 $typeface--heading;
-$heading--x-small: 1rem/1.2 $typeface--heading;
+$heading--small: 1.063rem/1.25 $typeface--mono;
 
-
-// $body--large: 24px/28px $typeface--body;
-$body--normal: 1rem/1.4 $typeface--body;
-// $body--small: 16px/21px $typeface--body;
-// $body--x-small: 14px/18px $typeface--body;
-// $body--x-small--bold: bold 14px/18px $typeface--body;
+$body--normal: 1rem/1.25 $typeface--body;
+$body--mono: 1rem/1.25 $typeface--mono;
 

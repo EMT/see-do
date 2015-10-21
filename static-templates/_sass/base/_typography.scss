@@ -1,5 +1,6 @@
 html {
 	-webkit-font-smoothing: antialiased;
+  font-size: 16px;
 }
 
 // Serif Header Font
@@ -68,20 +69,28 @@ body {
   font: $body--normal;
 }
 
-h1{
-  font: $heading--x-large;
+h1, .event-info--title{
+  font: $heading--large;
 }
 
 h2 {
   font: $heading--normal;
 }
 
-h3 {
+h3, .site-title {
   font: $heading--small;
 }
 
-h4 {
-  font: $heading--x-small;
+i {
+  font-style: italic;
+}
+
+.body-copy p {
+  font: $body--normal;
+}
+
+.meta-data {
+  font: $body--mono;
 }
 
 .bolded {

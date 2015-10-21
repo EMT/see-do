@@ -2,16 +2,66 @@ html {
 	-webkit-font-smoothing: antialiased;
 }
 
+// Serif Header Font
 @font-face {
-  font-family: 'Neuzeit';
+  font-family: 'Newzald';
+  src: url('./assets/fonts/newzald-bold/newzald-bold.eot');
+  src: url('./assets/fonts/newzald-bold/newzald-bold.eot?#iefix') format('embedded-opentype'),
+       url('./assets/fonts/newzald-bold/newzald-bold.woff') format('woff'),
+       url('./assets/fonts/newzald-bold/newzald-bold.ttf') format('truetype'),
+       url('./assets/fonts/newzald-bold/newzald-bold.svg#Newzald') format('svg');
   font-weight: normal;
   font-style: normal;
-  src: url('../assets/fonts/neuzeit-book.eot'); /* IE9 Compat Modes */
-  src: url('../assets/fonts/neuzeit-book.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../assets/fonts/neuzeit-book.woff') format('woff'), /* Modern Browsers */
-       url('../assets/fonts/neuzeit-book.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('../assets/fonts/neuzeit-book.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
+
+// Serif Header Font -- Italic.
+@font-face {
+  font-family: 'Newzald';
+  src: url('./assets/fonts/newzald-bold-italic/newzald-bolditalic.eot');
+  src: url('./assets/fonts/newzald-bold-italic/newzald-bolditalic.eot?#iefix') format('embedded-opentype'),
+       url('./assets/fonts/newzald-bold-italic/newzald-bolditalic.woff') format('woff'),
+       url('./assets/fonts/newzald-bold-italic/newzald-bolditalic.ttf') format('truetype'),
+       url('./assets/fonts/newzald-bold-italic/newzald-bolditalic.svg#Newzald') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+
+// Monospace Font
+@font-face {
+  font-family: 'GT Pressura';
+  src: url('./assets/fonts/pressura/gt-pressura-light.eot');
+  src: url('./assets/fonts/pressura/gt-pressura-light.eot?#iefix') format('embedded-opentype'),
+       url('./assets/fonts/pressura/gt-pressura-light.woff') format('woff'),
+       url('./assets/fonts/pressura/gt-pressura-light.ttf') format('truetype'),
+       url('./assets/fonts/pressura/gt-pressura-light.svg#GT Pressura') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Monospace Font Bold
+@font-face {
+  font-family: 'GT Pressura';
+  src: url('./assets/fonts/pressura-regular/gt-pressura.eot');
+  src: url('./assets/fonts/pressura-regular/gt-pressura.eot?#iefix') format('embedded-opentype'),
+       url('./assets/fonts/pressura-regular/gt-pressura.woff') format('woff'),
+       url('./assets/fonts/pressura-regular/gt-pressura.ttf') format('truetype'),
+       url('./assets/fonts/pressura-regular/gt-pressura.svg#GT Pressura') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Serif Font
+@font-face {
+  font-family: 'Graphik';
+  src: url('./assets/fonts/graphik/graphik-regular.eot');
+  src: url('./assets/fonts/graphik/graphik-regular.eot?#iefix') format('embedded-opentype'),
+       url('./assets/fonts/graphik/graphik-regular.woff') format('woff'),
+       url('./assets/fonts/graphik/graphik-regular.ttf') format('truetype'),
+       url('./assets/fonts/graphik/graphik-regular.svg#Graphik') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 
 body {

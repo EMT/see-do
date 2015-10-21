@@ -1,0 +1,24 @@
+header {
+	padding: 2em 0;
+	margin-bottom: 2em;
+}
+
+header .site-title {
+	margin-left: $left-col;
+	float: left;
+}
+
+header nav {
+	float: right;
+}
+
+header nav ul li {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+header nav a {
+	color: $grey;
+	font: $body--mono;
+	text-decoration: none;
+}

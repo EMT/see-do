@@ -1,0 +1,36 @@
+.events-list {
+
+}
+
+.month-range {
+
+}
+
+.month-range.hidden ul {
+	display: none;
+}
+
+.month--title {
+	width: 100%;
+	display: block;
+	border-bottom: 1px solid $black;
+	padding-bottom: 0px;
+	padding-top: 5px;
+}
+
+.event--link, .event--date {
+	float: left;
+	display: block;
+	padding: 10px 0;
+}
+
+.event--link {
+	width: calc(100% - #{$left-col}); //Temp ? - calc has issues in IE8
+	display: block;
+	border-bottom: 1px solid $black;
+
+}
+
+.event--date {
+	width: $left-col;
+}

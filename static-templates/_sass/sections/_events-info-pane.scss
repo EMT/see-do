@@ -1,0 +1,28 @@
+.event-info--title {
+	margin-top: 60px;
+	margin-bottom: 40px;
+}
+
+.event-info--metadata {
+	margin-bottom: 40px;
+}
+
+.event-info--navigation {
+	display: block;
+	width: 100%;
+	border-top: 1px solid $white;
+	margin-top: 60px;
+	padding-top: 10px;
+}
+
+.event-info {
+	padding: 60px;
+	background: $highlight;
+	color: $white;
+	height: 100%;
+	position: absolute;
+	width: 35%;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}

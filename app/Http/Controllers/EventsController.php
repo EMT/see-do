@@ -23,8 +23,9 @@ class EventsController extends Controller
      */
     public function index()
     {
+        $event = null;
         $events = Event::all();
-        return view('events.index', compact('events'));
+        return view('events.index', compact('events', 'event'));
     }
 
     /**

@@ -1,6 +1,0 @@
-<head>
-	<meta charset="UTF-8">
-    <title><?php echo $__env->yieldContent('title', 'See&Do'); ?></title>
-    <link rel="stylesheet" type="text/css" href="<?php echo e(elixir('css/app.css')); ?>">
-    <meta name="viewport" content="width=device-width">
-</head>

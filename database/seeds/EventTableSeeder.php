@@ -20,7 +20,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -28,7 +29,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -36,7 +38,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -44,7 +47,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -52,7 +56,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -60,7 +65,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -68,7 +74,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -76,7 +83,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -84,7 +92,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -92,7 +101,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -100,7 +110,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -108,7 +119,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -116,7 +128,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -124,7 +137,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -132,7 +146,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -140,7 +155,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
 		Event::create([
@@ -148,7 +164,8 @@ class EventTableSeeder extends Seeder
             'time_start' => '2015-10-30-19-00-00',
             'time_end' => '2015-10-30-22-30-00',
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-        	'user_id' => $user->id,
+        	'venue' => '70 Oxford Street, M1 5NH',
+            'user_id' => $user->id,
         ]);
 
     }

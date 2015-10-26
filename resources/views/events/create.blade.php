@@ -39,5 +39,13 @@
             <p><?php echo $errors->first('time_end') ?></p>
         <?php } ?>
 
+        <!-- Venue -->
+        {!! Form::label('venue', 'Venue/Location') !!}
+        {!! Form::text('venue') !!}
+
+        <?php if ($errors->first('venue')) { ?>
+            <p><?php echo $errors->first('venue') ?></p>
+        <?php } ?>
+
     {!! Form::close() !!}
 @stop

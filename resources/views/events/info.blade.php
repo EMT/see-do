@@ -6,9 +6,9 @@
     <h2 class="event-info--title event-primary-color">{{ $event->title }}</h2>
 
     <div class="event-info--metadata event-tertiary-color">
-        <p class="meta-data event-info--date">{{ date('d.M.Y', strtotime($event->time_start)) }}</p>
-        <p class="meta-data event-info--time">{{ $event->time_start }} - {{ $event->time_end }}</p>
-        <p class="meta-data event-info--location">{{ $event->location }}</p>
+        <p class="meta-data event-info--date">{{ date('d.m.y', strtotime($event->time_start)) }}</p>
+        <p class="meta-data event-info--time">{{ date('g.ia', strtotime($event->time_start)) }} - {{ date('g.ia', strtotime($event->time_end)) }}</p>
+        <p class="meta-data event-info--location">{{ $event->venue }}</p>
     </div>
 
     <div class="body-copy event-primary-color">

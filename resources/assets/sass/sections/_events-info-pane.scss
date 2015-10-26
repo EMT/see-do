@@ -53,15 +53,15 @@
 }
 
 .event-info--date:before {
-	content: url(../assets/images/event-date.svg);
+	content: url($image-path + 'event-date.svg');
 }
 
 .event-info--time:before {
-	content: url(../assets/images/event-time.svg);
+	content: url($image-path + 'event-time.svg');
 }
 
 .event-info--location:before {
-	content: url(../assets/images/event-location.svg);
+	content: url($image-path + 'event-location.svg');
 }
 
 .event-info--navigation {

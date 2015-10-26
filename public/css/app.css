@@ -58,30 +58,35 @@ html {
   src: url("./assets/fonts/newzald-bold/newzald-bold.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/newzald-bold/newzald-bold.woff") format("woff"), url("./assets/fonts/newzald-bold/newzald-bold.ttf") format("truetype"), url("./assets/fonts/newzald-bold/newzald-bold.svg#Newzald") format("svg");
   font-weight: normal;
   font-style: normal; }
+
 @font-face {
   font-family: 'Newzald';
   src: url("./assets/fonts/newzald-bold-italic/newzald-bolditalic.eot");
   src: url("./assets/fonts/newzald-bold-italic/newzald-bolditalic.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/newzald-bold-italic/newzald-bolditalic.woff") format("woff"), url("./assets/fonts/newzald-bold-italic/newzald-bolditalic.ttf") format("truetype"), url("./assets/fonts/newzald-bold-italic/newzald-bolditalic.svg#Newzald") format("svg");
   font-weight: normal;
   font-style: italic; }
+
 @font-face {
   font-family: 'GT Pressura';
   src: url("./assets/fonts/pressura/gt-pressura-light.eot");
   src: url("./assets/fonts/pressura/gt-pressura-light.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/pressura/gt-pressura-light.woff") format("woff"), url("./assets/fonts/pressura/gt-pressura-light.ttf") format("truetype"), url("./assets/fonts/pressura/gt-pressura-light.svg#GT Pressura") format("svg");
   font-weight: normal;
   font-style: normal; }
+
 @font-face {
   font-family: 'GT Pressura';
   src: url("./assets/fonts/pressura-regular/gt-pressura.eot");
   src: url("./assets/fonts/pressura-regular/gt-pressura.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/pressura-regular/gt-pressura.woff") format("woff"), url("./assets/fonts/pressura-regular/gt-pressura.ttf") format("truetype"), url("./assets/fonts/pressura-regular/gt-pressura.svg#GT Pressura") format("svg");
   font-weight: bold;
   font-style: normal; }
+
 @font-face {
   font-family: 'Graphik';
   src: url("./assets/fonts/graphik/graphik-regular.eot");
   src: url("./assets/fonts/graphik/graphik-regular.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/graphik/graphik-regular.woff") format("woff"), url("./assets/fonts/graphik/graphik-regular.ttf") format("truetype"), url("./assets/fonts/graphik/graphik-regular.svg#Graphik") format("svg");
   font-weight: normal;
   font-style: normal; }
+
 body {
   font: 1rem/1.25 "Graphik", sans-serif; }
 
@@ -182,7 +187,7 @@ header nav a {
   border-bottom: 1px solid black;
   position: relative; }
   .event--link:before {
-    content: url(../assets/images/pizza.svg);
+    content: url(../../../../assets/img/pizza.svg);
     width: 25px;
     position: absolute;
     left: 0;
@@ -191,9 +196,11 @@ header nav a {
 
 .event:hover .event--date, .event:hover .event--link {
   color: #003da6; }
+
 .event:hover .event--link {
   padding-left: 35px;
   cursor: pointer; }
+
 .event:hover .event--link:before {
   opacity: 1;
   visibility: visible; }
@@ -211,7 +218,6 @@ header nav a {
   height: 100%;
   width: 35%;
   -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
   transform: translateX(100%);
   overflow-y: auto;
   position: fixed;
@@ -251,13 +257,13 @@ header nav a {
     left: 0; }
 
 .event-info--date:before {
-  content: url(../assets/images/event-date.svg); }
+  content: url("../../../../assets/img/event-date.svg"); }
 
 .event-info--time:before {
-  content: url(../assets/images/event-time.svg); }
+  content: url("../../../../assets/img/event-time.svg"); }
 
 .event-info--location:before {
-  content: url(../assets/images/event-location.svg); }
+  content: url("../../../../assets/img/event-location.svg"); }
 
 .event-info--navigation {
   display: block;
@@ -282,4 +288,4 @@ header nav a {
   .nav-arrows--arrow:nth-child(2) {
     margin-left: 10px; }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=app.css.map */

@@ -142,12 +142,12 @@ i {
   padding: 0 60px; }
 
 .left-align-wrapper {
-  width: 62.5%;
+  width: 90%;
   float: left; }
 
 header {
-  padding: 2em 0;
-  margin-bottom: 2em; }
+  padding: 32px 0;
+  margin-bottom: 32px; }
 
 header .site-title {
   margin-left: 140px;
@@ -172,21 +172,69 @@ header nav a {
   width: 100%;
   display: block;
   border-bottom: 1px solid black;
-  padding-bottom: 0px;
-  padding-top: 5px; }
+  padding-bottom: 16px;
+  padding-top: 16px;
+  line-height: 1; }
 
 .event--link, .event--date {
   float: left;
   display: block;
-  padding: 10px 0; }
+  padding: 16px 0; }
 
 .event--link {
   width: calc(100% - 140px);
   display: block;
-  border-bottom: 1px solid black; }
+  border-bottom: 1px solid black;
+  position: relative; }
+  .event--link:before {
+    content: url(../../../../assets/img/pizza.svg);
+    width: 25px;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    visibility: hidden; }
+
+.event:hover .event--date, .event:hover .event--link {
+  color: #003da6; }
+
+.event:hover .event--link {
+  padding-left: 35px;
+  cursor: pointer; }
+
+.event:hover .event--link:before {
+  opacity: 1;
+  visibility: visible; }
+
+.event--icon svg, .event--icon img {
+  width: 100%; }
 
 .event--date {
   width: 140px; }
+
+.event-info {
+  padding: 60px;
+  background: #003da6;
+  color: white;
+  height: 100%;
+  width: 35%;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+  overflow-y: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0; }
+
+.event-info > * {
+  opacity: 0; }
+
+.event-info--close {
+  position: absolute;
+  right: 60px;
+  top: 32px;
+  width: 20px; }
+  .event-info--close img {
+    width: 100%; }
 
 .event-info--title {
   margin-top: 60px;
@@ -195,6 +243,28 @@ header nav a {
 .event-info--metadata {
   margin-bottom: 40px; }
 
+.event-info--date,
+.event-info--time,
+.event-info--location {
+  position: relative;
+  padding: 6px 0 6px 30px; }
+  .event-info--date:before,
+  .event-info--time:before,
+  .event-info--location:before {
+    content: '';
+    width: 18px;
+    position: absolute;
+    left: 0; }
+
+.event-info--date:before {
+  content: url("../../../../assets/img/event-date.svg"); }
+
+.event-info--time:before {
+  content: url("../../../../assets/img/event-time.svg"); }
+
+.event-info--location:before {
+  content: url("../../../../assets/img/event-location.svg"); }
+
 .event-info--navigation {
   display: block;
   width: 100%;
@@ -202,15 +272,20 @@ header nav a {
   margin-top: 60px;
   padding-top: 10px; }
 
-.event-info {
-  padding: 60px;
-  background: #003da6;
-  color: white;
-  height: 100%;
-  position: absolute;
-  width: 35%;
-  right: 0;
-  top: 0;
-  bottom: 0; }
+.event-info--nav-arrows {
+  float: right; }
+
+.event-info--share {
+  float: left;
+  line-height: 22px; }
+
+.nav-arrows--arrow {
+  width: 12px;
+  float: left; }
+  .nav-arrows--arrow img {
+    width: 100%;
+    display: block; }
+  .nav-arrows--arrow:nth-child(2) {
+    margin-left: 10px; }
 
 /*# sourceMappingURL=app.css.map */

@@ -183,7 +183,8 @@ header nav a {
   top: 20%;
   z-index: 20;
   font: 3.125em/0.9 "Newzald", serif;
-  color: white; }
+  color: white;
+  width: 100%; }
 
 .filter-overlay-nav li {
   margin-bottom: 50px; }

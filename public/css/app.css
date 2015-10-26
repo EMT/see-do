@@ -249,9 +249,15 @@ header nav a {
   right: 0;
   top: 0;
   bottom: 0; }
+  .event-info.event-info--open {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%); }
 
 .event-info > * {
   opacity: 0; }
+
+.event-info--open > * {
+  opacity: 1; }
 
 .event-info--close {
   position: absolute;

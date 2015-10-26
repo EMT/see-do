@@ -8,9 +8,6 @@
             @yield('content')
         </div>
 
-
-        @include('events.info')
-
         @include('common.footer')
 		@include('common.js')
 

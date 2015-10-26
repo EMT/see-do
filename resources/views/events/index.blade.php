@@ -13,12 +13,12 @@
                 <h2 class="month--title">October</h2>
                 
                 <ul>
-                    @foreach($events as $event)
+                    @foreach($events as $ev)
                         <li class="event clear">
-                            <a href="{{ route('events.show', $event->slug) }}">
+                            <a href="{{ route('events.show', $ev->slug) }}">
                                 <div class="event--date"><span class="meta-data">20.10.15</span></div>
                                 <div class="event--link">
-                                    <h3>{{ $event->title }}</h3>
+                                    <h3>{{ $ev->title }}</h3>
                                 </div>
                             </a>
                         </li>
@@ -37,5 +37,7 @@
             <h2 class="month--title">January</h2>
         </div>
     </div>
+
+    @include('events.info')
 
 @stop

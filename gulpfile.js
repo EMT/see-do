@@ -17,6 +17,8 @@ elixir(function(mix) {
 
     // Concatenate and output to public/js/all.js
     mix.scripts([
+	    'vendor/velocity.js',
+	    'vendor/velocity-ui.js',
 	    'bootstrap.js'
 	]);
 

@@ -31,7 +31,8 @@ $(document).ready(function(){
 		closeSidebar();
 	});
 
-	$eventListing.on('click', function(){
+	$eventListing.on('click', function(e){
+		e.preventDefault(); // Temp!
 		if (!sidebarIsOpen()) {
 			openSidebar();
 		} else {

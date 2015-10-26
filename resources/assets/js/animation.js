@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+	// Tweek this to slowdown/speed up all of the animation on the page.
+	$.Velocity.mock = 1;
+
+
 	var aniDuration = 550,
     	aniEase = [0.075, 0.82, 0.165, 1];
     	aniEaseOut = [0.6, 0.04, 0.98, 0.335];

@@ -31,6 +31,7 @@ Route::bind('events', function($value, $route) {
 Route::get('/', 'EventsController@index');
 
 Route::resource('categories', 'CategoriesController');
+Route::get('events/{value}.json', 'EventsController@showJson');
 Route::resource('events', 'EventsController');
 Route::resource('color-schemes', 'ColorSchemesController');
 

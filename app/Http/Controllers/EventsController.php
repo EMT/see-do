@@ -13,7 +13,7 @@ class EventsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'showJson']]);
     }
 
     /**
@@ -54,12 +54,25 @@ class EventsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Event  $event
      * @return \Illuminate\Http\Response
      */
     public function show(Event $event)
     {
-        return view('events.show', compact('event'));
+        $events = Event::all();
+        return view('events.index', compact('events', 'event'));
+    }
+
+    /**
+     * Return JSON for the specified resource.
+     *
+     * @param  String  $slug
+     * @return \Illuminate\Http\Response
+     */
+    public function showJson($slug)
+    {
+        $event = Event::findBySlug($slug);
+        return response()->json($event);
     }
 
     /**

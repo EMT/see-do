@@ -43,7 +43,7 @@ $(document).ready(function(){
 
 
 	function showFilters(e) {
-
+		// Figure out and apply the diameterValue information before hand, then just apply the position.x/position.y information on click (Might stop some of the lag at the start)
 
 		var diameterValue = (Math.sqrt( Math.pow($(window).height(), 2) + Math.pow($(window).width(), 2))*2),
 			positionX = e.pageX - diameterValue / 2,
@@ -56,7 +56,7 @@ $(document).ready(function(){
 			$filterBg.css({'left': positionX, 'top': positionY, 'width': diameterValue, 'height': diameterValue});
 
 		var mySequence = [
-			{ elements: $filterBg, properties: { translateZ: 0, scaleX: [1,0], scaleY: [1,0]}, options: {duration: 1500, easing: [0.075, 0.82, 0.165, 1]}},
+			{ elements: $filterBg, properties: { translateZ: 0, scaleX: [1,0], scaleY: [1,0]}, options: {duration: 650, easing: [0.600, 0.040, 0.980, 0.335]}},
 			{ elements: $filterList, properties: 'custom.slideUpIn', options: {duration: timing, stagger: 120, drag: true}},
 			{ elements: $('.filter-overlay-nav'), properties: {opacity: 1, display:'block'}, options: {sequenceQueue: false}}
 		]

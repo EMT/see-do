@@ -1,11 +1,3 @@
-.events-list {
-
-}
-
-.month-range {
-
-}
-
 .month-range.hidden ul {
 	display: none;
 }
@@ -14,21 +6,52 @@
 	width: 100%;
 	display: block;
 	border-bottom: 1px solid $black;
-	padding-bottom: 0px;
-	padding-top: 5px;
+	padding-bottom: $list-vert-padding;
+	padding-top: $list-vert-padding;
+	line-height: 1;
 }
 
 .event--link, .event--date {
 	float: left;
 	display: block;
-	padding: 10px 0;
+	padding: $list-vert-padding 0;
 }
 
 .event--link {
 	width: calc(100% - #{$left-col}); //Temp ? - calc has issues in IE8
 	display: block;
 	border-bottom: 1px solid $black;
+	position: relative;
 
+	&:before {
+		content: url(../assets/images/pizza.svg);
+		width: 25px;
+		position: absolute;
+		left: 0;
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+.event:hover {
+
+	.event--date, .event--link {
+		color: $highlight
+	}
+
+	.event--link {
+		padding-left: 35px;
+		cursor: pointer;
+	}
+
+	.event--link:before {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.event--icon svg, .event--icon img {
+	width: 100%;
 }
 
 .event--date {

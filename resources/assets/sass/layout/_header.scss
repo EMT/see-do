@@ -22,3 +22,31 @@ header nav a {
 	font: $body--mono;
 	text-decoration: none;
 }
+
+// Temp Location for filter overlay styles.
+
+.filter-overlay-bg {
+	background: $highlight;
+	width: 20px;
+	height: 20px;
+	border-radius: 100%;
+	display: block;
+	position: fixed;
+	transform: scale(0);
+	z-index: 10;
+}
+
+.filter-overlay-nav {
+	opacity: 0;
+	// display: none;
+	position: fixed;
+	left: 100px;
+	top: 20%;
+	z-index: 20;
+	font: $heading--large;
+	color: $white;
+}
+
+.filter-overlay-nav li {
+	margin-bottom: 50px;
+}

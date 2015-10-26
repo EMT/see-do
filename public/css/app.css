@@ -165,6 +165,29 @@ header nav a {
   font: 1rem/1.25 "Pressura", monospace;
   text-decoration: none; }
 
+.filter-overlay-bg {
+  background: #003da6;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  display: block;
+  position: fixed;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  z-index: 10; }
+
+.filter-overlay-nav {
+  opacity: 0;
+  position: fixed;
+  left: 100px;
+  top: 20%;
+  z-index: 20;
+  font: 3.125em/0.9 "Newzald", serif;
+  color: white; }
+
+.filter-overlay-nav li {
+  margin-bottom: 50px; }
+
 .month-range.hidden ul {
   display: none; }
 

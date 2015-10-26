@@ -24,14 +24,18 @@ $(document).ready(function(){
 		});
 	});
 
-	// === Velocity.js animation Testing ===
+});
+$(document).ready(function(){
+
+	var aniDuration = 550,
+    	aniEase = [0.075, 0.82, 0.165, 1];
+    	aniEaseOut = [0.6, 0.04, 0.98, 0.335];
 
 	registerTransition('custom.slideUpIn', { translateY: [0,10] });
 
-
-
 	var $eventListing = $('.event'),
-		$eventInfoClose = $('.js-close-sidebar');
+		$eventInfoClose = $('.js-close-sidebar'),
+		$filterBtn = $('.filter');
 
 	$eventInfoClose.on('click', function(){
 		closeSidebar();
@@ -46,6 +50,46 @@ $(document).ready(function(){
 		}
 	});
 
+	$filterBtn.on('click', function(e){
+		e.preventDefault();
+
+		// Move sidebar out of the way, the background from the sidebar clashes with the color background.
+		// if(sidebarIsOpen) {
+		// 	closeSidebar();
+		// 	setTimeout(function(){
+		// 		showFilters(e);
+		// 	},300); // This is based on the time it takes for the sidebar to slideout - could do with a callback instead or make the timing a global variable.
+		// } else {
+			showFilters(e);
+		// }
+
+
+
+	});
+
+
+
+	function showFilters(e) {
+
+
+		var diameterValue = (Math.sqrt( Math.pow($(window).height(), 2) + Math.pow($(window).width(), 2))*2),
+			positionX = e.pageX - diameterValue / 2,
+			positionY = e.pageY - diameterValue / 2,
+			timing = 300;
+
+		var $filterBg = $('.filter-overlay-bg'),
+			$filterList = $('.filter-overlay-nav ul').children();
+
+			$filterBg.css({'left': positionX, 'top': positionY, 'width': diameterValue, 'height': diameterValue});
+
+		var mySequence = [
+			{ elements: $filterBg, properties: { translateZ: 0, scaleX: [1,0], scaleY: [1,0]}, options: {duration: 1500, easing: [0.075, 0.82, 0.165, 1]}},
+			{ elements: $filterList, properties: 'custom.slideUpIn', options: {duration: timing, stagger: 120, drag: true}},
+			{ elements: $('.filter-overlay-nav'), properties: {opacity: 1, display:'block'}, options: {sequenceQueue: false}}
+		]
+
+		$.Velocity.RunSequence(mySequence);
+	}
 
 
 
@@ -56,7 +100,7 @@ $(document).ready(function(){
 
 		var $eventInfoPane = $('.event-info'),
 		    $leftAlignWrapper = $('.left-align-wrapper'),
-			$eventInfoPaneChildren = $('.event-info > *');
+			$eventInfoPaneChildren = $('.event-info').children();
 
 		var mySequence = [
 			{ elements: $leftAlignWrapper, properties: { width: "62.5%" }, options: {easing: [0.075, 0.82, 0.165, 1]}},
@@ -98,9 +142,7 @@ $(document).ready(function(){
 
  	// Register fadeIn/fadeOut Transition helper function by: Tommie Hnasen - http://codepen.io/tommiehansen/
 
-	var aniDuration = 550,
-    aniEase = [0.075, 0.82, 0.165, 1];
-    aniEaseOut = [0.6, 0.04, 0.98, 0.335];
+
 
 	if(typeof String.prototype.endsWith != 'function') { String.prototype.endsWith = function (str) { return this.slice(-str.length) == str; }; }
 

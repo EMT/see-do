@@ -38,4 +38,12 @@
     <p><?php echo $errors->first('venue') ?></p>
 <?php } ?>
 
+<!-- Category -->
+{!! Form::label('category_id', 'Category') !!}
+{!! Form::select('category_id', $categories); !!}
+
+<?php if ($errors->first('venue')) { ?>
+    <p><?php echo $errors->first('venue') ?></p>
+<?php } ?>
+
 {!! Form::submit('Submit') !!}

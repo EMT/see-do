@@ -15,7 +15,7 @@ class SeedCategoriesTable extends Migration
     {
         Category::create(['title' => 'Talks']);
         Category::create(['title' => 'Gigs']);
-        Category::create(['title' => 'Exibitions']);
+        Category::create(['title' => 'Exhibitions']);
         Category::create(['title' => 'Hackdays & Workshops']);
         Category::create(['title' => 'Films']);
     }

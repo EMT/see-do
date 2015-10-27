@@ -101,7 +101,7 @@ class EventsController extends Controller
     {
         $event->fill(Input::all());
         $event->save();
-        return Redirect::route('events.index')->with('message', 'Event created');
+        return Redirect::route('events.index')->with('message', 'Event updated');
     }
 
     /**

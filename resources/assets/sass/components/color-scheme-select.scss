@@ -1,0 +1,39 @@
+/**
+ * Styles for the color scheme select dropdown
+ */
+
+.cs-color-scheme-select-input {
+	max-width: 200px;
+}
+
+.cs-color-scheme-select {
+	position: absolute;
+	width: 200px;
+	background: rgb(255,255,255);
+	box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.3);
+	display: none;
+	opacity: 0;
+	@include transition(all .3s ease-out);
+
+	&.open {
+		display: block;
+		opacity: 1;
+	}
+}
+
+.cs-color-scheme-select-option {
+	cursor: pointer;
+	padding: 4px;
+	@include transition(all .3s ease-out);
+
+	&:hover {
+		background: rgb(230,230,230);
+	}
+}
+
+.cs-color-scheme-select-option-color {
+	display: inline-block;
+	width: 33.33%;
+	height: 30px;
+	text-indent: -999em;
+}

@@ -21,7 +21,8 @@ elixir(function(mix) {
 	    'vendor/velocity.js',
 	    'vendor/velocity-ui.js',
 	    'bootstrap.js',
-	    'animation.js'
+	    'animation.js',
+	    'color-scheme-select.js'
 	]);
 
     // Rename with hash and save into dir: public/build

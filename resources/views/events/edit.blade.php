@@ -5,7 +5,7 @@
 @section('content')
     <h2>Add an Event</h2>
 
-    {!! Form::open(['action' => 'EventsController@store']) !!}
+    {!! Form::model($event, ['route' => ['events.update', $event->slug], 'method' => 'put']) !!}
 		
 		@include('events.eventForm')
 

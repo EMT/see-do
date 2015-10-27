@@ -84,19 +84,21 @@ class EventsController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        return view('events.edit', compact('event'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Event  $event
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Event $event)
     {
-        //
+        $event->fill(Input::all());
+        $event->save();
+        return Redirect::route('events.index')->with('message', 'Event created');
     }
 
     /**

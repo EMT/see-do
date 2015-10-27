@@ -9,8 +9,8 @@
         There are no categories :(
     @else
         <ul>
-            @foreach($categories as $category)
-                <li><a href="{{ route('categories.show', $category->slug) }}">{{ $category->title }}</a></li>
+            @foreach($categories as $cat)
+                <li><a href="{{ route('categories.show', $cat->slug) }}">{{ $cat->title }}</a></li>
             @endforeach
         </ul>
     @endif

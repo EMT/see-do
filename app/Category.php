@@ -20,7 +20,12 @@ class Category extends Model implements SluggableInterface
      *
      * @var array
      */
-    protected $fillable = ['title', 'slug', 'color_scheme_id'];
+    protected $fillable = [
+        'title', 
+        'slug', 
+        'user_id',
+        'color_scheme_id',
+    ];
 
 
     public function events()

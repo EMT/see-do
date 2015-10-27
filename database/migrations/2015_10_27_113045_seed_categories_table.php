@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -12,15 +13,11 @@ class SeedCategoriesTable extends Migration
      */
     public function up()
     {
-        $categories = [
-            ['title' => 'Talks'],
-            ['title' => 'Gigs'],
-            ['title' => 'Exibitions'],
-            ['title' => 'Hackdays & Workshops'],
-            ['title' => 'Films'],
-        ];
-
-        DB::table('categories')->insert($categories);
+        Category::create(['title' => 'Talks']);
+        Category::create(['title' => 'Gigs']);
+        Category::create(['title' => 'Exibitions']);
+        Category::create(['title' => 'Hackdays & Workshops']);
+        Category::create(['title' => 'Films']);
     }
 
     /**

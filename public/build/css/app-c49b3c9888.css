@@ -165,31 +165,6 @@ header nav a {
   font: 1rem/1.25 "Pressura", monospace;
   text-decoration: none; }
 
-.filter-overlay-bg {
-  background: #003da6;
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
-  display: block;
-  position: fixed;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-  z-index: 10; }
-
-.filter-overlay-nav {
-  opacity: 0;
-  display: none;
-  position: fixed;
-  left: 100px;
-  top: 20%;
-  z-index: 20;
-  font: 3.125em/0.9 "Newzald", serif;
-  color: white;
-  width: 100%; }
-
-.filter-overlay-nav li {
-  margin-bottom: 50px; }
-
 .month-range.hidden ul {
   display: none; }
 
@@ -318,5 +293,60 @@ header nav a {
     display: block; }
   .nav-arrows--arrow:nth-child(2) {
     margin-left: 10px; }
+
+.filter-overlay-bg {
+  background: #003da6;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  display: block;
+  position: fixed;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  z-index: 10; }
+
+.filter-overlay-nav {
+  opacity: 0;
+  display: none;
+  position: fixed;
+  left: 100px;
+  top: 20%;
+  z-index: 20;
+  width: 100%; }
+
+.filter-overlay-nav.active {
+  display: block; }
+
+.filter-overlay-nav li {
+  margin-bottom: 1em;
+  font: 3.125em/0.9 "Newzald", serif;
+  color: white;
+  transition: 0.2s ease-out color; }
+  .filter-overlay-nav li:hover {
+    color: #f47270; }
+    .filter-overlay-nav li:hover svg .st0 {
+      fill: #f47270; }
+
+.filter-overlay-nav li a {
+  position: relative;
+  padding-right: 1.55em;
+  padding-left: 0.5em;
+  color: inherit;
+  text-decoration: none; }
+
+.filter-overlay-nav li svg {
+  width: 1.4em;
+  max-height: 1em;
+  float: left;
+  display: block; }
+  .filter-overlay-nav li svg .st0 {
+    fill: white;
+    transition: 0.2s ease-out fill; }
+
+.filter-overlay-nav li a .nav-num {
+  font: 1rem/1.25 "Pressura", monospace;
+  position: absolute;
+  right: 0;
+  top: 0; }
 
 /*# sourceMappingURL=app.css.map */

@@ -14,7 +14,7 @@
 // Provide controller methods with object instead of ID
 Route::model('events', 'Event');
 Route::model('categories', 'Category');
-Route::model('color-schemes', 'ColorScheme');
+Route::model('color-schemes', 'App\ColorScheme');
 
 // Use slugs rather than IDs in URLs
 Route::bind('categories', function($value, $route) {

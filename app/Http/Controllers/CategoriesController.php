@@ -23,7 +23,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('title', 'asc')->get();
         return view('categories.index', compact('categories'));
     }
 

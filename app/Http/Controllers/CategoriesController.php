@@ -59,7 +59,9 @@ class CategoriesController extends Controller
      */
     public function show(Category $category)
     {
-        return view('categories.index', compact('category'));
+        $event = null;
+        $events = $category->events()->orderBy('time_start', 'asc')->get();
+        return view('events.index', compact('events', 'event'));
     }
 
     /**

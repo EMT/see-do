@@ -35,7 +35,10 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
+            ->orderBy('created_at', 'desc')
+            ->lists('colors', 'id');
+        return view('categories.create', compact('colorSchemes') + ['category' => null]);
     }
 
     /**

@@ -7,7 +7,7 @@
 
     {!! Form::open(['action' => 'CategoriesController@store']) !!}
 		
-		@include('categories.categoryForm');
+		@include('categories.categoryForm')
 
     {!! Form::close() !!}
 @stop

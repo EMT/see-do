@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\Category;
+use App\ColorScheme;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -36,8 +37,11 @@ class EventsController extends Controller
      */
     public function create()
     {
+        $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
+            ->orderBy('created_at', 'desc')
+            ->lists('colors', 'id');
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
-        return view('events.create', compact('categories'));
+        return view('events.create', compact('categories', 'colorSchemes'));
     }
 
     /**
@@ -86,8 +90,11 @@ class EventsController extends Controller
      */
     public function edit(Event $event)
     {
+        $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
+            ->orderBy('created_at', 'desc')
+            ->lists('colors', 'id');
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
-        return view('events.edit', compact('event', 'categories'));
+        return view('events.edit', compact('event', 'categories', 'colorSchemes'));
     }
 
     /**

@@ -10,7 +10,7 @@
     @else
         <ul>
             @foreach($colorSchemes as $cs)
-                <li><a href="{{ route('color-schemes.show', $cs->id) }}">{{ $cs->color_1 }}, {{ $cs->color_2 }}, {{ $cs->color_3 }}</a></li>
+                <li><a href="{{ route('color-schemes.edit', $cs->id) }}">{{ $cs->color_1 }}, {{ $cs->color_2 }}, {{ $cs->color_3 }}</a></li>
             @endforeach
         </ul>
     @endif

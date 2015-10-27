@@ -54,10 +54,10 @@ class ColorSchemesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  ColorScheme $colorScheme
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ColorScheme $colorScheme)
     {
         //
     }
@@ -65,24 +65,26 @@ class ColorSchemesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  ColorScheme $colorScheme
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ColorScheme $colorScheme)
     {
-        //
+        return view('color-schemes.edit', compact('colorScheme'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  ColorScheme $colorScheme
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ColorScheme $colorScheme)
     {
-        //
+        $colorScheme->fill(Input::all());
+        $colorScheme->save();
+        return Redirect::route('color-schemes.index')->with('message', 'Colour scheme updated');
     }
 
     /**

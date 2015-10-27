@@ -16,7 +16,7 @@
                     @foreach($events as $ev)
                         <li class="event clear {{ $event ? 'event--active' : '' }}">
                             <a href="{{ route('events.show', $ev->slug) }}">
-                                <div class="event--date"><span class="meta-data">20.10.15</span></div>
+                                <div class="event--date"><span class="meta-data">{{ date('d.m.y', strtotime($ev->time_start)) }}</span></div>
                                 <div class="event--link">
                                     <h3>{{ $ev->title }}</h3>
                                 </div>

@@ -64,6 +64,7 @@ $(document).ready(function(){
 	$.Velocity.mock = globalAnimSpeed;
 
 	registerTransition('custom.slideUpIn', { translateY: [0,10] });
+	registerTransition('custom.slideDownOut', { translateY: [10,0] });
 
 	// Register some default timings/easing.
 	var aniDuration = 550,
@@ -104,6 +105,10 @@ $(document).ready(function(){
 		}
 	});
 
+	$('.filter-overlay-nav').on('click', function(e){
+		hideFilters();
+	});
+
     // ======= Filters Animations =======
 
 	var $filterBg = $('.filter-overlay-bg'),
@@ -133,7 +138,7 @@ $(document).ready(function(){
 			positionY = e.pageY - diameterValue / 2,
 			timing = 300;
 
-			$filterBg.css({'left': positionX, 'top': positionY});
+		$filterBg.css({'left': positionX, 'top': positionY});
 
 		var mySequence = [
 			{ elements: $filterBg, properties: { translateZ: 0, scaleX: [2,0], scaleY: [2,0]}, options: {duration: 650, easing: [0.250, 0.460, 0.450, 0.940], complete: function () {
@@ -141,7 +146,7 @@ $(document).ready(function(){
                 	$filterNav.addClass('active');
       			}
             }}},
-			{ elements: $filterList, properties: 'custom.slideUpIn', options: {duration: timing, stagger: 120, drag: true}},
+			{ elements: $filterList, properties: 'custom.slideUpIn', options: {duration: 300, stagger: 40, drag: true}},
 			{ elements: $filterNav, properties: {opacity: 1, display:'block'}, options: {sequenceQueue: false}}
 		]
 
@@ -151,7 +156,17 @@ $(document).ready(function(){
 	// Hide Animation
 
 	function hideFilters(e) {
+		var mySequence = [
+			{ elements: $filterList.get().reverse(), properties: 'custom.slideDownOut', options: {duration: 300, stagger: 40, drag: true}},
+			{ elements: $filterBg, properties: {opacity:0, complete: function () {
+				{
+                	$filterNav.removeClass('active');
+				}
+			}}},
+			{ elements: $filterBg, properties: {scaleX: [0,2], scaleY: [0,2], opacity: 1}, options: {duration: 0}}
+		]
 
+		$.Velocity.RunSequence(mySequence);
 	}
 
 	// ======= Sidebar Animations =======

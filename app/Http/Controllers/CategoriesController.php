@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\ColorScheme;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -72,7 +73,10 @@ class CategoriesController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit', compact('category'));
+        $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
+            ->orderBy('created_at', 'desc')
+            ->lists('colors', 'id');
+        return view('categories.edit', compact('category', 'colorSchemes'));
     }
 
     /**

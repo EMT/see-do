@@ -42,8 +42,8 @@
 {!! Form::label('category_id', 'Category') !!}
 {!! Form::select('category_id', $categories); !!}
 
-<?php if ($errors->first('venue')) { ?>
-    <p><?php echo $errors->first('venue') ?></p>
+<?php if ($errors->first('category_id')) { ?>
+    <p><?php echo $errors->first('category_id') ?></p>
 <?php } ?>
 
 {!! Form::submit('Submit') !!}

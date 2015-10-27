@@ -10,7 +10,16 @@
     @else
         <ul>
             @foreach($categories as $cat)
-                <li><a href="{{ route('categories.show', $cat->slug) }}">{{ $cat->title }}</a></li>
+                <li>
+                    <a href="{{ route('categories.show', $cat->slug) }}">{{ $cat->title }}</a>
+                    @if ( $cat->colorScheme )
+                        <div class="color-scheme">
+                            <span class="color-scheme-color" style="background-color: {{ $cat->colorScheme->color_1 }}">{{ $cat->colorScheme->color_1 }}</span>
+                            <span class="color-scheme-color" style="background-color: {{ $cat->colorScheme->color_2 }}">{{ $cat->colorScheme->color_2 }}</span>
+                            <span class="color-scheme-color" style="background-color: {{ $cat->colorScheme->color_3 }}">{{ $cat->colorScheme->color_3 }}</span>
+                        </div>
+                    @endif
+                </li>
             @endforeach
         </ul>
     @endif

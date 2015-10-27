@@ -11,7 +11,7 @@
 <!-- Color Scheme -->
 <div class="form-field">
 	{!! Form::label('color_scheme_id', 'Color Scheme') !!}
-	{!! Form::select('color_scheme_id', $colorSchemes, ($category) ? $category->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select']); !!}
+	{!! Form::select('color_scheme_id', $colorSchemes, ($category && $category->colorScheme) ? $category->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select']); !!}
 
 	<?php if ($errors->first('color_scheme_id')) { ?>
 	    <p><?php echo $errors->first('color_scheme_id') ?></p>

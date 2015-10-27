@@ -37,6 +37,11 @@ class Event extends Model implements SluggableInterface
         return $this->belongsTo('App\Category');
     }
 
+    public function category()
+    {
+        return $this->belongsTo('App\ColorScheme');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');

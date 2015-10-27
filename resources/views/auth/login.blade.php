@@ -27,10 +27,4 @@
     
     {!! Form::close() !!}
 
-    <?php var_dump($errors) ?>
-
-    <?php foreach ($errors->all('<p>:message</p>') as $message) { ?>
-        {{ $message }}
-    <?php } ?>
-
 @stop

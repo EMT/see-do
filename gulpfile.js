@@ -20,6 +20,7 @@ elixir(function(mix) {
 	    'vendor/jquery.blast.min.js',
 	    'vendor/velocity.js',
 	    'vendor/velocity-ui.js',
+	    'vendor/smartresize.js',
 	    'bootstrap.js',
 	    'animation.js',
 	    'color-scheme-select.js'

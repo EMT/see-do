@@ -389,31 +389,10 @@ header nav a {
     fill: white;
     transition: 0.2s ease-out fill; }
 
-.nav-num {
+.filter-overlay-nav li a .nav-num {
   font: 1rem/1.25 "Pressura", monospace;
-  width: 48px;
   position: absolute;
   right: 0;
   top: 0; }
-
-.nav-num-inner {
-  opacity: 0;
-  padding: 0 10px; }
-
-.nav-open-bracket {
-  position: absolute;
-  left: 0;
-  top: 0;
-  line-height: 1;
-  -webkit-transform: translateX(15px);
-  transform: translateX(15px); }
-
-.nav-close-bracket {
-  right: 0;
-  top: 0;
-  line-height: 1;
-  -webkit-transform: translateX(-15px);
-  transform: translateX(-15px);
-  position: absolute; }
 
 /*# sourceMappingURL=app.css.map */

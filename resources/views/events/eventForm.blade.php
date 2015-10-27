@@ -8,7 +8,7 @@
 
 <!-- Content -->
 {!! Form::label('content', 'Content') !!}
-{!! Form::text('content') !!}
+{!! Form::textarea('content') !!}
 
 <?php if ($errors->first('content')) { ?>
     <p><?php echo $errors->first('content') ?></p>

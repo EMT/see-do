@@ -32,7 +32,7 @@
 				</g>
 			</g>
 			</svg>
-			<a href="#">Exhibitons <span class="nav-num"><span class="nav-open-bracket">[</span>004<span class="nav-close-bracket">]</span></span></a>
+			<a href="#">Exhibitons <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">001</span><span class="nav-close-bracket">]</span></span></a>
 		</li>
 		<li>
 		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 57.1 44.6" style="enable-background:new 0 0 57.1 44.6;" xml:space="preserve">
@@ -57,7 +57,7 @@
 				</g>
 			</g>
 			</svg>
-			<a href="#">Film <span class="nav-num"><span class="nav-open-bracket">[</span>004<span class="nav-close-bracket">]</span></span></a>
+			<a href="#">Film <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">002</span><span class="nav-close-bracket">]</span></span></a>
 		</li>
 		<li>
 			<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 57.1 44.6" style="enable-background:new 0 0 57.1 44.6;" xml:space="preserve">
@@ -82,7 +82,7 @@
 				</g>
 			</g>
 			</svg>
-			<a href="#">Gigs <span class="nav-num"><span class="nav-open-bracket">[</span>004<span class="nav-close-bracket">]</span></span></a>
+			<a href="#">Gigs <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">003</span><span class="nav-close-bracket">]</span></span></a>
 		</li>
 		<li>
 			<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 57.1 44.6" style="enable-background:new 0 0 57.1 44.6;" xml:space="preserve">
@@ -107,7 +107,7 @@
 				</g>
 			</g>
 			</svg>
-			<a href="#">Hackdays <span class="nav-num"><span class="nav-open-bracket">[</span>004<span class="nav-close-bracket">]</span></span></a>
+			<a href="#">Hackdays <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">004</span><span class="nav-close-bracket">]</span></span></a>
 		</li>
 		<li>
 			<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 57.1 44.6" style="enable-background:new 0 0 57.1 44.6;" xml:space="preserve">
@@ -132,7 +132,7 @@
 				</g>
 			</g>
 			</svg>
-			<a href="#">Talks <span class="nav-num"><span class="nav-open-bracket">[</span>004<span class="nav-close-bracket">]</span></span></a>
+			<a href="#">Talks <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">005</span><span class="nav-close-bracket">]</span></span></a>
 		</li>
 		<li>
 			<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 57.1 44.6" style="enable-background:new 0 0 57.1 44.6;" xml:space="preserve">
@@ -157,7 +157,7 @@
 				</g>
 			</g>
 			</svg>
-			<a href="#">Workshops <span class="nav-num"><span class="nav-open-bracket">[</span>004<span class="nav-close-bracket">]</span></span></a>
+			<a href="#">Workshops <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">006</span><span class="nav-close-bracket">]</span></span></a>
 		</li>
 	</ul>
 </nav>

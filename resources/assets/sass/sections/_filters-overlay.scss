@@ -57,9 +57,35 @@
 	}
 }
 
-.filter-overlay-nav li a .nav-num {
+.nav-num {
 	font: $body--mono;
+    width: 48px;
 	position: absolute;
 	right: 0;
 	top: 0;
 }
+
+.nav-num-inner {
+    opacity: 0;
+    padding: 0 10px;
+}
+
+.nav-open-bracket {
+    position: absolute;
+    left: 0;
+    top: 0;
+    line-height: 1;
+    transform:translateX(15px);
+}
+
+.nav-close-bracket {
+	right: 0;
+	top: 0;
+	line-height: 1;
+    transform:translateX(-15px);
+    position: absolute;
+}
+
+
+
+

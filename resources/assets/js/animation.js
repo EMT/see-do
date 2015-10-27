@@ -3,6 +3,7 @@ $(document).ready(function(){
 	// ======= Global Settings and Variables =======
 
 	// Tweek this to slowdown/speed up all of the animation on the page.
+	// Could probably bump this down to 0.9/0.85 on release to make it feel a bit more snappy.
 	var globalAnimSpeed = 1;
 	$.Velocity.mock = globalAnimSpeed;
 
@@ -57,7 +58,12 @@ $(document).ready(function(){
 	var $filterBg = $('.filter-overlay-bg'),
 		$filterNav = $('.filter-overlay-nav'),
 		$filterList = $('.filter-overlay-nav ul li'),
+		$navNum = $('.nav-num'),
+		$navNumInner = $('.nav-num-inner'),
+		$navOpenBracket = $('.nav-open-bracket'),
+		$navCloseBracket = $('.nav-close-bracket'),
 		diameterValue = (Math.sqrt( Math.pow($(window).height(), 2) + Math.pow($(window).width(), 2)));
+
 
 	// Initial Setup
 
@@ -83,33 +89,57 @@ $(document).ready(function(){
 
 		$filterBg.css({'left': positionX, 'top': positionY});
 
-		var mySequence = [
+		$navNumInner.each(function(){
+	      $(this).data('count', parseInt($(this).html(), 10));
+	      $(this).html('000');
+		});
+
+
+		var revealFiltersAnim = [
 			{ elements: $filterBg, properties: { translateZ: 0, scaleX: [2,0], scaleY: [2,0]}, options: {duration: 650, easing: [0.250, 0.460, 0.450, 0.940], complete: function () {
                 {
                 	$filterNav.addClass('active');
       			}
             }}},
 			{ elements: $filterList, properties: 'custom.slideUpIn', options: {duration: 300, stagger: 40, drag: true}},
-			{ elements: $filterNav, properties: {opacity: 1, display:'block'}, options: {sequenceQueue: false}}
+			{ elements: $filterNav, properties: {opacity: 1, display:'block'}, options: {sequenceQueue: false}},
+			{ elements: $navOpenBracket, properties: { translateZ: 0, translateX: [0]}, options: {easing: [0.075, 0.82, 0.165, 1], duration: 200}},
+			{ elements: $navCloseBracket, properties: { translateZ: 0, translateX: [0,-15]}, options: {easing: [0.075, 0.82, 0.165, 1], sequenceQueue: false, duration: 200}},
+			{ elements: $navNumInner, properties: { opacity: 1}, options: {complete: function(){
+				{
+					$navNumInner.each(function(){
+						count($(this));
+					});
+				}
+			}}}
 		]
 
-		$.Velocity.RunSequence(mySequence);
+		$.Velocity.RunSequence(revealFiltersAnim);
 	}
 
 	// Hide Animation
 
 	function hideFilters(e) {
-		var mySequence = [
+		var hideAndResetFiltersAnim = [
 			{ elements: $filterList.get().reverse(), properties: 'custom.slideDownOut', options: {duration: 300, stagger: 40, drag: true}},
 			{ elements: $filterBg, properties: {opacity:0, complete: function () {
 				{
                 	$filterNav.removeClass('active');
 				}
 			}}},
-			{ elements: $filterBg, properties: {scaleX: [0,2], scaleY: [0,2], opacity: 1}, options: {duration: 0}}
+			{ elements: $filterBg, properties: {scaleX: [0,2], scaleY: [0,2], opacity: 1}, options: {duration: 0}},
+			{ elements: $navOpenBracket, properties: { translateZ: 0, translateX: [15]}, options: {duration: 0}},
+			{ elements: $navCloseBracket, properties: { translateZ: 0, translateX: [-15]}, options: {duration: 0}},
+			{ elements: $navNumInner, properties: { opacity: 0}, options: {duration:0, complete: function(){
+				{
+					$navNumInner.each(function(){
+						$(this).html($(this).data('count'));
+					});
+				}
+			}}}
 		]
 
-		$.Velocity.RunSequence(mySequence);
+		$.Velocity.RunSequence(hideAndResetFiltersAnim);
 	}
 
 	// ======= Sidebar Animations =======
@@ -125,13 +155,13 @@ $(document).ready(function(){
 		    $leftAlignWrapper = $('.left-align-wrapper'),
 			$eventInfoPaneChildren = $('.event-info').children();
 
-		var mySequence = [
+		var openSidebarAnim = [
 			{ elements: $leftAlignWrapper, properties: { width: "62.5%" }, options: {easing: [0.075, 0.82, 0.165, 1]}},
 			{ elements: $eventInfoPane, properties: { translateX: ["0%","100%"] }, options: { sequenceQueue: false, easing: [0.075, 0.82, 0.165, 1]}},
 			{ elements: $eventInfoPaneChildren, properties: 'custom.slideUpIn', options: { duration: timing, stagger: 120, drag: true}},
 		];
 
-		$.Velocity.RunSequence(mySequence);
+		$.Velocity.RunSequence(openSidebarAnim);
 	}
 
 	// Close Animation
@@ -145,14 +175,14 @@ $(document).ready(function(){
 		    $leftAlignWrapper = $('.left-align-wrapper'),
 			$eventInfoPaneChildren = $('.event-info > *');
 
-		var mySequence = [
+		var closeSidebarAnim = [
 			{ elements: $leftAlignWrapper, properties: { width: "90%" }, options: {easing: [0.075, 0.82, 0.165, 1]} },
 			{ elements: $eventInfoPane, properties: { translateX: ["100%"] }, options: { sequenceQueue: false, easing: [0.075, 0.82, 0.165, 1] } },
 			{ elements: $eventInfoPaneChildren, properties: 'fadeOut', options: { duration: timing, display: false}},
 
 		];
 
-		$.Velocity.RunSequence(mySequence);
+		$.Velocity.RunSequence(closeSidebarAnim);
 	}
 
 	// Helper function, lets us know if the sidebar is open.
@@ -192,6 +222,16 @@ $(document).ready(function(){
 	  });
 
 	}
+
+	// Visual Count function by: Adam Merrifield - http://stackoverflow.com/a/14144475
+
+	function count($this){
+        var current = parseInt($this.html(), 10);
+        $this.html('00' + (++current));
+        if(current !== $this.data('count')){
+            setTimeout(function(){count($this)}, 100);
+        }
+    }
 
 });
 

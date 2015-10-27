@@ -138,6 +138,21 @@ i {
   clear: both; }
 
 /**
+ * Reusable color scheme components
+ */
+.color-scheme {
+  display: inline-block;
+  width: 200px;
+  overflow: hidden; }
+
+.color-scheme-color {
+  display: block;
+  float: left;
+  width: 33.33%;
+  height: 30px;
+  text-indent: -999em; }
+
+/**
  * Styles for the color scheme select dropdown
  */
 .cs-color-scheme-select-input {

@@ -30,12 +30,10 @@ $(function() {
 
 
 		if (!sidebarIsOpen()) {
-			openSidebar();
 			setEventDetails(eventJsonUrl);
 		} else {
 			closeSidebar();
 			setEventDetails(eventJsonUrl);
-			openSidebar();
 		}
 	});
 
@@ -70,6 +68,17 @@ function setEventDetails(url) {
 		$('.event-info--location').html(response.venue);
 
 		$('.event-info .body-copy').html('<p>' + response.content + '</p>');
+
+		var styles;
+		styles = '.event-background-color { background: ' + response.color_scheme.color_1 + ';}',
+		styles += '.event-primary-color { color: ' + response.color_scheme.color_2 + ';}',
+		styles += '.event-secondary-color { color: ' + response.color_scheme.color_3 + ';}'
+
+		$('#js-event-color-scheme').remove();
+		$('<style id="#js-event-color-scheme" type="text/css">'+ styles +'</style>').appendTo('head');
+
+		openSidebar();
+
 	});
 }
 

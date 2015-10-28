@@ -6,9 +6,18 @@
     <h2 class="event-info--title">{{ $event ? $event->title : '' }}</h2>
 
     <div class="event-info--metadata event-secondary-color">
-        <p class="meta-data event-info--date">{{ $event ? date('d.m.y', strtotime($event->time_start)) : '' }}</p>
-        <p class="meta-data event-info--time">{{ $event ? date('g.ia', strtotime($event->time_start)) : '' }} - {{ $event ? date('g.ia', strtotime($event->time_end)) : '' }}</p>
-        <p class="meta-data event-info--location">{{ $event ? $event->venue : '' }}</p>
+        <p class="meta-data event-info--date">
+            <span class="event-icon">@include('svg.event-date-icon')</span>
+            <span class="js-event-info-date">{{ $event ? date('d.m.y', strtotime($event->time_start)) : '' }}</span>
+        </p>
+        <p class="meta-data event-info--time">
+            <span class="event-icon">@include('svg.event-time-icon')</span>
+            <span class="js-event-info-time">{{ $event ? date('g.ia', strtotime($event->time_start)) : '' }} - {{ $event ? date('g.ia', strtotime($event->time_end)) : '' }}</span>
+        </p>
+        <p class="meta-data event-info--location">
+            <span class="event-icon">@include('svg.event-location-icon')</span>
+            <span class="js-event-info-venue">{{ $event ? $event->venue : '' }}</span>
+        </p>
     </div>
 
     <div class="body-copy">

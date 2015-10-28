@@ -63,16 +63,16 @@ function setEventDetails(url) {
 		$('.event-info--title').html(response.title);
 
 		// Metadata
-		$('.event-info--date').html(moment(response.time_start).format('D.M.YY'));
-		$('.event-info--time').html(moment(response.time_start).format('h.mma') + ' - ' + moment(response.time_end).format('h.mma'));
-		$('.event-info--location').html(response.venue);
+		$('.js-event-info-date').html(moment(response.time_start).format('D.M.YY'));
+		$('.js-event-info-time').html(moment(response.time_start).format('h.mma') + ' - ' + moment(response.time_end).format('h.mma'));
+		$('.js-event-info-venue').html(response.venue);
 
 		$('.event-info .body-copy').html('<p>' + response.content + '</p>');
 
 		var styles;
-		styles = '.event-background-color { background: ' + response.color_scheme.color_1 + ';}',
-		styles += '.event-primary-color { color: ' + response.color_scheme.color_2 + ';}',
-		styles += '.event-secondary-color { color: ' + response.color_scheme.color_3 + ';}'
+		styles = '.event-background-color { background: ' + response.color_scheme.color_1 + '; fill: ' + response.color_scheme.color_1 + ';}',
+		styles += '.event-primary-color { color: ' + response.color_scheme.color_2 + '; fill: ' + response.color_scheme.color_2 + ';}',
+		styles += '.event-secondary-color { color: ' + response.color_scheme.color_3 + '; fill: ' + response.color_scheme.color_3 + ';}'
 
 		$('#js-event-color-scheme').remove();
 		$('<style id="#js-event-color-scheme" type="text/css">'+ styles +'</style>').appendTo('head');

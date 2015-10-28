@@ -8,14 +8,17 @@
         <style id="#js-event-color-scheme">
             .event-background-color {
                 background: {{ $event->colorScheme->color_1 }};
+                fill: {{ $event->colorScheme->color_1 }};
             }
 
             .event-primary-color {
                 color: {{ $event->colorScheme->color_2 }};
+                fill: {{ $event->colorScheme->color_2 }};
             }
 
             .event-secondary-color {
                 color: {{ $event->colorScheme->color_3 }};
+                fill: {{ $event->colorScheme->color_3 }};
             }
         </style>
     @else

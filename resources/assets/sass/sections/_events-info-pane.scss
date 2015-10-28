@@ -1,3 +1,7 @@
+/****************************************************
+ * These styles are overridden by event color schemes
+ */
+
 .event-background-color {
 	background: $highlight;
 }
@@ -9,6 +13,10 @@
 .event-secondary-color {
 	color: rgb(237,111,109);
 }
+
+/*****************************************************/
+
+
 
 .event-info {
 	padding: 60px;
@@ -63,25 +71,12 @@
 .event-info--location {
 	position: relative;
 	padding: 6px 0 6px 30px;
-
-	&:before {
-		content: '';
-		width: 18px;
-		position: absolute;
-		left: 0;
-	}
 }
 
-.event-info--date:before {
-	content: url($image-path + 'event-date.svg');
-}
-
-.event-info--time:before {
-	content: url($image-path + 'event-time.svg');
-}
-
-.event-info--location:before {
-	content: url($image-path + 'event-location.svg');
+.event-icon {
+	width: 18px;
+	position: absolute;
+	left: 0;
 }
 
 .event-info--navigation {

@@ -23,7 +23,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -34,7 +34,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -45,7 +45,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -56,7 +56,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -67,7 +67,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -78,7 +78,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -89,7 +89,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -100,7 +100,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -111,7 +111,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -122,7 +122,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -133,7 +133,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -144,7 +144,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -155,7 +155,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -166,7 +166,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -177,7 +177,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -188,7 +188,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
 		Event::create([
@@ -199,7 +199,7 @@ class EventTableSeeder extends Seeder
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
             'category_id' => rand(1, 5),
-            'color_scheme_id' => rand(1, 3),
+            'color_scheme_id' => rand(1, 18),
         ]);
 
     }

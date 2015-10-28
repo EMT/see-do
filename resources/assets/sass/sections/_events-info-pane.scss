@@ -1,7 +1,17 @@
+.event-background-color {
+	background: $highlight;
+}
+
+.event-primary-color {
+	color: $white;
+}
+
+.event-secondary-color {
+	color: rgb(237,111,109);
+}
+
 .event-info {
 	padding: 60px;
-	background: $highlight;
-	color: $white;
 	height: 100%;
 	width: 35%;
 	-webkit-transform: translateX(100%);

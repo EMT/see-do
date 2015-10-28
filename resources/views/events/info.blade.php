@@ -1,17 +1,17 @@
-<div class="event-info {{ $event ? 'event-info--open' : '' }} event-secondary-background-color">
+<div class="event-info {{ $event ? 'event-info--open' : '' }} event-background-color event-primary-color">
     <a href="#" class="event-info--close js-close-sidebar">
         <img src="{{asset('assets/img/close.svg')}}" alt="Close">
     </a>
     
-    <h2 class="event-info--title event-primary-color">{{ $event ? $event->title : '' }}</h2>
+    <h2 class="event-info--title">{{ $event ? $event->title : '' }}</h2>
 
-    <div class="event-info--metadata event-tertiary-color">
+    <div class="event-info--metadata event-secondary-color">
         <p class="meta-data event-info--date">{{ $event ? date('d.m.y', strtotime($event->time_start)) : '' }}</p>
         <p class="meta-data event-info--time">{{ $event ? date('g.ia', strtotime($event->time_start)) : '' }} - {{ $event ? date('g.ia', strtotime($event->time_end)) : '' }}</p>
         <p class="meta-data event-info--location">{{ $event ? $event->venue : '' }}</p>
     </div>
 
-    <div class="body-copy event-primary-color">
+    <div class="body-copy">
         <p>{{ $event ? $event->content : '' }}</p>
     </div>
 

@@ -28,13 +28,16 @@ $(function() {
 		var eventUrl = $(this).children('a').attr('href');
 		var eventJsonUrl = eventUrl + '.json';
 
-
 		if (!sidebarIsOpen()) {
 			setEventDetails(eventJsonUrl);
-		} else {
+		} 
+		else {
 			closeSidebar();
 			setEventDetails(eventJsonUrl);
 		}
+
+		$('.event').removeClass('event--active');
+		$(this).addClass('event--active');
 	});
 
 	$filterBtn.on('click touch', function(e){

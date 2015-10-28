@@ -26,7 +26,7 @@
                             <ul>
                         @endif
                     
-                            <li class="event clear {{ $event ? 'event--active' : '' }}">
+                            <li class="event clear {{ ($event && $event->id === $ev->id) ? 'event--active' : '' }}">
                                 <a href="{{ route('events.show', $ev->slug) }}">
                                     <div class="event--date">
                                         <span class="meta-data">{{ date('d.m.y', strtotime($ev->time_start)) }}</span>

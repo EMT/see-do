@@ -1,3 +1,7 @@
+.events-list {
+	margin-bottom: 5em;
+}
+
 .month-range.hidden ul {
 	display: none;
 }
@@ -11,7 +15,28 @@
 	line-height: 1;
 }
 
-.event--link, .event--date {
+.event a {
+	color: $black;
+	cursor: pointer;
+}
+
+.event a:hover,
+.event.event--active a {
+	color: $highlight;
+
+	.event--link {
+		padding-left: 35px;
+		cursor: pointer;
+	}
+
+	.event--link:before {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.event--link, 
+.event--date {
 	float: left;
 	display: block;
 	padding: $list-vert-padding 0;
@@ -37,28 +62,8 @@
 	}
 }
 
-.event:hover {
-
-	.event--date, .event--link {
-		color: $highlight
-	}
-
-	.event--link {
-		padding-left: 35px;
-		cursor: pointer;
-	}
-
-	.event--link:before {
-		opacity: 1;
-		visibility: visible;
-	}
-}
-
-.event {
-	cursor: pointer;
-}
-
-.event--icon svg, .event--icon img {
+.event--icon svg, 
+.event--icon img {
 	width: 100%;
 }
 

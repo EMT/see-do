@@ -25,9 +25,9 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $event = null;
         $events = Event::orderBy('time_start', 'asc')->get();
-        return view('events.index', compact('events', 'event'));
+        $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
+        return view('events.index', compact('events', 'event', 'categories') + ['event' => null]);
     }
 
     /**
@@ -41,7 +41,7 @@ class EventsController extends Controller
             ->orderBy('created_at', 'desc')
             ->lists('colors', 'id');
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
-        return view('events.create', compact('categories', 'colorSchemes'));
+        return view('events.create', compact('categories', 'colorSchemes') + ['event' => null]);
     }
 
     /**

@@ -156,7 +156,7 @@
 					easing: [0.075, 0.82, 0.165, 1], 
 					complete: function() {
 						$eventInfoPane.removeClass('event-info--open');
-						$('.event').removeClass('event--active');
+						$('.event--active').removeClass('event--active');
 					}
 				}
 			}

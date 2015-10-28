@@ -36,7 +36,7 @@ $(function() {
 			setEventDetails(eventJsonUrl);
 		}
 
-		$('.event').removeClass('event--active');
+		$('.event--active').removeClass('event--active');
 		$(this).addClass('event--active');
 	});
 

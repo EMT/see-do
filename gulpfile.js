@@ -21,11 +21,13 @@ elixir(function(mix) {
 	    'vendor/velocity-ui.js',
 	    'vendor/smartresize.js',
 	    'vendor/fastclick.js',
-	    'vendor/moment.js',
+        'vendor/moment.js',
+	    'vendor/chrono.min.js',
 	    'animation.js',
 	    'bootstrap.js',
         'forms.js',
-	    'color-scheme-select.js'
+        'color-scheme-select.js',
+	    'date-time-input.js'
 	]);
 
     // Rename with hash and save into dir: public/build

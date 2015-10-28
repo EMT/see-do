@@ -25,7 +25,8 @@
 </div>
 
 <div class="form-row">
-    <div class="form-row-body">
+    <div class="form-row-body js-date-time-input-group">
+
         <!-- Starts -->
         <div class="form-row-body-segment">
             {!! Form::label('time_start', 'Starts') !!}

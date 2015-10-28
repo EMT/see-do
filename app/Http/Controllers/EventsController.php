@@ -84,6 +84,8 @@ class EventsController extends Controller
     public function showJson($slug)
     {
         $event = Event::findBySlug($slug);
+        $event->colorScheme;
+        $event->category;
         return response()->json($event);
     }
 

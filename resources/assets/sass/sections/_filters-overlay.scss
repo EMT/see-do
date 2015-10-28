@@ -74,20 +74,19 @@
     padding: 0 10px;
 }
 
-.nav-open-bracket {
+.nav-open-bracket, .nav-close-bracket {
     position: absolute;
-    left: 0;
     top: 0;
-    line-height: 1;
+}
+
+.nav-open-bracket {
+    left: 0;
     transform:translateX(15px);
 }
 
 .nav-close-bracket {
 	right: 0;
-	top: 0;
-	line-height: 1;
     transform:translateX(-15px);
-    position: absolute;
 }
 
 

@@ -22,6 +22,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -31,6 +33,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -40,6 +44,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -49,6 +55,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -58,6 +66,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -67,6 +77,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -76,6 +88,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -85,6 +99,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -94,6 +110,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -103,6 +121,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -112,6 +132,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -121,6 +143,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -130,6 +154,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -139,6 +165,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -148,6 +176,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -157,6 +187,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
 		Event::create([
@@ -166,6 +198,8 @@ class EventTableSeeder extends Seeder
             'content' => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
         	'venue' => '70 Oxford Street, M1 5NH',
             'user_id' => $user->id,
+            'category_id' => rand(1, 5),
+            'color_scheme_id' => rand(1, 3),
         ]);
 
     }

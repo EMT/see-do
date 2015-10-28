@@ -53,7 +53,8 @@ $(function() {
 		}
 	});
 
-	$('.filter-overlay-nav').on('click touch', function(e){
+	$('.filter-overlay-nav').on('click touch', function(e) {
+		e.preventDefault();
 		hideFilters();
 	});
 

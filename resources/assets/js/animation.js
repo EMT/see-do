@@ -137,10 +137,29 @@
 
 		// If width <= BREAKPOINT then run different animation to fully reset.
 		var closeSidebarAnim = [
-			{ elements: $leftAlignWrapper, properties: { width: "90%" }, options: {easing: [0.075, 0.82, 0.165, 1]} },
-			{ elements: $eventInfoPane, properties: { translateX: ["100%"] }, options: { sequenceQueue: false, easing: [0.075, 0.82, 0.165, 1], complete: function(){
-				{ $eventInfoPane.removeClass('event-info--open'); }
-			}}},
+			{
+				elements: $leftAlignWrapper, 
+				properties: { 
+					width: "90%" 
+				}, 
+				options: {
+					easing: [0.075, 0.82, 0.165, 1]
+				}
+			},
+			{
+				elements: $eventInfoPane, 
+				properties: {
+					translateX: ["100%"]
+				}, 
+				options: {
+					sequenceQueue: false, 
+					easing: [0.075, 0.82, 0.165, 1], 
+					complete: function() {
+						$eventInfoPane.removeClass('event-info--open');
+						$('.event').removeClass('event--active');
+					}
+				}
+			}
 		];
 
 		$.Velocity.RunSequence(closeSidebarAnim);

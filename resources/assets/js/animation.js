@@ -121,22 +121,26 @@
 			{ elements: $eventInfoPaneChildren, properties: {opacity: 0}, options: { duration: 0}},
 			{ elements: $leftAlignWrapper, properties: { width: "62.5%" }, options: {easing: [0.075, 0.82, 0.165, 1]}},
 			{ elements: $eventInfoPane, properties: { translateX: ["0%","100%"] }, options: { sequenceQueue: false, easing: [0.075, 0.82, 0.165, 1]}},
-			{ elements: $eventInfoPaneChildren, properties: 'custom.slideUpIn', options: { duration: timing, stagger: 120, drag: true}},
+			{ elements: $eventInfoPaneChildren, properties: 'custom.slideUpIn', options: { duration: timing, stagger: 120, drag: true, complete: function(){
+				{$eventInfoPane.addClass('event-info--open');}
+			}}},
 		];
 
 		$.Velocity.RunSequence(openSidebarAnim);
-		$eventInfoPane.addClass('event-info--open');
+
 	}
 
 	// Close Animation
 
 	function closeSidebar() {
-		$eventInfoPane.removeClass('event-info--open');
+
 
 		// If width <= BREAKPOINT then run different animation to fully reset.
 		var closeSidebarAnim = [
 			{ elements: $leftAlignWrapper, properties: { width: "90%" }, options: {easing: [0.075, 0.82, 0.165, 1]} },
-			{ elements: $eventInfoPane, properties: { translateX: ["100%"] }, options: { sequenceQueue: false, easing: [0.075, 0.82, 0.165, 1] } },
+			{ elements: $eventInfoPane, properties: { translateX: ["100%"] }, options: { sequenceQueue: false, easing: [0.075, 0.82, 0.165, 1], complete: function(){
+				{ $eventInfoPane.removeClass('event-info--open'); }
+			}}},
 		];
 
 		$.Velocity.RunSequence(closeSidebarAnim);

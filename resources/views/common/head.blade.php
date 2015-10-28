@@ -6,7 +6,7 @@
 
     @if ( !empty($event) && $event->colorScheme )
         <style id="#js-event-color-scheme">
-            ..event-background-color {
+            .event-background-color {
                 background: {{ $event->colorScheme->color_1 }};
             }
 

@@ -44,13 +44,4 @@ class Category extends Model implements SluggableInterface
     {
         return $this->belongsTo('App\ColorScheme');
     }
-
-    public function eventCount() 
-    {
-        if (!isset($this->_eventCount)) {
-            $this->_eventCount = Event::where('category_id', $this->id)->where('time_end', '>=', date('Y-m-d H:i:s'))->count();
-        }
-
-        return $this->_eventCount;
-    }
 }

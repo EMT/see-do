@@ -15,7 +15,7 @@
 
                     <h2 class="month--title">{{ $previousMonth }}</h2>
                     
-                    @foreach($events as $ev)
+                    @foreach( $events as $ev )
                         
                         <?php $month = date('F', strtotime($ev->time_start)) ?>
                         

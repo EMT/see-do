@@ -54,6 +54,11 @@ class EventsController extends Controller
     {
         $event = new Event(Input::all());
         $event->user_id = $request->user()->id;
+
+        if (!$event->color_scheme_id && $event->category_id) {
+            $event->color_scheme_id = $event->category->color_scheme_id;
+        }
+
         $event->save();
         return Redirect::route('events.index')->with('message', 'Event created');
     }

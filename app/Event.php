@@ -25,6 +25,7 @@ class Event extends Model implements SluggableInterface
         'content', 
         'time_start', 
         'time_end', 
+        'venue',
         'slug', 
         'user_id',
         'color_scheme_id',

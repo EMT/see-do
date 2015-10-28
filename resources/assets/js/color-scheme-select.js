@@ -10,8 +10,13 @@ $(document).ready(function() {
 			});
 		});
 
-		// Create and append dropdown
-		var $dropdown = colorSchemeSelect.build(schemes);
+		var schemeSelect = new colorSchemeSelect({
+			schemes: schemes, 
+			defaultText: $(this).data('defaultText')
+		});
+
+		// Create dropdown
+		var $dropdown = schemeSelect.build();
 
 		// Update hidden input on select
 		$dropdown.on('click', '.cs-color-scheme-select-option', function(e) {
@@ -26,7 +31,7 @@ $(document).ready(function() {
 		var $elem = $('<div class="cs-color-scheme-select-input"></div>');
 		 
 		// Create fake input
-		var $fakeInput = colorSchemeSelect.buildScheme(schemes[0]);
+		var $fakeInput = schemeSelect.buildScheme(schemes[0], 'cs-color-scheme-fake-input');
 		
 		// Open select UI when fake input is clicked/tapped/focussed 
 		// TODO: open on focus
@@ -43,12 +48,7 @@ $(document).ready(function() {
 		// Update fake input when hidden input changes
 		$hiddenInput.on('change', function(e) {
 			var scheme = findInArrayByKey(schemes, 'id', $(this).val());
-	
-
-	console.log(schemes);
-	console.log($(this).val());
-	console.log(scheme);
-			var $newFakeInput = colorSchemeSelect.buildScheme(scheme);
+			var $newFakeInput = schemeSelect.buildScheme(scheme);
 			$fakeInput.html($newFakeInput.html());
 		});
 
@@ -60,35 +60,49 @@ $(document).ready(function() {
 });
 
 
-var colorSchemeSelect = {
+var colorSchemeSelect = function(options) {
 
-	build: function(schemes) {
+	var self = this;
+	self.options = options;
+
+	self.build = function() {
+		var schemes = self.options.schemes;
 		var $elem = $('<div class="cs-color-scheme-select"></div>');
 
 		for (var i = 0, len = schemes.length; i < len; i ++) {
-			$elem.append(colorSchemeSelect.buildOption(schemes[i]));
+			$elem.append(self.buildOption(schemes[i]));
 		}
 
 		return $elem;
-	},
+	};
 
-	buildOption: function(scheme) {
-		return colorSchemeSelect.buildScheme(scheme, 'cs-color-scheme-select-option');
-	},
+	self.buildOption = function(scheme) {
+		return self.buildScheme(scheme);
+	};
 
-	buildScheme: function(scheme, cls) {
+	self.buildScheme = function(scheme, cls) {
+		cls = (cls) ? cls : 'cs-color-scheme-select-option';
 		var $elem = $('<div class="' + cls + '"></div>').data('colorSchemeId', scheme.id);
 
-		for (var i = 0, len = scheme.colors.length; i < len; i ++) {
-			$elem.append(colorSchemeSelect.buildColor(scheme.colors[i]));
+		if (scheme.id == 0) {
+			$elem.addClass('cs-color-scheme-select-default').html(self.options.defaultText);
+		}
+		else {
+			for (var i = 0, len = scheme.colors.length; i < len; i ++) {
+				$elem.append(self.buildColor(scheme.colors[i]));
+			}
 		}
 
 		return $elem;
-	},
+	};
 
-	buildColor: function(color) {
+	self.buildColor = function(color) {
 		return $('<div class="cs-color-scheme-select-option-color" style="background-color: ' + color + '">' + color + '</div>');
-	}
+	};
+
+	self.buildDefault = function() {
+		return $('<div class="cs-color-scheme-select-default">' + self.options.defaultText + '</div>').data('colorSchemeId', 0);
+	};
 }
 
 function findInArrayByKey(arr, key, val) {

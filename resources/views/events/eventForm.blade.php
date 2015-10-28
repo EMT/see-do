@@ -49,7 +49,7 @@
 <!-- Color Scheme -->
 <div class="form-field">
 	{!! Form::label('color_scheme_id', 'Color Scheme') !!}
-	{!! Form::select('color_scheme_id', $colorSchemes, ($event && $event->colorScheme) ? $event->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select']); !!}
+	{!! Form::select('color_scheme_id', [0 => 'Select…'] + (array)$colorSchemes, ($event && $event->colorScheme) ? $event->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select', 'data-default-text' => 'Use the category colour scheme']); !!}
 
 	<?php if ($errors->first('color_scheme_id')) { ?>
 	    <p><?php echo $errors->first('color_scheme_id') ?></p>

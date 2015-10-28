@@ -25,21 +25,27 @@
 </div>
 
 <div class="form-row">
-    <!-- Starts -->
-    {!! Form::label('time_start', 'Starts') !!}
-    {!! Form::text('time_start') !!}
+    <div class="form-row-body">
+        <!-- Starts -->
+        <div class="form-row-body-segment">
+            {!! Form::label('time_start', 'Starts') !!}
+            {!! Form::text('time_start', null, ['class' => 'input-select']) !!}
+        </div>
 
-    <?php if ($errors->first('time_start')) { ?>
-        <p><?php echo $errors->first('time_start') ?></p>
-    <?php } ?>
+        <!-- Ends -->
+        <div class="form-row-body-segment">
+            {!! Form::label('time_end', 'Ends') !!}
+            {!! Form::text('time_end', null, ['class' => 'input-select']) !!}
+        </div>
 
-    <!-- Ends -->
-    {!! Form::label('time_end', 'Ends') !!}
-    {!! Form::text('time_end') !!}
+        <?php if ($errors->first('time_start')) { ?>
+            <p><?php echo $errors->first('time_start') ?></p>
+        <?php } ?>
 
-    <?php if ($errors->first('time_end')) { ?>
-        <p><?php echo $errors->first('time_end') ?></p>
-    <?php } ?>
+        <?php if ($errors->first('time_end')) { ?>
+            <p><?php echo $errors->first('time_end') ?></p>
+        <?php } ?>
+    </div>
 </div>
 
 <!-- Venue -->
@@ -58,23 +64,34 @@
 <!-- Category -->
 <div class="form-row">
     {!! Form::label('category_id', 'Category') !!}
-    {!! Form::select('category_id', $categories); !!}
+    
+    <div class="form-row-body">
+        {!! Form::select('category_id', $categories, null, ['class' => 'input-select']); !!}
 
-    <?php if ($errors->first('category_id')) { ?>
-        <p><?php echo $errors->first('category_id') ?></p>
-    <?php } ?>
+        <?php if ($errors->first('category_id')) { ?>
+            <p><?php echo $errors->first('category_id') ?></p>
+        <?php } ?>
+    </div>
 </div>
 
 <!-- Color Scheme -->
 <div class="form-row">
     <div class="form-field">
     	{!! Form::label('color_scheme_id', 'Color Scheme') !!}
-    	{!! Form::select('color_scheme_id', [0 => 'Select…'] + (array)$colorSchemes, ($event && $event->colorScheme) ? $event->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select', 'data-default-text' => 'Use the category colour scheme']); !!}
 
-    	<?php if ($errors->first('color_scheme_id')) { ?>
-    	    <p><?php echo $errors->first('color_scheme_id') ?></p>
-    	<?php } ?>
+        <div class="form-row-body">
+        	{!! Form::select('color_scheme_id', [0 => 'Select…'] + (array)$colorSchemes, ($event && $event->colorScheme) ? $event->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select', 'data-default-text' => 'Use the category colour scheme']); !!}
+
+        	<?php if ($errors->first('color_scheme_id')) { ?>
+        	    <p><?php echo $errors->first('color_scheme_id') ?></p>
+        	<?php } ?>
+        </div>
     </div>
 </div>
 
-{!! Form::submit('Submit') !!}
+<div class="form-row">
+    <div class="form-row-body">
+        {!! Form::submit('[ Submit ]', ['class' => 'btn primary']) !!}
+    </div>
+</div>
+

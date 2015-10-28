@@ -1,6 +1,7 @@
 label,
 input,
-textarea {
+textarea,
+select {
     font: $body--mono;
 }
 
@@ -18,9 +19,23 @@ textarea {
             padding: 10px 0;
         }
 
-        > .form-row-body {
+        .form-row-body {
             margin-left: $left-col;
             max-width: 430px;
+
+            .form-row-body-segment {
+                float: left;
+                padding-right: 2em;
+
+                input,
+                label {
+                    display: block;
+                }
+
+                label {
+                    margin-bottom: 1em;
+                }
+            }
         }
 
         &:after {
@@ -51,9 +66,25 @@ textarea {
 
     textarea.input-text {
         border-top: 1px solid rgb(0,0,0);
+        padding-top: 9px;
 
         &:focus {
-            padding-top: 9px;
+            padding-top: 8px;
+        }
+    }
+
+    .input-select {
+        padding: 9px 10px;
+        border: 1px solid rgb(0,0,0);
+        border-radius: 0;
+        background: transparent;
+        -webkit-appearance: none;
+
+        &:focus {
+            outline: none;
+            border-width: 2px;
+            padding: 8px 9px;
+            border-color: $highlight;
         }
     }
 }

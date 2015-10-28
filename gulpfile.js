@@ -21,8 +21,9 @@ elixir(function(mix) {
 	    'vendor/velocity-ui.js',
 	    'vendor/smartresize.js',
 	    'vendor/fastclick.js',
-	    'bootstrap.js',
+	    'vendor/moment.js',
 	    'animation.js',
+	    'bootstrap.js',
 	    'color-scheme-select.js'
 	]);
 

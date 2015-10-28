@@ -26,6 +26,7 @@ class Category extends Model implements SluggableInterface
         'slug', 
         'user_id',
         'color_scheme_id',
+        'icon',
     ];
 
 

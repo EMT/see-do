@@ -11,6 +11,19 @@
 	</div>
 </div>
 
+<!-- Icon -->
+<div class="form-row">
+    {!! Form::label('icon', 'Icon SVG Code') !!}
+
+    <div class="form-row-body">
+        {!! Form::textarea('icon', null, ['class' => 'input-text', 'placeholder' => '<svg…']) !!}
+
+        <?php if ($errors->first('icon')) { ?>
+            <p><?php echo $errors->first('icon') ?></p>
+        <?php } ?>
+    </div>
+</div>
+
 <!-- Color Scheme -->
 <div class="form-row">
     <div class="form-field">

@@ -1,4 +1,3 @@
-$(document).ready(function(){
 
 	// ======= Global Settings and Variables =======
 
@@ -15,59 +14,22 @@ $(document).ready(function(){
     	aniEase = [0.075, 0.82, 0.165, 1],
     	aniEaseOut = [0.6, 0.04, 0.98, 0.335];
 
-	var $body = $('body');
-
-    // ======= Click Handlers =======
-
-	var $eventListing = $('.event'),
-		$eventInfoClose = $('.js-close-sidebar'),
-		$filterBtn = $('.filter');
-
-	$eventInfoClose.on('click touch', function(){
-		closeSidebar();
-	});
-
-	$eventListing.on('click touch', function(e){
-		e.preventDefault(); // Temp!
-		if (!sidebarIsOpen()) {
-			openSidebar();
-		} else {
-			closeSidebar();
-		}
-	});
-
-	$filterBtn.on('click touch', function(e){
-		e.preventDefault();
-		//Move sidebar out of the way, the background from the sidebar clashes with the color background.
-		if(sidebarIsOpen()) {
-			closeSidebar();
-			setTimeout(function(){
-				showFilters(e);
-			},(300 * globalAnimSpeed)); // This is based on the time it takes for the sidebar to slideout - could do with a callback instead or make the timing a global variable.
-		} else {
-			showFilters(e);
-		}
-	});
-
-	$('.filter-overlay-nav').on('click touch', function(e){
-		hideFilters();
-	});
-
     // ======= Filters Animations =======
 
 	var $filterBg = $('.filter-overlay-bg'),
 		$filterNav = $('.filter-overlay-nav'),
-		$filterList = $('.filter-overlay-nav ul li'),
+		$filterList = $filterNav.find('li'),
 		$navNum = $('.nav-num'),
-		$navNumInner = $('.nav-num-inner'),
-		$navOpenBracket = $('.nav-open-bracket'),
-		$navCloseBracket = $('.nav-close-bracket'),
+		$navNumInner = $navNum.children('.nav-num-inner'),
+		$navOpenBracket = $navNum.children('.nav-open-bracket'),
+		$navCloseBracket = $navNum.children('.nav-close-bracket'),
 		diameterValue = (Math.sqrt( Math.pow($(window).height(), 2) + Math.pow($(window).width(), 2)));
 
 
 	// Initial Setup
-
-	$filterBg.css({'width': diameterValue, 'height': diameterValue});
+	$(function() {
+		$filterBg.css({'width': diameterValue, 'height': diameterValue});
+	});
 
 	$(window).smartresize(function(){
 		newDiameterValue = (Math.sqrt( Math.pow($(window).height(), 2) + Math.pow($(window).width(), 2)));
@@ -79,7 +41,7 @@ $(document).ready(function(){
 
 	// Reveal Animation
 
-	function showFilters(e) {
+	var showFilters = function(e) {
 		// Figure out and apply the diameterValue information before hand, then just apply the position.x/position.y information on click (Might stop some of the lag at the start)
 		// This also needs to be updated on resize.
 
@@ -145,41 +107,36 @@ $(document).ready(function(){
 	// ======= Sidebar Animations =======
 
 	// Open Animation
+	var $body = $('body'),
+		$eventInfoPane = $('.event-info'),
+	    $leftAlignWrapper = $('.left-align-wrapper'),
+		$eventInfoPaneChildren = $('.event-info').children();
+
 
 	function openSidebar() {
-		$body.addClass('sidebar-active');
 
 		var timing = 300;
 
-		var $eventInfoPane = $('.event-info'),
-		    $leftAlignWrapper = $('.left-align-wrapper'),
-			$eventInfoPaneChildren = $('.event-info').children();
-
 		var openSidebarAnim = [
+			{ elements: $eventInfoPaneChildren, properties: {opacity: 0}, options: { duration: 0}},
 			{ elements: $leftAlignWrapper, properties: { width: "62.5%" }, options: {easing: [0.075, 0.82, 0.165, 1]}},
 			{ elements: $eventInfoPane, properties: { translateX: ["0%","100%"] }, options: { sequenceQueue: false, easing: [0.075, 0.82, 0.165, 1]}},
 			{ elements: $eventInfoPaneChildren, properties: 'custom.slideUpIn', options: { duration: timing, stagger: 120, drag: true}},
 		];
 
 		$.Velocity.RunSequence(openSidebarAnim);
+		$eventInfoPane.addClass('event-info--open');
 	}
 
 	// Close Animation
 
 	function closeSidebar() {
-		$body.removeClass('sidebar-active');
-
-		var timing = 0;
-
-		var $eventInfoPane = $('.event-info'),
-		    $leftAlignWrapper = $('.left-align-wrapper'),
-			$eventInfoPaneChildren = $('.event-info > *');
+		$eventInfoPane.removeClass('event-info--open');
 
 		// If width <= BREAKPOINT then run different animation to fully reset.
 		var closeSidebarAnim = [
 			{ elements: $leftAlignWrapper, properties: { width: "90%" }, options: {easing: [0.075, 0.82, 0.165, 1]} },
 			{ elements: $eventInfoPane, properties: { translateX: ["100%"] }, options: { sequenceQueue: false, easing: [0.075, 0.82, 0.165, 1] } },
-			{ elements: $eventInfoPaneChildren, properties: 'fadeOut', options: { duration: timing, display: false}},
 		];
 
 		$.Velocity.RunSequence(closeSidebarAnim);
@@ -188,7 +145,7 @@ $(document).ready(function(){
 	// Helper function, lets us know if the sidebar is open.
 
 	function sidebarIsOpen() {
-		if ( $body.hasClass('sidebar-active') ) {
+		if ( $eventInfoPane.hasClass('event-info--open') ) {
 			return true;
 		} else {
 			return false;
@@ -233,5 +190,4 @@ $(document).ready(function(){
         }
     }
 
-});
 

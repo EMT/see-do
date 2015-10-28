@@ -18,5 +18,7 @@
                 color: {{ $event->colorScheme->color_3 }};
             }
         </style>
+    @else
+       <style id="#js-event-color-scheme"></style>
     @endif
 </head>

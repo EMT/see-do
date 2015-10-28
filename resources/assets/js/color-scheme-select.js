@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
 
 	$('.js-color-scheme-select').each(function() {
 		var schemes = [];
@@ -11,7 +11,7 @@ $(document).ready(function() {
 		});
 
 		var schemeSelect = new colorSchemeSelect({
-			schemes: schemes, 
+			schemes: schemes,
 			defaultText: $(this).data('defaultText')
 		});
 
@@ -27,13 +27,13 @@ $(document).ready(function() {
 		});
 
 		$('[for=' + $(this).attr('id') + ']').before($dropdown);
-		
+
 		var $elem = $('<div class="cs-color-scheme-select-input"></div>');
-		 
+
 		// Create fake input
 		var $fakeInput = schemeSelect.buildScheme(schemes[0], 'cs-color-scheme-fake-input');
-		
-		// Open select UI when fake input is clicked/tapped/focussed 
+
+		// Open select UI when fake input is clicked/tapped/focussed
 		// TODO: open on focus
 		$fakeInput.on('click', function(e) {
 			e.preventDefault();
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 		// Create hidden input
 		var $hiddenInput = $('<input type="hidden" name="' + $(this).attr('name') + '" value="' + $(this).val() + '">');
-		
+
 		// Update fake input when hidden input changes
 		$hiddenInput.on('change', function(e) {
 			var scheme = findInArrayByKey(schemes, 'id', $(this).val());

@@ -1,5 +1,5 @@
 <header>
-	<div class="site-wrapper">
+	<div class="site-wrapper clear">
 		<div class="left-align-wrapper">
 			<h1 class="site-title">[ See+Do ]</h1>
 			<nav>

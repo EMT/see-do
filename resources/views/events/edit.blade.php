@@ -3,9 +3,9 @@
 @section('title', 'Add an Event — See&Do')
 
 @section('content')
-    <h2>Add an Event</h2>
+    <h2 class="aligned">Add an Event</h2>
 
-    {!! Form::model($event, ['route' => ['events.update', $event->slug], 'method' => 'put']) !!}
+    {!! Form::model($event, ['route' => ['events.update', $event->slug], 'method' => 'put', 'class' => 'form']) !!}
 		
 		@include('events.eventForm')
 

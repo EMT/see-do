@@ -1,0 +1,59 @@
+label,
+input,
+textarea {
+    font: $body--mono;
+}
+
+.form {
+    margin-top: 3em;
+
+    .form-row {
+        padding-bottom: 2em;
+
+        > label {
+            display: block;
+            float: left;
+            clear: left;
+            width: $left-col;
+            padding: 10px 0;
+        }
+
+        > .form-row-body {
+            margin-left: $left-col;
+            max-width: 430px;
+        }
+
+        &:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+    }
+
+    .label-focus {
+        color: $highlight;
+    }
+
+    .input-text {
+        display: block;
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid rgb(0,0,0);
+        padding: 10px 0;
+
+        &:focus {
+            outline: none;
+            border-width: 2px;
+            padding-bottom: 9px;
+            border-color: $highlight;
+        }
+    }
+
+    textarea.input-text {
+        border-top: 1px solid rgb(0,0,0);
+
+        &:focus {
+            padding-top: 9px;
+        }
+    }
+}

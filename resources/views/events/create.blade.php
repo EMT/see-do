@@ -3,9 +3,9 @@
 @section('title', 'Add an Event — See&Do')
 
 @section('content')
-    <h2>Add an Event</h2>
+    <h2 class="aligned">Add an Event</h2>
 
-    {!! Form::open(['action' => 'EventsController@store']) !!}
+    {!! Form::open(['action' => 'EventsController@store', 'class' => 'form']) !!}
 		
 		@include('events.eventForm')
 

@@ -6,9 +6,9 @@ $black: rgb(0,0,0);
 $highlight: rgb(0,61,166);
 
 //Typography
-$typeface--heading: 'Newzald', serif; // Need some more fall back options here ?
+$typeface--heading: 'Newzald', Georgia, serif; // Need some more fall back options here ?
 $typeface--body: 'Graphik', sans-serif; // ^
-$typeface--mono: 'Pressura', monospace; // ^
+$typeface--mono: 'GT Pressura', "Lucida Console", Monaco, monospace; // ^
 
 $heading--large: 3.125em/0.9 $typeface--heading;
 $heading--normal: 1.75rem/1.2 $typeface--heading;

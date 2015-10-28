@@ -22,7 +22,8 @@ elixir(function(mix) {
 	    'vendor/smartresize.js',
 	    'vendor/fastclick.js',
 	    'bootstrap.js',
-	    'animation.js',
+        'animation.js',
+	    'forms.js',
 	    'color-scheme-select.js'
 	]);
 

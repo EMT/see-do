@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	FastClick.attach(document.body);
 
 	// === Dev ===
 	// Reducing markup a tad.

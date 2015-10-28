@@ -23,11 +23,11 @@ $(document).ready(function(){
 		$eventInfoClose = $('.js-close-sidebar'),
 		$filterBtn = $('.filter');
 
-	$eventInfoClose.on('click', function(){
+	$eventInfoClose.on('click touch', function(){
 		closeSidebar();
 	});
 
-	$eventListing.on('click', function(e){
+	$eventListing.on('click touch', function(e){
 		e.preventDefault(); // Temp!
 		if (!sidebarIsOpen()) {
 			openSidebar();
@@ -36,7 +36,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$filterBtn.on('click', function(e){
+	$filterBtn.on('click touch', function(e){
 		e.preventDefault();
 		//Move sidebar out of the way, the background from the sidebar clashes with the color background.
 		if(sidebarIsOpen()) {
@@ -49,7 +49,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$('.filter-overlay-nav').on('click', function(e){
+	$('.filter-overlay-nav').on('click touch', function(e){
 		hideFilters();
 	});
 
@@ -175,11 +175,11 @@ $(document).ready(function(){
 		    $leftAlignWrapper = $('.left-align-wrapper'),
 			$eventInfoPaneChildren = $('.event-info > *');
 
+		// If width <= BREAKPOINT then run different animation to fully reset.
 		var closeSidebarAnim = [
 			{ elements: $leftAlignWrapper, properties: { width: "90%" }, options: {easing: [0.075, 0.82, 0.165, 1]} },
 			{ elements: $eventInfoPane, properties: { translateX: ["100%"] }, options: { sequenceQueue: false, easing: [0.075, 0.82, 0.165, 1] } },
 			{ elements: $eventInfoPaneChildren, properties: 'fadeOut', options: { duration: timing, display: false}},
-
 		];
 
 		$.Velocity.RunSequence(closeSidebarAnim);
@@ -201,11 +201,11 @@ $(document).ready(function(){
 
  	// Register fadeIn/fadeOut Transition helper function by: Tommie Hnasen - http://codepen.io/tommiehansen/
 
-	if(typeof String.prototype.endsWith != 'function') { String.prototype.endsWith = function (str) { return this.slice(-str.length) == str; }; }
 
 	function registerTransition(name,fx){
 	  var ease, dur;
-	  if(name.endsWith('In')) {
+	  // Fix this so it only checks the end of the string.
+	  if(name.indexOf("In") >= 0) {
 	    ease = aniEase;
 	    dur = aniDuration;
 	    fx.opacity = [1,0]; // forcefeed opacity

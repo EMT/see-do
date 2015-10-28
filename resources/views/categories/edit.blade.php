@@ -5,7 +5,7 @@
 @section('content')
     <h2>Edit Category</h2>
 
-    {!! Form::model($category, ['route' => ['categories.update', $category->slug], 'method' => 'put']) !!}
+    {!! Form::model($category, ['route' => ['categories.update', $category->slug], 'method' => 'put', 'class' => 'form']) !!}
 		
 		@include('categories.categoryForm')
 

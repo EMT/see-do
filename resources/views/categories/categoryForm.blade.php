@@ -1,21 +1,33 @@
 <!-- Title -->
-<div class="form-field">
+<div class="form-row">
 	{!! Form::label('title', 'Title') !!}
-	{!! Form::text('title') !!}
+	
+	<div class="form-row-body">
+		{!! Form::text('title', null, ['class' => 'input-text', 'placeholder' => 'Stuff & Things']) !!}
 
-	<?php if ($errors->first('title')) { ?>
-	    <p><?php echo $errors->first('title') ?></p>
-	<?php } ?>
+		<?php if ($errors->first('title')) { ?>
+		    <p><?php echo $errors->first('title') ?></p>
+		<?php } ?>
+	</div>
 </div>
 
 <!-- Color Scheme -->
-<div class="form-field">
-	{!! Form::label('color_scheme_id', 'Color Scheme') !!}
-	{!! Form::select('color_scheme_id', $colorSchemes, ($category && $category->colorScheme) ? $category->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select']); !!}
+<div class="form-row">
+    <div class="form-field">
+    	{!! Form::label('color_scheme_id', 'Color Scheme') !!}
 
-	<?php if ($errors->first('color_scheme_id')) { ?>
-	    <p><?php echo $errors->first('color_scheme_id') ?></p>
-	<?php } ?>
+        <div class="form-row-body">
+        	{!! Form::select('color_scheme_id', $colorSchemes, ($category && $category->colorScheme) ? $category->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select']); !!}
+
+        	<?php if ($errors->first('color_scheme_id')) { ?>
+        	    <p><?php echo $errors->first('color_scheme_id') ?></p>
+        	<?php } ?>
+        </div>
+    </div>
 </div>
 
-{!! Form::submit('Submit') !!}
+<div class="form-row">
+    <div class="form-row-body">
+        {!! Form::submit('[ Submit ]', ['class' => 'btn primary']) !!}
+    </div>
+</div>

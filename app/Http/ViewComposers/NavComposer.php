@@ -5,12 +5,12 @@ namespace App\Http\ViewComposers;
 use App\Category;
 use Illuminate\Contracts\View\View;
 
-class HeaderComposer
+class NavComposer
 {
     protected $categories;
 
     /**
-     * Create a new header composer.
+     * Create a new nav composer.
      */
     public function __construct()
     {

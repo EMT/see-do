@@ -14,7 +14,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         // Using class based composers...
-        view()->composer('common.header', 'App\Http\ViewComposers\HeaderComposer');
+        view()->composer('common.nav', 'App\Http\ViewComposers\NavComposer');
 
     }
 

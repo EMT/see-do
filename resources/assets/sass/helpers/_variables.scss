@@ -21,13 +21,20 @@ $body--mono: 1rem/1.25 $typeface--mono;
 $site-wrapper: 100%;
 $left-content: 90%;
 
+// General Breakpoints
+$site-large: 1200px;
+$site-tablet: 900px;
+$site-mobile: 700px;
+
+
 // Margins
 $left-col: 140px;
+$tab-left-col: 90px;
+$mob-left-col: 30px;
 
 // Padding
 $list-vert-padding: 16px;
 
 // Site Config
-
 $image-path: '../../../../assets/img/';
 $font-path: '../../../../assets/fonts/';

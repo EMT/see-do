@@ -1,9 +1,17 @@
 .site-wrapper {
 	width: $site-wrapper;
 	padding: 0 60px;
+
+	@media screen and (max-width: $site-tablet) {
+	    padding: 0 30px;
+	}
 }
 
 .left-align-wrapper {
 	width: $left-content;
 	float: left;
+
+	@media screen and (max-width: $site-tablet) {
+		width: 100%;
+	}
 }

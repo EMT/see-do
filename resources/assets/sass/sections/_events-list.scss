@@ -31,6 +31,10 @@
 		opacity: 0;
 		visibility: hidden;
 	}
+
+	@media screen and (max-width: $site-tablet) {
+		width: calc(100% - #{$tab-left-col});
+	}
 }
 
 .event:hover {
@@ -60,4 +64,8 @@
 
 .event--date {
 	width: $left-col;
+
+	@media screen and (max-width: $site-tablet) {
+		width: $tab-left-col;
+	}
 }

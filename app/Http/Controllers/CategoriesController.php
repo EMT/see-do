@@ -64,7 +64,7 @@ class CategoriesController extends Controller
     public function show(Category $category)
     {
         $event = null;
-        $events = $category->events()->orderBy('time_start', 'asc')->get();
+        $events = $category->events()->where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc')->get();
         $categories = Category::orderBy('title', 'asc')->get();
         return view('events.index', compact('events', 'event', 'category', 'categories'));
     }

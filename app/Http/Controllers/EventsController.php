@@ -25,7 +25,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::orderBy('time_start', 'asc')->get();
+        $events = Event::where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc')->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
         return view('events.index', compact('events', 'event', 'categories') + ['event' => null]);
     }

@@ -1,7 +1,21 @@
 $(function() {
 
-    var endInput = new DateTimeInput($('#time_end'), {showEnd: false});
-    var startInput = new DateTimeInput($('#time_start'), {sendEndTo: endInput, useAsRefDateFor: endInput});
+    var endInput = new DateTimeInput($('#time_end'), {
+        showEnd: false
+    });
+    var startInput = new DateTimeInput($('#time_start'), {
+        callback: function(self) {
+            if (self.cronoResult) {
+                if (self.cronoResult.end) {
+                    endInput.crono(self.getDateTime('end'));
+                }
+
+                if (self.options.useAsRefDateFor) {
+                    endInput.setRefDate(new Date(self.getDateTime()));
+                }
+            }
+        }
+    });
 
 });
 
@@ -11,9 +25,7 @@ var DateTimeInput = function($elem, options) {
         blankStateMsg: 'Type a date and type in any format',
         showEnd: true,
         use: 'start',
-        sendStartTo: false,
-        sendEndTo: false,
-        useAsRefDateFor: null,
+        callback: null,
         userFormat: 'DD MMM YYYY, h:mma',
         hiddenFormat: 'YYYY-MM-DD HH:mm:ss',
         refDate: null
@@ -42,7 +54,10 @@ var DateTimeInput = function($elem, options) {
         self.cronoResult = (dt && dt[0]) ? dt[0] : null;
         self.updateHiddenField();
         self.refreshTooltip();
-        self.sendTo();
+        
+        if (self.options.callback) {
+            self.options.callback(self);
+        }
 
         if (val) {
             self.refreshUserInput();

@@ -17,6 +17,7 @@ elixir(function(mix) {
 
     // Concatenate and output to public/js/all.js
     mix.scripts([
+        'vendor/jquery.min.js',
 	    'vendor/velocity.js',
 	    'vendor/velocity-ui.js',
 	    'vendor/smartresize.js',

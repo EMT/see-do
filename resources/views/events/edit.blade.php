@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Add an Event — See&Do')
+@section('title', 'Edit Event — See&Do')
 
 @section('content')
     <h2 class="aligned">Edit Event</h2>

@@ -1,5 +1,6 @@
 $(function() {
 	FastClick.attach(document.body);
+	Filters.init();
 
 	$('.month--title').on('click', function(){
 		var parent = $(this).parent();
@@ -19,7 +20,7 @@ $(function() {
 		$filterBtn = $('.filter');
 
 	$eventInfoClose.on('click touch', function(){
-		closeSidebar();
+		Sidebar.animClose();
 	});
 
 	$eventListing.on('click touch', function(e){
@@ -28,11 +29,11 @@ $(function() {
 		var eventUrl = $(this).children('a').attr('href');
 		var eventJsonUrl = eventUrl + '.json';
 
-		if (!sidebarIsOpen()) {
+		if (!Sidebar.isOpen()) {
 			setEventDetails(eventJsonUrl);
-		} 
+		}
 		else {
-			closeSidebar();
+			Sidebar.animClose();
 			setEventDetails(eventJsonUrl);
 		}
 
@@ -40,22 +41,23 @@ $(function() {
 		$(this).addClass('event--active');
 	});
 
+
 	$filterBtn.on('click touch', function(e){
 		e.preventDefault();
 		//Move sidebar out of the way, the background from the sidebar clashes with the color background.
-		if(sidebarIsOpen()) {
-			closeSidebar();
+		if(Sidebar.isOpen()) {
+			Sidebar.animClose();
 			setTimeout(function(){
-				showFilters(e);
+				Filters.animShow(e);
 			},(300 * globalAnimSpeed)); // This is based on thew time it takes for the sidebar to slideout - could do with a callback instead or make the timing a global variable.
 		} else {
-			showFilters(e);
+			Filters.animShow(e);
 		}
 	});
 
 	$('.filter-overlay-nav').on('click touch', 'a', function(e) {
 		e.preventDefault();
-		hideFilters();
+		Filters.animHide();
 		window.location = $(this).attr('href');
 	});
 
@@ -82,7 +84,7 @@ function setEventDetails(url) {
 		$('#js-event-color-scheme').remove();
 		$('<style id="#js-event-color-scheme" type="text/css">'+ styles +'</style>').appendTo('head');
 
-		openSidebar();
+		Sidebar.animOpen();
 
 	});
 }

@@ -24,6 +24,7 @@ elixir(function(mix) {
 	    'vendor/fastclick.js',
         'vendor/moment.js',
 	    'vendor/chrono.min.js',
+        'stateHandler.js',
 	    'animation.js',
 	    'bootstrap.js',
         'forms.js',

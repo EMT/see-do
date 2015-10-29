@@ -109,7 +109,7 @@ function setEventDetails(url) {
 		styles += '.event-secondary-color { color: ' + response.color_scheme.color_3 + '; fill: ' + response.color_scheme.color_3 + ';}'
 
 		$('#js-event-color-scheme').remove();
-		$('<style id="#js-event-color-scheme" type="text/css">'+ styles +'</style>').appendTo('head');
+		$('<style id="js-event-color-scheme" type="text/css">'+ styles +'</style>').appendTo('head');
 
 		Sidebar.animOpen();
 

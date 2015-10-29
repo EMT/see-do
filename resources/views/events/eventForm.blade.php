@@ -77,16 +77,14 @@
 
 <!-- Color Scheme -->
 <div class="form-row">
-    <div class="form-field">
-    	{!! Form::label('color_scheme_id', 'Color Scheme') !!}
+	{!! Form::label('color_scheme_id', 'Color Scheme') !!}
 
-        <div class="form-row-body">
-        	{!! Form::select('color_scheme_id', [0 => 'Select…'] + (array)$colorSchemes, ($event && $event->colorScheme) ? $event->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select', 'data-default-text' => 'Use the category colour scheme']); !!}
+    <div class="form-row-body">
+    	{!! Form::select('color_scheme_id', [0 => 'Select…'] + (array)$colorSchemes, ($event && $event->colorScheme) ? $event->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select', 'data-default-text' => 'Use the category colour scheme']); !!}
 
-        	<?php if ($errors->first('color_scheme_id')) { ?>
-        	    <p><?php echo $errors->first('color_scheme_id') ?></p>
-        	<?php } ?>
-        </div>
+    	<?php if ($errors->first('color_scheme_id')) { ?>
+    	    <p><?php echo $errors->first('color_scheme_id') ?></p>
+    	<?php } ?>
     </div>
 </div>
 

@@ -26,7 +26,7 @@ $(function() {
 			$dropdown.removeClass('open');
 		});
 
-		$('[for=' + $(this).attr('id') + ']').before($dropdown);
+		$(this).before($dropdown);
 
 		var $elem = $('<div class="cs-color-scheme-select-input"></div>');
 
@@ -64,6 +64,7 @@ var colorSchemeSelect = function(options) {
 
 	var self = this;
 	self.options = options;
+	self.optionWidth = null;
 
 	self.build = function() {
 		var schemes = self.options.schemes;
@@ -103,6 +104,18 @@ var colorSchemeSelect = function(options) {
 	self.buildDefault = function() {
 		return $('<div class="cs-color-scheme-select-default">' + self.options.defaultText + '</div>').data('colorSchemeId', 0);
 	};
+
+	self.getOptionWidth = function($option) {
+		var w = $option.css({
+			position: 'absolute',
+			left: '-999em'
+		})
+		.appendTo($('body'))
+		.outerWidth(true);
+
+		$option.remove();
+		return w;
+	}
 }
 
 function findInArrayByKey(arr, key, val) {

@@ -17,18 +17,22 @@
 }
 
 /**
- * Styles for the color scheme select dropdown
+ * Styles for the color scheme selector
  */
 
 .cs-color-scheme-select-input {
-	max-width: 200px;
+	font: $body--mono;
+	line-height: 40px;
 }
 
 .cs-color-scheme-select {
+	font: $body--mono;
 	position: absolute;
-	width: 200px;
+	top: -400px;
+	left: 0;
+	padding: 1em;
 	background: rgb(255,255,255);
-	box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.3);
+	box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
 	display: none;
 	opacity: 0;
 	@include transition(all .3s ease-out);
@@ -40,8 +44,10 @@
 }
 
 .cs-color-scheme-select-option {
+	display: inline-block;
 	cursor: pointer;
-	padding: 4px;
+	padding: 12px;
+	text-align: center;
 	@include transition(all .3s ease-out);
 
 	&:hover {
@@ -49,9 +55,16 @@
 	}
 }
 
+.cs-color-scheme-select-default {
+	display: block;
+}
+
 .cs-color-scheme-select-option-color {
 	display: inline-block;
-	width: 33.33%;
+	width: 30px;
 	height: 30px;
+	margin: 0 3px;
+	border-radius: 15px;
+	border: 1px solid rgb(225,225,225);
 	text-indent: -999em;
 }

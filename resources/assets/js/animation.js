@@ -310,7 +310,7 @@
 						sequenceQueue: false,
 						easing: [0.075, 0.82, 0.165, 1],
 						complete: function() {
-							$infoPane.removeClass('event-info--open');
+							$infoPane.removeClass('event-info--open').scrollTop(0);
 							$('.event--active').removeClass('event--active');
 
 							if ($openItem) {

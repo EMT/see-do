@@ -26,16 +26,21 @@ select {
 
             .form-row-body-segment {
                 position: relative;
-                float: left;
-                padding-right: 2em;
+                float: right;
+                max-width: 45%;
 
                 input,
                 label {
                     display: block;
+                    max-width: 100%;
                 }
 
                 label {
                     margin-bottom: 1em;
+                }
+
+                &:first-child {
+                    float: left;
                 }
             }
         }

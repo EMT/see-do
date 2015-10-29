@@ -53,9 +53,10 @@ $(function() {
 		}
 	});
 
-	$('.filter-overlay-nav').on('click touch', function(e) {
+	$('.filter-overlay-nav').on('click touch', 'a', function(e) {
 		e.preventDefault();
 		hideFilters();
+		window.location = $(this).attr('href');
 	});
 
 

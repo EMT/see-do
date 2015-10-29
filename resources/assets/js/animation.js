@@ -288,7 +288,7 @@
 			$.Velocity.RunSequence(openSidebarAnim);
 		}
 
-		var animClose = function() {
+		var animClose = function($openItem) {
 
 			// If width <= BREAKPOINT then run different animation to fully reset.
 			var closeSidebarAnim = [
@@ -312,6 +312,10 @@
 						complete: function() {
 							$infoPane.removeClass('event-info--open');
 							$('.event--active').removeClass('event--active');
+
+							if ($openItem) {
+								$openItem.addClass('event--active');
+							}
 						}
 					}
 				}

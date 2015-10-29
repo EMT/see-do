@@ -15,30 +15,57 @@ $(function() {
 	});
 
 
-	var $eventListing = $('.event'),
+	var $eventItems = $('.event'),
 		$eventInfoClose = $('.js-close-sidebar'),
 		$filterBtn = $('.filter');
 
-	$eventInfoClose.on('click touch', function(){
+	$eventInfoClose.on('click touch', function(e) {
+		e.preventDefault(); 
 		Sidebar.animClose();
 	});
 
-	$eventListing.on('click touch', function(e){
+	$eventItems.on('click touch', function(e) {
 		e.preventDefault(); // Temp!
+
+		if (Sidebar.isOpen()) {
+			Sidebar.animClose($(this));
+		}
+
+		var $prevItem = $($eventItems[$eventItems.index(this) - 1]);
+		var $nextItem = $($eventItems[$eventItems.index(this) + 1]);
+		var $eventPrevNext = $('.js-event-next-prev');
+		$eventPrevNext.html('');
+
+		if ($prevItem.length) { 
+			$eventPrev = $('<a href="" class="nav-arrows--arrow"><img src="/assets/img/arrow-left.svg" alt="Previous"></a>');
+			$eventPrevNext.append($eventPrev);
+			$eventPrev.on('click touch', function(e) {
+				e.preventDefault();
+				$prevItem.trigger('click');
+			});
+		}
+
+		if ($nextItem.length) { 
+			$eventNext = $('<a href="#" class="nav-arrows--arrow"><img src="/assets/img/arrow-right.svg" alt="Next"></a>');
+        	$eventPrevNext.append($eventNext);
+        	$eventNext.on('click touch', function(e) {
+				e.preventDefault();
+				$nextItem.trigger('click');
+			});
+		}
 
 		var eventUrl = $(this).children('a').attr('href');
 		var eventJsonUrl = eventUrl + '.json';
 
-		if (!Sidebar.isOpen()) {
-			setEventDetails(eventJsonUrl);
-		}
-		else {
-			Sidebar.animClose();
-			setEventDetails(eventJsonUrl);
-		}
+		setEventDetails(eventJsonUrl);
 
 		$('.event--active').removeClass('event--active');
 		$(this).addClass('event--active');
+	});
+
+	$('.js-event-next-prev').on('click touch', function(e) {
+		e.preventDefault();
+
 	});
 
 

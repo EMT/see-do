@@ -26,10 +26,6 @@
 
     <div class="event-info--navigation clear">
         <p class="event-info--share meta-data">Share</p>
-
-        <div class="event-info--nav-arrows clear">
-            <a href="#" class="nav-arrows--arrow"><img src="{{asset('assets/img/arrow-left.svg')}}" alt="Previous"></a>
-            <a href="#" class="nav-arrows--arrow"><img src="{{asset('assets/img/arrow-right.svg')}}" alt="Next"></a>
-        </div>
+        <div class="event-info--nav-arrows clear js-event-next-prev"></div>
     </div>
 </div>

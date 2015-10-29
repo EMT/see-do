@@ -73,6 +73,7 @@ var DateTimeInput = function($elem, options) {
     self.$hiddenInput.insertAfter($elem);
     $elem.parent().append(self.$tooltip);
     self.crono();
+    self.refreshUserInput();
 
     $elem.on('focus', function(e) {
         if (self.$tooltip.css('display') === 'none') {

@@ -94,6 +94,11 @@
 .event-info--share {
 	float: left;
 	line-height: 22px; //Temp vertical alignment hack until we can think of something better.
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
 }
 
 .nav-arrows--arrow {

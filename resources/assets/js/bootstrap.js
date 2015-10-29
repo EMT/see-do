@@ -100,6 +100,8 @@ function setEventDetails(url) {
 		$('.js-event-info-date').html(moment(response.time_start).format('D.M.YY'));
 		$('.js-event-info-time').html(moment(response.time_start).format('h.mma') + ' - ' + moment(response.time_end).format('h.mma'));
 		$('.js-event-info-venue').html(response.venue);
+		$('.js-event-info-fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURI(response.url));
+		$('.js-event-info-twitter').attr('href', 'https://twitter.com/home?status=' + encodeURI(response.title + ' ' + response.url));
 
 		$('.event-info .body-copy').html('<p>' + response.content + '</p>');
 

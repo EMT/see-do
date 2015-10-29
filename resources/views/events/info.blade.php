@@ -21,11 +21,14 @@
     </div>
 
     <div class="body-copy">
-        <p>{{ $event ? $event->content : '' }}</p>
+        <p>{!! $event ? $event->content : '' !!}</p>
     </div>
 
     <div class="event-info--navigation clear">
-        <p class="event-info--share meta-data">Share</p>
+        <p class="event-info--share meta-data">Share 
+            <a class="js-event-info-fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $event ? rawurlencode(route('events.show', ['slug' => $event->slug])) : '' }}">[ f ]</a> 
+            <a class="js-event-info-twitter" target="_blank" href="https://twitter.com/home?status={{ $event ? rawurlencode($event->title . ' ' . route('events.show', ['slug' => $event->slug])) : '' }}">[ t ]</a>
+        </p>
         <div class="event-info--nav-arrows clear js-event-next-prev"></div>
     </div>
 </div>

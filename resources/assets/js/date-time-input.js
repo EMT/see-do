@@ -12,7 +12,9 @@ var DateTimeInput = function($elem, options) {
         showEnd: true,
         use: 'start',
         sendStartTo: false,
-        sendEndTo: false
+        sendEndTo: false,
+        userFormat: 'DD MMM YYYY, h:mma',
+        hiddenFormat: 'YYYY-MM-DD HH:mm:ss'
     };
 
     var self = this;
@@ -41,27 +43,37 @@ var DateTimeInput = function($elem, options) {
         }
     }
 
+    self.getDateTime = function(use) {
+        use = use || self.options.use;
+
+        if (self.cronoResult[use]) {
+            return moment(self.cronoResult[use].date()).format(self.options.hiddenFormat);
+        }
+
+        return null;
+    }
+
     self.updateHiddenField = function() {
-        if (self.cronoResult && self.cronoResult[self.options.use]) {
-            self.$hiddenInput.val(self.cronoResult[self.options.use].date());
+        if (self.cronoResult && self.getDateTime()) {
+            self.$hiddenInput.val(self.getDateTime());
         }
     }
 
     self.sendTo = function() {
         if (self.cronoResult) {
             if (self.options.sendStartTo && self.cronoResult.start) {
-                self.options.sendStartTo.crono(self.cronoResult.start.date());
+                self.options.sendStartTo.crono(self.getDateTime('start'));
             }
 
             if (self.options.sendEndTo && self.cronoResult.end) {
-                self.options.sendEndTo.crono(self.cronoResult.end.date().toString());
+                self.options.sendEndTo.crono(self.getDateTime('end'));
             }
         }
     }
 
     self.refreshUserInput = function() {
         if (self.$hiddenInput.val()) {
-            $elem.val(moment(self.$hiddenInput.val()).format('DD MMM YYYY, h:mma'));
+            $elem.val(moment(self.$hiddenInput.val()).format(self.options.userFormat));
         }
     }
 
@@ -95,6 +107,9 @@ var DateTimeInput = function($elem, options) {
 };
 
 
+/**
+ * Parses the result into a string for use in the tooltip
+ */ 
 var parseCronoResult = function(result, showEnd) {
     var vals = {
         start: result.start.impliedValues,

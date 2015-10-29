@@ -138,22 +138,22 @@
 		// If width <= BREAKPOINT then run different animation to fully reset.
 		var closeSidebarAnim = [
 			{
-				elements: $leftAlignWrapper, 
-				properties: { 
-					width: "90%" 
-				}, 
+				elements: $leftAlignWrapper,
+				properties: {
+					width: "90%"
+				},
 				options: {
 					easing: [0.075, 0.82, 0.165, 1]
 				}
 			},
 			{
-				elements: $eventInfoPane, 
+				elements: $eventInfoPane,
 				properties: {
 					translateX: ["100%"]
-				}, 
+				},
 				options: {
-					sequenceQueue: false, 
-					easing: [0.075, 0.82, 0.165, 1], 
+					sequenceQueue: false,
+					easing: [0.075, 0.82, 0.165, 1],
 					complete: function() {
 						$eventInfoPane.removeClass('event-info--open');
 						$('.event--active').removeClass('event--active');
@@ -203,14 +203,22 @@
 
 	}
 
-	// Visual Count function by: Adam Merrifield - http://stackoverflow.com/a/14144475
+	// Visual Count function modified from original by: Adam Merrifield - http://stackoverflow.com/a/14144475
 
 	function count($this){
         var current = parseInt($this.html(), 10);
-        $this.html('00' + (++current));
-        if(current !== $this.data('count')){
-            setTimeout(function(){count($this)}, 100);
-        }
+        if ($this.data('count') !== 0) {
+	        $this.html(zeroPad(++current,3));
+	        if(current !== $this.data('count')){
+	            setTimeout(function(){count($this)}, 100);
+	        }
+	    }
     }
 
-
+    function zeroPad(num,count){
+		var numZeropad = num.toString();
+		while(numZeropad.length < count) {
+			numZeropad = "0" + numZeropad;
+		}
+		return numZeropad;
+	}

@@ -5,36 +5,23 @@ html {
 
 // Serif Header Font
 @font-face {
-  font-family: 'Newzald';
-  src: url($font-path + 'newzald-bold/newzald-bold.eot');
-  src: url($font-path + 'newzald-bold/newzald-bold.eot?#iefix') format('embedded-opentype'),
-       url($font-path + 'newzald-bold/newzald-bold.woff') format('woff'),
-       url($font-path + 'newzald-bold/newzald-bold.ttf') format('truetype'),
-       url($font-path + 'newzald-bold/newzald-bold.svg#Newzald') format('svg');
+  font-family: 'LyonText';
+  src: url($font-path + 'lyon-text/LyonText-Bold-Web.eot');
+  src: url($font-path + 'lyon-text/LyonText-Bold-Web.eot?#iefix') format('embedded-opentype'),
+       url($font-path + 'lyon-text/LyonText-Bold-Web.woff') format('woff'),
+       url($font-path + 'lyon-text/LyonText-Bold-Web.ttf') format('truetype'),
+       url($font-path + 'lyon-text/LyonText-Bold-Web.svg#Newzald') format('svg');
   font-weight: normal;
   font-style: normal;
-}
-
-// Serif Header Font -- Italic.
-@font-face {
-  font-family: 'Newzald';
-  src: url($font-path + 'newzald-bold-italic/newzald-bolditalic.eot');
-  src: url($font-path + 'newzald-bold-italic/newzald-bolditalic.eot?#iefix') format('embedded-opentype'),
-       url($font-path + 'newzald-bold-italic/newzald-bolditalic.woff') format('woff'),
-       url($font-path + 'newzald-bold-italic/newzald-bolditalic.ttf') format('truetype'),
-       url($font-path + 'newzald-bold-italic/newzald-bolditalic.svg#Newzald') format('svg');
-  font-weight: normal;
-  font-style: italic;
 }
 
 // Monospace Font
 @font-face {
   font-family: 'GT Pressura';
-  src: url($font-path + 'pressura/gt-pressura-light.eot');
-  src: url($font-path + 'pressura/gt-pressura-light.eot?#iefix') format('embedded-opentype'),
-       url($font-path + 'pressura/gt-pressura-light.woff') format('woff'),
-       url($font-path + 'pressura/gt-pressura-light.ttf') format('truetype'),
-       url($font-path + 'pressura/gt-pressura-light.svg#GT Pressura') format('svg');
+  src: url($font-path + 'pressura-light/GT-Pressura-Mono-Light.eot');
+  src: url($font-path + 'pressura-light/GT-Pressura-Mono-Light.eot?#iefix') format('embedded-opentype'),
+       url($font-path + 'pressura-light/GT-Pressura-Mono-Light.woff') format('woff'),
+       url($font-path + 'pressura-light/GT-Pressura-Mono-Light.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -42,11 +29,10 @@ html {
 // Monospace Font Bold
 @font-face {
   font-family: 'GT Pressura';
-  src: url($font-path + 'pressura-regular/gt-pressura.eot');
-  src: url($font-path + 'pressura-regular/gt-pressura.eot?#iefix') format('embedded-opentype'),
-       url($font-path + 'pressura-regular/gt-pressura.woff') format('woff'),
-       url($font-path + 'pressura-regular/gt-pressura.ttf') format('truetype'),
-       url($font-path + 'pressura-regular/gt-pressura.svg#GT Pressura') format('svg');
+  src: url($font-path + 'pressura-regular/GT-Pressura-Mono-Regular.eot');
+  src: url($font-path + 'pressura-regular/GT-Pressura-Mono-Regular.eot?#iefix') format('embedded-opentype'),
+       url($font-path + 'pressura-regular/GT-Pressura-Mono-Regular.woff') format('woff'),
+       url($font-path + 'pressura-regular/GT-Pressura-Mono-Regular.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
@@ -54,11 +40,11 @@ html {
 // Serif Font
 @font-face {
   font-family: 'Graphik';
-  src: url($font-path + 'graphik/graphik-regular.eot');
-  src: url($font-path + 'graphik/graphik-regular.eot?#iefix') format('embedded-opentype'),
-       url($font-path + 'graphik/graphik-regular.woff') format('woff'),
-       url($font-path + 'graphik/graphik-regular.ttf') format('truetype'),
-       url($font-path + 'graphik/graphik-regular.svg#Graphik') format('svg');
+  src: url($font-path + 'graphik/Graphik-Regular-Web.eot');
+  src: url($font-path + 'graphik/Graphik-Regular-Web.eot?#iefix') format('embedded-opentype'),
+       url($font-path + 'graphik/Graphik-Regular-Web.woff') format('woff'),
+       url($font-path + 'graphik/Graphik-Regular-Web.ttf') format('truetype'),
+       url($font-path + 'graphik/Graphik-Regular-Web.svg#Graphik') format('svg');
   font-weight: normal;
   font-style: normal;
 }

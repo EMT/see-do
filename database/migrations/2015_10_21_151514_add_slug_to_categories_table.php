@@ -3,10 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-
 class AddSlugToCategoriesTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -30,5 +28,4 @@ class AddSlugToCategoriesTable extends Migration
             $table->dropColumn('slug');
         });
     }
-
 }

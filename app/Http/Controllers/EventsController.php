@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
 use App\Category;
 use App\ColorScheme;
+use App\Event;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Input;
 use Redirect;
 
@@ -27,6 +25,7 @@ class EventsController extends Controller
     {
         $events = Event::where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc')->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
+
         return view('events.index', compact('events', 'event', 'categories') + ['event' => null]);
     }
 
@@ -41,13 +40,15 @@ class EventsController extends Controller
             ->orderBy('created_at', 'desc')
             ->lists('colors', 'id');
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
+
         return view('events.create', compact('categories', 'colorSchemes') + ['event' => null]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -60,25 +61,29 @@ class EventsController extends Controller
         }
 
         $event->save();
+
         return Redirect::route('events.index')->with('message', 'Event created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Event  $event
+     * @param Event $event
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Event $event)
     {
         $events = Event::all();
+
         return view('events.index', compact('events', 'event'));
     }
 
     /**
      * Return JSON for the specified resource.
      *
-     * @param  String  $slug
+     * @param string $slug
+     *
      * @return \Illuminate\Http\Response
      */
     public function showJson($slug)
@@ -87,13 +92,15 @@ class EventsController extends Controller
         $event->colorScheme;
         $event->category;
         $event->url = action('EventsController@show', ['slug' => $event->slug]);
+
         return response()->json($event);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Event $event)
@@ -102,27 +109,31 @@ class EventsController extends Controller
             ->orderBy('created_at', 'desc')
             ->lists('colors', 'id');
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
+
         return view('events.edit', compact('event', 'categories', 'colorSchemes'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Event  $event
+     * @param \Illuminate\Http\Request $request
+     * @param Event                    $event
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Event $event)
     {
         $event->fill(Input::all());
         $event->save();
+
         return Redirect::route('events.index')->with('message', 'Event updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Event $event)

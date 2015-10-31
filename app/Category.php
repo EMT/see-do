@@ -2,10 +2,9 @@
 
 namespace App;
 
-use App\Event;
-use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
+use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model implements SluggableInterface
 {
@@ -22,13 +21,12 @@ class Category extends Model implements SluggableInterface
      * @var array
      */
     protected $fillable = [
-        'title', 
-        'slug', 
+        'title',
+        'slug',
         'user_id',
         'color_scheme_id',
         'icon',
     ];
-
 
     public function events()
     {

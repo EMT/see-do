@@ -15,7 +15,6 @@ class ComposerServiceProvider extends ServiceProvider
     {
         // Using class based composers...
         view()->composer('common.nav', 'App\Http\ViewComposers\NavComposer');
-
     }
 
     /**

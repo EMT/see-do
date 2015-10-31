@@ -146,10 +146,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
 
-
         'Illuminate\Html\HtmlServiceProvider',
-        Cviebrock\EloquentSluggable\SluggableServiceProvider::class
-
+        Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
 
     ],
 
@@ -200,8 +198,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        'Form'=> 'Illuminate\Html\FormFacade', 
-        'HTML'=> 'Illuminate\Html\HtmlFacade',
+        'Form' => 'Illuminate\Html\FormFacade',
+        'HTML' => 'Illuminate\Html\HtmlFacade',
 
     ],
 

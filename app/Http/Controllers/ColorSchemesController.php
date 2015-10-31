@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\ColorScheme;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Input;
 use Redirect;
 
@@ -24,6 +22,7 @@ class ColorSchemesController extends Controller
     public function index()
     {
         $colorSchemes = ColorScheme::orderBy('created_at', 'desc')->get();
+
         return view('color-schemes.index', compact('colorSchemes'));
     }
 
@@ -40,7 +39,8 @@ class ColorSchemesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -48,13 +48,15 @@ class ColorSchemesController extends Controller
         $colorScheme = new ColorScheme(Input::all());
         $colorScheme->user_id = $request->user()->id;
         $colorScheme->save();
+
         return Redirect::route('color-schemes.index')->with('message', 'Colour scheme created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  ColorScheme $colorScheme
+     * @param ColorScheme $colorScheme
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(ColorScheme $colorScheme)
@@ -65,7 +67,8 @@ class ColorSchemesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  ColorScheme $colorScheme
+     * @param ColorScheme $colorScheme
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(ColorScheme $colorScheme)
@@ -76,21 +79,24 @@ class ColorSchemesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  ColorScheme $colorScheme
+     * @param \Illuminate\Http\Request $request
+     * @param ColorScheme              $colorScheme
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ColorScheme $colorScheme)
     {
         $colorScheme->fill(Input::all());
         $colorScheme->save();
+
         return Redirect::route('color-schemes.index')->with('message', 'Colour scheme updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

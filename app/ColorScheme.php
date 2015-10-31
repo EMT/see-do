@@ -13,11 +13,10 @@ class ColorScheme extends Model
      */
     protected $fillable = [
         'user_id',
-        'color_1', 
-        'color_2', 
+        'color_1',
+        'color_2',
         'color_3',
     ];
-
 
     public function events()
     {

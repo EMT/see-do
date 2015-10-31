@@ -1,7 +1,6 @@
 <?php
 
 use App\ColorScheme;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class SeedColorSchemesTable extends Migration

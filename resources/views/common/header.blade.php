@@ -1,7 +1,7 @@
 <header>
 	<div class="site-wrapper clear">
 		<div class="left-align-wrapper">
-			<h1 class="site-title aligned">[ See+Do ]</h1>
+			<h1 class="site-title aligned"><a href="/">[ See+Do ]</a></h1>
 			<nav>
 				<ul>
 					<li><a href="#" class="filter">Filter</a></li>

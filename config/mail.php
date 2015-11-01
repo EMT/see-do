@@ -55,8 +55,8 @@ return [
     */
 
     'from' => [
-        'address' => 'messages@madebyfieldwork.com', 
-        'name' => 'See&Do'
+        'address' => 'messages@madebyfieldwork.com',
+        'name'    => 'See&Do',
     ],
 
     /*

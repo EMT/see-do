@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Subscriber;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Input;
-use Redirect;
 use Mail;
+use Redirect;
 
 class SubscribersController extends Controller
 {
@@ -35,7 +33,8 @@ class SubscribersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -49,13 +48,15 @@ class SubscribersController extends Controller
                 ->getHeaders()
                 ->addTextHeader('X-MC-Subaccount', 'see-do');
         });
+
         return Redirect::to('/subscribers/hello');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Subscriber $subscriber
+     * @param Subscriber $subscriber
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Subscriber $subscriber)
@@ -66,7 +67,8 @@ class SubscribersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Subscriber $subscriber
+     * @param Subscriber $subscriber
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Subscriber $subscriber)
@@ -77,8 +79,9 @@ class SubscribersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Subscriber $subscriber
+     * @param \Illuminate\Http\Request $request
+     * @param Subscriber               $subscriber
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Subscriber $subscriber)
@@ -89,7 +92,8 @@ class SubscribersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Subscriber $subscriber
+     * @param Subscriber $subscriber
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Subscriber $subscriber)

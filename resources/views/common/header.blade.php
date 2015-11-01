@@ -5,7 +5,7 @@
 			<nav>
 				<ul>
 					<li><a href="#" class="filter">Filter</a></li>
-					<li><a href="#">Sign Up</a></li>
+					<li><a href="{{ route('subscribers.create') }}">Sign Up</a></li>
 				</ul>
 			</nav>
 		</div>

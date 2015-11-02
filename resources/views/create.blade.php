@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('title', 'Log In — See&Do')
+@section('title', 'Subscribe — See&Do')
 
 @section('content')
-    <h2 class="aligned">Log In</h2>
+    <h2 class="aligned">Subscribe</h2>
 
-    {!! Form::open(['action' => 'Auth\AuthController@postLogin', 'class' => 'form']) !!}
+    {!! Form::open(['action' => 'SubscribersController@store', 'class' => 'form']) !!}
 
-		<!-- Email -->
+        <!-- Email -->
         <div class="form-row">
             {!! Form::label('email', 'Email') !!}
 
@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <!-- Password -->
+        <!-- First name -->
         <div class="form-row">
             {!! Form::label('password', 'Password') !!}
 

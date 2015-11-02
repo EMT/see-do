@@ -14,9 +14,7 @@
             <div class="form-row-body">
                 {!! Form::text('email', null, ['class' => 'input-text', 'placeholder' => 'marty@thefuture.org']) !!}
 
-                <?php if ($errors->first('email')) { ?>
-                    <p><?php echo $errors->first('email') ?></p>
-                <?php } ?>
+                @include('common.forms.field-errors', ['errors' => $errors->get('email')])
             </div>
         </div>
 
@@ -27,9 +25,7 @@
             <div class="form-row-body">
                 {!! Form::text('password', null, ['class' => 'input-text', 'placeholder' => 'Shhh']) !!}
 
-                <?php if ($errors->first('password')) { ?>
-                    <p><?php echo $errors->first('password') ?></p>
-                <?php } ?>
+                @include('common.forms.field-errors', ['errors' => $errors->get('password')])
             </div>
         </div>
 

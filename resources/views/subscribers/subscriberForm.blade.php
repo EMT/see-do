@@ -5,9 +5,7 @@
     <div class="form-row-body">
         {!! Form::text('name', null, ['class' => 'input-text', 'placeholder' => 'Marty']) !!}
 
-        <?php if ($errors->first('name')) { ?>
-            <p><?php echo $errors->first('name') ?></p>
-        <?php } ?>
+        @include('common.forms.field-errors', ['errors' => $errors->get('name')])
     </div>
 </div>
 
@@ -18,8 +16,6 @@
     <div class="form-row-body">
         {!! Form::text('email', null, ['class' => 'input-text', 'placeholder' => 'marty@thefuture.org']) !!}
 
-        <?php if ($errors->first('email')) { ?>
-            <p><?php echo $errors->first('email') ?></p>
-        <?php } ?>
+        @include('common.forms.field-errors', ['errors' => $errors->get('email')])
     </div>
 </div>

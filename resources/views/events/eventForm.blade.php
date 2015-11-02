@@ -5,9 +5,7 @@
     <div class="form-row-body">
         {!! Form::text('title', null, ['class' => 'input-text', 'placeholder' => 'A Nice Event']) !!}
 
-        <?php if ($errors->first('title')) { ?>
-            <p><?php echo $errors->first('title') ?></p>
-        <?php } ?>
+        @include('common.forms.field-errors', ['errors' => $errors->get('title')])
     </div>
 </div>
 
@@ -18,9 +16,7 @@
     <div class="form-row-body">
         {!! Form::textarea('content', null, ['class' => 'input-text', 'placeholder' => 'Enter a description and information about the event']) !!}
 
-        <?php if ($errors->first('content')) { ?>
-            <p><?php echo $errors->first('content') ?></p>
-        <?php } ?>
+        @include('common.forms.field-errors', ['errors' => $errors->get('content')])
     </div>
 </div>
 
@@ -39,13 +35,9 @@
             {!! Form::text('time_end', null, ['class' => 'input-select']) !!}
         </div>
 
-        <?php if ($errors->first('time_start')) { ?>
-            <p><?php echo $errors->first('time_start') ?></p>
-        <?php } ?>
+        @include('common.forms.field-errors', ['errors' => $errors->get('time_start')])
+        @include('common.forms.field-errors', ['errors' => $errors->get('time_end')])
 
-        <?php if ($errors->first('time_end')) { ?>
-            <p><?php echo $errors->first('time_end') ?></p>
-        <?php } ?>
     </div>
 </div>
 
@@ -56,9 +48,7 @@
     <div class="form-row-body">
         {!! Form::text('venue', null, ['class' => 'input-text', 'placeholder' => 'The specific whereabouts']) !!}
 
-        <?php if ($errors->first('venue')) { ?>
-            <p><?php echo $errors->first('venue') ?></p>
-        <?php } ?>
+        @include('common.forms.field-errors', ['errors' => $errors->get('venue')])
     </div>
 </div>
 
@@ -69,9 +59,7 @@
     <div class="form-row-body">
         {!! Form::select('category_id', $categories, null, ['class' => 'input-select']); !!}
 
-        <?php if ($errors->first('category_id')) { ?>
-            <p><?php echo $errors->first('category_id') ?></p>
-        <?php } ?>
+        @include('common.forms.field-errors', ['errors' => $errors->get('category_id')])
     </div>
 </div>
 
@@ -82,9 +70,7 @@
     <div class="form-row-body">
     	{!! Form::select('color_scheme_id', [0 => 'Select…'] + $colorSchemes->toArray(), ($event && $event->colorScheme) ? $event->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select', 'data-default-text' => 'Use the category colour scheme', 'selected' => '1']); !!}
 
-    	<?php if ($errors->first('color_scheme_id')) { ?>
-    	    <p><?php echo $errors->first('color_scheme_id') ?></p>
-    	<?php } ?>
+    	@include('common.forms.field-errors', ['errors' => $errors->get('color_scheme_id')])
     </div>
 </div>
 

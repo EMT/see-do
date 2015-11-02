@@ -45,6 +45,13 @@ class ColorSchemesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'color_1' => 'required',
+            'color_2' => 'required',
+            'color_3' => 'required',
+        ]);
+
         $colorScheme = new ColorScheme(Input::all());
         $colorScheme->user_id = $request->user()->id;
         $colorScheme->save();
@@ -86,6 +93,13 @@ class ColorSchemesController extends Controller
      */
     public function update(Request $request, ColorScheme $colorScheme)
     {
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'color_1' => 'required',
+            'color_2' => 'required',
+            'color_3' => 'required',
+        ]);
+        
         $colorScheme->fill(Input::all());
         $colorScheme->save();
 

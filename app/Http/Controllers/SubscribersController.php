@@ -40,7 +40,7 @@ class SubscribersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:70',
+            'name'  => 'required|max:70',
             'email' => 'required|email|unique:subscribers',
         ]);
 
@@ -85,8 +85,8 @@ class SubscribersController extends Controller
         $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
 
         $this->validate($request, [
-            'name' => 'required|max:70',
-            'email' => 'required|email|unique:subscribers,email,' . $subscriber->id,
+            'name'  => 'required|max:70',
+            'email' => 'required|email|unique:subscribers,email,'.$subscriber->id,
         ]);
 
         $subscriber->fill(Input::all());

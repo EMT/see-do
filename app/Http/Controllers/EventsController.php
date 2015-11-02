@@ -8,7 +8,6 @@ use App\Event;
 use Illuminate\Http\Request;
 use Input;
 use Redirect;
-use Validator;
 
 class EventsController extends Controller
 {
@@ -63,13 +62,13 @@ class EventsController extends Controller
         }
 
         $this->validate($request, [
-            'title' => 'required|max:255',
-            'content' => 'required',
-            'time_start' => 'required|date',
-            'time_end' => 'required|date',
-            'venue' => 'required',
+            'title'           => 'required|max:255',
+            'content'         => 'required',
+            'time_start'      => 'required|date',
+            'time_end'        => 'required|date',
+            'venue'           => 'required',
             'color_scheme_id' => 'required|numeric|min:1',
-            'category_id' => 'required|numeric|min:1',
+            'category_id'     => 'required|numeric|min:1',
         ]);
 
         $event = new Event(Input::all());
@@ -151,13 +150,13 @@ class EventsController extends Controller
         }
 
         $this->validate($request, [
-            'title' => 'required|max:255',
-            'content' => 'required',
-            'time_start' => 'required|date',
-            'time_end' => 'required|date',
-            'venue' => 'required',
+            'title'           => 'required|max:255',
+            'content'         => 'required',
+            'time_start'      => 'required|date',
+            'time_end'        => 'required|date',
+            'venue'           => 'required',
             'color_scheme_id' => 'required|numeric|min:1',
-            'category_id' => 'required|numeric|min:1',
+            'category_id'     => 'required|numeric|min:1',
         ]);
 
         $event->fill(Input::all());

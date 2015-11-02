@@ -39,6 +39,11 @@ class SubscribersController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:70',
+            'email' => 'required|email|unique:subscribers',
+        ]);
+
         $subscriber = new Subscriber(Input::all());
         $subscriber->save();
         $subscriber->createNewToken();
@@ -78,6 +83,12 @@ class SubscribersController extends Controller
     public function update(Request $request, $token)
     {
         $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
+
+        $this->validate($request, [
+            'name' => 'required|max:70',
+            'email' => 'required|email|unique:subscribers,email,' . $subscriber->id,
+        ]);
+
         $subscriber->fill(Input::all());
         $subscriber->createNewToken();
         Mail::send('emails.subscribers.update', ['subscriber' => $subscriber], function ($m) use ($subscriber) {

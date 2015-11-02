@@ -1,13 +1,15 @@
 @extends('layouts.master')
 
-@section('title', 'Log In — See&Do')
+@section('title', 'Reset Pasword — See&Do')
 
 @section('content')
-    <h2 class="aligned">Log In</h2>
+    <h2 class="aligned">Reset Password</h2>
 
-    {!! Form::open(['action' => 'Auth\AuthController@postLogin', 'class' => 'form']) !!}
+    {!! Form::open(['action' => 'Auth\PasswordController@postReset', 'class' => 'form']) !!}
 
-		<!-- Email -->
+        <input type="hidden" name="token" value="{{ $token }}">
+
+        <!-- Email -->
         <div class="form-row">
             {!! Form::label('email', 'Email') !!}
 
@@ -33,9 +35,22 @@
             </div>
         </div>
 
+        <!-- Password confirmation -->
+        <div class="form-row">
+            {!! Form::label('password_confirmation', 'Confirm Password') !!}
+
+            <div class="form-row-body">
+                {!! Form::text('password_confirmation', null, ['class' => 'input-text', 'placeholder' => 'Shhh']) !!}
+
+                <?php if ($errors->first('password_confirmation')) { ?>
+                    <p><?php echo $errors->first('password_confirmation') ?></p>
+                <?php } ?>
+            </div>
+        </div>
+
         <div class="form-row">
             <div class="form-row-body">
-                {!! Form::submit('[ Log In ]', ['class' => 'btn primary']) !!}
+                {!! Form::submit('[ Reset ]', ['class' => 'btn primary']) !!}
             </div>
         </div>
     

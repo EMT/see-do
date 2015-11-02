@@ -11,29 +11,44 @@
 |
 */
 
-// Provide controller methods with object instead of ID
-Route::model('events', 'Event');
-Route::model('categories', 'Category');
-Route::model('color-schemes', 'App\ColorScheme');
+// Route home page to events.index
+Route::get('/', 'EventsController@index');
 
+// Category routes
+// Provide controller methods with object instead of ID
+Route::model('categories', 'Category');
 // Use slugs rather than IDs in URLs
 Route::bind('categories', function ($value, $route) {
     return App\Category::whereSlug($value)->first();
 });
+Route::resource('categories', 'CategoriesController');
+
+// Event routes
+Route::model('events', 'Event');
 Route::bind('events', function ($value, $route) {
     return App\Event::whereSlug($value)->first();
 });
-
-// Route::get('/', function() {
-// 	return view('welcome');
-// });
-
-Route::get('/', 'EventsController@index');
-
-Route::resource('categories', 'CategoriesController');
 Route::get('events/{value}.json', 'EventsController@showJson');
 Route::resource('events', 'EventsController');
+
+// Color Scheme routes
+Route::model('color-schemes', 'App\ColorScheme');
 Route::resource('color-schemes', 'ColorSchemesController');
+
+// Subscriber routes
+Route::get('subscribers/hello', function () {
+    return view('subscribers.hello');
+});
+Route::get('subscribers/updated', function () {
+    return view('subscribers.updated');
+});
+Route::get('subscribers/unsubscribed', function () {
+    return view('subscribers.unsubscribed');
+});
+Route::get('subscribers/{token}/edit', 'SubscribersController@edit');
+Route::put('subscribers/{token}', 'SubscribersController@update');
+Route::get('subscribers/{token}/unsubscribe', 'SubscribersController@destroy');
+Route::resource('subscribers', 'SubscribersController');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -44,6 +59,10 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::controllers([
-   'password' => 'Auth\PasswordController',
-]);
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');

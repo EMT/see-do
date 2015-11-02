@@ -1,3 +1,6 @@
+<?php foreach ($errors->all() as $e) { ?>
+<?php var_dump($e) ?>
+<?php } ?>
 <!-- Title -->
 <div class="form-row">
     {!! Form::label('title', 'Title') !!}
@@ -80,7 +83,7 @@
 	{!! Form::label('color_scheme_id', 'Color Scheme') !!}
 
     <div class="form-row-body">
-    	{!! Form::select('color_scheme_id', [0 => 'Select…'] + (array)$colorSchemes, ($event && $event->colorScheme) ? $event->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select', 'data-default-text' => 'Use the category colour scheme']); !!}
+    	{!! Form::select('color_scheme_id', [0 => 'Select…'] + $colorSchemes->toArray(), ($event && $event->colorScheme) ? $event->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select', 'data-default-text' => 'Use the category colour scheme', 'selected' => '1']); !!}
 
     	<?php if ($errors->first('color_scheme_id')) { ?>
     	    <p><?php echo $errors->first('color_scheme_id') ?></p>

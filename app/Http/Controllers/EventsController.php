@@ -68,7 +68,6 @@ class EventsController extends Controller
             'time_start' => 'required|date',
             'time_end' => 'required|date',
             'venue' => 'required',
-            'slug' => 'required',
             'color_scheme_id' => 'required|numeric|min:1',
             'category_id' => 'required|numeric|min:1',
         ]);
@@ -157,11 +156,10 @@ class EventsController extends Controller
             'time_start' => 'required|date',
             'time_end' => 'required|date',
             'venue' => 'required',
-            'slug' => 'required',
             'color_scheme_id' => 'required|numeric|min:1',
             'category_id' => 'required|numeric|min:1',
         ]);
-        
+
         $event->fill(Input::all());
         $event->save();
 

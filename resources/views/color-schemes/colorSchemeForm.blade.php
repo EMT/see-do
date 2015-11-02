@@ -1,25 +1,56 @@
 <!-- Color 1 -->
-{!! Form::label('color_1', 'Background') !!}
-{!! Form::input('color', 'color_1') !!}
+<div class="form-row">
+    {!! Form::label('color_1', 'Background') !!}
+    
+    <div class="form-row-body">
+        {!! Form::input('color', 'color_1', null, ['class' => 'input-text']) !!}
+
+        <?php if ($errors->first('title')) { ?>
+            <p><?php echo $errors->first('title') ?></p>
+        <?php } ?>
+    </div>
+</div>
 
 <?php if ($errors->first('color_1')) { ?>
     <p><?php echo $errors->first('color_1') ?></p>
 <?php } ?>
 
 <!-- Color 2 -->
-{!! Form::label('color_2', 'Primary') !!}
-{!! Form::input('color', 'color_2') !!}
+<div class="form-row">
+    {!! Form::label('color_2', 'Primary') !!}
+    
+    <div class="form-row-body">
+        {!! Form::input('color', 'color_2', null, ['class' => 'input-text']) !!}
+
+        <?php if ($errors->first('title')) { ?>
+            <p><?php echo $errors->first('title') ?></p>
+        <?php } ?>
+    </div>
+</div>
 
 <?php if ($errors->first('color_2')) { ?>
     <p><?php echo $errors->first('color_2') ?></p>
 <?php } ?>
 
 <!-- Color 3 -->
-{!! Form::label('color_3', 'Secondary') !!}
-{!! Form::input('color', 'color_3') !!}
+<div class="form-row">
+    {!! Form::label('color_3', 'Secondary') !!}
+    
+    <div class="form-row-body">
+        {!! Form::input('color', 'color_3', null, ['class' => 'input-text']) !!}
+
+        <?php if ($errors->first('title')) { ?>
+            <p><?php echo $errors->first('title') ?></p>
+        <?php } ?>
+    </div>
+</div>
 
 <?php if ($errors->first('color_3')) { ?>
     <p><?php echo $errors->first('color_3') ?></p>
 <?php } ?>
 
-{!! Form::submit('Submit') !!}
+<div class="form-row">
+    <div class="form-row-body">
+        {!! Form::submit('[ Submit ]', ['class' => 'btn primary']) !!}
+    </div>
+</div>

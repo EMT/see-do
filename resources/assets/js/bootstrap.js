@@ -20,12 +20,12 @@ $(function() {
 		$filterBtn = $('.filter');
 
 	$eventInfoClose.on('click touch', function(e) {
-		e.preventDefault(); 
+		e.preventDefault();
 		Sidebar.animClose();
 	});
 
 	$eventItems.on('click touch', function(e) {
-		e.preventDefault(); // Temp!
+		e.preventDefault();
 		changeEventInfo($(this), $eventItems);
 	});
 
@@ -41,7 +41,7 @@ $(function() {
 			Sidebar.animClose();
 			setTimeout(function(){
 				Filters.animShow(e);
-			},(300 * globalAnimSpeed)); // This is based on thew time it takes for the sidebar to slideout - could do with a callback instead or make the timing a global variable.
+			},(300 * globalAnimSpeed)); // This is based on thew time it takes for the sidebar to slideout - could do with a callback instead.
 		} else {
 			Filters.animShow(e);
 		}
@@ -72,7 +72,7 @@ function changeEventInfo($eventItem, $eventItems, noStatePush) {
 	var $eventPrevNext = $('.js-event-next-prev');
 	$eventPrevNext.html('');
 
-	if ($prevItem.length) { 
+	if ($prevItem.length) {
 		$eventPrev = $('<a href="" class="nav-arrows--arrow"><img src="/assets/img/arrow-left.svg" alt="Previous"></a>');
 		$eventPrevNext.append($eventPrev);
 		$eventPrev.on('click touch', function(e) {
@@ -81,7 +81,7 @@ function changeEventInfo($eventItem, $eventItems, noStatePush) {
 		});
 	}
 
-	if ($nextItem.length) { 
+	if ($nextItem.length) {
 		$eventNext = $('<a href="#" class="nav-arrows--arrow"><img src="/assets/img/arrow-right.svg" alt="Next"></a>');
     	$eventPrevNext.append($eventNext);
     	$eventNext.on('click touch', function(e) {

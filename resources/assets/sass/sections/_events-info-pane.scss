@@ -36,6 +36,10 @@
 		-moz-transform: translateX(0%);
 		transform: translateX(0%);
 	}
+
+	@media screen and (max-width: $site-tablet) {
+		width: 50%;
+	}
 }
 
 .event-info > * {

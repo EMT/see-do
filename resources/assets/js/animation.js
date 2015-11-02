@@ -241,7 +241,21 @@
 			$infoPaneChildren = $infoPane.children(),
 			timing = 300;
 
+		var activeWrapperWidth,
+			inactiveWrapperWidth;
+
+		console.log($(window).width());
+
+		if ($(window).width() <= 900) {
+			activeWrapperWidth = "45%";
+			inactiveWrapperWidth = "100%";
+		} else {
+			activeWrapperWidth = "62.5%";
+			inactiveWrapperWidth = "90%";
+		}
+
 		var animOpen = function() {
+
 			var openSidebarAnim = [
 				{
 					elements: $infoPaneChildren,
@@ -255,7 +269,7 @@
 				{
 					elements: $leftAlignWrapper,
 					properties: {
-						width: "62.5%"
+						width: activeWrapperWidth
 					},
 					options: {
 						easing: [0.075, 0.82, 0.165, 1]
@@ -280,6 +294,7 @@
 						drag: true,
 						complete: function(){
 							$infoPane.addClass('event-info--open');
+							$leftAlignWrapper.addClass('event-info--open');
 						}
 					}
 				}
@@ -295,7 +310,7 @@
 				{
 					elements: $leftAlignWrapper,
 					properties: {
-						width: "90%"
+						width: inactiveWrapperWidth
 					},
 					options: {
 						easing: [0.075, 0.82, 0.165, 1]

@@ -54,6 +54,9 @@ $(function() {
 
 		$elem.append($hiddenInput);
 
+		// Fire change event now in case the field has a value on page load
+		$hiddenInput.trigger('change');
+
 		$(this).replaceWith($elem);
 	});
 

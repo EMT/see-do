@@ -3,9 +3,9 @@
 @section('title', 'Edit Colour Scheme — See&Do')
 
 @section('content')
-    <h2>Edit Colour Scheme</h2>
+    <h2 class="aligned">Edit Colour Scheme</h2>
 
-    {!! Form::model($colorScheme, ['route' => ['color-schemes.update', $colorScheme->id], 'method' => 'put']) !!}
+    {!! Form::model($colorScheme, ['route' => ['color-schemes.update', $colorScheme->id], 'method' => 'put', 'class' => 'form']) !!}
 		
 		@include('color-schemes.colorSchemeForm')
 

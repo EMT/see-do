@@ -39,6 +39,11 @@ class SubscribersController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name'  => 'required|max:70',
+            'email' => 'required|email|unique:subscribers',
+        ]);
+
         $subscriber = new Subscriber(Input::all());
         $subscriber->save();
         $subscriber->createNewToken();
@@ -56,13 +61,14 @@ class SubscribersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param String $token
+     * @param string $token
      *
      * @return \Illuminate\Http\Response
      */
     public function edit($token)
     {
         $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
+
         return view('subscribers.edit', compact('subscriber'));
     }
 
@@ -70,13 +76,19 @@ class SubscribersController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param String $token
+     * @param string                   $token
      *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $token)
     {
         $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
+
+        $this->validate($request, [
+            'name'  => 'required|max:70',
+            'email' => 'required|email|unique:subscribers,email,'.$subscriber->id,
+        ]);
+
         $subscriber->fill(Input::all());
         $subscriber->createNewToken();
         Mail::send('emails.subscribers.update', ['subscriber' => $subscriber], function ($m) use ($subscriber) {
@@ -93,7 +105,7 @@ class SubscribersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param String $token
+     * @param string $token
      *
      * @return \Illuminate\Http\Response
      */
@@ -101,6 +113,7 @@ class SubscribersController extends Controller
     {
         $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
         $subscriber->delete();
+
         return Redirect::to('/subscribers/unsubscribed');
     }
 }

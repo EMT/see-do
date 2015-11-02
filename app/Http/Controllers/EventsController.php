@@ -53,6 +53,24 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
+        if (!$request->color_scheme_id && $request->category_id) {
+            $category = Category::find($request->category_id);
+
+            if ($category && $category->color_scheme_id) {
+                $request->merge(['color_scheme_id' => $category->color_scheme_id]);
+            }
+        }
+
+        $this->validate($request, [
+            'title'           => 'required|max:255',
+            'content'         => 'required',
+            'time_start'      => 'required|date',
+            'time_end'        => 'required|date',
+            'venue'           => 'required',
+            'color_scheme_id' => 'required|numeric|min:1',
+            'category_id'     => 'required|numeric|min:1',
+        ]);
+
         $event = new Event(Input::all());
         $event->user_id = $request->user()->id;
 
@@ -123,6 +141,24 @@ class EventsController extends Controller
      */
     public function update(Request $request, Event $event)
     {
+        if (!$request->color_scheme_id && $request->category_id) {
+            $category = Category::find($request->category_id);
+
+            if ($category && $category->color_scheme_id) {
+                $request->merge(['color_scheme_id' => $category->color_scheme_id]);
+            }
+        }
+
+        $this->validate($request, [
+            'title'           => 'required|max:255',
+            'content'         => 'required',
+            'time_start'      => 'required|date',
+            'time_end'        => 'required|date',
+            'venue'           => 'required',
+            'color_scheme_id' => 'required|numeric|min:1',
+            'category_id'     => 'required|numeric|min:1',
+        ]);
+
         $event->fill(Input::all());
         $event->save();
 

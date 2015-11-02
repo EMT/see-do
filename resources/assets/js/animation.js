@@ -244,8 +244,6 @@
 		var activeWrapperWidth,
 			inactiveWrapperWidth;
 
-		console.log($(window).width());
-
 		if ($(window).width() <= 900) {
 			activeWrapperWidth = "45%";
 			inactiveWrapperWidth = "100%";

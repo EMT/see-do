@@ -88,8 +88,36 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'name' => [
+            'required' => 'Please enter your name.',
+        ],
+        'name_first' => [
+            'required' => 'Please enter your first name.',
+        ],
+        'name_last' => [
+            'required' => 'Please enter your last name.',
+        ],
+        'email' => [
+            'unique'   => 'This email address is already in use.',
+            'required' => 'Please enter your email address.',
+        ],
+        'password' => [
+            'required' => 'Please enter your password.',
+        ],
+        'title' => [
+            'required' => 'Please enter a title.',
+        ],
+        'content' => [
+            'required' => 'Please enter a description.',
+        ],
+        'venue' => [
+            'required' => 'Please enter a venue.',
+        ],
+        'time_start' => [
+            'required' => 'Please enter a start date and time.',
+        ],
+        'time_end' => [
+            'required' => 'Please enter an end date and time.',
         ],
     ],
 

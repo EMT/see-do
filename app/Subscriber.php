@@ -22,6 +22,7 @@ class Subscriber extends Model
     {
         $this->token = hash_hmac('sha256', $this->id + '/' + Str::random(40), config('app.key'));
         $this->save();
+
         return $this->token;
     }
 }

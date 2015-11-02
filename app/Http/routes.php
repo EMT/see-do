@@ -36,10 +36,18 @@ Route::model('color-schemes', 'App\ColorScheme');
 Route::resource('color-schemes', 'ColorSchemesController');
 
 // Subscriber routes
-Route::model('subscribers', 'App\Subscriber');
 Route::get('subscribers/hello', function () {
     return view('subscribers.hello');
 });
+Route::get('subscribers/updated', function () {
+    return view('subscribers.updated');
+});
+Route::get('subscribers/unsubscribed', function () {
+    return view('subscribers.unsubscribed');
+});
+Route::get('subscribers/{token}/edit', 'SubscribersController@edit');
+Route::put('subscribers/{token}', 'SubscribersController@update');
+Route::get('subscribers/{token}/unsubscribe', 'SubscribersController@destroy');
 Route::resource('subscribers', 'SubscribersController');
 
 // Authentication routes...

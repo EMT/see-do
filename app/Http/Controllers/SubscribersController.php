@@ -40,7 +40,8 @@ class SubscribersController extends Controller
     public function store(Request $request)
     {
         $subscriber = new Subscriber(Input::all());
-        // $subscriber->save();
+        $subscriber->save();
+        $subscriber->createNewToken();
         Mail::send('emails.subscribers.hello', ['subscriber' => $subscriber], function ($m) use ($subscriber) {
             $m->from('messages@madebyfieldwork.com', 'See&Do')
                 ->to($subscriber->email, $subscriber->name)
@@ -53,51 +54,53 @@ class SubscribersController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param Subscriber $subscriber
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Subscriber $subscriber)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param Subscriber $subscriber
+     * @param String $token
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subscriber $subscriber)
+    public function edit($token)
     {
-        //
+        $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
+        return view('subscribers.edit', compact('subscriber'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param Subscriber               $subscriber
+     * @param String $token
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subscriber $subscriber)
+    public function update(Request $request, $token)
     {
-        //
+        $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
+        $subscriber->fill(Input::all());
+        $subscriber->createNewToken();
+        Mail::send('emails.subscribers.update', ['subscriber' => $subscriber], function ($m) use ($subscriber) {
+            $m->from('messages@madebyfieldwork.com', 'See&Do')
+                ->to($subscriber->email, $subscriber->name)
+                ->subject('Your settings have been updated for See&Do')
+                ->getHeaders()
+                ->addTextHeader('X-MC-Subaccount', 'see-do');
+        });
+
+        return Redirect::to('/subscribers/updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Subscriber $subscriber
+     * @param String $token
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subscriber $subscriber)
+    public function destroy($token)
     {
-        //
+        $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
+        $subscriber->delete();
+        return Redirect::to('/subscribers/unsubscribed');
     }
 }

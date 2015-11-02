@@ -5,7 +5,7 @@
     </head>
     <body>
         <p>Hi {{ $subscriber->name }},</p>
-        <p>Thanks for subscribing. We’ll send you fun things to See&Do every now and then.</p>
+        <p>Just a note to let you know that your settings have been updated for See&Do.</p>
         
         @include('emails.subscribers.footer')
 

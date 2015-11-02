@@ -1,6 +1,3 @@
-<?php foreach ($errors->all() as $e) { ?>
-<?php var_dump($e) ?>
-<?php } ?>
 <!-- Title -->
 <div class="form-row">
     {!! Form::label('title', 'Title') !!}

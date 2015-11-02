@@ -56,13 +56,14 @@ class SubscribersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param String $token
+     * @param string $token
      *
      * @return \Illuminate\Http\Response
      */
     public function edit($token)
     {
         $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
+
         return view('subscribers.edit', compact('subscriber'));
     }
 
@@ -70,7 +71,7 @@ class SubscribersController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param String $token
+     * @param string                   $token
      *
      * @return \Illuminate\Http\Response
      */
@@ -93,7 +94,7 @@ class SubscribersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param String $token
+     * @param string $token
      *
      * @return \Illuminate\Http\Response
      */
@@ -101,6 +102,7 @@ class SubscribersController extends Controller
     {
         $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
         $subscriber->delete();
+
         return Redirect::to('/subscribers/unsubscribed');
     }
 }

@@ -1,7 +1,8 @@
 label,
 input,
 textarea,
-select {
+select,
+.field-errors {
     font: $body--mono;
 }
 
@@ -115,6 +116,16 @@ select {
             border-left: 12px solid transparent;
             border-right: 12px solid transparent;
             border-bottom: 12px solid rgb(245,245,245);
+        }
+    }
+
+    .field-errors {
+        color: rgb(242,112,111);
+        padding-top: 0.4em;
+        clear: both;
+
+        &+.field-errors {
+            padding-top: 0;
         }
     }
 }

@@ -89,35 +89,35 @@ return [
 
     'custom' => [
         'name' => [
-            'required' => 'Please enter your name.'
+            'required' => 'Please enter your name.',
         ],
         'name_first' => [
-            'required' => 'Please enter your first name.'
+            'required' => 'Please enter your first name.',
         ],
         'name_last' => [
-            'required' => 'Please enter your last name.'
+            'required' => 'Please enter your last name.',
         ],
         'email' => [
-            'unique' => 'This email address is already in use.',
-            'required' => 'Please enter your email address.'
+            'unique'   => 'This email address is already in use.',
+            'required' => 'Please enter your email address.',
         ],
         'password' => [
-            'required' => 'Please enter your password.'
+            'required' => 'Please enter your password.',
         ],
         'title' => [
-            'required' => 'Please enter a title.'
+            'required' => 'Please enter a title.',
         ],
         'content' => [
-            'required' => 'Please enter a description.'
+            'required' => 'Please enter a description.',
         ],
         'venue' => [
-            'required' => 'Please enter a venue.'
+            'required' => 'Please enter a venue.',
         ],
         'time_start' => [
-            'required' => 'Please enter a start date and time.'
+            'required' => 'Please enter a start date and time.',
         ],
         'time_end' => [
-            'required' => 'Please enter an end date and time.'
+            'required' => 'Please enter an end date and time.',
         ],
     ],
 

@@ -51,7 +51,7 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|max:255',
+            'title'           => 'required|max:255',
             'color_scheme_id' => 'required|numeric|min:1',
         ]);
 
@@ -105,10 +105,10 @@ class CategoriesController extends Controller
     public function update(Request $request, Category $category)
     {
         $this->validate($request, [
-            'title' => 'required|max:255',
+            'title'           => 'required|max:255',
             'color_scheme_id' => 'required|numeric|min:1',
         ]);
-        
+
         $category->fill(Input::all());
         $category->save();
 

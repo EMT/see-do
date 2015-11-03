@@ -74,6 +74,17 @@
     </div>
 </div>
 
+<!-- Icon -->
+<div class="form-row">
+    {!! Form::label('icon_id', 'Icon') !!}
+
+    <div class="form-row-body">
+        {!! Form::select('icon_id', [0 => 'Select…'] + $icons->toArray(), ($event && $event->icon) ? $event->icon->id: null, ['class' => 'icon-select js-icon-select', 'data-default-text' => 'Use the category icon', 'selected' => '1']); !!}
+
+        @include('common.forms.field-errors', ['errors' => $errors->get('icon_id')])
+    </div>
+</div>
+
 <div class="form-row">
     <div class="form-row-body">
         {!! Form::submit('[ Submit ]', ['class' => 'btn primary']) !!}

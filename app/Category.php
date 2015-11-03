@@ -42,4 +42,9 @@ class Category extends Model implements SluggableInterface
     {
         return $this->belongsTo('App\ColorScheme');
     }
+
+    public function icon()
+    {
+        return $this->belongsTo('App\Icon');
+    }
 }

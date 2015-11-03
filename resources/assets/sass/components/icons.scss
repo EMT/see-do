@@ -20,3 +20,49 @@
         }
     }
 }
+
+
+/**
+ * Styles for the icon selector
+ */
+
+.cs-icon-select-input {
+    font: $body--mono;
+    line-height: 40px;
+}
+
+.cs-icon-select {
+    font: $body--mono;
+    position: absolute;
+    top: -400px;
+    left: 0;
+    padding: 1em;
+    background: rgb(255,255,255);
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+    display: none;
+    opacity: 0;
+    @include transition(all .3s ease-out);
+
+    &.open {
+        display: block;
+        opacity: 1;
+    }
+}
+
+.cs-icon-select-option {
+    display: inline-block;
+    width: 60px;
+    cursor: pointer;
+    padding: 12px;
+    text-align: center;
+    @include transition(all .3s ease-out);
+
+    &:hover {
+        background: rgb(230,230,230);
+    }
+}
+
+.cs-icon-select-default {
+    display: block;
+    width: auto;
+}

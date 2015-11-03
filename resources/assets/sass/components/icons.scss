@@ -1,0 +1,22 @@
+/**
+ * Reusable icons components
+ */
+
+.icon {
+    display: inline-block;
+
+    a {
+        display: block;
+        height: 50px;
+        width: auto;
+        padding: 8px;
+
+        &:hover {
+            background: rgb(245,245,245);
+        }
+
+        svg {
+            height: 100%;
+        }
+    }
+}

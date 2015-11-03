@@ -35,6 +35,10 @@ Route::resource('events', 'EventsController');
 Route::model('color-schemes', 'App\ColorScheme');
 Route::resource('color-schemes', 'ColorSchemesController');
 
+// Color Scheme routes
+Route::model('icons', 'App\Icon');
+Route::resource('icons', 'IconsController');
+
 // Subscriber routes
 Route::get('subscribers/hello', function () {
     return view('subscribers.hello');

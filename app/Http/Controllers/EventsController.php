@@ -40,7 +40,7 @@ class EventsController extends Controller
         $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
             ->orderBy('created_at', 'desc')
             ->lists('colors', 'id');
-        $icons = Icon::orderBy('created_at', 'desc')->lists('icon', 'id');
+        $icons = Icon::orderBy('created_at', 'desc')->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
         return view('events.create', compact('categories', 'colorSchemes', 'icons') + ['event' => null]);
@@ -71,7 +71,7 @@ class EventsController extends Controller
             'venue'           => 'required',
             'color_scheme_id' => 'required|numeric|min:1',
             'category_id'     => 'required|numeric|min:1',
-            'icon_id'         => 'required|numeric|min:1',
+            'icons'           => 'required',
         ]);
 
         $event = new Event(Input::all());
@@ -129,7 +129,7 @@ class EventsController extends Controller
         $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
             ->orderBy('created_at', 'desc')
             ->lists('colors', 'id');
-        $icons = Icon::orderBy('created_at', 'desc')->lists('icon', 'id');
+        $icons = Icon::orderBy('created_at', 'desc')->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
         return view('events.edit', compact('event', 'categories', 'colorSchemes', 'icons'));
@@ -153,6 +153,8 @@ class EventsController extends Controller
             }
         }
 
+        $request->merge(['icons' => implode(',', $request->icons)]);
+
         $this->validate($request, [
             'title'           => 'required|max:255',
             'content'         => 'required',
@@ -161,7 +163,6 @@ class EventsController extends Controller
             'venue'           => 'required',
             'color_scheme_id' => 'required|numeric|min:1',
             'category_id'     => 'required|numeric|min:1',
-            'icon_id'         => 'required|numeric|min:1',
         ]);
 
         $event->fill(Input::all());

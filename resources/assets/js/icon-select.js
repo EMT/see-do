@@ -1,63 +1,9 @@
 $(function() {
 
 	$('.js-icon-select').each(function() {
-		var icons = [];
 
-		$(this).find('option').each(function() {
-			icons.push({
-				id: $(this).attr('value'),
-				icon: $(this).text()
-			});
-		});
+		var icSelect = new iconSelect({$elem: $(this)});
 
-		var icSelect = new iconSelect({
-			icons: icons,
-			defaultText: $(this).data('defaultText')
-		});
-
-		// Create dropdown
-		var $dropdown = icSelect.build();
-
-		// Update hidden input on select
-		$dropdown.on('click', '.cs-icon-select-option', function(e) {
-			e.preventDefault();
-			var iconId = $(this).data('iconId');
-			$hiddenInput.val(iconId).trigger('change');
-			$dropdown.removeClass('open');
-		});
-
-		$(this).before($dropdown);
-
-		var $elem = $('<div class="cs-icon-select-input"></div>');
-
-		// Create fake input
-		var $fakeInput = icSelect.buildIcon(icons[0], 'cs-icon-fake-input');
-
-		// Open select UI when fake input is clicked/tapped/focussed
-		// TODO: open on focus
-		$fakeInput.on('click', function(e) {
-			e.preventDefault();
-			$dropdown.addClass('open');
-		});
-
-		$elem.append($fakeInput);
-
-		// Create hidden input
-		var $hiddenInput = $('<input type="hidden" name="' + $(this).attr('name') + '" value="' + $(this).val() + '">');
-
-		// Update fake input when hidden input changes
-		$hiddenInput.on('change', function(e) {
-			var icon = findInArrayByKey(icons, 'id', $(this).val());
-			var $newFakeInput = icSelect.buildIcon(icon);
-			$fakeInput.html($newFakeInput.html());
-		});
-
-		$elem.append($hiddenInput);
-
-		// Fire change event now in case the field has a value on page load
-		$hiddenInput.trigger('change');
-
-		$(this).replaceWith($elem);
 	});
 
 });
@@ -66,22 +12,94 @@ $(function() {
 var iconSelect = function(options) {
 
 	var self = this;
+	self.$elem = options.$elem;
 	self.options = options;
 	self.optionWidth = null;
+	self.icons = [];
+	self.selectedIcons = [];
+	self.$newElem = $('<div class="cs-icon-select-input"></div>');
+	self.$hiddenInput = $('<input type="hidden" name="' + self.$elem.attr('name') + '" value="' + self.$elem.val() + '">');
 
-	self.build = function() {
-		var icons = self.options.icons;
+	self.$elem.find('option').each(function() {
+		self.icons.push({
+			id: $(this).attr('value'),
+			title: $(this).text(),
+			svg: $(this).data('iconSvg')
+		});
+	});
+
+	self.setup = function() {
+		self.$dropdown = self.buildDropdown();
+
+		self.$dropdown.on('click', '.cs-icon-select-option', function(e) {
+			e.preventDefault();
+			self.addToSelectedIcons($(this).data('iconId'));
+			self.$dropdown.removeClass('open');
+		});
+
+		self.$elem.before(self.$dropdown);
+
+		self.$fakeInput = self.buildFakeInput();
+
+		// Open select UI when + btn is clicked/tapped/focussed
+		// TODO: open on focus
+		self.$fakeInput.on('click', '.cs-add-btn', function(e) {
+			e.preventDefault();
+			self.$dropdown.addClass('open');
+		});
+
+		// Remove icon when clicked
+		self.$fakeInput.on('click', '.cs-selected-icon', function(e) {
+			e.preventDefault();
+			self.removeFromSelectedIcons($('.cs-selected-icon').index($(this)));
+		});
+
+		self.$newElem.append(self.$fakeInput);
+		self.$newElem.append(self.$hiddenInput);
+
+		var iconIds = self.$elem.data('iconIds').split(',');
+
+		for (var i = 0, len = iconIds.length; i < len; i ++) {
+			self.addToSelectedIcons(iconIds[i]);
+		}
+
+		self.$elem.replaceWith(self.$newElem);
+	}
+
+	self.addToSelectedIcons = function(iconId) {
+		self.selectedIcons.push(self.findInArrayByKey(self.icons, 'id', iconId)[0]);
+		self.updateSelectedIcons();
+	};
+
+	self.removeFromSelectedIcons = function(iconIndex) {
+		self.selectedIcons.splice(iconIndex, 1);
+		self.updateSelectedIcons();
+	};
+
+	self.updateSelectedIcons = function() {
+		self.$fakeInput.html(self.buildFakeInput().html());
+		self.$hiddenInput.val(self.getSelectedIds().join(','));
+	};
+
+	self.getSelectedIds = function() {
+		var selected = [];
+
+		for (var i = 0, len = self.selectedIcons.length; i < len; i ++) {
+			selected.push(self.selectedIcons[i].id);
+		}
+
+		return selected;
+	};
+
+	self.buildDropdown = function() {
+		var icons = self.icons;
 		var $elem = $('<div class="cs-icon-select"></div>');
 
 		for (var i = 0, len = icons.length; i < len; i ++) {
-			$elem.append(self.buildOption(icons[i]));
+			$elem.append(self.buildIcon(icons[i]));
 		}
 
 		return $elem;
-	};
-
-	self.buildOption = function(icon) {
-		return self.buildIcon(icon);
 	};
 
 	self.buildIcon = function(icon, cls) {
@@ -92,8 +110,22 @@ var iconSelect = function(options) {
 			$elem.addClass('cs-icon-select-default').html(self.options.defaultText);
 		}
 		else {
-			$elem.append(icon.icon);
+			$elem.append(icon.svg);
 		}
+
+		return $elem;
+	};
+
+	self.buildFakeInput = function() {
+		var $elem = $('<div class="cs-icon-fake-input"></div>');
+
+		if (self.selectedIcons.length) {
+			for (var i = 0, len = self.selectedIcons.length; i < len; i ++) {
+				$elem.append('<a href="#" class="cs-selected-icon">' + self.selectedIcons[i].svg + '</a>');
+			}
+		}
+
+		$elem.append('<a class="cs-add-btn" href="#">+</a>');
 
 		return $elem;
 	};
@@ -113,5 +145,45 @@ var iconSelect = function(options) {
 		$option.remove();
 		return w;
 	}
+
+	self.findInArrayByKey = function(arr, key, vals) {
+		vals = vals.split(',');
+		var result = [];
+
+		for (var i = 0, len = vals.length; i < len; i ++) {
+			var r = $.grep(arr, function(item) { 
+				return item[key] == vals[i]; 
+			});
+
+			if (r.length) {
+				result.push(r[0]);
+			}
+		}
+
+		return result;
+	}
+
+	self.setup();
 }
+
+
+var decodeEntities = (function() {
+	// this prevents any overhead from creating the object each time
+	var element = document.createElement('div');
+
+	function decodeHTMLEntities (str) {
+		if(str && typeof str === 'string') {
+			// strip script/html tags
+			str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+			str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+			element.innerHTML = str;
+			str = element.textContent;
+			element.textContent = '';
+		}
+
+		return str;
+	}
+
+	return decodeHTMLEntities;
+})();
 

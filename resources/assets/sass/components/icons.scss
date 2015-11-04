@@ -66,3 +66,45 @@
     display: block;
     width: auto;
 }
+
+.cs-icon-fake-input {
+    .cs-selected-icon {
+        position: relative;
+        display: inline-block;
+        margin-right: 8px;
+
+        &:hover {
+            &:after {
+                content: 'X';
+                color: rgb(242,112,111);
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                font-family: 'Graphik';
+                font-size: 2em;
+                line-height: 1em;
+                text-align: center;
+            }
+        }
+    }
+
+    svg {
+        height: 30px;
+    }
+}
+
+.cs-add-btn {
+    display: inline-block;
+    font-size: 60px;
+    line-height: 0.2em;
+    vertical-align: top;
+    text-align: centre;
+    width: 30px;
+    text-decoration: none;
+    color: rgb(180,180,180);
+
+    &:hover {
+        color: $highlight;
+    }
+}

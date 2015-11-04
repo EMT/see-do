@@ -15,7 +15,7 @@
                 @foreach($icons as $i)
                     <li class="icon">
                         <a href="{{ route('icons.edit', $i->id) }}">
-                            {!! $i->icon !!}
+                            {!! $i->svg !!}
                         </a>
                     </li>
                 @endforeach

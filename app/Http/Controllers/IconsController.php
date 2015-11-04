@@ -49,7 +49,8 @@ class IconsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'icon'   => 'required',
+            'title'  => 'required|unique',
+            'svg'    => 'required',
         ]);
 
         $icon = new Icon(Input::all());
@@ -94,7 +95,8 @@ class IconsController extends Controller
     public function update(Request $request, Icon $icon)
     {
         $this->validate($request, [
-            'icon'   => 'required',
+            'title'  => 'required|unique:subscribers,title,' . $icon->title,
+            'svg'    => 'required',
         ]);
 
         $icon->fill(Input::all());

@@ -76,12 +76,16 @@
 
 <!-- Icon -->
 <div class="form-row">
-    {!! Form::label('icon_id', 'Icon') !!}
+    {!! Form::label('icons', 'Icon') !!}
 
     <div class="form-row-body">
-        {!! Form::select('icon_id', [0 => 'Select…'] + $icons->toArray(), ($event && $event->icon) ? $event->icon->id: null, ['class' => 'icon-select js-icon-select', 'data-default-text' => 'Use the category icon', 'selected' => '1']); !!}
+        <select name="icons[]" class="icon-select js-icon-select" data-icon-ids="{{ implode(',', $event->iconIdsArray()) }}" multiple>
+            @foreach ($icons as $icon)
+                <option value="{{ $icon->id }}" data-icon-svg="{{ $icon->svg }}">{{ $icon->title }}</option>
+            @endforeach
+        </select>
 
-        @include('common.forms.field-errors', ['errors' => $errors->get('icon_id')])
+        @include('common.forms.field-errors', ['errors' => $errors->get('icons')])
     </div>
 </div>
 

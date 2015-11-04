@@ -13,13 +13,9 @@ class Icon extends Model
      */
     protected $fillable = [
         'user_id',
-        'icon',
+        'svg',
+        'title',
     ];
-
-    public function events()
-    {
-        return $this->hasMany('App\Event');
-    }
 
     public function categories()
     {

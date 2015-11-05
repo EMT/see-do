@@ -51,7 +51,7 @@
 
 .cs-icon-select-option {
     display: inline-block;
-    width: 60px;
+    height: 54px;
     cursor: pointer;
     padding: 12px;
     text-align: center;
@@ -59,6 +59,10 @@
 
     &:hover {
         background: rgb(230,230,230);
+    }
+
+    svg {
+        height: 100%;
     }
 }
 

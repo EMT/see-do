@@ -53,9 +53,9 @@
 	border-bottom: 1px solid $black;
 	position: relative;
 
-	@media screen and (max-width: $site-tablet) {
-		width: calc(100% - #{$tab-left-col});
-	}
+	// @media screen and (max-width: $site-tablet) {
+	// 	width: calc(100% - #{$tab-left-col});
+	// }
 }
 
 .event-item-icons {
@@ -86,7 +86,7 @@
 .event--date {
 	width: $left-col;
 
-	@media screen and (max-width: $site-tablet) {
-		width: $tab-left-col;
-	}
+	// @media screen and (max-width: $site-tablet) {
+	// 	width: $tab-left-col;
+	// }
 }

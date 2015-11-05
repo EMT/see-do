@@ -21,7 +21,8 @@
 .event-info {
 	padding: 60px;
 	height: 100%;
-	width: 35%;
+	width: 100%;
+	max-width: 700px;
 	-webkit-transform: translateX(100%);
 	-moz-transform: translateX(100%);
 	transform: translateX(100%);
@@ -31,19 +32,15 @@
 	top: 0;
 	bottom: 0;
 
-	// &.event-info--open {
-	// 	-webkit-transform: translateX(0%);
-	// 	-moz-transform: translateX(0%);
-	// 	transform: translateX(0%);
-	// }
-
-	@media screen and (max-width: $site-tablet) {
-		width: 50%;
+	@media all and (min-width: 1500px) {
+		width: 35%;
+		max-width: none;
 	}
 }
 
 .event-info > * {
 	opacity: 0;
+	max-width: 550px;
 }
 
 .event-info-open {

@@ -1,4 +1,5 @@
 $(function() {
+
 	FastClick.attach(document.body);
 	Filters.init();
 
@@ -18,6 +19,11 @@ $(function() {
 	var $eventItems = $('.event'),
 		$eventInfoClose = $('.js-close-sidebar'),
 		$filterBtn = $('.filter');
+
+	// If event is active on page load, trigger animated info panel
+	if ($('.event.event--active').length) {
+		changeEventInfo($('.event.event--active'), $eventItems);
+	}
 
 	$eventInfoClose.on('click touch', function(e) {
 		e.preventDefault();

@@ -2,6 +2,11 @@
     @include('common.head')
 
     <body class="{{ $event ? 'event-info-open' : '' }}">
+
+        <script>
+        document.body.className = document.body.className.replace("event-info-open", "");
+        </script>
+
         @include('common.header')
 
         <div class="site-wrapper">

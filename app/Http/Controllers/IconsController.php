@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Icon;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Input;
 use Redirect;
 
@@ -49,7 +46,7 @@ class IconsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title'  => 'required|unique',
+            'title'  => 'required|unique:icons,title',
             'svg'    => 'required',
         ]);
 
@@ -95,7 +92,7 @@ class IconsController extends Controller
     public function update(Request $request, Icon $icon)
     {
         $this->validate($request, [
-            'title'  => 'required|unique:subscribers,title,' . $icon->title,
+            'title'  => 'required|unique:icons,title,'.$icon->title,
             'svg'    => 'required',
         ]);
 

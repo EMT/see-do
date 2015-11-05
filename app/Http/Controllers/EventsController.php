@@ -98,6 +98,7 @@ class EventsController extends Controller
     public function show(Event $event)
     {
         $events = Event::futureEvents();
+
         return view('events.index', compact('events', 'event'));
     }
 

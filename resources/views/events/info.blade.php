@@ -1,4 +1,4 @@
-<div class="event-info {{ $event ? 'event-info--open' : '' }} event-background-color event-primary-color">
+<div class="event-info event-background-color event-primary-color">
     <a href="#" class="event-info--close js-close-sidebar">
         <img src="{{asset('assets/img/close.svg')}}" alt="Close">
     </a>
@@ -8,7 +8,11 @@
     <div class="event-info--metadata event-secondary-color">
         <p class="meta-data event-info--date">
             <span class="event-icon">@include('svg.event-date-icon')</span>
-            <span class="js-event-info-date">{{ $event ? date('d.m.y', strtotime($event->time_start)) : '' }}</span>
+            <span class="js-event-info-date">
+                @if ($event)
+                    {{ $event->dates() }}
+                @endif
+            </span>
         </p>
         <p class="meta-data event-info--time">
             <span class="event-icon">@include('svg.event-time-icon')</span>

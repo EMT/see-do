@@ -24,7 +24,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc')->get();
+        $events = Event::futureEvents();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
         return view('events.index', compact('events', 'event', 'categories') + ['event' => null]);
@@ -97,8 +97,7 @@ class EventsController extends Controller
      */
     public function show(Event $event)
     {
-        $events = Event::all();
-
+        $events = Event::futureEvents();
         return view('events.index', compact('events', 'event'));
     }
 
@@ -114,6 +113,8 @@ class EventsController extends Controller
         $event = Event::findBySlug($slug);
         $event->colorScheme;
         $event->category;
+        $event->dates = $event->dates();
+        $event->times = $event->times();
         $event->url = action('EventsController@show', ['slug' => $event->slug]);
 
         return response()->json($event);

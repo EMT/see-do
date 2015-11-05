@@ -1,4 +1,5 @@
 $(function() {
+
 	FastClick.attach(document.body);
 	Filters.init();
 
@@ -19,8 +20,20 @@ $(function() {
 		$eventInfoClose = $('.js-close-sidebar'),
 		$filterBtn = $('.filter');
 
+	// If event is active on page load, trigger animated info panel
+	if ($('.event.event--active').length) {
+		changeEventInfo($('.event.event--active'), $eventItems);
+	}
+
 	$eventInfoClose.on('click touch', function(e) {
 		e.preventDefault();
+
+		stateHandler.push({
+			url: '/',
+			title: 'See&Do',
+			eventId: null
+		});
+
 		Sidebar.animClose();
 	});
 
@@ -30,7 +43,12 @@ $(function() {
 	});
 
 	$(window).on('popstate', function(e) {
-		changeEventInfo($('#' + e.originalEvent.state.eventId), $eventItems, true);
+		if (e.originalEvent.state && e.originalEvent.state.eventId) {
+			changeEventInfo($('#' + e.originalEvent.state.eventId), $eventItems, true);
+		}
+		else {
+			Sidebar.animClose();
+		}
 	});
 
 
@@ -112,8 +130,8 @@ function setEventDetails(url, callback) {
 		$('.event-info--title').html(response.title);
 
 		// Metadata
-		$('.js-event-info-date').html(moment(response.time_start).format('D.M.YY'));
-		$('.js-event-info-time').html(moment(response.time_start).format('h.mma') + ' - ' + moment(response.time_end).format('h.mma'));
+		$('.js-event-info-date').html(response.dates);
+		$('.js-event-info-time').html(response.times);
 		$('.js-event-info-venue').html(response.venue);
 		$('.js-event-info-fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURI(response.url));
 		$('.js-event-info-twitter').attr('href', 'https://twitter.com/home?status=' + encodeURI(response.title + ' ' + response.url));

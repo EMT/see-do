@@ -33,11 +33,10 @@
 	bottom: 0;
 
 	@media all and (min-width: 600px) {
-		padding: 10%;
+		padding: 60px;
 	}
 
 	@media all and (min-width: 1500px) {
-		width: 35%;
 		padding: 60px;
 		max-width: none;
 	}
@@ -72,11 +71,7 @@
 	width: 20px;
 
 	@media all and (min-width: 600px) {
-		right: 10%;
-	}
-
-	@media all and (min-width: 1500px) {
-		right: 35%;
+		right: 60px;
 	}
 
 	img {

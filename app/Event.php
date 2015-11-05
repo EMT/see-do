@@ -48,26 +48,27 @@ class Event extends Model implements SluggableInterface
         return $this->belongsTo('App\User');
     }
 
-    public function icons() 
+    public function icons()
     {
         $icons = Icon::whereIn('id', $this->iconIdsArray())->get();
         $iconsList = Icon::where('id', 0)->get();
 
         foreach ($this->iconIdsArray() as $iconId) {
-            $iconsList->push($icons->first(function($key, $val) use ($iconId) {return (int)$val->id === (int)$iconId; }));
+            $iconsList->push($icons->first(function ($key, $val) use ($iconId) {return (int) $val->id === (int) $iconId; }));
         }
 
         return $iconsList;
     }
 
-    public function iconIdsArray() 
+    public function iconIdsArray()
     {
         $idsArray = explode(',', $this->icons);
         $idsArray = array_filter($idsArray, 'is_numeric');
+
         return (count($idsArray) && !empty($idsArray[0])) ? $idsArray : [];
     }
 
-    public function iconTitlesArray() 
+    public function iconTitlesArray()
     {
         $iconTitlesArray = [];
 

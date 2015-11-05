@@ -63,6 +63,8 @@ class EventsController extends Controller
             }
         }
 
+        $request->merge(['icons' => implode(',', $request->icons)]);
+
         $this->validate($request, [
             'title'           => 'required|max:255',
             'content'         => 'required',

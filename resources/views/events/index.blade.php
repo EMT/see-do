@@ -32,6 +32,11 @@
                                         <span class="meta-data">{{ date('d.m.y', strtotime($ev->time_start)) }}</span>
                                     </div>
                                     <div class="event--link">
+                                        <div class="event-item-icons">
+                                            @foreach ($ev->icons() as $icon)
+                                                <span class="event-item-icon">{!! $icon->svg !!}</span>
+                                            @endforeach
+                                        </div>
                                         <h3>{{ $ev->title }}</h3>
                                     </div>
                                 </a>

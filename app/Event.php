@@ -62,7 +62,9 @@ class Event extends Model implements SluggableInterface
 
     public function iconIdsArray() 
     {
-        return explode(',', $this->icons);
+        $idsArray = explode(',', $this->icons);
+        $idsArray = array_filter($idsArray, 'is_numeric');
+        return (count($idsArray) && !empty($idsArray[0])) ? $idsArray : [];
     }
 
     public function iconTitlesArray() 

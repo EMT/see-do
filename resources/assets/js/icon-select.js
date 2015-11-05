@@ -57,7 +57,7 @@ var iconSelect = function(options) {
 		self.$newElem.append(self.$fakeInput);
 		self.$newElem.append(self.$hiddenInput);
 
-		var iconIds = self.$elem.data('iconIds').split(',');
+		var iconIds = (self.$elem.data('iconIds')) ? (self.$elem.data('iconIds') + '').split(',') : [];
 
 		for (var i = 0, len = iconIds.length; i < len; i ++) {
 			self.addToSelectedIcons(iconIds[i]);

@@ -24,14 +24,24 @@
 .event.event--active a {
 	color: $highlight;
 
-	.event--link {
-		padding-left: 35px;
-		cursor: pointer;
-	}
+	// .event--link {
+	// 	padding-left: 35px;
+	// 	cursor: pointer;
+	// }
 
-	.event--link:before {
-		opacity: 1;
-		visibility: visible;
+	// .event--link:before {
+	// 	opacity: 1;
+	// 	visibility: visible;
+	// }
+	
+	.event-item-icon {
+		-webkit-transform: rotate(0deg);
+
+		svg {
+			height: 24px;
+			margin-right: 4px;
+			width: auto;
+		}
 	}
 }
 
@@ -48,17 +58,37 @@
 	border-bottom: 1px solid $black;
 	position: relative;
 
-	&:before {
-		content: url(../../../../assets/img/pizza.svg);
-		width: 25px;
-		position: absolute;
-		left: 0;
-		opacity: 0;
-		visibility: hidden;
-	}
+	// &:before {
+	// 	content: url(../../../../assets/img/pizza.svg);
+	// 	width: 25px;
+	// 	position: absolute;
+	// 	left: 0;
+	// 	opacity: 0;
+	// 	visibility: hidden;
+	// }
 
 	@media screen and (max-width: $site-tablet) {
 		width: calc(100% - #{$tab-left-col});
+	}
+}
+
+.event-item-icons {
+	float: left;
+	// padding-right: 6px;
+	height: 21px;
+}
+
+.event-item-icon {
+	display: block;
+	float: left;
+	-webkit-transform: rotate(-90deg);
+	@include transition(all .3s ease-out);
+
+	svg {
+		height: 0;
+		margin: 0;
+		top: 11px;
+		@include transition(all .3s ease-out);
 	}
 }
 

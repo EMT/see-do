@@ -113,6 +113,8 @@ class EventsController extends Controller
         $event = Event::findBySlug($slug);
         $event->colorScheme;
         $event->category;
+        $event->dates = $event->dates();
+        $event->times = $event->times();
         $event->url = action('EventsController@show', ['slug' => $event->slug]);
 
         return response()->json($event);

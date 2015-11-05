@@ -79,11 +79,53 @@ class Event extends Model implements SluggableInterface
         return $iconTitlesArray;
     }
 
+    public function dates()
+    {
+        $dates = date('j', strtotime($this->time_start));
+
+        if (date('y', strtotime($this->time_start)) !== date('y', strtotime($this->time_end))) {
+            $dates .= date(' M y — ', strtotime($this->time_start)) . date('j M y', strtotime($this->time_end));
+        }
+        else if (date('m', strtotime($this->time_start)) !== date('m', strtotime($this->time_end))) {
+            $dates .= date(' M — ', strtotime($this->time_start)) . date('j M y', strtotime($this->time_end));
+        }
+        else if (date('d', strtotime($this->time_start)) !== date('d', strtotime($this->time_end))) {
+            $dates .= date('—j M y', strtotime($this->time_end));
+        }
+        else {
+            $dates .= date(' M y', strtotime($this->time_end));
+        }
+
+        return $dates;
+    }
+
+    public function times()
+    {
+        $times = date('g.i', strtotime($this->time_start));
+
+        if (date('g.i', strtotime($this->time_start)) !== date('g.ia', strtotime($this->time_end))) {
+            if (date('a', strtotime($this->time_start)) !== date('a', strtotime($this->time_end))) {
+                $times .= date('a—', strtotime($this->time_start)) . date('g.ia', strtotime($this->time_end));
+            }
+            else {
+                $times .= date('—g.ia', strtotime($this->time_end));
+            }
+        }
+        else {
+            $times .= date('a', strtotime($this->time_end));
+        }
+
+        return $times;
+    }
+
    /**
     * Returns all events in with time_end in the future
     * @return Collection A collection of Events
     */
-    public static function futureEvents() {
+    public static function futureEvents() 
+    {
         return Event::where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc')->get();
     }
+
+
 }

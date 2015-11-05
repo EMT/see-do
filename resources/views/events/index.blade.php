@@ -29,7 +29,7 @@
                             <li id="event-item-{{ $ev->id }}" class="event clear {{ ($event && $event->id === $ev->id) ? 'event--active' : '' }}">
                                 <a href="{{ route('events.show', $ev->slug) }}">
                                     <div class="event--date">
-                                        <span class="meta-data">{{ date('d.m.y', strtotime($ev->time_start)) }}</span>
+                                        <span class="meta-data">{{ $ev->dates() }}</span>
                                     </div>
                                     <div class="event--link">
                                         <div class="event-item-icons">

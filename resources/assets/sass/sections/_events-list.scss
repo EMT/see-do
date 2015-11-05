@@ -23,16 +23,6 @@
 .event a:hover,
 .event.event--active a {
 	color: $highlight;
-
-	// .event--link {
-	// 	padding-left: 35px;
-	// 	cursor: pointer;
-	// }
-
-	// .event--link:before {
-	// 	opacity: 1;
-	// 	visibility: visible;
-	// }
 	
 	.event-item-icon {
 		-webkit-transform: rotate(0deg);
@@ -44,6 +34,8 @@
 		svg {
 			height: 24px;
 			margin-right: 6px;
+			padding-left: 0;
+			padding-top: 0;
 			width: auto;
 		}
 	}
@@ -62,15 +54,6 @@
 	border-bottom: 1px solid $black;
 	position: relative;
 
-	// &:before {
-	// 	content: url(../../../../assets/img/pizza.svg);
-	// 	width: 25px;
-	// 	position: absolute;
-	// 	left: 0;
-	// 	opacity: 0;
-	// 	visibility: hidden;
-	// }
-
 	@media screen and (max-width: $site-tablet) {
 		width: calc(100% - #{$tab-left-col});
 	}
@@ -78,7 +61,6 @@
 
 .event-item-icons {
 	float: left;
-	// padding-right: 6px;
 	height: 21px;
 }
 
@@ -91,6 +73,8 @@
 	svg {
 		height: 0;
 		margin: 0;
+		padding-left: 50%;
+		padding-top: 50%;
 		top: 11px;
 		@include transition(all .3s ease-out);
 	}

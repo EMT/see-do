@@ -29,6 +29,7 @@ elixir(function(mix) {
 	    'bootstrap.js',
         'forms.js',
         'color-scheme-select.js',
+        'icon-select.js',
 	    'date-time-input.js'
 	]);
 

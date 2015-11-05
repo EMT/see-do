@@ -74,6 +74,21 @@
     </div>
 </div>
 
+<!-- Icon -->
+<div class="form-row">
+    {!! Form::label('icons', 'Icon') !!}
+
+    <div class="form-row-body">
+        <select name="icons[]" class="icon-select js-icon-select" data-icon-ids="{{ implode(',', $event->iconIdsArray()) }}" multiple>
+            @foreach ($icons as $icon)
+                <option value="{{ $icon->id }}" data-icon-svg="{{ $icon->svg }}">{{ $icon->title }}</option>
+            @endforeach
+        </select>
+
+        @include('common.forms.field-errors', ['errors' => $errors->get('icons')])
+    </div>
+</div>
+
 <div class="form-row">
     <div class="form-row-body">
         {!! Form::submit('[ Submit ]', ['class' => 'btn primary']) !!}

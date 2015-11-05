@@ -86,7 +86,7 @@ class SubscribersController extends Controller
 
         $this->validate($request, [
             'name'  => 'required|max:70',
-            'email' => 'required|email|unique:subscribers,email,'.$subscriber->id,
+            'email' => 'required|email|unique:subscribers,email,' . $subscriber->id,
         ]);
 
         $subscriber->fill(Input::all());

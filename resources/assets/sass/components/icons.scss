@@ -1,0 +1,110 @@
+/**
+ * Reusable icons components
+ */
+
+.icon {
+    display: inline-block;
+
+    a {
+        display: block;
+        height: 50px;
+        width: auto;
+        padding: 8px;
+
+        &:hover {
+            background: rgb(245,245,245);
+        }
+
+        svg {
+            height: 100%;
+        }
+    }
+}
+
+
+/**
+ * Styles for the icon selector
+ */
+
+.cs-icon-select-input {
+    font: $body--mono;
+    line-height: 40px;
+}
+
+.cs-icon-select {
+    font: $body--mono;
+    position: absolute;
+    top: -400px;
+    left: 0;
+    padding: 1em;
+    background: rgb(255,255,255);
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+    display: none;
+    opacity: 0;
+    @include transition(all .3s ease-out);
+
+    &.open {
+        display: block;
+        opacity: 1;
+    }
+}
+
+.cs-icon-select-option {
+    display: inline-block;
+    width: 60px;
+    cursor: pointer;
+    padding: 12px;
+    text-align: center;
+    @include transition(all .3s ease-out);
+
+    &:hover {
+        background: rgb(230,230,230);
+    }
+}
+
+.cs-icon-select-default {
+    display: block;
+    width: auto;
+}
+
+.cs-icon-fake-input {
+    .cs-selected-icon {
+        position: relative;
+        display: inline-block;
+        margin-right: 8px;
+
+        &:hover {
+            &:after {
+                content: 'X';
+                color: rgb(242,112,111);
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                font-family: 'Graphik';
+                font-size: 2em;
+                line-height: 1em;
+                text-align: center;
+            }
+        }
+    }
+
+    svg {
+        height: 30px;
+    }
+}
+
+.cs-add-btn {
+    display: inline-block;
+    font-size: 60px;
+    line-height: 0.2em;
+    vertical-align: top;
+    text-align: centre;
+    width: 30px;
+    text-decoration: none;
+    color: rgb(180,180,180);
+
+    &:hover {
+        color: $highlight;
+    }
+}

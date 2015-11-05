@@ -9,6 +9,7 @@
 
 // Components is for very specific reusable styles (e.g. buttons, navigation, icons).
 @import 'components/color-schemes';
+@import 'components/icons';
 @import 'components/forms';
 @import 'components/buttons';
 
@@ -23,3 +24,4 @@
 @import 'sections/events-info-pane';
 @import 'sections/filters-overlay';
 
+// Vendor

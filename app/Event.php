@@ -29,6 +29,7 @@ class Event extends Model implements SluggableInterface
         'slug',
         'user_id',
         'color_scheme_id',
+        'icons',
         'category_id',
     ];
 
@@ -45,5 +46,35 @@ class Event extends Model implements SluggableInterface
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function icons() 
+    {
+        $icons = Icon::whereIn('id', $this->iconIdsArray())->get();
+        $iconsList = Icon::where('id', 0)->get();
+
+        foreach ($this->iconIdsArray() as $iconId) {
+            $iconsList->push($icons->first(function($key, $val) use ($iconId) {return (int)$val->id === (int)$iconId; }));
+        }
+
+        return $iconsList;
+    }
+
+    public function iconIdsArray() 
+    {
+        $idsArray = explode(',', $this->icons);
+        $idsArray = array_filter($idsArray, 'is_numeric');
+        return (count($idsArray) && !empty($idsArray[0])) ? $idsArray : [];
+    }
+
+    public function iconTitlesArray() 
+    {
+        $iconTitlesArray = [];
+
+        foreach ($this->icons() as $icon) {
+            $iconTitlesArray[] = $icon->title;
+        }
+
+        return $iconTitlesArray;
     }
 }

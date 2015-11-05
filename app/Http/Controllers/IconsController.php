@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\ColorScheme;
 use Illuminate\Http\Request;
+
+use App\Icon;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 use Input;
 use Redirect;
 
-class ColorSchemesController extends Controller
+class IconsController extends Controller
 {
     public function __construct()
     {
@@ -21,9 +24,9 @@ class ColorSchemesController extends Controller
      */
     public function index()
     {
-        $colorSchemes = ColorScheme::orderBy('created_at', 'desc')->get();
+        $icons = Icon::orderBy('created_at', 'desc')->get();
 
-        return view('color-schemes.index', compact('colorSchemes'));
+        return view('icons.index', compact('icons'));
     }
 
     /**
@@ -33,7 +36,7 @@ class ColorSchemesController extends Controller
      */
     public function create()
     {
-        return view('color-schemes.create');
+        return view('icons.create');
     }
 
     /**
@@ -46,26 +49,25 @@ class ColorSchemesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'color_1' => 'required',
-            'color_2' => 'required',
-            'color_3' => 'required',
+            'title'  => 'required|unique',
+            'svg'    => 'required',
         ]);
 
-        $colorScheme = new ColorScheme(Input::all());
-        $colorScheme->user_id = $request->user()->id;
-        $colorScheme->save();
+        $icon = new Icon(Input::all());
+        $icon->user_id = $request->user()->id;
+        $icon->save();
 
-        return Redirect::route('color-schemes.index')->with('message', 'Colour scheme created');
+        return Redirect::route('icons.index')->with('message', 'Icon created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param ColorScheme $colorScheme
+     * @param Icon $icon
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(ColorScheme $colorScheme)
+    public function show(Icon $icon)
     {
         //
     }
@@ -73,35 +75,34 @@ class ColorSchemesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param ColorScheme $colorScheme
+     * @param Icon $icon
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(ColorScheme $colorScheme)
+    public function edit(Icon $icon)
     {
-        return view('color-schemes.edit', compact('colorScheme'));
+        return view('icons.edit', compact('icon'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param ColorScheme              $colorScheme
+     * @param Icon                     $icon
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ColorScheme $colorScheme)
+    public function update(Request $request, Icon $icon)
     {
         $this->validate($request, [
-            'color_1' => 'required',
-            'color_2' => 'required',
-            'color_3' => 'required',
+            'title'  => 'required|unique:subscribers,title,' . $icon->title,
+            'svg'    => 'required',
         ]);
 
-        $colorScheme->fill(Input::all());
-        $colorScheme->save();
+        $icon->fill(Input::all());
+        $icon->save();
 
-        return Redirect::route('color-schemes.index')->with('message', 'Colour scheme updated');
+        return Redirect::route('icons.index')->with('message', 'Icon updated');
     }
 
     /**

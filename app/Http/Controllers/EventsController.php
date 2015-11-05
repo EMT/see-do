@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\ColorScheme;
-use App\Icon;
 use App\Event;
+use App\Icon;
 use Illuminate\Http\Request;
 use Input;
 use Redirect;

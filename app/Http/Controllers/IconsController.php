@@ -92,7 +92,7 @@ class IconsController extends Controller
     public function update(Request $request, Icon $icon)
     {
         $this->validate($request, [
-            'title'  => 'required|unique:icons,title,'.$icon->title,
+            'title'  => 'required|unique:icons,title,'.$icon->id,
             'svg'    => 'required',
         ]);
 

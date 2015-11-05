@@ -21,6 +21,13 @@ $(function() {
 
 	$eventInfoClose.on('click touch', function(e) {
 		e.preventDefault();
+
+		stateHandler.push({
+			url: '/',
+			title: 'See&Do',
+			eventId: null
+		});
+
 		Sidebar.animClose();
 	});
 
@@ -30,7 +37,12 @@ $(function() {
 	});
 
 	$(window).on('popstate', function(e) {
-		changeEventInfo($('#' + e.originalEvent.state.eventId), $eventItems, true);
+		if (e.originalEvent.state && e.originalEvent.state.eventId) {
+			changeEventInfo($('#' + e.originalEvent.state.eventId), $eventItems, true);
+		}
+		else {
+			Sidebar.animClose();
+		}
 	});
 
 

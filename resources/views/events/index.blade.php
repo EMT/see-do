@@ -10,11 +10,12 @@
             <p>There are no events :(</p>
         @else
             <div class="month-range clear active">
-                <ul>
-                    <?php $previousMonth = date('F', strtotime($events->first()->time_start)) ?>
 
-                    <h2 class="month--title">{{ $previousMonth }}</h2>
-                    
+                <?php $previousMonth = date('F', strtotime($events->first()->time_start)) ?>
+
+                <h2 class="month-title">{{ $previousMonth }}</h2>
+
+                <ul>
                     @foreach( $events as $ev )
                         
                         <?php $month = date('F', strtotime($ev->time_start)) ?>
@@ -22,7 +23,7 @@
                         @if ( $month !== $previousMonth )
                             <?php $previousMonth = $month ?>
                             </ul>
-                            <h2 class="month--title">{{ $month }}</h2>
+                            <h2 class="month-title">{{ $month }}</h2>
                             <ul>
                         @endif
                     

@@ -78,4 +78,12 @@ class Event extends Model implements SluggableInterface
 
         return $iconTitlesArray;
     }
+
+   /**
+    * Returns all events in with time_end in the future
+    * @return Collection A collection of Events
+    */
+    public static function futureEvents() {
+        return Event::where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc')->get();
+    }
 }

@@ -84,9 +84,9 @@ class Event extends Model implements SluggableInterface
         $dates = date('j', strtotime($this->time_start));
 
         if (date('y', strtotime($this->time_start)) !== date('y', strtotime($this->time_end))) {
-            $dates .= date('.m.y — ', strtotime($this->time_start)).date('j.m.y', strtotime($this->time_end));
+            $dates .= date('.m.y—', strtotime($this->time_start)).date('j.m.y', strtotime($this->time_end));
         } elseif (date('m', strtotime($this->time_start)) !== date('m', strtotime($this->time_end))) {
-            $dates .= date('.m — ', strtotime($this->time_start)).date('j.m', strtotime($this->time_end));
+            $dates .= date('.m—', strtotime($this->time_start)).date('j.m', strtotime($this->time_end));
         } elseif (date('d', strtotime($this->time_start)) !== date('d', strtotime($this->time_end))) {
             $dates .= date('—j.m', strtotime($this->time_end));
         } else {

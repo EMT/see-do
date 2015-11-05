@@ -84,15 +84,12 @@ class Event extends Model implements SluggableInterface
         $dates = date('j', strtotime($this->time_start));
 
         if (date('y', strtotime($this->time_start)) !== date('y', strtotime($this->time_end))) {
-            $dates .= date(' M y — ', strtotime($this->time_start)) . date('j M y', strtotime($this->time_end));
-        }
-        else if (date('m', strtotime($this->time_start)) !== date('m', strtotime($this->time_end))) {
-            $dates .= date(' M — ', strtotime($this->time_start)) . date('j M y', strtotime($this->time_end));
-        }
-        else if (date('d', strtotime($this->time_start)) !== date('d', strtotime($this->time_end))) {
+            $dates .= date(' M y — ', strtotime($this->time_start)).date('j M y', strtotime($this->time_end));
+        } elseif (date('m', strtotime($this->time_start)) !== date('m', strtotime($this->time_end))) {
+            $dates .= date(' M — ', strtotime($this->time_start)).date('j M y', strtotime($this->time_end));
+        } elseif (date('d', strtotime($this->time_start)) !== date('d', strtotime($this->time_end))) {
             $dates .= date('—j M y', strtotime($this->time_end));
-        }
-        else {
+        } else {
             $dates .= date(' M y', strtotime($this->time_end));
         }
 
@@ -105,27 +102,24 @@ class Event extends Model implements SluggableInterface
 
         if (date('g.i', strtotime($this->time_start)) !== date('g.ia', strtotime($this->time_end))) {
             if (date('a', strtotime($this->time_start)) !== date('a', strtotime($this->time_end))) {
-                $times .= date('a—', strtotime($this->time_start)) . date('g.ia', strtotime($this->time_end));
-            }
-            else {
+                $times .= date('a—', strtotime($this->time_start)).date('g.ia', strtotime($this->time_end));
+            } else {
                 $times .= date('—g.ia', strtotime($this->time_end));
             }
-        }
-        else {
+        } else {
             $times .= date('a', strtotime($this->time_end));
         }
 
         return $times;
     }
 
-   /**
-    * Returns all events in with time_end in the future
-    * @return Collection A collection of Events
-    */
-    public static function futureEvents() 
+    /**
+     * Returns all events in with time_end in the future.
+     *
+     * @return Collection A collection of Events
+     */
+    public static function futureEvents()
     {
-        return Event::where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc')->get();
+        return self::where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc')->get();
     }
-
-
 }

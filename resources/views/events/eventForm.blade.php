@@ -79,7 +79,7 @@
     {!! Form::label('icons', 'Icon') !!}
 
     <div class="form-row-body">
-        <select name="icons[]" class="icon-select js-icon-select" data-icon-ids="{{ implode(',', $event->iconIdsArray()) }}" multiple>
+        <select name="icons[]" class="icon-select js-icon-select" data-icon-ids="{{ ($event) ? implode(',', $event->iconIdsArray()) : '' }}" multiple>
             @foreach ($icons as $icon)
                 <option value="{{ $icon->id }}" data-icon-svg="{{ $icon->svg }}">{{ $icon->title }}</option>
             @endforeach

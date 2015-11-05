@@ -1,7 +1,7 @@
 <html>
     @include('common.head')
 
-    <body>
+    <body class="{{ $event ? 'event-info-open' : '' }}">
         @include('common.header')
 
         <div class="site-wrapper">

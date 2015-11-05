@@ -1,4 +1,4 @@
-<div class="event-info {{ $event ? 'event-info--open' : '' }} event-background-color event-primary-color">
+<div class="event-info event-background-color event-primary-color">
     <a href="#" class="event-info--close js-close-sidebar">
         <img src="{{asset('assets/img/close.svg')}}" alt="Close">
     </a>

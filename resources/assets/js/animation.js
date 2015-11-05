@@ -244,13 +244,13 @@
 		var activeWrapperWidth,
 			inactiveWrapperWidth;
 
-		if ($(window).width() <= 900) {
-			activeWrapperWidth = "45%";
-			inactiveWrapperWidth = "100%";
-		} else {
-			activeWrapperWidth = "62.5%";
-			inactiveWrapperWidth = "90%";
-		}
+		// if ($(window).width() < 1500) {
+		// 	activePaddingRight = "0";
+		// 	inactivePaddingRight = "0";
+		// } else {
+		// 	activePaddingRight = "35%";
+		// 	inactivePaddingRight = "0";
+		// }
 
 		var animOpen = function() {
 
@@ -263,16 +263,24 @@
 					options: {
 						duration: 0
 					}
-				},
-				{
-					elements: $leftAlignWrapper,
-					properties: {
-						width: activeWrapperWidth
-					},
-					options: {
-						easing: [0.075, 0.82, 0.165, 1]
+				}
+			];
+
+			if ($(window).width() > 1500) {
+				openSidebarAnim.push(
+					{
+						elements: $leftAlignWrapper,
+						properties: {
+							paddingRight: "35%"
+						},
+						options: {
+							easing: [0.075, 0.82, 0.165, 1]
+						}
 					}
-				},
+				);
+			}
+
+			openSidebarAnim.push(
 				{
 					elements: $infoPane,
 					properties: {
@@ -296,7 +304,7 @@
 						}
 					}
 				}
-			];
+			);
 
 			$.Velocity.RunSequence(openSidebarAnim);
 		}
@@ -308,7 +316,7 @@
 				{
 					elements: $leftAlignWrapper,
 					properties: {
-						width: inactiveWrapperWidth
+						padding: 0
 					},
 					options: {
 						easing: [0.075, 0.82, 0.165, 1]

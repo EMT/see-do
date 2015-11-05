@@ -17,7 +17,7 @@ header .site-title {
 	float: left;
 
 	@media screen and (max-width: $site-tablet) {
-		margin-left: $tab-left-col;
+		margin-left: 0;
 	}
 }
 

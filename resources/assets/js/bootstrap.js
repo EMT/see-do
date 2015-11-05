@@ -65,10 +65,14 @@ $(function() {
 		}
 	});
 
-	$('.filter-overlay-nav').on('click touch', 'a', function(e) {
+	$('.js-filter-overlay-nav').on('click touch', 'a', function(e) {
+		e.preventDefault();
+		window.location = $(this).attr('href');
+	});
+
+	$('.js-filter-overlay-bg').on('click touch', function(e) {
 		e.preventDefault();
 		Filters.animHide();
-		window.location = $(this).attr('href');
 	});
 
 

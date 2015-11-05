@@ -1,7 +1,7 @@
 <html>
     @include('common.head')
 
-    <body class="{{ $event ? 'event-info-open' : '' }}">
+    <body class="{{ !empty($event) ? 'event-info-open' : '' }}">
 
         <script>
         document.body.className = document.body.className.replace("event-info-open", "");

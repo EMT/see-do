@@ -1,6 +1,6 @@
-<div class="filter-overlay-bg"></div>
+<div class="filter-overlay-bg js-filter-overlay-bg"></div>
 
-<nav class="filter-overlay-nav">
+<nav class="filter-overlay-nav js-filter-overlay-nav">
 	<ul>
 
 		@foreach( $categories as $cat )

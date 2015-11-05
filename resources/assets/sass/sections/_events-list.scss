@@ -18,6 +18,8 @@
 .event a {
 	color: $black;
 	cursor: pointer;
+	position: relative;
+	text-decoration: none;
 }
 
 .event a:hover,
@@ -39,19 +41,34 @@
 		}
 	}
 }
-
-.event--link, 
+ 
 .event--date {
-	float: left;
-	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
 	padding: $list-vert-padding 0;
+
+	@media all and (max-width: 600px) {
+		position: relative;
+		padding-bottom: 0;
+
+		.meta-data {
+			font-size: 0.75em;
+			color: $highlight;
+		}
+	}
 }
 
 .event--link {
-	width: calc(100% - #{$left-col}); //Temp ? - calc has issues in IE8
+	padding: $list-vert-padding 0;
+	padding-left: $left-col;
 	display: block;
 	border-bottom: 1px solid $black;
 	position: relative;
+
+	@media all and (max-width: 600px) {
+		padding: 0.4em 0 $list-vert-padding 0;
+	}
 
 	h3 {
 		white-space: nowrap;
@@ -63,6 +80,12 @@
 .event-item-icons {
 	float: left;
 	height: 21px;
+
+	@media all and (max-width: 600px) {
+		position: absolute;
+		top: -16px;
+		right: 0;
+	}
 }
 
 .event-item-icon {
@@ -77,6 +100,21 @@
 		padding-top: 12px;
 		top: 11px;
 		@include transition(all .3s ease-out);
+	}
+
+	@media all and (max-width: 600px) {
+		-webkit-transform: rotate(0deg);
+
+		&:last-child {
+			margin-right: 0px !important;
+		}
+
+		svg {
+			height: 14px !important;
+			margin-right: 6px;
+			padding-top: 0;
+			width: auto;
+		}
 	}
 }
 

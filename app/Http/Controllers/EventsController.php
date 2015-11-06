@@ -114,6 +114,7 @@ class EventsController extends Controller
         $event = Event::findBySlug($slug);
         $event->colorScheme;
         $event->category;
+        $event->parsedContent = $event->parseMarkdown('content');
         $event->shortDates = $event->shortDates();
         $event->longDates = $event->longDates();
         $event->times = $event->times();

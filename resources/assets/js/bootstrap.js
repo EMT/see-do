@@ -140,7 +140,7 @@ function setEventDetails(url, callback) {
 		$('.js-event-info-fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURI(response.url));
 		$('.js-event-info-twitter').attr('href', 'https://twitter.com/home?status=' + encodeURI(response.title + ' ' + response.url));
 
-		$('.event-info .body-copy').html('<p>' + response.content + '</p>');
+		$('.event-info .body-copy').html('<p>' + response.parsedContent + '</p>');
 
 		var styles;
 		styles = '.event-background-color { background: ' + response.color_scheme.color_1 + '; fill: ' + response.color_scheme.color_1 + ';}',

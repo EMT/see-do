@@ -25,7 +25,7 @@
     </div>
 
     <div class="body-copy">
-        <p>{!! $event ? $event->content : '' !!}</p>
+        <p>{!! $event ? $event->parseMarkdown('content') : '' !!}</p>
     </div>
 
     <div class="event-info--navigation clear">

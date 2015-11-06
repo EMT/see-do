@@ -6,6 +6,7 @@ Trait MarkdownTrait
 {
     private static $rules = [
         'links'                 => ['/\[([^\[]+)\]\(([^\)]+)\)/', '<a href=\'\2\'>\1</a>'],  // links
+        'urls to links'         => ['@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>'],
         'bold'                  => ['/(\*\*|__)(.*?)\1/', '<strong>\2</strong>'],            // bold
         'emphasis'              => ['/(\*|_)(.*?)\1/', '<em>\2</em>'],                       // emphasis
         'del'                   => ['/\~\~(.*?)\~\~/', '<del>\1</del>'],                     // del
@@ -13,7 +14,7 @@ Trait MarkdownTrait
         'inline code'           => ['/`(.*?)`/', '<code>\1</code>'],                         // inline code
         'ul lists'              => ['/\n\*(.*)/', 'self::ul_list'],                          // ul lists
         'ol lists'              => ['/\n[0-9]+\.(.*)/', 'self::ol_list'],                    // ol lists
-        'blockquotes'           => ['/\n(&gt;|\>)(.*)/', 'self::blockquote '],               // blockquotes
+        'blockquotes'           => ['/\n(&gt;|\>)(.*)/', 'self::blockquote'],               // blockquotes
         'horizontal rule'       => ['/\n-{5,}/', "\n<hr />"],                                // horizontal rule
         'add paragraphs'        => ['/\n([^\n]+)\n/', 'self::para'],                         // add paragraphs
         'fix extra ul'          => ['/<\/ul>\s?<ul>/', ''],                                  // fix extra ul

@@ -10,7 +10,7 @@
             <span class="event-icon">@include('svg.event-date-icon')</span>
             <span class="js-event-info-date">
                 @if ($event)
-                    {{ $event->dates() }}
+                    {{ $event->longDates() }}
                 @endif
             </span>
         </p>

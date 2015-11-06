@@ -79,7 +79,7 @@ class Event extends Model implements SluggableInterface
         return $iconTitlesArray;
     }
 
-    public function dates()
+    public function longDates()
     {
         $dates = date('j', strtotime($this->time_start));
 
@@ -88,9 +88,24 @@ class Event extends Model implements SluggableInterface
         } elseif (date('n', strtotime($this->time_start)) !== date('n', strtotime($this->time_end))) {
             $dates .= date('.n—', strtotime($this->time_start)).date('j.n', strtotime($this->time_end));
         } elseif (date('d', strtotime($this->time_start)) !== date('d', strtotime($this->time_end))) {
-            $dates .= date('—j.n', strtotime($this->time_end));
+            $dates .= date('—j.n.Y', strtotime($this->time_end));
         } else {
-            $dates .= date('.n', strtotime($this->time_end));
+            $dates .= date('.n.Y', strtotime($this->time_end));
+        }
+
+        return $dates;
+    }
+
+    public function shortDates()
+    {
+        $dates = date('j', strtotime($this->time_start));
+
+        if (date('y', strtotime($this->time_start)) !== date('y', strtotime($this->time_end))) {
+            $dates .= date('.n.y—', strtotime($this->time_start)).date('j.n.y', strtotime($this->time_end));
+        } elseif (date('n', strtotime($this->time_start)) !== date('n', strtotime($this->time_end))) {
+            $dates .= date('.n—', strtotime($this->time_start)).date('j.n', strtotime($this->time_end));
+        } elseif (date('d', strtotime($this->time_start)) !== date('d', strtotime($this->time_end))) {
+            $dates .= date('—j', strtotime($this->time_end));
         }
 
         return $dates;

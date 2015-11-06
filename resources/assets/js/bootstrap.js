@@ -145,7 +145,9 @@ function setEventDetails(url, callback) {
 		var styles;
 		styles = '.event-background-color { background: ' + response.color_scheme.color_1 + '; fill: ' + response.color_scheme.color_1 + ';}',
 		styles += '.event-primary-color { color: ' + response.color_scheme.color_2 + '; fill: ' + response.color_scheme.color_2 + ';}',
-		styles += '.event-secondary-color { color: ' + response.color_scheme.color_3 + '; fill: ' + response.color_scheme.color_3 + ';}'
+		styles += '.event-secondary-color { color: ' + response.color_scheme.color_3 + '; fill: ' + response.color_scheme.color_3 + ';}',
+		styles += '.event-info .body-copy a { color: ' + response.color_scheme.color_3 + ';}',
+		styles += '.event-info .event-info--share a:hover { color: ' + response.color_scheme.color_3 + ';}';
 
 		$('#js-event-color-scheme').remove();
 		$('<style id="js-event-color-scheme" type="text/css">'+ styles +'</style>').appendTo('head');

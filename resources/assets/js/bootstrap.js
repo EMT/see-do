@@ -134,7 +134,7 @@ function setEventDetails(url, callback) {
 		$('.event-info--title').html(response.title);
 
 		// Metadata
-		$('.js-event-info-date').html(response.dates);
+		$('.js-event-info-date').html(response.longDates);
 		$('.js-event-info-time').html(response.times);
 		$('.js-event-info-venue').html(response.venue);
 		$('.js-event-info-fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURI(response.url));

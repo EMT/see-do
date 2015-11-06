@@ -114,7 +114,8 @@ class EventsController extends Controller
         $event = Event::findBySlug($slug);
         $event->colorScheme;
         $event->category;
-        $event->dates = $event->dates();
+        $event->shortDates = $event->shortDates();
+        $event->longDates = $event->longDates();
         $event->times = $event->times();
         $event->url = action('EventsController@show', ['slug' => $event->slug]);
 

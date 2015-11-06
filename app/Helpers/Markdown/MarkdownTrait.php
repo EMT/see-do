@@ -2,7 +2,7 @@
 
 namespace App\Helpers\Markdown;
 
-Trait MarkdownTrait
+trait MarkdownTrait
 {
     private static $rules = [
         'links'                 => ['/\[([^\[]+)\]\(([^\)]+)\)/', '<a href=\'\2\'>\1</a>'],  // links
@@ -19,7 +19,7 @@ Trait MarkdownTrait
         'add paragraphs'        => ['/\n([^\n]+)\n/', 'self::para'],                         // add paragraphs
         'fix extra ul'          => ['/<\/ul>\s?<ul>/', ''],                                  // fix extra ul
         'fix extra ol'          => ['/<\/ol>\s?<ol>/', ''],                                  // fix extra ol
-        'fix extra blockquote'  => ['/<\/blockquote><blockquote>/', "\n"]                    // fix extra blockquote
+        'fix extra blockquote'  => ['/<\/blockquote><blockquote>/', "\n"],                    // fix extra blockquote
     ];
 
     public function parseMarkdown($field)
@@ -27,59 +27,62 @@ Trait MarkdownTrait
         return self::render($this->{$field});
     }
 
-    public static function render($text) 
+    public static function render($text)
     {
-        $text = "\n" . $text . "\n";
+        $text = "\n".$text."\n";
 
         foreach (self::$rules as $name => $rule) {
             list($regex, $replacement) = $rule;
 
-            if (is_callable ( $replacement)) {
+            if (is_callable($replacement)) {
                 $text = preg_replace_callback($regex, $replacement, $text);
-            } 
-            else {
+            } else {
                 $text = preg_replace($regex, $replacement, $text);
             }
         }
 
-        return trim ($text);
+        return trim($text);
     }
 
-    private static function para($regs) 
+    private static function para($regs)
     {
         $line = $regs[1];
-        $trimmed = trim ($line);
+        $trimmed = trim($line);
 
         if (preg_match('/^<\/?(ul|ol|li|h|p|bl)/', $trimmed)) {
-            return "\n" . $line . "\n";
+            return "\n".$line."\n";
         }
 
-        return sprintf ("\n<p>%s</p>\n", $trimmed);
+        return sprintf("\n<p>%s</p>\n", $trimmed);
     }
 
     private static function ul_list($regs)
     {
         $item = $regs[1];
-        return sprintf ("\n<ul>\n\t<li>%s</li>\n</ul>", trim ($item));
+
+        return sprintf("\n<ul>\n\t<li>%s</li>\n</ul>", trim($item));
     }
 
     private static function ol_list($regs)
     {
         $item = $regs[1];
-        return sprintf ("\n<ol>\n\t<li>%s</li>\n</ol>", trim ($item));
+
+        return sprintf("\n<ol>\n\t<li>%s</li>\n</ol>", trim($item));
     }
 
     private static function blockquote($regs)
     {
         $item = $regs[2];
-        return sprintf ("\n<blockquote>%s</blockquote>", trim ($item));
+
+        return sprintf("\n<blockquote>%s</blockquote>", trim($item));
     }
 
     private static function header($regs)
     {
-        list ($tmp, $chars, $header) = $regs;
-        $level = strlen ($chars);
-        return sprintf ('<h%d>%s</h%d>', $level, trim ($header), $level);
+        list($tmp, $chars, $header) = $regs;
+        $level = strlen($chars);
+
+        return sprintf('<h%d>%s</h%d>', $level, trim($header), $level);
     }
 
     /**
@@ -90,5 +93,3 @@ Trait MarkdownTrait
         self::$rules[$name] = [$regex, $replacement];
     }
 }
-
-?>

@@ -2,13 +2,13 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
 use App\Helpers\Markdown\MarkdownInterface;
 use App\Helpers\Markdown\MarkdownTrait;
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model implements SluggableInterface, 
+class Event extends Model implements SluggableInterface,
                                      MarkdownInterface
 {
     use SluggableTrait;

@@ -2,9 +2,7 @@
 
 namespace App\Helpers\Markdown;
 
-Interface MarkdownInterface
+interface MarkdownInterface
 {
     public function parseMarkdown($field);
 }
-
-?>

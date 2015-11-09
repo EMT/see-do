@@ -29,16 +29,18 @@
                     
                             <li id="event-item-{{ $ev->id }}" class="event clear {{ ($event && $event->id === $ev->id) ? 'event--active' : '' }}">
                                 <a href="{{ route('events.show', $ev->slug) }}">
-                                    <div class="event--date">
+                                    <div class="event-item-date">
                                         <span class="meta-data">{{ $ev->shortDates() }}</span>
                                     </div>
-                                    <div class="event--link">
-                                        <div class="event-item-icons">
-                                            @foreach ($ev->icons() as $icon)
-                                                <span class="event-item-icon">{!! $icon->svg !!}</span>
-                                            @endforeach
+                                    <div class="event-item-title">
+                                        <div class="event-item-inner">
+                                            <div class="event-item-icons">
+                                                @foreach ($ev->icons() as $icon)
+                                                    <span class="event-item-icon">{!! $icon->svg !!}</span>
+                                                @endforeach
+                                            </div>
+                                            <h3>{{ $ev->title }}</h3>
                                         </div>
-                                        <h3>{{ $ev->title }}</h3>
                                     </div>
                                 </a>
                             </li>

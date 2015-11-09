@@ -4,6 +4,7 @@ textarea,
 select,
 .field-errors {
     font: $body--mono;
+    -webkit-appearance: none;
 }
 
 .form {

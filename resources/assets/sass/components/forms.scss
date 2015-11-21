@@ -5,6 +5,7 @@ select,
 .field-errors {
     font: $body--mono;
     -webkit-appearance: none;
+    border-radius: 0;
 }
 
 .form {
@@ -15,16 +16,22 @@ select,
 
         > label {
             display: block;
-            float: left;
-            clear: left;
-            width: $left-col;
             padding: 10px 0;
+
+            @media all and (min-width: 599px) {
+                float: left;
+                clear: left;
+                width: $left-col;
+            }
         }
 
         .form-row-body {
             position: relative;
-            margin-left: $left-col;
-            max-width: 430px;
+
+            @media all and (min-width: 599px) {
+                margin-left: $left-col;
+                max-width: 430px;
+            }
 
             .form-row-body-segment {
                 position: relative;

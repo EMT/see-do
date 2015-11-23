@@ -27,8 +27,8 @@
 	ul {
 		padding: 10%;
 
-		@media all and (max-width: 600px) {
-			padding-top: 15%;
+		@media all and (max-width: 800px) {
+			padding-top: 20%;
 		}
 	}
 }
@@ -43,7 +43,6 @@
 	color: $white;
 	transition: 0.2s ease-out color;
 	padding-right: 1.55em;
-    padding-left: 0.5em;
 
 	&:hover {
 		color: rgb(244,114,112);
@@ -104,5 +103,19 @@
 }
 
 
+.filter-nav-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: $white;
+	font: $body--mono;
+	text-decoration: none;
+	padding: 10%;
+	margin-top: -2px;
 
+	@media all and (max-width: 800px) {
+		padding: 1em 0;
+		left: 10%;
+	}
+}
 

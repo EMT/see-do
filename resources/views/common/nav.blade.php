@@ -15,4 +15,5 @@
 		@endforeach
 
 	</ul>
+    <a class="filter-nav-close js-filter-nav-close" href="#">[ Close ]</a>
 </nav>

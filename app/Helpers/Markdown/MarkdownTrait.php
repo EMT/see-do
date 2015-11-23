@@ -6,7 +6,7 @@ trait MarkdownTrait
 {
     private static $rules = [
         'links'                 => ['/\[([^\[]+)\]\(([^\)]+)\)/', '<a href=\'\2\'>\1</a>'],  // links
-        'urls to links'         => ['@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>'],
+        'urls to links'         => ['@(?!(?!.*?<a)[^<]*<\/a>)(?:(?:https?|ftp|file)://|www\.|ftp\.)[-A-‌​Z0-9+&#/%=~_|$?!:,.]*[A-Z0-9+&#/%=~_|$]@i', '<a href="\0" target="_blank">\0</a>'],
         'bold'                  => ['/(\*\*|__)(.*?)\1/', '<strong>\2</strong>'],            // bold
         'emphasis'              => ['/(\*|_)(.*?)\1/', '<em>\2</em>'],                       // emphasis
         'del'                   => ['/\~\~(.*?)\~\~/', '<del>\1</del>'],                     // del

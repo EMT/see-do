@@ -43,6 +43,20 @@ $(function() {
 		changeEventInfo($(this), $eventItems);
 	});
 
+	$(window).keydown(function(e) {
+		$eventItem = $('.event.event--active').length ? $('.event.event--active') : $('.event:first');
+		eventItemIndex = $eventItems.index($eventItem);
+
+    	if (e.which === 40) {
+    		var nextItemIndex = (eventItemIndex < $eventItems.length - 1) ? eventItemIndex + 1 : 0; 
+    		changeEventInfo($($eventItems[nextItemIndex]), $eventItems);
+    	}
+    	else if (e.which === 38) {
+    		var nextItemIndex = (eventItemIndex > 0) ? eventItemIndex - 1 : $eventItems.length - 1; 
+    		changeEventInfo($($eventItems[nextItemIndex]), $eventItems);
+    	}
+    });
+
 	$(window).on('popstate', function(e) {
 		if (e.originalEvent.state && e.originalEvent.state.eventId) {
 			changeEventInfo($('#' + e.originalEvent.state.eventId), $eventItems, true);

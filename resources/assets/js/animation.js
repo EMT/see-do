@@ -266,12 +266,12 @@
 				}
 			];
 
-			if ($(window).width() > 1500) {
+			if ($(window).width() > 1200) {
 				openSidebarAnim.push(
 					{
 						elements: $leftAlignWrapper,
 						properties: {
-							paddingRight: "35%"
+							paddingRight: "30%"
 						},
 						options: {
 							easing: [0.075, 0.82, 0.165, 1]

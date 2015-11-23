@@ -19,6 +19,30 @@ header .site-title {
 	@media screen and (max-width: $site-tablet) {
 		margin-left: 0;
 	}
+
+	a {
+		position: relative;
+		display: block;
+		margin-left: 1em;
+		margin-right: 1em;
+		width: 3.3em;
+
+		&:before,
+		&:after {
+			position: absolute;
+			top: 0;
+		}
+
+		&:before {
+			content: '[';
+			left: -1em;
+		}
+
+		&:after {
+			content: ']';
+			right: -1em;
+		}
+	}
 }
 
 .category-title {

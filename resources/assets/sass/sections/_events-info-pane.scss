@@ -98,12 +98,13 @@
 .event-info--time,
 .event-info--location {
 	position: relative;
-	padding: 6px 0 6px 30px;
+	padding: 4px 0 4px 26px;
 }
 
 .event-icon {
-	width: 18px;
+	width: 15px;
 	position: absolute;
+	top: 6px;
 	left: 0;
 }
 
@@ -124,8 +125,41 @@
 	line-height: 22px; //Temp vertical alignment hack until we can think of something better.
 
 	a {
+		position: relative;
+		margin-right: 0.6em;
 		color: inherit;
 		text-decoration: none;
+		transition: all .3s ease-out;
+
+		&:before,
+		&:after {
+			position: absolute;
+			top: 0;
+			opacity: 0;
+			transition: all .3s ease-out;
+		}
+
+		&:before {
+			content: '[';
+			left: -0.2em;
+		}
+
+		&:after {
+			content: ']';
+			right: -0.2em;
+		}
+
+		&:hover {
+			&:before {
+				left: -0.6em;
+				opacity: 1;
+			}
+
+			&:after {
+				right: -0.6em;
+				opacity: 1;
+			}
+		}
 	}
 }
 

@@ -23,15 +23,29 @@ header .site-title {
 
 .category-title {
 	color: $highlight;
+	
+	@media all and (max-width: 600px) {
+		display: block;
+		margin-bottom: 1em;
+	}
 }
 
 header nav {
 	float: right;
+
+	@media all and (max-width: 400px) {
+		float: none;
+		clear: both;
+	}
 }
 
 header nav ul li {
 	display: inline-block;
 	margin-left: 10px;
+
+	&:first-child {
+		margin-left: 0;
+	}
 }
 
 header nav a {

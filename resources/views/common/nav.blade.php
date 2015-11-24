@@ -8,11 +8,12 @@
 			<li>
 				<a href="{{ route('categories.show', ['slug' => $cat->slug]) }}">
                     {!! $cat->icon !!}
-                    {{ $cat->title }} <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">{{ $cat->events()->count() }}</span><span class="nav-close-bracket">]</span></span>
+                    {{ $cat->title }} <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">{{ $cat->futureEventsCount() }}</span><span class="nav-close-bracket">]</span></span>
                 </a>
 			</li>
 
 		@endforeach
 
 	</ul>
+    <a class="filter-nav-close js-filter-nav-close" href="#">[ Close ]</a>
 </nav>

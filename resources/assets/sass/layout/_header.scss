@@ -19,24 +19,93 @@ header .site-title {
 	@media screen and (max-width: $site-tablet) {
 		margin-left: 0;
 	}
+
+	a {
+		position: relative;
+		display: block;
+		margin-left: 1em;
+		margin-right: 1em;
+		width: 3.3em;
+
+		&:before,
+		&:after {
+			position: absolute;
+			top: 0;
+		}
+
+		&:before {
+			content: '[';
+			left: -1em;
+		}
+
+		&:after {
+			content: ']';
+			right: -1em;
+		}
+	}
 }
 
 .category-title {
 	color: $highlight;
+	
+	@media all and (max-width: 600px) {
+		display: block;
+	}
 }
 
 header nav {
 	float: right;
+
+	@media all and (max-width: 400px) {
+		float: none;
+		clear: both;
+		padding-top: 1em;
+	}
 }
 
 header nav ul li {
 	display: inline-block;
-	margin-left: 10px;
+	margin-left: 2em;
+
+	&:first-child {
+		margin-left: 0;
+	}
 }
 
 header nav a {
+	position: relative;
 	color: $grey;
 	font: $body--mono;
 	text-decoration: none;
+
+	&:before,
+	&:after {
+		position: absolute;
+		top: 0;
+		opacity: 0;
+		transition: all .3s ease-out;
+	}
+
+	&:before {
+		content: '[';
+		left: -0.3em;
+	}
+
+	&:after {
+		content: ']';
+		right: -0.3em;
+	}
+
+	&:hover {
+		&:before {
+			left: -1.1em;
+			opacity: 1;
+		}
+
+		&:after {
+			right: -1.1em;
+			opacity: 1;
+		}
+	}
 }
 

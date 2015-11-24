@@ -5,6 +5,10 @@
 @section('content')
     <h2 class="aligned">Subscribe</h2>
 
+    <div class="article-body aligned">
+        <p>We’ll email you a weekly round-up of things to See+Do in Manchester.</p>
+    </div>
+
     {!! Form::open(['action' => 'SubscribersController@store', 'class' => 'form']) !!}
 
         @include('subscribers.subscriberForm')

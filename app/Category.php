@@ -47,4 +47,9 @@ class Category extends Model implements SluggableInterface
     {
         return $this->belongsTo('App\Icon');
     }
+
+    public function futureEventsCount()
+    {
+        return $this->events()->where('time_end', '>=', date('Y-m-d H:i:s'))->count();
+    }
 }

@@ -42,7 +42,10 @@ class SendMailer extends Command
      */
     public function handle()
     {
-        $events = Event::futureEvents();
+        $events = Event::where('time_end', '>=', date('Y-m-d H:i:s'))
+                        ->where('time_end', '<=', date('Y-m-d H:i:s', strtotime('+2 weeks')))
+                        ->orderBy('time_start', 'asc')
+                        ->get();
         $categories = Category::orderBy('title', 'asc')->get();
 
         $subscriber = new Subscriber();

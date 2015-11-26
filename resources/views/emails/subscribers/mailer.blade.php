@@ -6,19 +6,14 @@
     <body>
         <p>Hi {{ $subscriber->name }},</p>
         <p>A few things you might like to See+Do in Manchester over the next couple of weeks…</p>
-        
-        <table>
-            @foreach($events as $ev)
-                <tr>
-                    <td style="padding-right: 20px;">{{ $ev->longDates() }}</td>
-                    <td>
-                        <a href="{{ route('events.show', $ev->slug) }}">
-                            {!! $ev->title !!}
-                        </a>
-                    </td>
-                </tr>
-            @endforeach
-        </table>
+
+        @foreach($events as $ev)
+            <div style="padding-bottom: 16px;">
+                <div style="font-weight: bold;"><a href="{{ route('events.show', $ev->slug) }}">{!! $ev->title !!}</a></div>
+                <div style="padding-bottom: 8px;">{{ $ev->longDates() }}</div>
+                <div style="padding-bottom: 16px;">{!! $ev->parseMarkdown('content') !!}</div>
+            </div>
+        @endforeach
 
         <p>
             Have fun,

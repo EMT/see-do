@@ -28,7 +28,7 @@
             ----------------------------------------------<br />
             @foreach( $categories as $cat )
                 @if ( $cat->futureEventsCount() )
-                    --<a href="{{ route('categories.show', ['slug' => $cat->slug]) }}">
+                    --<a href="{{ route('categories.show', ['slug' => $cat->slug]) }}?utm_source=See%2BDo%20Email%20Footer&utm_medium=Email&utm_campaign=See%2BDo%20Email%20Footer">
                             {{ $cat->title }} <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">{{ $cat->futureEventsCount() }}</span><span class="nav-close-bracket">]</span></span>
                         </a>
                     <br />

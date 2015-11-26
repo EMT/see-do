@@ -48,16 +48,20 @@ class SendMailer extends Command
                         ->get();
         $categories = Category::orderBy('title', 'asc')->get();
 
-        $subscriber = new Subscriber();
-        $subscriber->name = 'Andy Gott';
-        $subscriber->email = 'andy@madebyfieldwork.com';
+        // $subscriber = new Subscriber();
+        // $subscriber->name = 'Andy Gott';
+        // $subscriber->email = 'andy@madebyfieldwork.com';
+        
+        $subscribers = Subscriber::all();
 
-        Mail::send('emails.subscribers.mailer', ['subscriber' => $subscriber, 'events' => $events, 'categories' => $categories], function ($m) use ($subscriber) {
-            $m->from('messages@madebyfieldwork.com', 'See+Do')
-                ->to($subscriber->email, $subscriber->name)
-                ->subject('Weekly Round-Up of Things to See+Do in Manchester')
-                ->getHeaders()
-                ->addTextHeader('X-MC-Subaccount', 'see-do');
-        });
+        foreach ($subscribers as $subscriber) {
+            Mail::send('emails.subscribers.mailer', ['subscriber' => $subscriber, 'events' => $events, 'categories' => $categories], function ($m) use ($subscriber) {
+                $m->from('messages@madebyfieldwork.com', 'See+Do')
+                    ->to($subscriber->email, $subscriber->name)
+                    ->subject('Weekly Round-Up of Things to See+Do in Manchester')
+                    ->getHeaders()
+                    ->addTextHeader('X-MC-Subaccount', 'see-do');
+            });
+        }
     }
 }

@@ -24,6 +24,7 @@
         <br />
 
         <p>
+            More from See+Do<br />
             ----------------------------------------------<br />
             @foreach( $categories as $cat )
                 @if ( $cat->futureEventsCount() )

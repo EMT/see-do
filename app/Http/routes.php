@@ -54,6 +54,12 @@ Route::put('subscribers/{token}', 'SubscribersController@update');
 Route::get('subscribers/{token}/unsubscribe', 'SubscribersController@destroy');
 Route::resource('subscribers', 'SubscribersController');
 
+// Mailer routes
+// Route::model('mailers', 'App\Mailer');
+// Route::post('mailers/generate', 'MailersController@generate');
+// Route::get('mailers/now', 'MailersController@now');
+// Route::resource('mailers', 'MailersController');
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

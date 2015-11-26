@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'All Events — See&Do')
+@section('title', 'Things to See+Do in Manchester')
 
 @section('content')
     

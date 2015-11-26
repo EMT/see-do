@@ -48,9 +48,9 @@ class SubscribersController extends Controller
         $subscriber->save();
         $subscriber->createNewToken();
         Mail::send('emails.subscribers.hello', ['subscriber' => $subscriber], function ($m) use ($subscriber) {
-            $m->from('messages@madebyfieldwork.com', 'See&Do')
+            $m->from('messages@madebyfieldwork.com', 'See+Do')
                 ->to($subscriber->email, $subscriber->name)
-                ->subject('Thanks for subscribing to See&Do')
+                ->subject('Thanks for subscribing to See+Do')
                 ->getHeaders()
                 ->addTextHeader('X-MC-Subaccount', 'see-do');
         });

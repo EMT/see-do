@@ -25,7 +25,7 @@
             {!! Form::label('password', 'Password') !!}
 
             <div class="form-row-body">
-                {!! Form::text('password', null, ['class' => 'input-text', 'placeholder' => 'Shhh']) !!}
+                {!! Form::password('password', ['class' => 'input-text', 'placeholder' => 'Shhh']) !!}
 
                 @include('common.forms.field-errors', ['errors' => $errors->get('password')])
             </div>
@@ -36,7 +36,7 @@
             {!! Form::label('password_confirmation', 'Confirm Password') !!}
 
             <div class="form-row-body">
-                {!! Form::text('password_confirmation', null, ['class' => 'input-text', 'placeholder' => 'Shhh']) !!}
+                {!! Form::password('password_confirmation', ['class' => 'input-text', 'placeholder' => 'Shhh']) !!}
 
                 @include('common.forms.field-errors', ['errors' => $errors->get('password_confirmation')])
             </div>

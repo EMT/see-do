@@ -23,7 +23,7 @@
             {!! Form::label('password', 'Password') !!}
 
             <div class="form-row-body">
-                {!! Form::text('password', null, ['class' => 'input-text', 'placeholder' => 'Shhh']) !!}
+                {!! Form::password('password', ['class' => 'input-text', 'placeholder' => 'Shhh']) !!}
 
                 @include('common.forms.field-errors', ['errors' => $errors->get('password')])
             </div>

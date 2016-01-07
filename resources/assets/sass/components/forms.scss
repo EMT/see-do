@@ -11,6 +11,10 @@ select,
 .form {
     margin-top: 3em;
 
+    &.no-mgt {
+        margin-top: 0;
+    }
+
     .form-row {
         padding-bottom: 2em;
 

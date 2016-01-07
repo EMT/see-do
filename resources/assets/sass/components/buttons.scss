@@ -8,4 +8,9 @@
         background: $highlight;
         color: $white;
     }
+
+    &.danger {
+        background: rgb(254,82,54);
+        color: $white;
+    }
 }

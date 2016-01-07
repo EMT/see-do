@@ -10,7 +10,7 @@ $typeface--heading: 'LyonText', Georgia, serif; // Need some more fall back opti
 $typeface--body: 'Graphik', sans-serif; // ^
 $typeface--mono: 'GT Pressura', "Lucida Console", Monaco, monospace; // ^
 
-$heading--large: 3.125em/0.9 $typeface--heading;
+$heading--large: 3.125em/1.2 $typeface--heading;
 $heading--normal: 1.75rem/1.2 $typeface--heading;
 $heading--small: 1.063rem/1.25 $typeface--mono;
 

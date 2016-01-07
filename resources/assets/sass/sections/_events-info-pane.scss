@@ -120,7 +120,11 @@
 	float: right;
 }
 
-.event-info--share {
+.event-info--admin {
+	margin-top: 30px;
+}
+
+.event-info--share, .event-info--admin {
 	float: left;
 	line-height: 22px; //Temp vertical alignment hack until we can think of something better.
 

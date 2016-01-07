@@ -2,7 +2,7 @@
     <a href="#" class="event-info--close js-close-sidebar">
         <img src="{{asset('assets/img/close.svg')}}" alt="Close">
     </a>
-    
+
     <h2 class="event-info--title">{{ $event ? $event->title : '' }}</h2>
 
     <div class="event-info--metadata event-secondary-color">
@@ -30,9 +30,17 @@
 
     <div class="event-info--navigation clear">
         <p class="event-info--share meta-data">
-            <a class="js-event-info-fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $event ? rawurlencode(route('events.show', ['slug' => $event->slug])) : '' }}">f</a> 
+            <a class="js-event-info-fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $event ? rawurlencode(route('events.show', ['slug' => $event->slug])) : '' }}">f</a>
             <a class="js-event-info-twitter" target="_blank" href="https://twitter.com/home?status={{ $event ? rawurlencode($event->title . ' ' . route('events.show', ['slug' => $event->slug])) : '' }}">t</a>
         </p>
         <div class="event-info--nav-arrows clear js-event-next-prev"></div>
     </div>
+
+    @if (Auth::check())
+        <div class="event-info--admin meta-data">
+            {{-- FIX ME PROPERLY                                                        v --}}
+            <a href="{{ $event ? route('events.show', ['slug' => $event->slug]) : '' }}/edit">Edit Event</a>
+            {{-- FIX ME PROPERLY                                                        ^ --}}
+        </div>
+    @endif
 </div>

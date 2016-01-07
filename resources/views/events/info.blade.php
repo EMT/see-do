@@ -38,7 +38,9 @@
 
     @if (Auth::check())
         <div class="event-info--admin meta-data">
-            <a href="{{ $event ? route('events.edit', ['slug' => $event->slug]) : '' }}">Edit Event</a>
+            {{-- FIX ME PROPERLY                                                        v --}}
+            <a href="{{ $event ? route('events.show', ['slug' => $event->slug]) : '' }}/edit">Edit Event</a>
+            {{-- FIX ME PROPERLY                                                        ^ --}}
         </div>
     @endif
 </div>

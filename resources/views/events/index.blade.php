@@ -11,16 +11,22 @@
         @else
             <div class="month-range clear active">
 
-                <?php $previousMonth = date('F', strtotime($events->first()->time_start)) ?>
+                {{-- First month should always either be the current month in time, or the month the first event begins --}}
+                @if ( strtotime($events->first()->time_start) < strtotime(date('Y-m-d H:i:s')))
+                    <?php $previousMonth = date('F') ?>
+                @else
+                    <?php $previousMonth = date('F', strtotime($events->first()->time_start)) ?>
+                @endif
 
                 <h2 class="month-title">{{ $previousMonth }}</h2>
 
                 <ul>
                     @foreach( $events as $ev )
                         
-                        <?php $month = date('F', strtotime($ev->time_start)) ?>
+                        <?php $month = date('F', strtotime($ev->time_start)) ?> 
                         
-                        @if ( $month !== $previousMonth )
+                        {{-- We only want to add a new Month to the list if the start date is in the future --}}
+                        @if ( $month !== $previousMonth && strtotime($ev->time_start) > strtotime(date('Y-m-d H:i:s')))
                             <?php $previousMonth = $month ?>
                             </ul>
                             <h2 class="month-title">{{ $month }}</h2>

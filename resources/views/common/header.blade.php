@@ -12,6 +12,10 @@
 				<ul>
 					<li><a href="#" class="filter">Filter</a></li>
 					<li><a href="{{ route('subscribers.create') }}">Sign Up</a></li>
+					@if (Auth::check())
+						<li><a href="{{ route('events.create') }}">Add Event</a></li>
+						<li><a href="/auth/logout">Log Out</a></li>
+					@endif
 				</ul>
 			</nav>
 		</div>

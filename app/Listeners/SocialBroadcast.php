@@ -26,22 +26,26 @@ class SocialBroadcast
      * @param  EventPosted  $event
      * @return void
      */
-    public function handle(EventPosted $event)
+    public function handle(EventPosted $eventPosted)
     {
-        Log::info('Fired event for new event: '.$event->event);
+        // Log::info('Fired event for new event [EVENT INFO]: '.$eventPosted->event);
+        // Log::info('Fired event for new event [REQUEST INFO]: '.$eventPosted->request);
+        $request = $eventPosted->request;
+        $event = $eventPosted->event;
 
-        $event = $event->event;
+        if ($request->request->get('tweet') == true) {
+            $this->tweet($event);
+        }
+    }
 
+    private function tweet($event) {
         $title = $event->title;
         $date = date('d/m/y', strtotime($event->time_start));
         $time = date('g.ia', strtotime($event->time_start));
         $venue = explode(",", $event->venue)[0];
         $link = route('events.show', ['slug' => $event->slug]);
 
-        // Twitter::postTweet(array('status' => $title . ' on ' . $date . ' - '. $time .' at '. $venue . ' : ' . $link, 'format' => 'json'));
-
+        Twitter::postTweet(array('status' => $title . ' on ' . $date . ' - '. $time .' at '. $venue . ' : ' . $link, 'format' => 'json'));
         Log::info($title . ' on ' . $date . ' - '. $time .' at '. $venue . ' : ' . $link);
-
-        // Add in the twitter/facebook broadcast options
     }
 }

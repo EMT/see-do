@@ -77,7 +77,7 @@ class EventsController extends Controller
             'icons'           => 'required',
         ]);
 
-        $event = new Event(Input::all());
+        $event = new Event(Input::except('tweet'));
         $event->user_id = $request->user()->id;
 
         if (!$event->color_scheme_id && $event->category_id) {
@@ -86,7 +86,7 @@ class EventsController extends Controller
 
         $event->save();
 
-        event(new EventPosted($event));
+        event(new EventPosted($event, $request));
 
         return Redirect::route('events.index')->with('message', 'Event created');
     }

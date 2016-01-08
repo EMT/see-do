@@ -5,6 +5,19 @@
     <link rel="shortcut icon" href="{{ asset('assets/favicon.ico') }}" />
     <meta name="viewport" content="width=device-width">
 
+    @if ( !empty($event) )
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@seeanddomcr" />
+        <meta name="twitter:title" content="{{ $event->title }}" />
+        <meta name="twitter:description" content="{{ $event->metadescription() }}" />
+    @elseif ( Route::getCurrentRoute()->uri() == '/' )
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@seeanddomcr" />
+        <meta name="twitter:title" content="See and Do, Manchester" />
+        <meta name="twitter:image" content="{{ asset('assets/img/see-and-do-twitter-card.png') }}" />
+        <meta name="twitter:description" content="A curated collection of cultural events across Manchester featuring listings for gigs, exhibitions, talks, films and more." />
+    @endif
+
     @if ( !empty($event) && $event->colorScheme )
         <style id="#js-event-color-scheme">
             .event-background-color {

@@ -2,6 +2,7 @@
 	<meta charset="UTF-8">
     <title>@yield('title', 'See+Do')</title>
     <link rel="stylesheet" type="text/css" href="{{ elixir('css/app.css') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/favicon.ico') }}" />
     <meta name="viewport" content="width=device-width">
 
     @if ( !empty($event) && $event->colorScheme )

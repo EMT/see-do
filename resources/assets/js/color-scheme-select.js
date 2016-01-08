@@ -36,8 +36,14 @@ $(function() {
 		// Open select UI when fake input is clicked/tapped/focussed
 		// TODO: open on focus
 		$fakeInput.on('click', function(e) {
+			e.stopPropagation();
 			e.preventDefault();
 			$dropdown.addClass('open');
+		});
+
+		// Close input on "unfocus"
+		$("body").on('click', function(e){
+			$dropdown.removeClass('open');
 		});
 
 		$elem.append($fakeInput);

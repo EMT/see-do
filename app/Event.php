@@ -42,6 +42,11 @@ class Event extends Model implements SluggableInterface,
         return $this->belongsTo('App\Category');
     }
 
+    public function metadescription()
+    {
+        return strip_tags(str_limit($this->parseMarkdown('content'), 180, '...'));
+    }
+
     public function colorScheme()
     {
         return $this->belongsTo('App\ColorScheme');

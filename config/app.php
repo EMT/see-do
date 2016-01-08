@@ -147,6 +147,7 @@ return [
         App\Providers\ComposerServiceProvider::class,
 
         'Illuminate\Html\HtmlServiceProvider',
+        'Thujohn\Twitter\TwitterServiceProvider',
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
 
     ],
@@ -200,6 +201,7 @@ return [
 
         'Form' => 'Illuminate\Html\FormFacade',
         'HTML' => 'Illuminate\Html\HtmlFacade',
+        'Twitter' => 'Thujohn\Twitter\Facades\Twitter',
 
     ],
 

@@ -84,6 +84,45 @@ select,
         }
     }
 
+    input[type="checkbox"] {
+        -webkit-appearance: checkbox;
+    }
+
+    .styled-checkbox {
+        padding-top: 10px;
+
+        input {
+            position: absolute;
+            left: -9999px;
+        }
+
+        label {
+            display: table;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0);
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 0;
+            font-size: 0;
+            position: relative;
+        }
+
+        label:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            background: rgba(0, 0, 0, 0);
+            transition: background 0.1s ease-out;
+        }
+
+        input:checked + label:after {
+            background: $highlight;
+        }
+    }
+
     textarea.input-text {
         border-top: 1px solid rgb(0,0,0);
         padding-top: 9px;

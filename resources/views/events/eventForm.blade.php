@@ -44,7 +44,7 @@
 <!-- Venue -->
 <div class="form-row">
     {!! Form::label('venue', 'Venue/Location') !!}
-    
+
     <div class="form-row-body">
         {!! Form::text('venue', null, ['class' => 'input-text', 'placeholder' => 'The specific whereabouts']) !!}
 
@@ -55,7 +55,7 @@
 <!-- Category -->
 <div class="form-row">
     {!! Form::label('category_id', 'Category') !!}
-    
+
     <div class="form-row-body">
         {!! Form::select('category_id', $categories, null, ['class' => 'input-select']); !!}
 
@@ -86,6 +86,18 @@
         </select>
 
         @include('common.forms.field-errors', ['errors' => $errors->get('icons')])
+    </div>
+</div>
+
+<!-- Social Media -->
+
+<div class="form-row">
+    {!! Form::label('tweet', 'Tweet this') !!}
+    <div class="form-row-body">
+        <div class="styled-checkbox">
+            {!! Form::checkbox('tweet', 'true') !!}
+            {!! Form::label('tweet', ' ') !!}
+        </div>
     </div>
 </div>
 

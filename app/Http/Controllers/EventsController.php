@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SocialBroadcastEvent;
 use App\Category;
 use App\ColorScheme;
 use App\Event;
@@ -76,7 +77,7 @@ class EventsController extends Controller
             'icons'           => 'required',
         ]);
 
-        $event = new Event(Input::all());
+        $event = new Event(Input::except('tweet'));
         $event->user_id = $request->user()->id;
 
         if (!$event->color_scheme_id && $event->category_id) {
@@ -84,6 +85,8 @@ class EventsController extends Controller
         }
 
         $event->save();
+
+        event(new SocialBroadcastEvent($event, $request));
 
         return Redirect::route('events.index')->with('message', 'Event created');
     }
@@ -138,6 +141,7 @@ class EventsController extends Controller
         $icons = Icon::orderBy('created_at', 'desc')->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
+
         return view('events.edit', compact('event', 'categories', 'colorSchemes', 'icons'));
     }
 
@@ -173,6 +177,8 @@ class EventsController extends Controller
 
         $event->fill(Input::all());
         $event->save();
+
+        event(new SocialBroadcastEvent($event, $request));
 
         return Redirect::route('events.index')->with('message', 'Event updated');
     }

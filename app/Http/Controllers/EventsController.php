@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\EventPosted;
 use App\Category;
 use App\ColorScheme;
 use App\Event;
@@ -84,6 +85,8 @@ class EventsController extends Controller
         }
 
         $event->save();
+
+        event(new EventPosted($event));
 
         return Redirect::route('events.index')->with('message', 'Event created');
     }

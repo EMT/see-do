@@ -141,6 +141,7 @@ class EventsController extends Controller
         $icons = Icon::orderBy('created_at', 'desc')->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
+
         return view('events.edit', compact('event', 'categories', 'colorSchemes', 'icons'));
     }
 
@@ -176,6 +177,8 @@ class EventsController extends Controller
 
         $event->fill(Input::all());
         $event->save();
+
+        event(new SocialBroadcastEvent($event, $request));
 
         return Redirect::route('events.index')->with('message', 'Event updated');
     }

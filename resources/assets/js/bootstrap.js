@@ -44,17 +44,21 @@ $(function() {
 	});
 
 	$(window).keydown(function(e) {
+
 		$eventItem = $('.event.event--active').length ? $('.event.event--active') : $('.event:first');
 		eventItemIndex = $eventItems.index($eventItem);
-
-    	if (e.which === 40) {
-    		var nextItemIndex = (eventItemIndex < $eventItems.length - 1) ? eventItemIndex + 1 : 0; 
-    		changeEventInfo($($eventItems[nextItemIndex]), $eventItems);
-    	}
-    	else if (e.which === 38) {
-    		var nextItemIndex = (eventItemIndex > 0) ? eventItemIndex - 1 : $eventItems.length - 1; 
-    		changeEventInfo($($eventItems[nextItemIndex]), $eventItems);
-    	}
+		if (e.which === 40 || e.which === 38) {
+			debounce(function() {
+		    	if (e.which === 40) {
+		    		var nextItemIndex = (eventItemIndex < $eventItems.length - 1) ? eventItemIndex + 1 : 0;
+			    	changeEventInfo($($eventItems[nextItemIndex]), $eventItems);
+		    	}
+		    	else if (e.which === 38) {
+		    		var nextItemIndex = (eventItemIndex > 0) ? eventItemIndex - 1 : $eventItems.length - 1;
+			    	changeEventInfo($($eventItems[nextItemIndex]), $eventItems);
+		    	}
+			}, 250, true);
+		}
     });
 
 	$(window).on('popstate', function(e) {
@@ -223,5 +227,18 @@ function siteTitleFun($elem) {
 	self.addChar();
 };
 
-
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\EventPosted;
+use App\Events\SocialBroadcastEvent;
 use App\Category;
 use App\ColorScheme;
 use App\Event;
@@ -86,7 +86,7 @@ class EventsController extends Controller
 
         $event->save();
 
-        event(new EventPosted($event, $request));
+        event(new SocialBroadcastEvent($event, $request));
 
         return Redirect::route('events.index')->with('message', 'Event created');
     }

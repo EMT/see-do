@@ -8,7 +8,7 @@ use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class EventPosted extends Event
+class SocialBroadcastEvent extends Event
 {
     use SerializesModels;
 

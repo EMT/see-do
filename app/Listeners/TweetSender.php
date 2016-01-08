@@ -4,11 +4,11 @@ namespace App\Listeners;
 
 use Log;
 use Twitter;
-use App\Events\EventPosted;
+use App\Events\SocialBroadcastEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SocialBroadcast
+class TweetSender
 {
     /**
      * Create the event listener.
@@ -23,10 +23,10 @@ class SocialBroadcast
     /**
      * Handle the event.
      *
-     * @param  EventPosted  $event
+     * @param  SocialBroadcastEvent  $event
      * @return void
      */
-    public function handle(EventPosted $eventPosted)
+    public function handle(SocialBroadcastEvent $eventPosted)
     {
         // Log::info('Fired event for new event [EVENT INFO]: '.$eventPosted->event);
         // Log::info('Fired event for new event [REQUEST INFO]: '.$eventPosted->request);

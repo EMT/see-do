@@ -44,8 +44,9 @@ class TweetSender
         $time = date('g.ia', strtotime($event->time_start));
         $venue = explode(",", $event->venue)[0];
         $link = route('events.show', ['slug' => $event->slug]);
+        $status = $title . ': ' . $date . ' - '. $time .' at '. $venue . '. ' . $link;
 
-        Twitter::postTweet(array('status' => $title . ' : ' . $date . ' - '. $time .' at '. $venue . '. ' . $link, 'format' => 'json'));
-        Log::info($title . ' on ' . $date . ' - '. $time .' at '. $venue . ': ' . $link);
+        Twitter::postTweet(array('status' => $status, 'format' => 'json'));
+        Log::info($status);
     }
 }

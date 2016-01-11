@@ -29,7 +29,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('mailer:send')
                  ->weekly()
                  ->thursdays()
-                 ->at('12:00');
+                 ->at('12:00')
+                 ->emailOutputTo('andy@madebyfieldwork.com');
         
     }
 }

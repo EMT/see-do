@@ -16,7 +16,7 @@ class SendMailer extends Command
      *
      * @var string
      */
-    protected $signature = 'mailer:send';
+    protected $signature = 'mailer:send {--email= : Send a test email to this email address only}';
 
     /**
      * The console command description.
@@ -43,16 +43,30 @@ class SendMailer extends Command
     public function handle()
     {
         $events = Event::where('time_end', '>=', date('Y-m-d H:i:s'))
-                        ->where('time_end', '<=', date('Y-m-d H:i:s', strtotime('+2 weeks')))
+                        // ->where('time_end', '<=', date('Y-m-d H:i:s', strtotime('+2 weeks')))
                         ->orderBy('time_start', 'asc')
                         ->get();
+
+        if (!count($events)) {
+            $this->comment('No events found. Mailer aborted.');
+            exit();
+        }
+
         $categories = Category::orderBy('title', 'asc')->get();
 
-        // $subscriber = new Subscriber();
-        // $subscriber->name = 'Andy Gott';
-        // $subscriber->email = 'andy@madebyfieldwork.com';
-        
-        $subscribers = Subscriber::all();
+        if ($this->option('email')) {
+            $subscriber = new Subscriber();
+            $subscriber->name = 'Test User';
+            $subscriber->email = $this->option('email');
+            $subscribers = [$subscriber];
+
+            $this->comment('Sent test email to ' . $this->option('email'));
+        }
+        else {
+            $subscribers = Subscriber::all();
+        }
+
+        $count = 0;
 
         foreach ($subscribers as $subscriber) {
             Mail::send('emails.subscribers.mailer', ['subscriber' => $subscriber, 'events' => $events, 'categories' => $categories], function ($m) use ($subscriber) {
@@ -62,6 +76,10 @@ class SendMailer extends Command
                     ->getHeaders()
                     ->addTextHeader('X-MC-Subaccount', 'see-do');
             });
+
+            $count ++;
         }
+
+        $this->comment('Sent to ' . $count . ' email addresses.');
     }
 }

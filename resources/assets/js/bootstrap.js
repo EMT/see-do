@@ -46,15 +46,16 @@ $(function() {
 	$(window).keydown(function(e) {
 		$eventItem = $('.event.event--active').length ? $('.event.event--active') : $('.event:first');
 		eventItemIndex = $eventItems.index($eventItem);
-
-    	if (e.which === 40) {
-    		var nextItemIndex = (eventItemIndex < $eventItems.length - 1) ? eventItemIndex + 1 : 0; 
-    		changeEventInfo($($eventItems[nextItemIndex]), $eventItems);
-    	}
-    	else if (e.which === 38) {
-    		var nextItemIndex = (eventItemIndex > 0) ? eventItemIndex - 1 : $eventItems.length - 1; 
-    		changeEventInfo($($eventItems[nextItemIndex]), $eventItems);
-    	}
+		throttle(function (e) {
+	    	if (e.which === 40) {
+	    		var nextItemIndex = (eventItemIndex < $eventItems.length - 1) ? eventItemIndex + 1 : 0;
+	    		changeEventInfo($($eventItems[nextItemIndex]), $eventItems);
+	    	}
+	    	else if (e.which === 38) {
+	    		var nextItemIndex = (eventItemIndex > 0) ? eventItemIndex - 1 : $eventItems.length - 1;
+	    		changeEventInfo($($eventItems[nextItemIndex]), $eventItems);
+	    	}
+    	}, 1000);
     });
 
 	$(window).on('popstate', function(e) {
@@ -224,4 +225,25 @@ function siteTitleFun($elem) {
 };
 
 
+function throttle(fn, threshhold, scope) {
+  threshhold || (threshhold = 250);
+  var last,
+      deferTimer;
+  return function () {
+    var context = scope || this;
 
+    var now = +new Date,
+        args = arguments;
+    if (last && now < last + threshhold) {
+      // hold on to it
+      clearTimeout(deferTimer);
+      deferTimer = setTimeout(function () {
+        last = now;
+        fn.apply(context, args);
+      }, threshhold);
+    } else {
+      last = now;
+      fn.apply(context, args);
+    }
+  };
+}

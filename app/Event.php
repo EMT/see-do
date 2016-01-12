@@ -27,6 +27,7 @@ class Event extends Model implements SluggableInterface,
     protected $fillable = [
         'title',
         'content',
+        'more_info',
         'time_start',
         'time_end',
         'venue',

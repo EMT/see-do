@@ -20,6 +20,17 @@
     </div>
 </div>
 
+<!-- Content -->
+<div class="form-row">
+    {!! Form::label('more_info', 'Link') !!}
+
+    <div class="form-row-body">
+        {!! Form::text('more_info', null, ['class' => 'input-text', 'placeholder' => 'Add a link for more information about the event']) !!}
+
+        @include('common.forms.field-errors', ['errors' => $errors->get('more_info')])
+    </div>
+</div>
+
 <div class="form-row">
     <div class="form-row-body js-date-time-input-group">
 

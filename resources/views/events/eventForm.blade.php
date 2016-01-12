@@ -25,7 +25,7 @@
     {!! Form::label('more_info', 'Link') !!}
 
     <div class="form-row-body">
-        {!! Form::text('more_info', null, ['class' => 'input-text', 'placeholder' => 'Add a link for more information about the event']) !!}
+        {!! Form::text('more_info', null, ['class' => 'input-text', 'placeholder' => 'http://www.example.com/']) !!}
 
         @include('common.forms.field-errors', ['errors' => $errors->get('more_info')])
     </div>

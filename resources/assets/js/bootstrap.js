@@ -100,52 +100,56 @@ $(function() {
 
 
 function changeEventInfo($eventItem, $eventItems, noStatePush) {
-	if (!stateHandler.supported()) {
-		window.location = $eventItem.children('a').attr('href');
-		return;
-	}
+	if (!Sidebar.isAnimating()) {
 
-	if (Sidebar.isOpen()) {
-		Sidebar.animClose($eventItem);
-	}
+		if (!stateHandler.supported()) {
+			window.location = $eventItem.children('a').attr('href');
+			return;
+		}
 
-	var $prevItem = $($eventItems[$eventItems.index($eventItem) - 1]);
-	var $nextItem = $($eventItems[$eventItems.index($eventItem) + 1]);
-	var $eventPrevNext = $('.js-event-next-prev');
-	$eventPrevNext.html('');
+		if (Sidebar.isOpen()) {
+			Sidebar.animClose($eventItem);
+		}
 
-	if ($prevItem.length) {
-		$eventPrev = $('<a href="" class="nav-arrows--arrow"><img src="/assets/img/arrow-left.svg" alt="Previous"></a>');
-		$eventPrevNext.append($eventPrev);
-		$eventPrev.on('click touch', function(e) {
-			e.preventDefault();
-			$prevItem.trigger('click');
-		});
-	}
+		var $prevItem = $($eventItems[$eventItems.index($eventItem) - 1]);
+		var $nextItem = $($eventItems[$eventItems.index($eventItem) + 1]);
+		var $eventPrevNext = $('.js-event-next-prev');
+		$eventPrevNext.html('');
 
-	if ($nextItem.length) {
-		$eventNext = $('<a href="#" class="nav-arrows--arrow"><img src="/assets/img/arrow-right.svg" alt="Next"></a>');
-    	$eventPrevNext.append($eventNext);
-    	$eventNext.on('click touch', function(e) {
-			e.preventDefault();
-			$nextItem.trigger('click');
-		});
-	}
-
-	var eventUrl = $eventItem.children('a').attr('href');
-
-	setEventDetails(eventUrl + '.json', function(response) {
-		if (!noStatePush) {
-			stateHandler.push({
-				url: eventUrl,
-				title: response.title + ' – See&Do',
-				eventId: $eventItem.attr('id')
+		if ($prevItem.length) {
+			$eventPrev = $('<a href="" class="nav-arrows--arrow"><img src="/assets/img/arrow-left.svg" alt="Previous"></a>');
+			$eventPrevNext.append($eventPrev);
+			$eventPrev.on('click touch', function(e) {
+				e.preventDefault();
+				$prevItem.trigger('click');
 			});
 		}
-	});
 
-	$('.event--active').removeClass('event--active');
-	$eventItem.addClass('event--active');
+		if ($nextItem.length) {
+			$eventNext = $('<a href="#" class="nav-arrows--arrow"><img src="/assets/img/arrow-right.svg" alt="Next"></a>');
+	    	$eventPrevNext.append($eventNext);
+	    	$eventNext.on('click touch', function(e) {
+				e.preventDefault();
+				$nextItem.trigger('click');
+			});
+		}
+
+		var eventUrl = $eventItem.children('a').attr('href');
+
+		setEventDetails(eventUrl + '.json', function(response) {
+			if (!noStatePush) {
+				stateHandler.push({
+					url: eventUrl,
+					title: response.title + ' – See&Do',
+					eventId: $eventItem.attr('id')
+				});
+			}
+		});
+
+		$('.event--active').removeClass('event--active');
+		$eventItem.addClass('event--active');
+
+	};
 }
 
 

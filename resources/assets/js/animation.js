@@ -3,7 +3,7 @@
 
 	// Tweek this to slowdown/speed up all of the animation on the page.
 	// Could probably bump this down to 0.9/0.85 on release to make it feel a bit more snappy.
-	var globalAnimSpeed = 1;
+	var globalAnimSpeed = 0.875;
 	$.Velocity.mock = globalAnimSpeed;
 
 	registerTransition('custom.slideUpIn', { translateY: [0,10] });
@@ -341,7 +341,6 @@
 					}
 				}
 			];
-
 			$.Velocity.RunSequence(closeSidebarAnim);
 		}
 
@@ -353,10 +352,19 @@
 			}
 		}
 
+		var isAnimating = function() {
+			if ( $infoPane.hasClass('velocity-animating') || $infoPane.children().hasClass('velocity-animating') ) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 		return {
 	        animOpen: animOpen,
 	        animClose: animClose,
-	        isOpen: isOpen
+	        isOpen: isOpen,
+	        isAnimating: isAnimating
 	    };
 	})();
 

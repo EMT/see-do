@@ -22,7 +22,7 @@
 
 <!-- Content -->
 <div class="form-row">
-    {!! Form::label('more_info', 'Link') !!}
+    {!! Form::label('more_info', 'Link (Optional)') !!}
 
     <div class="form-row-body">
         {!! Form::text('more_info', null, ['class' => 'input-text', 'placeholder' => 'http://www.example.com/']) !!}

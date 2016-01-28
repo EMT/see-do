@@ -13,7 +13,9 @@
 
                             <tr style="width: 100%;">
                                 <td valign="top" style="width: 100%;">
-                                    <img src="https://see-and-do.com/assets/img/see-do-email-header.png" alt="See+Do" style="width: 100%; padding-bottom: 45px;" />
+                                    <a href="{{ URL::to('/') }}?utm_source=See%2BDo%20Email%20Header&utm_medium=Email&utm_campaign=See%2BDo%20Email%20Header" style="text-decoration: none;">
+                                        <img src="https://see-and-do.com/assets/img/see-do-email-header.png" alt="See+Do" style="width: 100%; padding-bottom: 45px;" />
+                                    </a>
                                 </td>
                             </tr>
 

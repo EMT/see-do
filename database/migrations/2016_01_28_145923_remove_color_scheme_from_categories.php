@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddMoreInfoFieldToEvents extends Migration
+class RemoveColorSchemeFromCategories extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddMoreInfoFieldToEvents extends Migration
      */
     public function up()
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->string('more_info')->nullable();
+        Schema::table('categories', function (Blueprint $table) {
+            $table->dropColumn('color_scheme_id');
         });
     }
 
@@ -24,8 +24,8 @@ class AddMoreInfoFieldToEvents extends Migration
      */
     public function down()
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('more_info');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->integer('color_scheme_id');
         });
     }
 }

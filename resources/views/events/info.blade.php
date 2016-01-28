@@ -25,9 +25,13 @@
     </div>
 
     <div class="body-copy">
-        <p>{!! $event ? $event->parseMarkdown('content') : '' !!}</p>
+       {!! $event ? $event->parseMarkdown('content') : '' !!}
     </div>
-
+    <div class="js-event-info-wrapper">
+        @if ($event && $event->more_info)
+            <a href="{{ $event ? rawurlencode($event->more_info) : '' }}" target="blank">More Info</a>
+        @endif
+    </div>
     <div class="event-info--navigation clear">
         <p class="event-info--share meta-data">
             <a class="js-event-info-fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $event ? rawurlencode(route('events.show', ['slug' => $event->slug])) : '' }}">f</a>
@@ -38,9 +42,7 @@
 
     @if (Auth::check())
         <div class="event-info--admin meta-data">
-            {{-- FIX ME PROPERLY                                                        v --}}
-            <a href="{{ $event ? route('events.show', ['slug' => $event->slug]) : '' }}/edit">Edit Event</a>
-            {{-- FIX ME PROPERLY                                                        ^ --}}
+            <a class="js-edit-event" href="{{ $event ? route('events.edit', ['slug' => $event->slug]) : '' }}">Edit Event</a>
         </div>
     @endif
 </div>

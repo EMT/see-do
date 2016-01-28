@@ -341,7 +341,6 @@
 					}
 				}
 			];
-
 			$.Velocity.RunSequence(closeSidebarAnim);
 		}
 
@@ -353,10 +352,19 @@
 			}
 		}
 
+		var isAnimating = function() {
+			if ( $infoPane.hasClass('velocity-animating') || $infoPane.children().hasClass('velocity-animating') ) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 		return {
 	        animOpen: animOpen,
 	        animClose: animClose,
-	        isOpen: isOpen
+	        isOpen: isOpen,
+	        isAnimating: isAnimating
 	    };
 	})();
 

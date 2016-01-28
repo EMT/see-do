@@ -24,7 +24,7 @@ class AddMoreInfoFieldToEvents extends Migration
      */
     public function down()
     {
-        Schema::table('icons', function (Blueprint $table) {
+        Schema::table('events', function (Blueprint $table) {
             $table->dropColumn('more_info');
         });
     }

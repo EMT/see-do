@@ -67,11 +67,13 @@ class UsersController extends Controller
        $this->validate($request, [
             'name_first' => 'required',
             'name_last' => 'required',
+            'username' => 'required',
             'bio' => 'required',
             'email' => 'required|unique:users,id,'.$request->get('id')
         ]);
 
         $user->fill(Input::all());
+        $user->resluggify();
         $user->save();
 
         return Redirect::route('users.index')->with('message', 'User updated');

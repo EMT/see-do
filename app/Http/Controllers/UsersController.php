@@ -83,12 +83,13 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+	   $user = User::findBySlugOrId($id);
 
        $this->validate($request, [
             'name_first' => 'required',
             'name_last' => 'required',
             'bio' => 'required',
-            'email' => 'required|unique:users,email,'.$request->get('id')
+            'email' => 'required|unique:users,id,'.$request->get('id')
         ]);
 
         $user->fill(Input::all());

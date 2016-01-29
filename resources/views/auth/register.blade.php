@@ -6,7 +6,7 @@
     <h2 class="aligned">Create Your Account</h2>
 
     {!! Form::open(['action' => 'Auth\AuthController@postRegister', 'class' => 'form']) !!}
-        
+
         <!-- First name -->
         <div class="form-row">
             {!! Form::label('name_first', 'First Name') !!}
@@ -17,7 +17,7 @@
                 @include('common.forms.field-errors', ['errors' => $errors->get('name_first')])
             </div>
         </div>
-        
+
         <!-- Last name -->
         <div class="form-row">
             {!! Form::label('name_last', 'Last Name') !!}
@@ -26,6 +26,28 @@
                 {!! Form::text('name_last', null, ['class' => 'input-text', 'placeholder' => 'McFly']) !!}
 
                 @include('common.forms.field-errors', ['errors' => $errors->get('name_last')])
+            </div>
+        </div>
+
+        <!-- Username -->
+        <div class="form-row">
+            {!! Form::label('username', 'Username') !!}
+
+            <div class="form-row-body">
+                {!! Form::text('username', null, ['class' => 'input-text', 'placeholder' => 'Marty McFly']) !!}
+
+                @include('common.forms.field-errors', ['errors' => $errors->get('username')])
+            </div>
+        </div>
+
+        <!-- User Bio -->
+        <div class="form-row">
+            {!! Form::label('bio', 'User Bio') !!}
+
+            <div class="form-row-body">
+                {!! Form::textarea('bio', null, ['class' => 'input-text', 'placeholder' => 'This is heavy-duty, Doc. This is great. Uh, does it run, like, on regular unleaded gasoline? ']) !!}
+
+                @include('common.forms.field-errors', ['errors' => $errors->get('bio')])
             </div>
         </div>
 
@@ -56,7 +78,7 @@
                 {!! Form::submit('[ Sign Up ]', ['class' => 'btn primary']) !!}
             </div>
         </div>
-    
+
     {!! Form::close() !!}
 
 @stop

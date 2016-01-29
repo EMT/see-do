@@ -21,20 +21,29 @@
 	    {!! Form::label('name_first', 'First Name') !!}
 
 	    <div class="form-row-body">
-	        {!! Form::text('name_first', null, ['class' => 'input-text', 'placeholder' => 'Your Name']) !!}
+	        {!! Form::text('name_first', null, ['class' => 'input-text', 'placeholder' => 'First Name']) !!}
 
-	        @include('common.forms.field-errors', ['errors' => $errors->get('name_second')])
+	        @include('common.forms.field-errors', ['errors' => $errors->get('name_first')])
 	    </div>
 	</div>
 
-
 	<div class="form-row">
-	    {!! Form::label('name_last', 'Surname') !!}
+	    {!! Form::label('name_last', 'Last Name') !!}
 
 	    <div class="form-row-body">
-	        {!! Form::text('name_last', null, ['class' => 'input-text', 'placeholder' => 'Your Name']) !!}
+	        {!! Form::text('name_last', null, ['class' => 'input-text', 'placeholder' => 'Last Name']) !!}
 
-	        @include('common.forms.field-errors', ['errors' => $errors->get('name_second')])
+	        @include('common.forms.field-errors', ['errors' => $errors->get('name_last')])
+	    </div>
+	</div>
+
+	<div class="form-row">
+	    {!! Form::label('username', 'Username') !!}
+
+	    <div class="form-row-body">
+	        {!! Form::text('username', null, ['class' => 'input-text', 'placeholder' => 'Username']) !!}
+
+	        @include('common.forms.field-errors', ['errors' => $errors->get('username')])
 	    </div>
 	</div>
 

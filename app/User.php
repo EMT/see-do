@@ -9,12 +9,15 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
-                                    CanResetPasswordContract
+                                    CanResetPasswordContract,
+                                    SluggableInterface
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable, Authorizable, CanResetPassword, SluggableTrait;
 
     /**
      * The database table used by the model.
@@ -31,8 +34,15 @@ class User extends Model implements AuthenticatableContract,
     protected $fillable = [
         'name_first',
         'name_last',
+        'username',
         'email',
         'password',
+        'bio'
+    ];
+
+    protected $sluggable = [
+        'build_from' => 'username',
+        'save_to'    => 'slug',
     ];
 
     /**

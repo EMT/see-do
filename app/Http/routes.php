@@ -37,6 +37,10 @@ Route::resource('events', 'EventsController');
 Route::model('color-schemes', 'App\ColorScheme');
 Route::resource('color-schemes', 'ColorSchemesController');
 
+// User Profile routes
+Route::resource('users', 'UsersController');
+
+
 // Color Scheme routes
 Route::model('icons', 'App\Icon');
 Route::resource('icons', 'IconsController');

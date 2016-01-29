@@ -27,6 +27,7 @@ class UsersController extends Controller
      */
     public function index() {
         $users = User::orderBy('name_first', 'asc')->get();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -59,6 +60,7 @@ class UsersController extends Controller
     public function show($id) {
         $user = User::findBySlugOrId($id);
         $events = Event::futureEvents()->where('user_id', '=', $user->id)->get();
+        return view('users.show', compact('user', 'events', 'event') + ['event' => null]);
     }
 
     /**
@@ -69,6 +71,7 @@ class UsersController extends Controller
      */
     public function edit($id) {
         $user = User::findBySlugOrId($id);
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -91,6 +94,7 @@ class UsersController extends Controller
         $user->fill(Input::all());
         $user->save();
 
+        return Redirect::route('users.index')->with('message', 'User updated');
     }
 
     /**

@@ -15,6 +15,32 @@
 	line-height: 1;
 }
 
+.page-intro {
+    @extend .event-item-title;
+}
+
+.page-intro-inner {
+	border-bottom: 1px solid $black;
+	padding-bottom: $list-vert-padding * 3;
+	padding-top: $list-vert-padding;
+}
+
+.page-intro p {
+	width: 100%;
+	max-width: 500px;
+}
+
+.no-records {
+	padding-top: $list-vert-padding;
+	padding-bottom: $list-vert-padding;
+}
+
+.page-intro-title {
+	color: $highlight;
+	padding-bottom: $list-vert-padding;
+	padding-top: $list-vert-padding;
+}
+
 .event a {
 	color: $black;
 	cursor: pointer;
@@ -26,7 +52,7 @@
 .event a:hover,
 .event.event--active a {
 	color: $highlight;
-	
+
 	.event-item-icon {
 		-webkit-transform: rotate(0deg);
 
@@ -42,7 +68,7 @@
 		}
 	}
 }
- 
+
 .event-item-date {
 	position: absolute;
 	top: 0;

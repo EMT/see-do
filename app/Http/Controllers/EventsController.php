@@ -25,7 +25,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::futureEvents();
+        $events = Event::futureEvents()->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
         return view('events.index', compact('events', 'event', 'categories') + ['event' => null]);
@@ -100,7 +100,7 @@ class EventsController extends Controller
      */
     public function show(Event $event)
     {
-        $events = Event::futureEvents();
+        $events = Event::futureEvents()->get();
 
         return view('events.index', compact('events', 'event'));
     }

@@ -21,14 +21,12 @@ class AddSlugToUsersTable extends Migration
         // Get records from old column.
         $users = User::get();
 
-        // Loop through the results of the old column, split the values.
-        // For example, let's say you have to explode a |.
+        // Get all the old users first and last name and smush them together into a username
         foreach($users as $user)
         {
             $first_name = $user->name_first;
             $last_name = $user->name_last;
 
-            // Insert the split values into new columns.
             $user->username = $first_name.' '. $last_name;
             $user->save();
         }

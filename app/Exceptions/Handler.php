@@ -48,6 +48,13 @@ class Handler extends ExceptionHandler
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
 
+        if ($e instanceof \Bican\Roles\Exceptions\RoleDeniedException) {
+            // TODO:
+            // Make it more obvious why the middleware denied you.
+            // Flash a message or something ?
+            return redirect('/');
+        }
+
         return parent::render($request, $e);
     }
 }

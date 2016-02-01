@@ -18,6 +18,7 @@ class SubscribersController extends Controller
     public function index()
     {
         $this->middleware('auth', ['only' => ['index']]);
+        $this->middleware('role:admin');
     }
 
     /**

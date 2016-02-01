@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use App\Event;
+use Bican\Roles\Models\Role;
+
 
 use Input;
 use Redirect;

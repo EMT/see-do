@@ -11,13 +11,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
+use Bican\Roles\Traits\HasRoleAndPermission;
+use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract,
-                                    SluggableInterface
+                                    SluggableInterface,
+                                    HasRoleAndPermissionContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, SluggableTrait;
+    use Authenticatable, Authorizable, CanResetPassword, SluggableTrait, HasRoleAndPermission {
+        Authorizable::can insteadof HasRoleAndPermission;
+        HasRoleAndPermission::can as may;
+    }
 
     /**
      * The database table used by the model.

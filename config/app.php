@@ -12,7 +12,7 @@ return [
     | services your application utilizes. Set this in your ".env" file.
     |
     */
-   
+
     'env' => env('APP_ENV', 'production'),
 
     /*
@@ -160,6 +160,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Thujohn\Twitter\TwitterServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
+        Bican\Roles\RolesServiceProvider::class,
 
     ],
 

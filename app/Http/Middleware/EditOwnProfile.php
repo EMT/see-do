@@ -22,7 +22,8 @@ class EditOwnProfile
         $paramUser = User::findBySlugOrId($routeParam);
         $sessionUser = Auth::user();
 
-        if ($paramUser->id == $sessionUser->id) {
+        // Restrict the logged in user to only editing their information unless they are an admin.
+        if ($paramUser->id == $sessionUser->id || $sessionUser->is('admin')) {
             return $next($request);
         } else {
             return redirect('users');

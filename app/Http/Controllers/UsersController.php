@@ -18,6 +18,7 @@ class UsersController extends Controller
 
     public function __construct() {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('owner', ['except' => ['index', 'show']]);
     }
 
     /**

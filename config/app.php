@@ -161,6 +161,7 @@ return [
         Thujohn\Twitter\TwitterServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
         Bican\Roles\RolesServiceProvider::class,
+        Krucas\Notification\NotificationServiceProvider::class,
 
     ],
 
@@ -211,9 +212,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        'Form' => Collective\Html\FormFacade::class,
-        'HTML' => Collective\Html\HtmlFacade::class,
-        'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'HTML'      => Collective\Html\HtmlFacade::class,
+        'Twitter'   => Thujohn\Twitter\Facades\Twitter::class,
+        'Notification' => Krucas\Notification\Facades\Notification::class,
 
     ],
 

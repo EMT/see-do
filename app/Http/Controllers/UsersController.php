@@ -8,19 +8,23 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Token;
 use App\Event;
 use Bican\Roles\Models\Role;
+use Notification;
 
 
 use Input;
 use Redirect;
+use Mail;
 
 class UsersController extends Controller
 {
 
     public function __construct() {
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('owner', ['except' => ['index', 'show']]);
+        $this->middleware('owner', ['only' => ['edit']]);
+        $this->middleware('role:admin', ['only' => ['create']]);
     }
 
     /**
@@ -43,6 +47,33 @@ class UsersController extends Controller
         $user = User::findBySlugOrId($id);
         $events = Event::futureEvents()->where('user_id', '=', $user->id)->get();
         return view('users.show', compact('user', 'events', 'event') + ['event' => null]);
+    }
+
+    public function create() {
+    	return view('users.create');
+    }
+
+    public function store(Request $request) {
+
+
+
+        $token = new Token();
+        $token->save();
+        $token->createNewToken();
+
+		Mail::send('emails.registration.token', ['token' => $token, 'request' => $request], function ($m) use ($token, $request) {
+            $m->from('messages@madebyfieldwork.com', 'See+Do')
+                ->to($request->email,$request->name)
+                ->subject('Here is your registration link to start contributing to See+Do')
+                ->getHeaders()
+                ->addTextHeader('X-MC-Subaccount', 'see-do');
+        });
+
+		Notification::info('Registration email sent to '. $request->name . ' at ' . $request->email);
+
+        return redirect('/users');
+
+        // Add message and make create an admin only route.
     }
 
     /**

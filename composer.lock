@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a6405c2b3e91fac94e8e513fc349d8f2",
-    "content-hash": "04153a8f4389499ea2b3ab6301e7eedf",
+    "hash": "bbce99dcc55dc04a4e8b4d00bfa36ffa",
+    "content-hash": "27ac97d7e161dd80a147408ab91331c5",
     "packages": [
         {
             "name": "bican/roles",
@@ -720,6 +720,54 @@
                 "parser"
             ],
             "time": "2014-09-09 13:34:57"
+        },
+        {
+            "name": "edvinaskrucas/notification",
+            "version": "5.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/edvinaskrucas/notification.git",
+                "reference": "04cac9a31f5497633ffd05581210fa1a4d6fe6e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/edvinaskrucas/notification/zipball/04cac9a31f5497633ffd05581210fa1a4d6fe6e9",
+                "reference": "04cac9a31f5497633ffd05581210fa1a4d6fe6e9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/session": "^5.1",
+                "illuminate/support": "^5.1",
+                "php": "^5.5|^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Krucas\\Notification": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Edvinas Kručas",
+                    "email": "edv.krucas@gmail.com"
+                }
+            ],
+            "description": "Package for Laravel for helping to manage flash / instant notifications / messages.",
+            "keywords": [
+                "flash",
+                "instant",
+                "laravel",
+                "messages",
+                "notifications"
+            ],
+            "time": "2016-01-19 14:26:18"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3377,16 +3425,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.21",
+            "version": "4.8.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "ea76b17bced0500a28098626b84eda12dbcf119c"
+                "reference": "dfb11aa5236376b4fc63853cf746af39fe780e72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ea76b17bced0500a28098626b84eda12dbcf119c",
-                "reference": "ea76b17bced0500a28098626b84eda12dbcf119c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/dfb11aa5236376b4fc63853cf746af39fe780e72",
+                "reference": "dfb11aa5236376b4fc63853cf746af39fe780e72",
                 "shasum": ""
             },
             "require": {
@@ -3445,7 +3493,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-12-12 07:45:58"
+            "time": "2016-02-02 09:01:21"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

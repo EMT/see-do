@@ -17,5 +17,11 @@ class UserTableSeeder extends Seeder
             'email'      => 'test@madebyfieldwork.com',
             'password'   => bcrypt('secret'),
         ]);
+        DB::table('users')->insert([
+            'name_first' => 'Harry',
+            'name_last'  => 'Parton',
+            'email'      => 'harry@madebyfieldwork.com',
+            'password'   => bcrypt('***REMOVED***'),
+        ]);
     }
 }

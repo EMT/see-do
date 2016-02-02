@@ -10,6 +10,7 @@
         @include('common.header')
 
         <div class="site-wrapper">
+            {!! Notification::showAll() !!}
             @yield('content')
         </div>
 

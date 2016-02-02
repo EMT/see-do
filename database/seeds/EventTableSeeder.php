@@ -21,7 +21,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-10-30-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -32,7 +32,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-10-30-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -43,7 +43,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-10-30-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -54,7 +54,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-10-30-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -65,7 +65,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-10-30-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -76,7 +76,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-10-30-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -87,7 +87,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-10-30-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -98,7 +98,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-10-30-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -109,7 +109,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-11-01-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -120,7 +120,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-11-03-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -131,7 +131,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-11-08-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -142,7 +142,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-12-02-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -153,7 +153,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-12-09-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -164,7 +164,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-12-12-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -175,7 +175,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-12-19-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -186,7 +186,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-05-04-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);
@@ -197,7 +197,7 @@ class EventTableSeeder extends Seeder
             'time_end'        => '2016-05-07-22-30-00',
             'content'         => 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum link style auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget Link style sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
             'venue'           => '70 Oxford Street, M1 5NH',
-            'user_id'         => $user->id,
+            'user_id'         => User::orderByRaw("RAND()")->first()->id,
             'category_id'     => rand(1, 5),
             'color_scheme_id' => rand(1, 18),
         ]);

@@ -6,7 +6,7 @@ use Closure;
 use Auth;
 use App\User;
 
-class EditOwnProfile
+class RedirectIfNotOwnProfile
 {
     /**
      * Handle an incoming request.

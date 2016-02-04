@@ -34,6 +34,12 @@
                 {!! Form::submit('[ Log In ]', ['class' => 'btn primary']) !!}
             </div>
         </div>
+
+        <div class="form-row">
+            <div class="form-row-body">
+                <a class="link-effect" href="/password/email">I forgot my password</a>
+            </div>
+        </div>
     
     {!! Form::close() !!}
 

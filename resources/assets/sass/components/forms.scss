@@ -9,6 +9,7 @@ select,
 }
 
 .form {
+    font: $body--mono;
     margin-top: 3em;
 
     &.no-mgt {

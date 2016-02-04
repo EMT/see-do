@@ -72,7 +72,8 @@ header nav ul li {
 	}
 }
 
-header nav a {
+header nav a,
+.link-effect {
 	position: relative;
 	color: $grey;
 	font: $body--mono;

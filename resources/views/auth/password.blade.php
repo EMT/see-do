@@ -5,6 +5,12 @@
 @section('content')
     <h2 class="aligned">Reset Password</h2>
 
+    @if (session('status'))
+        <div class="aligned alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+
     {!! Form::open(['action' => 'Auth\PasswordController@postEmail', 'class' => 'form']) !!}
 
         <!-- Email -->

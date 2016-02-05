@@ -35,6 +35,13 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
+
+    public function getRegister($token)
+    {
+        return view('auth.register', compact('token'));
+    }
+
+
     /**
      * Get a validator for an incoming registration request.
      *

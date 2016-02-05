@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use Notification;
 use App\User;
 
 class RedirectIfNotOwnProfile
@@ -26,6 +27,7 @@ class RedirectIfNotOwnProfile
         if ($paramUser->id == $sessionUser->id || $sessionUser->is('admin')) {
             return $next($request);
         } else {
+            Notification::info('You don\'t have permission to edit that');
             return redirect('users');
         }
 

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+use Notification;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -49,9 +51,7 @@ class Handler extends ExceptionHandler
         }
 
         if ($e instanceof \Bican\Roles\Exceptions\RoleDeniedException) {
-            // TODO:
-            // Make it more obvious why the middleware denied you.
-            // Flash a message or something ?
+            Notification::error('You don\'t have permission to access that resource');
             return redirect('/');
         }
 

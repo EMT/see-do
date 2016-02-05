@@ -35,5 +35,6 @@ class Kernel extends HttpKernel
         'permission' => \Bican\Roles\Middleware\VerifyPermission::class,
         'level'      => \Bican\Roles\Middleware\VerifyLevel::class,
         'token'      => \App\Http\Middleware\RedirectIfNoRegistrationToken::class,
+        'remove-token' => \App\Http\Middleware\RemoveRegistrationToken::class,
     ];
 }

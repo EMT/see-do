@@ -7,6 +7,8 @@
 
     {!! Form::open(['action' => 'Auth\AuthController@postRegister', 'class' => 'form']) !!}
 
+        <input name="registration_token" type="hidden" value="{{$token}}">
+
         <!-- First name -->
         <div class="form-row">
             {!! Form::label('name_first', 'First Name') !!}

@@ -53,10 +53,7 @@ class UsersController extends Controller
     	return view('users.create');
     }
 
-    public function store(Request $request) {
-
-
-
+    public function registerEmail(Request $request) {
         $token = new Token();
         $token->save();
         $token->createNewToken();
@@ -72,8 +69,6 @@ class UsersController extends Controller
 		Notification::info('Registration email sent to '. $request->name . ' at ' . $request->email);
 
         return redirect('/users');
-
-        // Add message and make create an admin only route.
     }
 
     /**

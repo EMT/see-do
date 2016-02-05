@@ -10,12 +10,26 @@ use App\Icon;
 use Illuminate\Http\Request;
 use Input;
 use Redirect;
+use Notification;
+use Auth;
 
 class EventsController extends Controller
 {
-    public function __construct()
+    /**
+     * The currently authorised user.
+     */
+    protected $user;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param  Auth  $user
+     * @return void
+     */
+    public function __construct(Auth $user)
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'showJson']]);
+        $this->user = Auth::user();
     }
 
     /**
@@ -141,7 +155,6 @@ class EventsController extends Controller
         $icons = Icon::orderBy('created_at', 'desc')->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
-
         return view('events.edit', compact('event', 'categories', 'colorSchemes', 'icons'));
     }
 
@@ -193,7 +206,6 @@ class EventsController extends Controller
     public function destroy(Event $event)
     {
         $event->delete();
-
         return redirect('events');
     }
 }

@@ -38,6 +38,7 @@ Route::model('color-schemes', 'App\ColorScheme');
 Route::resource('color-schemes', 'ColorSchemesController');
 
 // User Profile routes
+Route::post('users/create', array('uses' => 'UsersController@registerEmail'));
 Route::resource('users', 'UsersController');
 
 // Color Scheme routes
@@ -65,6 +66,10 @@ Route::resource('subscribers', 'SubscribersController');
 // Route::get('mailers/now', 'MailersController@now');
 // Route::resource('mailers', 'MailersController');
 
+Route::get('admin',  ['middleware' => ['role:admin'], function() {
+	return view('admin.index');
+}]);
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -72,7 +77,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 // Registration routes...
 Route::get('auth/register/{token}', ['middleware' => 'token', 'uses' => 'Auth\AuthController@getRegister']);
-Route::post('auth/register/', 'Auth\AuthController@postRegister');
+Route::post('auth/register/', ['middleware' => 'remove-token', 'uses' => 'Auth\AuthController@postRegister']);
 
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');

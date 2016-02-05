@@ -6,7 +6,7 @@ use Closure;
 use App\Token;
 use Notification;
 
-class RedirectIfNoRegistrationToken
+class RemoveRegistrationToken
 {
     /**
      * Handle an incoming request.
@@ -18,13 +18,15 @@ class RedirectIfNoRegistrationToken
     public function handle($request, Closure $next)
     {
         $route = app()->router->getCurrentRoute();
-        $routeParam = $route->getParameter('token');
-        $paramToken = Token::where('token','=',$routeParam)->first();
+        $registrationToken = $request->get('registration_token');
+        $storedToken = Token::where('token','=',$registrationToken)->first();
 
-        if ($paramToken) {
+        if ($storedToken) {
+        	$storedToken->delete();
+            Notification::success('Registration successful, welcome to See+Do');
             return $next($request);
         } else {
-            Notification::info('You\'r registration token has expired, please contact info@madebyfieldwork.com for a new one');
+            Notification::failure('Registration failed');
             return redirect('/');
         }
 

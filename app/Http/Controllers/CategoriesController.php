@@ -87,7 +87,7 @@ class CategoriesController extends Controller
             ->orderBy('created_at', 'desc')
             ->lists('colors', 'id');
 
-        return view('categories.edit', compact('category', 'colorSchemes'));
+        return redirect('/events');
     }
 
     /**

@@ -16,7 +16,7 @@
 				<a href="/users/{{ $user->slug }}" class="user-item">
 					<div class="event-item-title">
 			            <div class="event-item-inner">
-			                <h3>{{ $user->name_first }} {{ $user->name_last }}</h3>
+			                <h3>{{ $user->name_first }} {{ $user->name_last }} <span class="events-count">[ {{$user->user_events_count}} ]</span></h3>
 			            </div>
 			        </div>
 			    </a>

@@ -59,7 +59,7 @@
 
 	<div class="form-row">
 	    <div class="form-row-body">
-	        {!! Form::submit('[ Submit ]', ['class' => 'btn primary']) !!}
+	        {!! Form::submit(' Submit ', ['class' => 'btn primary']) !!}
 	    </div>
 	</div>
 

@@ -11,10 +11,10 @@
 
         <div class="form-row">
             <div class="form-row-body">
-                {!! Form::submit('[ Save ]', ['class' => 'btn primary']) !!}
+                {!! Form::submit(' Save ', ['class' => 'btn primary']) !!}
             </div>
         </div>
-    
+
     {!! Form::close() !!}
 
 @stop

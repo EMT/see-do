@@ -8,6 +8,8 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+use Notification;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -46,6 +48,11 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
+        }
+
+        if ($e instanceof \Bican\Roles\Exceptions\RoleDeniedException) {
+            Notification::error('You don\'t have permission to access that resource');
+            return redirect('/');
         }
 
         return parent::render($request, $e);

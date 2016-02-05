@@ -145,6 +145,6 @@ class Event extends Model implements SluggableInterface,
      */
     public static function futureEvents()
     {
-        return self::where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc')->get();
+        return self::where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc');
     }
 }

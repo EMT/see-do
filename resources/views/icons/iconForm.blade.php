@@ -1,7 +1,7 @@
 <!-- Title -->
 <div class="form-row">
     {!! Form::label('title', 'Title') !!}
-    
+
     <div class="form-row-body">
         {!! Form::text('title', null, ['class' => 'input-text', 'placeholder' => 'Face Happy']) !!}
 
@@ -12,7 +12,7 @@
 <!-- SVG -->
 <div class="form-row">
     {!! Form::label('icon', 'Icon') !!}
-    
+
     <div class="form-row-body">
         {!! Form::textarea('svg', null, ['class' => 'input-text', 'placeholder' => '<svg…']) !!}
 
@@ -22,6 +22,6 @@
 
 <div class="form-row">
     <div class="form-row-body">
-        {!! Form::submit('[ Submit ]', ['class' => 'btn primary']) !!}
+        {!! Form::submit(' Submit ', ['class' => 'btn primary']) !!}
     </div>
 </div>

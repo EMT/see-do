@@ -35,6 +35,13 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
+
+    public function getRegister($token)
+    {
+        return view('auth.register', compact('token'));
+    }
+
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -47,6 +54,8 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name_first' => 'required|max:255',
             'name_last'  => 'required|max:255',
+            'username'   => 'required|max:255',
+            'bio'        => 'required|max:255',
             'email'      => 'required|email|max:255|unique:users',
             'password'   => 'required|min:6',
         ]);
@@ -64,6 +73,8 @@ class AuthController extends Controller
         return User::create([
             'name_first' => $data['name_first'],
             'name_last'  => $data['name_last'],
+            'username'   => $data['username'],
+            'bio'        => $data['bio'],
             'email'      => $data['email'],
             'password'   => bcrypt($data['password']),
         ]);

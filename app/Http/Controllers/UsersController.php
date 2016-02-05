@@ -34,6 +34,13 @@ class UsersController extends Controller
      */
     public function index() {
         $users = User::orderBy('name_first', 'asc')->get();
+
+        foreach($users as $user) {
+            $user->user_events_count = Event::futureEvents()->where('user_id', '=', $user->id)->count();
+        }
+
+        $users->sortBy('user_events_count');
+
         return view('users.index', compact('users'));
     }
 

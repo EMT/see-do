@@ -126,6 +126,6 @@ class UsersController extends Controller
 	   $user = User::findBySlugOrId($id);
        $user->delete();
 
-       return redirect('users.index');
+       return redirect('/users');
     }
 }

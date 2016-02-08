@@ -111,6 +111,8 @@ function changeEventInfo($eventItem, $eventItems, noStatePush) {
 			Sidebar.animClose($eventItem);
 		}
 
+
+
 		var $prevItem = $($eventItems[$eventItems.index($eventItem) - 1]);
 		var $nextItem = $($eventItems[$eventItems.index($eventItem) + 1]);
 		var $eventPrevNext = $('.js-event-next-prev');
@@ -161,6 +163,7 @@ function setEventDetails(url, callback) {
 		$('.js-event-info-date').html(response.longDates);
 		$('.js-event-info-time').html(response.times);
 		$('.js-event-info-venue').html(response.venue);
+		$('.js-event-info-user').html('Posted by: <a href="/users/'+response.user.slug+'">'+response.user.username+'</a>');
 		$('.js-event-info-fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURI(response.url));
 		$('.js-event-info-twitter').attr('href', 'https://twitter.com/home?status=' + encodeURI(response.title + ' ' + response.url));
 		$('.js-edit-event').attr('href', encodeURI(response.url + '/edit'));
@@ -177,7 +180,7 @@ function setEventDetails(url, callback) {
 		styles = '.event-background-color { background: ' + response.color_scheme.color_1 + '; fill: ' + response.color_scheme.color_1 + ';}',
 		styles += '.event-primary-color { color: ' + response.color_scheme.color_2 + '; fill: ' + response.color_scheme.color_2 + ';}',
 		styles += '.event-secondary-color { color: ' + response.color_scheme.color_3 + '; fill: ' + response.color_scheme.color_3 + ';}',
-		styles += '.event-info .body-copy a { color: ' + response.color_scheme.color_3 + ';}',
+		styles += '.event-info .body-copy a, .event-info .meta-data a { color: ' + response.color_scheme.color_3 + ';}',
 		styles += '.event-info .js-event-info-wrapper a { color: ' + response.color_scheme.color_3 + ';}',
 		styles += '.event-info .event-info--share a:hover { color: ' + response.color_scheme.color_3 + ';}';
 

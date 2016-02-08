@@ -7,7 +7,7 @@
         <div class="page-intro">
             <div class="page-intro-inner">
                 <h2 class="page-intro-title">{{$user->username}}</h2>
-                <p>{{$user->bio}}</p>
+                <p>{!! nl2br($user->bio) !!}</p>
             </div>
         </div>
 

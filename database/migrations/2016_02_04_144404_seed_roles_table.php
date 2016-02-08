@@ -40,14 +40,16 @@ class SeedRolesTable extends Migration
 
         */
 
-        $harry = User::where('email', '=', 'harry@madebyfieldwork.com')->first();
+        // change this to grant admin to anyone with a fieldwork email.
 
+        $fieldworkUsers = User::where('email','like','%@madebyfieldwork.com')->get();
         $adminRole = Role::where('slug', '=', 'admin')->first();
 
-        if($harry) {
-            $harry->attachRole($contribRole);
-            $harry->save();
+        foreach($fieldworkUsers as $user) {
+            $user->attachRole($adminRole);
+            $user->save();
         }
+
 
 
     }
@@ -59,6 +61,15 @@ class SeedRolesTable extends Migration
      */
     public function down()
     {
+
+        $fieldworkUsers = User::where('email','like','%@madebyfieldwork.com')->get();
+        $adminRole = Role::where('slug', '=', 'admin')->first();
+
+        foreach($fieldworkUsers as $user) {
+            $user->detachRole($adminRole);
+            $user->save();
+        }
+
         DB::table('roles')->delete();
         DB::table('role_user')->delete();
     }

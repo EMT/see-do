@@ -19,7 +19,7 @@
                     <li id="event-item-{{ $ev->id }}" class="event clear">
                         <a href="{{ route('events.show', $ev->slug) }}">
                             <div class="event-item-date">
-                                <span class="meta-data">{{ $ev->shortDates() }}</span>
+                                <span class="meta-data">{{ $ev->longDates() }}</span>
                             </div>
                             <div class="event-item-title">
                                 <div class="event-item-inner">

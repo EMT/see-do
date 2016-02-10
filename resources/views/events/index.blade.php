@@ -3,11 +3,18 @@
 @section('title', 'Things to See+Do in Manchester')
 
 @section('content')
-
     <div class="left-align-wrapper events-list">
 
         @if ( !$events->count() )
-            <p>There are no events :(</p>
+        <div class="page-intro">
+            <div class="page-intro-inner no-pad-bot">
+                <h2 class="page-intro-title">Oops</h2>
+            </div>
+        </div>
+
+        <ul>
+             <li class="aligned no-records">Sorry, there aren't any events listed <img class="error-emoji" src="/assets/img/error-emoji.svg" alt="Error"></li>
+        </ul>
         @else
             <div class="month-range clear active">
 

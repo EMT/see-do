@@ -9,7 +9,15 @@
         <a href="{{ route('icons.create') }}">Add a new icon</a>
 
         @if ( !$icons->count() )
-            There are no icons :(
+            <div class="page-intro">
+                <div class="page-intro-inner no-pad-bot">
+                    <h2 class="page-intro-title">Oops</h2>
+                </div>
+            </div>
+
+            <ul>
+                 <li class="aligned no-records">Sorry, there aren't any icons listed <img class="error-emoji" src="/assets/img/error-emoji.svg" alt="Error"></li>
+            </ul>
         @else
             <ul>
                 @foreach($icons as $i)

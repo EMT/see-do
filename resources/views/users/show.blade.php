@@ -13,7 +13,7 @@
 
         <ul>
         @if ( !$events->count() )
-            <li class="aligned no-records">There are no events :(</li>
+            <li class="aligned no-records">Sorry, there aren't any events listed <img class="error-emoji" src="/assets/img/error-emoji.svg" alt="Error"></li>
         @else
             @foreach( $events as $ev )
                     <li id="event-item-{{ $ev->id }}" class="event clear">

@@ -6,6 +6,13 @@
 	display: none;
 }
 
+.error-emoji {
+    display: inline-block;
+    width: 35px;
+    margin-bottom: -10px;
+    margin-left: 5px;
+}
+
 .month-title {
 	width: 100%;
 	display: block;
@@ -33,6 +40,7 @@
 .no-records {
 	padding-top: $list-vert-padding;
 	padding-bottom: $list-vert-padding;
+    line-height: 35px;
 }
 
 .page-intro-title {

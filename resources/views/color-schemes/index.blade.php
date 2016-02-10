@@ -8,7 +8,9 @@
     <a href="{{ route('color-schemes.create') }}">Add a new colour scheme</a>
 
     @if ( !$colorSchemes->count() )
-        There are no color schemes :(
+    <ul>
+         <li class="aligned no-records">Sorry, there aren't any color schemes listed <img class="error-emoji" src="/assets/img/error-emoji.svg" alt="Error"></li>
+    </ul>
     @else
         <ul>
             @foreach($colorSchemes as $cs)

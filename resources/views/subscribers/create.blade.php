@@ -15,10 +15,10 @@
 
         <div class="form-row">
             <div class="form-row-body">
-                {!! Form::submit('[ Subscribe ]', ['class' => 'btn primary']) !!}
+                {!! Form::submit(' Subscribe ', ['class' => 'btn primary']) !!}
             </div>
         </div>
-    
+
     {!! Form::close() !!}
 
 @stop

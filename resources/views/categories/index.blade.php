@@ -6,7 +6,9 @@
     <h2>Categories</h2>
 
     @if ( !$categories->count() )
-        There are no categories :(
+    <ul>
+         <li class="aligned no-records">Sorry, there aren't any categories listed <img class="error-emoji" src="/assets/img/error-emoji.svg" alt="Error"></li>
+    </ul>
     @else
         <ul>
             @foreach($categories as $cat)

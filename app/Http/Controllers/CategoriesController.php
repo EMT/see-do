@@ -13,6 +13,7 @@ class CategoriesController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('role:admin', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -86,7 +87,7 @@ class CategoriesController extends Controller
             ->orderBy('created_at', 'desc')
             ->lists('colors', 'id');
 
-        return view('categories.edit', compact('category', 'colorSchemes'));
+        return redirect('/events');
     }
 
     /**

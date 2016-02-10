@@ -7,15 +7,30 @@ use App\Category;
 use App\ColorScheme;
 use App\Event;
 use App\Icon;
+use App\User;
 use Illuminate\Http\Request;
 use Input;
 use Redirect;
+use Notification;
+use Auth;
 
 class EventsController extends Controller
 {
-    public function __construct()
+    /**
+     * The currently authorised user.
+     */
+    protected $user;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param  Auth  $user
+     * @return void
+     */
+    public function __construct(Auth $user)
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'showJson']]);
+        $this->user = Auth::user();
     }
 
     /**
@@ -25,7 +40,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::futureEvents();
+        $events = Event::futureEvents()->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
         return view('events.index', compact('events', 'event', 'categories') + ['event' => null]);
@@ -100,7 +115,10 @@ class EventsController extends Controller
      */
     public function show(Event $event)
     {
-        $events = Event::futureEvents();
+        $events = Event::futureEvents()->get();
+        $event_owner = User::find($event->user_id);
+        $event->user = $event_owner;
+
 
         return view('events.index', compact('events', 'event'));
     }
@@ -115,6 +133,8 @@ class EventsController extends Controller
     public function showJson($slug)
     {
         $event = Event::findBySlug($slug);
+        $event_owner = User::find($event->user_id);
+        $event->user = $event_owner;
         $event->colorScheme;
         $event->category;
         $event->parsedContent = $event->parseMarkdown('content');
@@ -122,6 +142,7 @@ class EventsController extends Controller
         $event->longDates = $event->longDates();
         $event->times = $event->times();
         $event->url = action('EventsController@show', ['slug' => $event->slug]);
+
 
         return response()->json($event);
     }
@@ -140,7 +161,6 @@ class EventsController extends Controller
             ->lists('colors', 'id');
         $icons = Icon::orderBy('created_at', 'desc')->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
-
 
         return view('events.edit', compact('event', 'categories', 'colorSchemes', 'icons'));
     }
@@ -193,7 +213,6 @@ class EventsController extends Controller
     public function destroy(Event $event)
     {
         $event->delete();
-
         return redirect('events');
     }
 }

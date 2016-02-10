@@ -1,0 +1,36 @@
+.user-item {
+	text-decoration: none;
+	color: inherit;
+}
+
+.user-item {
+	color: $black;
+	cursor: pointer;
+	display: block;
+	position: relative;
+	text-decoration: none;
+}
+
+.user-item:hover {
+	color: $highlight;
+
+	.event-item-icon {
+		-webkit-transform: rotate(0deg);
+
+		&:last-child {
+			margin-right: 10px;
+		}
+
+		svg {
+			height: 24px;
+			margin-right: 6px;
+			padding-top: 0;
+			width: auto;
+		}
+	}
+}
+
+.events-count {
+	float: right;
+    margin-right: 0.5em;
+}

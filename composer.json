@@ -11,7 +11,9 @@
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "doctrine/dbal": "~2.4",
         "thujohn/twitter": "^2.1",
-        "laravelcollective/html": "^5.2"
+        "laravelcollective/html": "^5.2",
+        "bican/roles": "2.1.*",
+        "edvinaskrucas/notification": "5.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

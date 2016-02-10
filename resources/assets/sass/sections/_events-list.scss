@@ -6,6 +6,13 @@
 	display: none;
 }
 
+.error-emoji {
+    display: inline-block;
+    width: 35px;
+    margin-bottom: -10px;
+    margin-left: 5px;
+}
+
 .month-title {
 	width: 100%;
 	display: block;
@@ -13,6 +20,33 @@
 	padding-bottom: $list-vert-padding;
 	padding-top: $list-vert-padding;
 	line-height: 1;
+}
+
+.page-intro, .offset-wrapper {
+    @extend .event-item-title;
+}
+
+.page-intro-inner {
+	border-bottom: 1px solid $black;
+	padding-bottom: $list-vert-padding * 3;
+	padding-top: $list-vert-padding;
+}
+
+.page-intro p {
+	width: 100%;
+	max-width: 500px;
+}
+
+.no-records {
+	padding-top: $list-vert-padding;
+	padding-bottom: $list-vert-padding;
+    line-height: 35px;
+}
+
+.page-intro-title {
+	color: $highlight;
+	padding-bottom: $list-vert-padding;
+	padding-top: $list-vert-padding;
 }
 
 .event a {
@@ -26,7 +60,7 @@
 .event a:hover,
 .event.event--active a {
 	color: $highlight;
-	
+
 	.event-item-icon {
 		-webkit-transform: rotate(0deg);
 
@@ -42,7 +76,7 @@
 		}
 	}
 }
- 
+
 .event-item-date {
 	position: absolute;
 	top: 0;

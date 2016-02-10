@@ -65,7 +65,7 @@ class MailersController extends Controller
      */
     public function now()
     {
-        $events = Event::futureEvents();
+        $events = Event::futureEvents()->get();
         $categories = Category::orderBy('title', 'asc')->get();
 
         $subscriber = new Subscriber();

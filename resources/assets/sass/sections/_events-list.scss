@@ -114,6 +114,12 @@
 		}
 	}
 
+	@media all and (min-width: 600px) {
+		.event-item-inner--extra-padding-bottom {
+			padding-bottom: $list-vert-padding * 2;
+		}
+	}
+
 	h3 {
 		white-space: nowrap;
 		overflow: hidden;

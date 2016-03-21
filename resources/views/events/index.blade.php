@@ -41,7 +41,7 @@
                         @endif
 
                             <li id="event-item-{{ $ev->id }}" class="event clear {{ ($event && $event->id === $ev->id) ? 'event--active' : '' }}">
-                                <a href="{{ route('events.show', $ev->slug) }}">
+                                <a href="/{{ $city->iata }}/events/{{ $ev->slug }}">
                                     <div class="event-item-date">
                                         <span class="meta-data">{{ $ev->shortDates() }}</span>
                                     </div>

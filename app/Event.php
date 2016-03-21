@@ -36,7 +36,12 @@ class Event extends Model implements SluggableInterface,
         'color_scheme_id',
         'icons',
         'category_id',
+        'city_id',
     ];
+
+    public function city() {
+        return $this->belongsTo('App\City');
+    }
 
     public function category()
     {

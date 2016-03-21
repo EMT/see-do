@@ -13,9 +13,6 @@
 
 
 
-// Route home page to events.index
-Route::get('/', 'EventsController@index');
-
 // Category routes
 // Provide controller methods with object instead of ID
 Route::model('categories', 'Category');
@@ -25,13 +22,6 @@ Route::bind('categories', function ($value, $route) {
 });
 Route::resource('categories', 'CategoriesController');
 
-// Event routes
-Route::model('events', 'Event');
-Route::bind('events', function ($value, $route) {
-    return App\Event::whereSlug($value)->first();
-});
-Route::get('events/{value}.json', 'EventsController@showJson');
-Route::resource('events', 'EventsController');
 
 // Color Scheme routes
 Route::model('color-schemes', 'App\ColorScheme');
@@ -66,9 +56,32 @@ Route::resource('subscribers', 'SubscribersController');
 // Route::get('mailers/now', 'MailersController@now');
 // Route::resource('mailers', 'MailersController');
 
-Route::get('admin',  ['middleware' => ['role:admin'], function() {
-	return view('admin.index');
-}]);
+Route::get('/', 'CitiesController@index');
+Route::get('/{city}', 'EventsController@index');
+Route::get('/{city}/events', 'EventsController@index');
+Route::get('/{city}/events/{slug}.json', 'EventsController@showJson');
+Route::get('/{city}/events/{slug}', 'EventsController@show');
+
+
+// Route::group(['prefix' => '/{city_code}', 'middleware' => 'city'], function() {
+	Route::resource('events', 'EventsController');
+
+	// Route city home page to events.index
+	// Route::get('/', 'EventsController@index');
+
+
+	// Event routes
+	// Route::model('events', 'Event');
+	// Route::bind('events', function ($value, $route) {
+	//     return App\Event::whereSlug($value)->first();
+	// });
+
+// });
+
+	// Route::get('/{city_code}/events/{slug}',[
+	// 	'as' => 'events.show',
+	//     'uses' => 'EventsController@show'
+	// ]);
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

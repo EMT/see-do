@@ -6,6 +6,7 @@ use App\Events\SocialBroadcastEvent;
 use App\Category;
 use App\ColorScheme;
 use App\Event;
+use App\City;
 use App\Icon;
 use App\User;
 use Illuminate\Http\Request;
@@ -38,12 +39,13 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($city_code)
     {
-        $events = Event::futureEvents()->get();
+        $city = City::findByIATA($city_code)->first();
+        $events = Event::futureEvents()->where('city_id','=',$city->id)->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
-        return view('events.index', compact('events', 'event', 'categories') + ['event' => null]);
+        return view('events.index', compact('city', 'events', 'event', 'categories') + ['event' => null]);
     }
 
     /**
@@ -113,14 +115,18 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($city_code, $slug)
     {
-        $events = Event::futureEvents()->get();
+        $city = City::findByIATA($city_code)->first();
+
+        $events = Event::futureEvents()->where('city_id','=',$city->id)->get();
+        $event = Event::findBySlug($slug);
+
         $event_owner = User::find($event->user_id);
         $event->user = $event_owner;
 
 
-        return view('events.index', compact('events', 'event'));
+        return view('events.index', compact('city', 'events', 'event'));
     }
 
     /**
@@ -130,8 +136,10 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showJson($slug)
+    public function showJson($city_code, $slug)
     {
+        $city = City::findByIATA($city_code)->first();
+
         $event = Event::findBySlug($slug);
         $event_owner = User::find($event->user_id);
         $event->user = $event_owner;
@@ -141,7 +149,7 @@ class EventsController extends Controller
         $event->shortDates = $event->shortDates();
         $event->longDates = $event->longDates();
         $event->times = $event->times();
-        $event->url = action('EventsController@show', ['slug' => $event->slug]);
+        $event->url = action('EventsController@show', ['city_code' => $city_code, 'slug' => $event->slug]);
 
 
         return response()->json($event);

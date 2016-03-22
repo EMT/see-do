@@ -112,6 +112,9 @@
     </div>
 </div>
 
+
+{!! Form::hidden('city_code', Request::segment(1)) !!}
+
 <div class="form-row">
     <div class="form-row-body">
         {!! Form::submit(' Submit ', ['class' => 'btn primary']) !!}

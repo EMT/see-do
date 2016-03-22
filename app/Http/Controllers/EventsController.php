@@ -53,7 +53,7 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($city_code)
     {
         $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
             ->orderBy('created_at', 'desc')
@@ -94,8 +94,12 @@ class EventsController extends Controller
             'icons'           => 'required',
         ]);
 
-        $event = new Event(Input::except('tweet'));
+        $event = new Event(Input::except(['tweet, city_id']));
         $event->user_id = $request->user()->id;
+
+        $city_code = Input::get('city_code');
+        $city = City::findByIATA($city_code)->first();
+        $event->city_id = $city->id;
 
         if (!$event->color_scheme_id && $event->category_id) {
             $event->color_scheme_id = $event->category->color_scheme_id;
@@ -105,7 +109,7 @@ class EventsController extends Controller
 
         event(new SocialBroadcastEvent($event, $request));
 
-        return Redirect::route('events.index')->with('message', 'Event created');
+        return redirect('/'.$city_code)->with('message', 'Event created');
     }
 
     /**

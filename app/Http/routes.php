@@ -57,8 +57,14 @@ Route::resource('subscribers', 'SubscribersController');
 // Route::resource('mailers', 'MailersController');
 
 Route::get('/', 'CitiesController@index');
+Route::resource('cities', 'CitiesController');
+
+
 Route::get('/{city}', 'EventsController@index');
+
+
 Route::get('/{city}/events', 'EventsController@index');
+Route::get('/{city}/events/create', 'EventsController@create');
 Route::get('/{city}/events/{slug}.json', 'EventsController@showJson');
 Route::get('/{city}/events/{slug}', 'EventsController@show');
 

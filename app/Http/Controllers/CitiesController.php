@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
-
+use Input;
+use Redirect;
 
 use App\City;
 use App\Event;
@@ -44,6 +45,16 @@ class CitiesController extends Controller
         return view('home.index', compact('cities'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('cities.create');
+    }
+
 	/**
      * Store a newly created resource in storage.
      *
@@ -58,8 +69,13 @@ class CitiesController extends Controller
             'iata' => 'required',
         ]);
 
+
         $city = new City(Input::all());
+        $city->iata = substr(strtolower($city->iata),0,3);
         $city->user_id = $request->user()->id;
         $city->save();
+
+        return redirect('/')->with('message', 'City created');
+
     }
 }

@@ -7,19 +7,19 @@
         <div class="page-intro">
             <div class="page-intro-inner">
                 <h2 class="page-intro-title">{{$user->username}}</h2>
-                <p>{{$user->bio}}</p>
+                <p>{!! nl2br($user->bio) !!}</p>
             </div>
         </div>
 
         <ul>
         @if ( !$events->count() )
-            <li class="aligned no-records">There are no events :(</li>
+            <li class="aligned no-records">Sorry, there aren't any events listed <img class="error-emoji" src="/assets/img/error-emoji.svg" alt="Error"></li>
         @else
             @foreach( $events as $ev )
                     <li id="event-item-{{ $ev->id }}" class="event clear">
                         <a href="{{ route('events.show', $ev->slug) }}">
                             <div class="event-item-date">
-                                <span class="meta-data">{{ $ev->shortDates() }}</span>
+                                <span class="meta-data">{{ $ev->longDates() }}</span>
                             </div>
                             <div class="event-item-title">
                                 <div class="event-item-inner">

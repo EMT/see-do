@@ -108,14 +108,11 @@ class Event extends Model implements SluggableInterface,
 
     public function shortDates()
     {
-        $dates = date('d', strtotime($this->time_start));
+        $dates = date('d.m.y', strtotime($this->time_start));
 
-        if (date('y', strtotime($this->time_start)) !== date('y', strtotime($this->time_end))) {
-            $dates .= date('.m.y—', strtotime($this->time_start)).date('d.m.y', strtotime($this->time_end));
-        } elseif (date('m', strtotime($this->time_start)) !== date('m', strtotime($this->time_end))) {
-            $dates .= date('.m—', strtotime($this->time_start)).date('d.m', strtotime($this->time_end));
-        } elseif (date('d', strtotime($this->time_start)) !== date('d', strtotime($this->time_end))) {
-            $dates .= date('—d', strtotime($this->time_end));
+        if ($this->isLongerThanOneDay()) {
+            $dates .= ' -<br />';
+            $dates .= date('d.m.y', strtotime($this->time_end));
         }
 
         return $dates;
@@ -136,6 +133,10 @@ class Event extends Model implements SluggableInterface,
         }
 
         return $times;
+    }
+
+    public function isLongerThanOneDay(){
+        return date('d.m.y', strtotime($this->time_start)) != date('d.m.y', strtotime($this->time_end));
     }
 
     /**

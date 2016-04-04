@@ -3,11 +3,18 @@
 @section('title', 'Things to See+Do in Manchester')
 
 @section('content')
-
     <div class="left-align-wrapper events-list">
 
         @if ( !$events->count() )
-            <p>There are no events :(</p>
+        <div class="page-intro">
+            <div class="page-intro-inner no-pad-bot">
+                <h2 class="page-intro-title">Oops</h2>
+            </div>
+        </div>
+
+        <ul>
+             <li class="aligned no-records">Sorry, there aren't any events listed <img class="error-emoji" src="/assets/img/error-emoji.svg" alt="Error"></li>
+        </ul>
         @else
             <div class="month-range clear active">
 
@@ -36,10 +43,10 @@
                             <li id="event-item-{{ $ev->id }}" class="event clear {{ ($event && $event->id === $ev->id) ? 'event--active' : '' }}">
                                 <a href="{{ route('events.show', $ev->slug) }}">
                                     <div class="event-item-date">
-                                        <span class="meta-data">{{ $ev->shortDates() }}</span>
+                                        <span class="meta-data">{!! $ev->shortDates() !!}</span>
                                     </div>
                                     <div class="event-item-title">
-                                        <div class="event-item-inner">
+                                        <div class="event-item-inner @if ( $ev->isLongerThanOneDay() ) event-item-inner--extra-padding-bottom @endif">
                                             <div class="event-item-icons">
                                                 @foreach ($ev->icons() as $icon)
                                                     <span class="event-item-icon">{!! $icon->svg !!}</span>

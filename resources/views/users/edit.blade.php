@@ -65,12 +65,15 @@
 
 
     {!! Form::close() !!}
-	<div class="form no-mgt">
-		<div class="form-row">
-		    <div class="form-row-body">
 
-		    </div>
+    @role('admin')
+		<div class="form no-mgt">
+			<div class="form-row">
+			    <div class="form-row-body">
+			        {!! delete_form(['users.destroy', $user->id]) !!}
+			    </div>
+			</div>
 		</div>
-	</div>
+	@endrole
 
 @stop

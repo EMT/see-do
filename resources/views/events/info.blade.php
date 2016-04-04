@@ -22,6 +22,10 @@
             <span class="event-icon">@include('svg.event-location-icon')</span>
             <span class="js-event-info-venue">{{ $event ? $event->venue : '' }}</span>
         </p>
+        <p class="meta-data event-info--user">
+            <span class="event-icon">@include('svg.event-location-icon')</span>
+            <span class="js-event-info-user">Posted by: <a href="/users/{{ $event ? $event->user->slug : '' }}">{{ $event ? $event->user->username : '' }}</a></span>
+        </p>
     </div>
 
     <div class="body-copy">

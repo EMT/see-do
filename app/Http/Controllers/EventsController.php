@@ -7,6 +7,7 @@ use App\Category;
 use App\ColorScheme;
 use App\Event;
 use App\Icon;
+use App\User;
 use Illuminate\Http\Request;
 use Input;
 use Redirect;
@@ -115,6 +116,9 @@ class EventsController extends Controller
     public function show(Event $event)
     {
         $events = Event::futureEvents()->get();
+        $event_owner = User::find($event->user_id);
+        $event->user = $event_owner;
+
 
         return view('events.index', compact('events', 'event'));
     }
@@ -129,6 +133,8 @@ class EventsController extends Controller
     public function showJson($slug)
     {
         $event = Event::findBySlug($slug);
+        $event_owner = User::find($event->user_id);
+        $event->user = $event_owner;
         $event->colorScheme;
         $event->category;
         $event->parsedContent = $event->parseMarkdown('content');
@@ -136,6 +142,7 @@ class EventsController extends Controller
         $event->longDates = $event->longDates();
         $event->times = $event->times();
         $event->url = action('EventsController@show', ['slug' => $event->slug]);
+
 
         return response()->json($event);
     }

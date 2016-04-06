@@ -23,7 +23,7 @@ class UsersController extends Controller
 
     public function __construct() {
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('owner', ['only' => ['edit']]);
+        $this->middleware('owner', ['only' => ['edit', 'destroy']]);
         $this->middleware('role:admin', ['only' => ['create']]);
     }
 

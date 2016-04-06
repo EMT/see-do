@@ -46,7 +46,7 @@
                                         <span class="meta-data">{!! $ev->shortDates() !!}</span>
                                     </div>
                                     <div class="event-item-title">
-                                        <div class="event-item-inner @if ( $ev->isLongerThanOneDay() ) event-item-inner--extra-padding-bottom @endif">
+                                        <div class="event-item-inner">
                                             <div class="event-item-icons">
                                                 @foreach ($ev->icons() as $icon)
                                                     <span class="event-item-icon">{!! $icon->svg !!}</span>

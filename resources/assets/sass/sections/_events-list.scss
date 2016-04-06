@@ -79,9 +79,9 @@
 
 .event-item-date {
 	position: absolute;
-	top: 0;
+	top: 50%;
+	transform: translateY(-50%);
 	left: 0;
-	padding: $list-vert-padding 0;
 	width: $left-col;
 
 	@media all and (max-width: 600px) {

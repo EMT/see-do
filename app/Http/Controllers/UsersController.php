@@ -73,7 +73,7 @@ class UsersController extends Controller
                 ->addTextHeader('X-MC-Subaccount', 'see-do');
         });
 
-		Notification::info('Registration email sent to '. $request->name . ' at ' . $request->email);
+		Notification::success('Registration email sent to '. $request->name . ' at ' . $request->email);
 
         return redirect('/users');
     }

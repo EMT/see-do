@@ -26,7 +26,7 @@ class RemoveRegistrationToken
             Notification::success('Registration successful, welcome to See+Do');
             return $next($request);
         } else {
-            Notification::failure('Registration failed');
+            Notification::error('Registration failed');
             return redirect('/');
         }
 

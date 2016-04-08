@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SocialBroadcastEvent' => [
             'App\Listeners\TweetSender',
         ],
+        'App\Events\PostSuccessfullAuth' => [
+            'App\Listeners\RemoveRegToken',
+        ]
     ];
 
     /**

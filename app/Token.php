@@ -20,7 +20,7 @@ class Token extends Model
 
     public function createNewToken()
     {
-        $this->token = hash_hmac('sha256', Str::random(20), config('app.key'));
+        $this->token = hash_hmac('sha256', Str::random(40), config('app.key'));
         $this->save();
 
         return $this->token;

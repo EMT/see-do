@@ -79,9 +79,9 @@
 
 .event-item-date {
 	position: absolute;
-	top: 0;
+	top: 50%;
+	transform: translateY(-50%);
 	left: 0;
-	padding: $list-vert-padding 0;
 	width: $left-col;
 
 	@media all and (max-width: 600px) {
@@ -111,6 +111,12 @@
 
 		@media all and (max-width: 600px) {
 			padding-top: 5px;
+		}
+	}
+
+	@media all and (min-width: 600px) {
+		.event-item-inner--extra-padding-bottom {
+			padding-bottom: $list-vert-padding * 2;
 		}
 	}
 

@@ -34,3 +34,14 @@
 	float: right;
     margin-right: 0.5em;
 }
+
+.edit-user-details {
+	display: inline-block;
+	margin-top: 2em;
+
+	transition: 0.3s ease-out color;
+
+	&:hover {
+		color: $highlight;
+	}
+}

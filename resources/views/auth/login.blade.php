@@ -31,7 +31,7 @@
 
         <div class="form-row">
             <div class="form-row-body">
-                {!! Form::submit('[ Log In ]', ['class' => 'btn primary']) !!}
+                {!! Form::submit(' Log In ', ['class' => 'btn primary']) !!}
             </div>
         </div>
 
@@ -40,7 +40,7 @@
                 <a class="link-effect" href="/password/email">I forgot my password</a>
             </div>
         </div>
-    
+
     {!! Form::close() !!}
 
 @stop

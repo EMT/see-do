@@ -27,7 +27,7 @@ class RedirectIfNotOwnProfile
         if ($paramUser->id == $sessionUser->id || $sessionUser->is('admin')) {
             return $next($request);
         } else {
-            Notification::info('You don\'t have permission to edit that');
+            Notification::error('You don\'t have permission to edit that');
             return redirect('users');
         }
 

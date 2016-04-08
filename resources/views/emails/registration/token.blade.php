@@ -33,7 +33,7 @@
                                 <td valign="top" style="width: 100%; padding-bottom: 8px;">
                                     <p>Hi {{$request->name}},</p>
                                     <p>You can now register for See+Do with the following url.</p>
-                                    <a href="{{ URL::to('/') }}/auth/register/{{ $token->token }}">{{ URL::to('/') }}/auth/register/{{ $token->token }}</a>
+                                    <a href="{{ URL::to('/') }}/auth/register/{{ $token->token }}?name={{$request->name}}&email={{$request->email}}">{{ URL::to('/') }}/auth/register/{{ $token->token }}</a>
                                     <br>
                                     <p>Thank You,</p>
                                     <p>See+Do</p>

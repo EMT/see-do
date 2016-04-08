@@ -44,10 +44,10 @@
 
         <div class="form-row">
             <div class="form-row-body">
-                {!! Form::submit('[ Reset ]', ['class' => 'btn primary']) !!}
+                {!! Form::submit(' Reset ', ['class' => 'btn primary']) !!}
             </div>
         </div>
-    
+
     {!! Form::close() !!}
 
 @stop

@@ -77,7 +77,7 @@
 
         <div class="form-row">
             <div class="form-row-body">
-                {!! Form::submit('[ Sign Up ]', ['class' => 'btn primary']) !!}
+                {!! Form::submit(' Sign Up ', ['class' => 'btn primary']) !!}
             </div>
         </div>
 

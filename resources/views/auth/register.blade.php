@@ -25,7 +25,7 @@
             {!! Form::label('name_last', 'Last Name') !!}
 
             <div class="form-row-body">
-                {!! Form::text('name_last', explode(" ", Input::get('name'))[1], ['class' => 'input-text', 'placeholder' => 'McFly']) !!}
+                {!! Form::text('name_last', empty(Input::get('name')[1]) ? explode(" ", Input::get('name'))[1] : null, ['class' => 'input-text', 'placeholder' => 'McFly']) !!}
 
                 @include('common.forms.field-errors', ['errors' => $errors->get('name_last')])
             </div>

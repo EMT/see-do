@@ -3,6 +3,10 @@ $(function() {
 	FastClick.attach(document.body);
 	Filters.init();
 
+	$('.js-menu-toggle').on('click', function(){
+		$('header').toggleClass('hidden-nav-open');
+	});
+
 	// $('.month--title').on('click', function(){
 	// 	var parent = $(this).parent();
 	// 	parent.addClass('active');

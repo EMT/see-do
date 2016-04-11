@@ -2,8 +2,8 @@ header {
 	padding: 32px 0;
 	margin-bottom: 32px;
 	position: relative;
-	transition: padding-bottom 0.3s cubic-bezier(0.455, 0.030, 0.515, 0.955);
-	transition-delay: 0.4s;
+	transition: padding-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+	transition-delay: 0.575s;
 
 	a {
 		text-decoration: none;
@@ -64,7 +64,7 @@ header .site-title {
     	position: absolute;
     	top: 0;
     	left: $left-col;
-    	transition: width 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530);
+    	transition: width 0.25s 0.05s cubic-bezier(0.550, 0.085, 0.680, 0.530);
     }
 
     li {
@@ -81,28 +81,28 @@ header .site-title {
 
 
 	nav ul li:nth-child(2) a {
-		transition-delay: 0.15s;
+		transition-delay: 0.2s;
     }
 
     nav ul li:nth-child(3) a {
-		transition-delay: 0.2s;
+		transition-delay: 0.3s;
     }
 
 
 }
 
 header.hidden-nav-open {
-	padding-bottom: 70px;
+	padding-bottom: 90px;
 	transition-delay: 0s;
 
 	.hidden-nav:after {
 		width: 20px;
-		transition: width 0.3s 0.2s cubic-bezier(0.550, 0.085, 0.680, 0.530);
+		transition: width 0.2s 0.2s cubic-bezier(0.550, 0.085, 0.680, 0.530);
 	}
 
 	li a {
 		transform: translateY(0px);
-		transition: transform 0.3s 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+		transition: transform 0.4s 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 	}
 
 	nav ul li:nth-child(2) a {

@@ -46,7 +46,9 @@ $(function() {
 	// 		remove reveal items
 	// 		this causes the transition end to be called which removes expand menu
 
-	$('.js-menu-toggle').on('click', function(){
+	$('.js-menu-toggle').on('click', function(e){
+		e.preventDefault();
+
 		if (!$header.hasClass('hidden-nav-open')) {
 			$header.addClass('hidden-nav-open');
 			$header.addClass('expand-menu');

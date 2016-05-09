@@ -1,11 +1,14 @@
 header {
 	padding: 32px 0;
 	margin-bottom: 32px;
+	position: relative;
+	transition: padding-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+	transition-delay: 0.1ms;
 
 	a {
 		text-decoration: none;
 		color: $black;
-		@include transition(all .3s ease-out);
+		@include transition(all .3s cubic-bezier(0.215, 0.610, 0.355, 1.000));
 
 		&:hover {
 			color: $highlight;
@@ -45,6 +48,138 @@ header .site-title {
 	}
 }
 
+.hidden-nav {
+    width: 100%;
+    padding-left: $left-col;
+    position: absolute;
+    bottom: 0;
+    padding-top: 15px;
+
+    &:after {
+    	content: '';
+    	display: block;
+    	width: 0px;
+    	height: 1px;
+    	background: $grey;
+    	position: absolute;
+    	top: 0;
+    	left: $left-col;
+    	transition: width 0.25s 0.05s cubic-bezier(0.550, 0.085, 0.680, 0.530);
+    }
+
+    li {
+    	overflow: hidden;
+    	position: relative;
+    	height: 20px;
+    }
+
+    li a {
+		transform: translateY(-30px);
+		display: inline-block;
+		transition: transform 0.3s 0.1s cubic-bezier(0.550, 0.085, 0.680, 0.530);
+    }
+
+
+	nav ul li:nth-child(2) a {
+		transition-delay: 0.2s;
+    }
+
+    nav ul li:nth-child(3) a {
+		transition-delay: 0.3s;
+    }
+
+    nav ul li:nth-child(4) a {
+		transition-delay: 0.4s;
+    }
+
+    nav ul li:nth-child(5) a {
+		transition-delay: 0.5s;
+    }
+
+    nav ul li:nth-child(6) a {
+		transition-delay: 0.6s;
+    }
+
+
+	@media screen and (max-width: 600px) {
+		position: relative;
+		float: left;
+		padding-left: 0;
+	    max-height: 0px;
+	    overflow: hidden;
+	    transition: max-height 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530);
+
+		nav ul li {
+			margin-left: 0;
+			width: 100%;
+			border-bottom: 1px solid $grey;
+			padding: 15px 0;
+			height: auto;
+		}
+
+		li a {
+			transform: translateY(0px);
+
+			&:before,
+			&:after {
+				display: none;
+			}
+		}
+	}
+}
+
+
+@media screen and (max-width: 600px) {
+	header.hidden-nav-open .hidden-nav{
+		padding-bottom: 0px;
+		max-height: 300px;
+	}
+}
+
+header.expand-menu {
+	@media (min-width: 600px) {
+		padding-bottom: 90px;
+	}
+
+	transition-delay: 0s;
+}
+
+header.reveal-items {
+
+	@media (min-width: 600px) {
+		.hidden-nav:after {
+			width: 20px;
+			transition: width 0.2s 0.2s cubic-bezier(0.550, 0.085, 0.680, 0.530);
+		}
+	}
+
+	li a {
+		transform: translateY(0px);
+		transition: transform 0.4s 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	}
+
+	nav ul li:nth-child(2) a {
+		transition-delay: 0.5s;
+    }
+
+    nav ul li:nth-child(3) a {
+		transition-delay: 0.6s;
+    }
+
+    nav ul li:nth-child(4) a {
+		transition-delay: 0.7s;
+    }
+
+    nav ul li:nth-child(5) a {
+		transition-delay: 0.8s;
+    }
+
+    nav ul li:nth-child(6) a {
+		transition-delay: 0.9s;
+    }
+}
+
+
 .category-title {
 	color: $highlight;
 
@@ -53,13 +188,11 @@ header .site-title {
 	}
 }
 
-header nav {
+header .menu-link {
 	float: right;
 
 	@media all and (max-width: 400px) {
-		float: none;
-		clear: both;
-		padding-top: 1em;
+		display: block;
 	}
 }
 
@@ -73,6 +206,7 @@ header nav ul li {
 }
 
 header nav a,
+.menu-link,
 .link-effect {
 	position: relative;
 	color: $grey;
@@ -84,7 +218,7 @@ header nav a,
 		position: absolute;
 		top: 0;
 		opacity: 0;
-		transition: all .3s ease-out;
+		transition: all .3s cubic-bezier(0.215, 0.610, 0.355, 1.000);
 	}
 
 	&:before {

@@ -21,28 +21,28 @@
             <li class="aligned no-records">Sorry, there aren't any events listed <img class="error-emoji" src="/assets/img/error-emoji.svg" alt="Error"></li>
         @else
             @foreach( $events as $ev )
-                    <li id="event-item-{{ $ev->id }}" class="event clear">
-                        <a href="{{ route('events.show', $ev->slug) }}">
-                            <div class="event-item-date">
-                                <span class="meta-data">{{ $ev->longDates() }}</span>
-                            </div>
-                            <div class="event-item-title">
-                                <div class="event-item-inner">
-                                    <div class="event-item-icons">
-                                        @foreach ($ev->icons() as $icon)
-                                            <span class="event-item-icon">{!! $icon->svg !!}</span>
-                                        @endforeach
-                                    </div>
-                                    <h3>{{ $ev->title }}</h3>
+
+                <li id="event-item-{{ $ev->id }}" class="event clear {{ ($event && $event->id === $ev->id) ? 'event--active' : '' }}">
+                    <a href="{{ route('events.show', $ev->slug) }}">
+                        <div class="event-item-date">
+                            <span class="meta-data">{!! $ev->shortDates() !!}</span>
+                        </div>
+                        <div class="event-item-title">
+                            <div class="event-item-inner">
+                                <div class="event-item-icons">
+                                    @foreach ($ev->icons() as $icon)
+                                        <span class="event-item-icon">{!! $icon->svg !!}</span>
+                                    @endforeach
                                 </div>
+                                <h3>{{ $ev->title }}</h3>
                             </div>
-                        </a>
-                    </li>
+                        </div>
+                    </a>
+                </li>
             @endforeach
         @endif
         </ul>
     </div>
-
 
     @include('events.info')
 

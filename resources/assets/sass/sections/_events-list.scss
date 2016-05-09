@@ -87,6 +87,8 @@
 	@media all and (max-width: 600px) {
 		position: relative;
 		padding-bottom: 0;
+		transform: none;
+		padding-top: 20px;
 
 		.meta-data {
 			// font-size: 0.75em;

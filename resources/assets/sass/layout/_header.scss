@@ -3,7 +3,7 @@ header {
 	margin-bottom: 32px;
 	position: relative;
 	transition: padding-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955);
-	transition-delay: 0.575s;
+	transition-delay: 0.1ms;
 
 	a {
 		text-decoration: none;
@@ -88,12 +88,28 @@ header .site-title {
 		transition-delay: 0.3s;
     }
 
+    nav ul li:nth-child(4) a {
+		transition-delay: 0.4s;
+    }
+
+    nav ul li:nth-child(5) a {
+		transition-delay: 0.5s;
+    }
+
+    nav ul li:nth-child(6) a {
+		transition-delay: 0.6s;
+    }
+
+
 
 }
 
-header.hidden-nav-open {
+header.expand-menu {
 	padding-bottom: 90px;
 	transition-delay: 0s;
+}
+
+header.reveal-items {
 
 	.hidden-nav:after {
 		width: 20px;
@@ -112,7 +128,20 @@ header.hidden-nav-open {
     nav ul li:nth-child(3) a {
 		transition-delay: 0.6s;
     }
+
+    nav ul li:nth-child(4) a {
+		transition-delay: 0.7s;
+    }
+
+    nav ul li:nth-child(5) a {
+		transition-delay: 0.8s;
+    }
+
+    nav ul li:nth-child(6) a {
+		transition-delay: 0.9s;
+    }
 }
+
 
 .category-title {
 	color: $highlight;

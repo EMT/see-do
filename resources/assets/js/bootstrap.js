@@ -3,9 +3,63 @@ $(function() {
 	FastClick.attach(document.body);
 	Filters.init();
 
+	// ------------
+	// Header Animation
+	//
+	// If the header is closed just add all the classes at once, if
+	// its closed remove reveal-items and when the final item is hidden
+	// it calls the transition end event and removes expand-menu
+	//
+	// Bit more complicated because of jQuery's transitionEnd firing
+	// mulitple times depending on which browser you use.
+
+	function whichTransitionEvent(){
+	  var t,
+	      el = document.createElement("fakeelement");
+
+	  var transitions = {
+	    "transition"      : "transitionend",
+	    "OTransition"     : "oTransitionEnd",
+	    "MozTransition"   : "transitionend",
+	    "WebkitTransition": "webkitTransitionEnd"
+	  }
+
+	  for (t in transitions){
+	    if (el.style[t] !== undefined){
+	      return transitions[t];
+	    }
+	  }
+	}
+
+	var transitionEvent = whichTransitionEvent();
+
+	// if menu isn't open
+	// 	=>
+	// 		add expand-menu
+	// 		add reveal-items
+	// else
+	// 	=>
+	// 		remove reveal items
+	// 		this causes the transition end to be called which removes expand menu
+
 	$('.js-menu-toggle').on('click', function(){
-		$('header').toggleClass('hidden-nav-open');
+
+		if (!$('header').hasClass('hidden-nav-open')) {
+			$('header').addClass('hidden-nav-open');
+			$('header').addClass('expand-menu');
+			$('header').addClass('reveal-items');
+		} else {
+			$('header').removeClass('hidden-nav-open');
+			$('header').removeClass('reveal-items');
+		}
 	});
+
+	$('.hidden-nav nav ul li').last().on(transitionEvent, function(event) {
+		if (!$('header').hasClass('hidden-nav-open')){
+			$('header').removeClass('expand-menu');
+		}
+	});
+
 
 	// $('.month--title').on('click', function(){
 	// 	var parent = $(this).parent();

@@ -13,6 +13,10 @@ $(function() {
 	// Bit more complicated because of jQuery's transitionEnd firing
 	// mulitple times depending on which browser you use.
 
+	var $header = $('header');
+
+	// Check against an element which transition events fire on transitionEnd
+
 	function whichTransitionEvent(){
 	  var t,
 	      el = document.createElement("fakeelement");
@@ -43,20 +47,19 @@ $(function() {
 	// 		this causes the transition end to be called which removes expand menu
 
 	$('.js-menu-toggle').on('click', function(){
-
-		if (!$('header').hasClass('hidden-nav-open')) {
-			$('header').addClass('hidden-nav-open');
-			$('header').addClass('expand-menu');
-			$('header').addClass('reveal-items');
+		if (!$header.hasClass('hidden-nav-open')) {
+			$header.addClass('hidden-nav-open');
+			$header.addClass('expand-menu');
+			$header.addClass('reveal-items');
 		} else {
-			$('header').removeClass('hidden-nav-open');
-			$('header').removeClass('reveal-items');
+			$header.removeClass('hidden-nav-open');
+			$header.removeClass('reveal-items');
 		}
 	});
 
 	$('.hidden-nav nav ul li').last().on(transitionEvent, function(event) {
-		if (!$('header').hasClass('hidden-nav-open')){
-			$('header').removeClass('expand-menu');
+		if (!$header.hasClass('hidden-nav-open')){
+			$header.removeClass('expand-menu');
 		}
 	});
 

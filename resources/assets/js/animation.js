@@ -3,7 +3,7 @@
 
 	// Tweek this to slowdown/speed up all of the animation on the page.
 	// Could probably bump this down to 0.9/0.85 on release to make it feel a bit more snappy.
-	var globalAnimSpeed = 1;
+	var globalAnimSpeed = 1.2;
 	$.Velocity.mock = globalAnimSpeed;
 
 	registerTransition('custom.slideUpIn', { translateY: [0,10] });

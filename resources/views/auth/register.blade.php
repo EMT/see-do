@@ -14,7 +14,7 @@
             {!! Form::label('name_first', 'First Name') !!}
 
             <div class="form-row-body">
-                {!! Form::text('name_first', null, ['class' => 'input-text', 'placeholder' => 'Marty']) !!}
+                {!! Form::text('name_first', explode(" ", Input::get('name'))[0] , ['class' => 'input-text', 'placeholder' => 'Marty']) !!}
 
                 @include('common.forms.field-errors', ['errors' => $errors->get('name_first')])
             </div>
@@ -25,7 +25,7 @@
             {!! Form::label('name_last', 'Last Name') !!}
 
             <div class="form-row-body">
-                {!! Form::text('name_last', null, ['class' => 'input-text', 'placeholder' => 'McFly']) !!}
+                {!! Form::text('name_last', empty(Input::get('name')[1]) ? explode(" ", Input::get('name'))[1] : null, ['class' => 'input-text', 'placeholder' => 'McFly']) !!}
 
                 @include('common.forms.field-errors', ['errors' => $errors->get('name_last')])
             </div>
@@ -36,7 +36,7 @@
             {!! Form::label('username', 'Username') !!}
 
             <div class="form-row-body">
-                {!! Form::text('username', null, ['class' => 'input-text', 'placeholder' => 'Marty McFly']) !!}
+                {!! Form::text('username', Input::get('name'), ['class' => 'input-text', 'placeholder' => 'Marty McFly']) !!}
 
                 @include('common.forms.field-errors', ['errors' => $errors->get('username')])
             </div>
@@ -58,7 +58,7 @@
             {!! Form::label('email', 'Email') !!}
 
             <div class="form-row-body">
-                {!! Form::text('email', null, ['class' => 'input-text', 'placeholder' => 'marty@thefuture.org']) !!}
+                {!! Form::text('email', Input::get('email'), ['class' => 'input-text', 'placeholder' => 'marty@thefuture.org']) !!}
 
                 @include('common.forms.field-errors', ['errors' => $errors->get('email')])
             </div>
@@ -77,7 +77,7 @@
 
         <div class="form-row">
             <div class="form-row-body">
-                {!! Form::submit('[ Sign Up ]', ['class' => 'btn primary']) !!}
+                {!! Form::submit(' Sign Up ', ['class' => 'btn primary']) !!}
             </div>
         </div>
 

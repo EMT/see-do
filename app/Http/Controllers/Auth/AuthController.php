@@ -7,6 +7,8 @@ use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Validator;
+use Event;
+use App\Events\PostSuccessfullAuth;
 
 class AuthController extends Controller
 {
@@ -70,6 +72,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        Event::fire(new PostSuccessfullAuth($data['registration_token']));
         return User::create([
             'name_first' => $data['name_first'],
             'name_last'  => $data['name_last'],

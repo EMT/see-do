@@ -23,7 +23,7 @@ class UsersController extends Controller
 
     public function __construct() {
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('owner', ['only' => ['edit']]);
+        $this->middleware('owner', ['only' => ['edit', 'destroy']]);
         $this->middleware('role:admin', ['only' => ['create']]);
     }
 
@@ -73,7 +73,7 @@ class UsersController extends Controller
                 ->addTextHeader('X-MC-Subaccount', 'see-do');
         });
 
-		Notification::info('Registration email sent to '. $request->name . ' at ' . $request->email);
+		Notification::success('Registration email sent to '. $request->name . ' at ' . $request->email);
 
         return redirect('/users');
     }

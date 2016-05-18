@@ -12,7 +12,7 @@ class City extends Model
      * @var array
      */
     protected $fillable = [
-    	'user_id',
+        'user_id',
         'name',
         'iata',
     ];
@@ -22,16 +22,6 @@ class City extends Model
         return $this->hasMany('App\Event');
     }
 
-    // public function categories()
-    // {
-    //     return $this->hasMany('App\Category');
-    // }
-
-    // public function user()
-    // {
-    //     return $this->belongsTo('App\User');
-    // }
-    //
  	/**
      * Returns all events in with time_end in the future.
      *

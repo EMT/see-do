@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\PostSuccessfullAuth;
 use App\Http\Controllers\Controller;
 use App\User;
+use Event;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Validator;
-use Event;
-use App\Events\PostSuccessfullAuth;
 
 class AuthController extends Controller
 {

@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use Auth;
-use Input;
-use Redirect;
 
 use App\City;
-use App\Event;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Auth;
+use Illuminate\Http\Request;
+use Input;
+use Redirect;
 
 class CitiesController extends Controller
 {
@@ -24,7 +19,7 @@ class CitiesController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  Auth  $user
+     * @param Auth $user
      * @return void
      */
     public function __construct(Auth $user)
@@ -55,7 +50,7 @@ class CitiesController extends Controller
         return view('cities.create');
     }
 
-	/**
+    /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
@@ -71,7 +66,7 @@ class CitiesController extends Controller
 
 
         $city = new City(Input::all());
-        $city->iata = substr(strtolower($city->iata),0,3);
+        $city->iata = substr(strtolower($city->iata), 0, 3);
         $city->user_id = $request->user()->id;
         $city->save();
 

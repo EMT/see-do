@@ -8,8 +8,7 @@ use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model implements SluggableInterface,
-                                     MarkdownInterface
+class Event extends Model implements SluggableInterface, MarkdownInterface
 {
     use SluggableTrait;
     use MarkdownTrait;
@@ -39,7 +38,8 @@ class Event extends Model implements SluggableInterface,
         'city_id',
     ];
 
-    public function city() {
+    public function city()
+    {
         return $this->belongsTo('App\City');
     }
 
@@ -140,7 +140,8 @@ class Event extends Model implements SluggableInterface,
         return $times;
     }
 
-    public function isLongerThanOneDay(){
+    public function isLongerThanOneDay()
+    {
         return date('d.m.y', strtotime($this->time_start)) != date('d.m.y', strtotime($this->time_end));
     }
 

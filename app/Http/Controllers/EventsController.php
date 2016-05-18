@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\SocialBroadcastEvent;
 use App\Category;
+use App\City;
 use App\ColorScheme;
 use App\Event;
-use App\City;
+use App\Events\SocialBroadcastEvent;
 use App\Icon;
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
 use Input;
 use Redirect;
-use Notification;
-use Auth;
 
 class EventsController extends Controller
 {
@@ -25,7 +24,7 @@ class EventsController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  Auth  $user
+     * @param Auth $user
      * @return void
      */
     public function __construct(Auth $user)
@@ -42,7 +41,7 @@ class EventsController extends Controller
     public function index($city_code)
     {
         $city = City::findByIATA($city_code)->first();
-        $events = Event::futureEvents()->where('city_id','=',$city->id)->get();
+        $events = Event::futureEvents()->where('city_id', '=', $city->id)->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
         return view('events.index', compact('city', 'events', 'event', 'categories') + ['event' => null]);
@@ -123,7 +122,7 @@ class EventsController extends Controller
     {
         $city = City::findByIATA($city_code)->first();
 
-        $events = Event::futureEvents()->where('city_id','=',$city->id)->get();
+        $events = Event::futureEvents()->where('city_id', '=', $city->id)->get();
         $event = Event::findBySlug($slug);
 
         $event_owner = User::find($event->user_id);

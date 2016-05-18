@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Mailer;
-use App\Event;
-use App\Subscriber;
 use App\Category;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Event;
+use App\Mailer;
+use App\Subscriber;
+use Illuminate\Http\Request;
 use Mail;
 
 class MailersController extends Controller
@@ -22,6 +19,7 @@ class MailersController extends Controller
     public function index()
     {
         $mailers = Mailer::orderBy('send_date', 'desc')->get();
+
         return view('mailers.index', compact('mailers'));
     }
 
@@ -39,7 +37,7 @@ class MailersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,7 +48,7 @@ class MailersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -86,7 +84,7 @@ class MailersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -97,8 +95,8 @@ class MailersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param  int                     $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -109,7 +107,7 @@ class MailersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Mailer;
-use App\Event;
-use App\Subscriber;
 use App\Category;
+use App\Event;
+use App\Mailer;
+use App\Subscriber;
 use Illuminate\Console\Command;
 use Mail;
 
@@ -60,9 +60,8 @@ class SendMailer extends Command
             $subscriber->email = $this->option('email');
             $subscribers = [$subscriber];
 
-            $this->comment('Sent test email to ' . $this->option('email'));
-        }
-        else {
+            $this->comment('Sent test email to '.$this->option('email'));
+        } else {
             $subscribers = Subscriber::all();
         }
 
@@ -77,9 +76,9 @@ class SendMailer extends Command
                     ->addTextHeader('X-MC-Subaccount', 'see-do');
             });
 
-            $count ++;
+            $count++;
         }
 
-        $this->comment('Sent to ' . $count . ' email addresses.');
+        $this->comment('Sent to '.$count.' email addresses.');
     }
 }

@@ -59,7 +59,7 @@ class UsersController extends Controller
         $city = City::findByIATA($city_code)->first();
 
         $events = Event::futureEvents()->where('user_id', '=', $user->id)->where('city_id','=',$city->id)->get();
-        return view('users.show', compact('user', 'events', 'event') + ['event' => null]);
+        return view('users.show', compact('city', 'user', 'events', 'event') + ['event' => null]);
     }
 
     public function create() {

@@ -27,9 +27,7 @@ Route::resource('categories', 'CategoriesController');
 Route::model('color-schemes', 'App\ColorScheme');
 Route::resource('color-schemes', 'ColorSchemesController');
 
-// User Profile routes
-Route::post('users/create', array('uses' => 'UsersController@registerEmail'));
-Route::resource('users', 'UsersController');
+
 
 // Color Scheme routes
 Route::model('icons', 'App\Icon');
@@ -59,9 +57,11 @@ Route::resource('subscribers', 'SubscribersController');
 Route::get('/', 'CitiesController@index');
 Route::resource('cities', 'CitiesController');
 
+// User Profile routes
+Route::post('{city}/users/create', array('uses' => 'UsersController@registerEmail'));
+Route::resource('{city}/users', 'UsersController');
 
 Route::get('/{city}', 'EventsController@index');
-
 
 Route::get('/{city}/events', 'EventsController@index');
 Route::get('/{city}/events/create', 'EventsController@create');

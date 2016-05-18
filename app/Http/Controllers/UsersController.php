@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Token;
 use App\Event;
+use App\City;
+
 use Bican\Roles\Models\Role;
 use Notification;
 
@@ -17,6 +19,7 @@ use Notification;
 use Input;
 use Redirect;
 use Mail;
+
 
 class UsersController extends Controller
 {
@@ -32,8 +35,9 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $users = User::orderBy('name_first', 'asc')->get();
+    public function index($city_code) {
+        $city = City::findByIATA($city_code)->first();
+        $users = User::orderBy('name_first', 'asc')->where('city_id', '=', $city->id)->get();
 
         foreach($users as $user) {
             $user->user_events_count = Event::futureEvents()->where('user_id', '=', $user->id)->count();

@@ -56,7 +56,9 @@ class UsersController extends Controller
      */
     public function show($city_code, $id) {
         $user = User::findBySlugOrId($id);
-        $events = Event::futureEvents()->where('user_id', '=', $user->id)->get();
+        $city = City::findByIATA($city_code)->first();
+
+        $events = Event::futureEvents()->where('user_id', '=', $user->id)->where('city_id','=',$city->id)->get();
         return view('users.show', compact('user', 'events', 'event') + ['event' => null]);
     }
 

@@ -30,7 +30,8 @@ elixir(function(mix) {
         'forms.js',
         'color-scheme-select.js',
         'icon-select.js',
-	    'date-time-input.js'
+	    'date-time-input.js',
+	    'home-background.js'
 	]);
 
     // Rename with hash and save into dir: public/build

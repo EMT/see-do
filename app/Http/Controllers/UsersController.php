@@ -54,7 +54,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($city_code, $id) {
         $user = User::findBySlugOrId($id);
         $events = Event::futureEvents()->where('user_id', '=', $user->id)->get();
         return view('users.show', compact('user', 'events', 'event') + ['event' => null]);

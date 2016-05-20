@@ -12,15 +12,14 @@
 */
 
 
-
 // Category routes
 // Provide controller methods with object instead of ID
-Route::model('categories', 'Category');
+Route::model('{city}/categories', 'Category');
 // Use slugs rather than IDs in URLs
-Route::bind('categories', function ($value, $route) {
+Route::bind('{city}/categories', function ($value, $route) {
     return App\Category::whereSlug($value)->first();
 });
-Route::resource('categories', 'CategoriesController');
+Route::resource('{city}/categories', 'CategoriesController');
 
 
 // Color Scheme routes
@@ -58,36 +57,18 @@ Route::get('/', 'CitiesController@index');
 Route::resource('cities', 'CitiesController');
 
 // User Profile routes
+// TODO: Fix common/header.php link to collaborators page
 Route::post('{city}/users/create', array('uses' => 'UsersController@registerEmail'));
 Route::resource('{city}/users', 'UsersController');
 
 Route::get('/{city}', 'EventsController@index');
-
 Route::get('/{city}/events', 'EventsController@index');
 Route::get('/{city}/events/create', 'EventsController@create');
 Route::get('/{city}/events/{slug}.json', 'EventsController@showJson');
 Route::get('/{city}/events/{slug}', 'EventsController@show');
 
 
-// Route::group(['prefix' => '/{city_code}', 'middleware' => 'city'], function() {
-	Route::resource('events', 'EventsController');
-
-	// Route city home page to events.index
-	// Route::get('/', 'EventsController@index');
-
-
-	// Event routes
-	// Route::model('events', 'Event');
-	// Route::bind('events', function ($value, $route) {
-	//     return App\Event::whereSlug($value)->first();
-	// });
-
-// });
-
-	// Route::get('/{city_code}/events/{slug}',[
-	// 	'as' => 'events.show',
-	//     'uses' => 'EventsController@show'
-	// ]);
+Route::resource('{city}/events', 'EventsController');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

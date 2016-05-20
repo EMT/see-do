@@ -6,7 +6,7 @@
 		@foreach( $categories as $cat )
 
 			<li>
-				<a href="{{ route('categories.show', ['slug' => $cat->slug]) }}">
+				<a href="{{ route('{city}.categories.show', ['slug' => $cat->slug, 'city' => Request::segment(1)]) }}">
                     {!! $cat->icon !!}
                     {{ $cat->title }} <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">{{ $cat->futureEventsCount() }}</span><span class="nav-close-bracket">]</span></span>
                 </a>

@@ -8,6 +8,7 @@
                     <span class="category-title">{{ $category->title }}</span>
                 @endif
 			</h1>
+			@if (Request::segment(1))
 			<a href="#" class="menu-link js-menu-toggle">Menu</a></li>
 			<div class="js-menu hidden-nav">
 				<nav>
@@ -22,6 +23,7 @@
 					</ul>
 				</nav>
 			</div>
+			@endif
 		</div>
 	</div>
 </header>

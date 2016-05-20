@@ -8,7 +8,7 @@
 			<li>
 				<a href="{{ route('{city}.categories.show', ['slug' => $cat->slug, 'city' => Request::segment(1)]) }}">
                     {!! $cat->icon !!}
-                    {{ $cat->title }} <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">{{ $cat->futureEventsCount() }}</span><span class="nav-close-bracket">]</span></span>
+                    {{ $cat->title }} <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">{{ $cat->futureEventsCount(Request::segment(1)) }}</span><span class="nav-close-bracket">]</span></span>
                 </a>
 			</li>
 

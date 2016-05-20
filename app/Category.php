@@ -5,6 +5,7 @@ namespace App;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
+use App\City;
 
 class Category extends Model implements SluggableInterface
 {
@@ -48,8 +49,9 @@ class Category extends Model implements SluggableInterface
         return $this->belongsTo('App\Icon');
     }
 
-    public function futureEventsCount()
+    public function futureEventsCount($city_code)
     {
-        return $this->events()->where('time_end', '>=', date('Y-m-d H:i:s'))->count();
+        $city = City::findByIATA($city_code)->first();
+        return $this->events()->where('city_id', '=', $city->id)->where('time_end', '>=', date('Y-m-d H:i:s'))->count();
     }
 }

@@ -93,7 +93,7 @@ $(function() {
 		e.preventDefault();
 
 		stateHandler.push({
-			url: '/',
+			url: '/' + location.pathname.split('/')[1],
 			title: 'See&Do',
 			eventId: null
 		});

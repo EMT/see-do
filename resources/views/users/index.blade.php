@@ -26,7 +26,7 @@
 		<ul>
 			@foreach( $users as $user )
 				<li>
-					<a href="/users/{{ $user->slug }}" class="user-item">
+					<a href="{{ route('{city}.users.show', ['city' => Request::segment(1), 'users' => $user->slug])}}" class="user-item">
 						<div class="event-item-title">
 				            <div class="event-item-inner">
 				                <h3>{{ $user->name_first }} {{ $user->name_last }} <span class="events-count">[ {{$user->user_events_count}} ]</span></h3>

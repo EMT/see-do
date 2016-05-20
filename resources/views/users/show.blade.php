@@ -9,7 +9,7 @@
                 <h2 class="page-intro-title">{{$user->username}}</h2>
                 <p>{!! nl2br($user->bio) !!}</p>
                 @if (Auth::check())
-                    @if (Auth::user()->slug == Request::segment(2))
+                    @if (Auth::user()->slug == Request::segment(3))
                         <a class="link-effect edit-user-details" href="{{ URL::to('users/' . $user->slug . '/edit') }}">Edit your details</a>
                     @endif
                 @endif

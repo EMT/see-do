@@ -23,7 +23,7 @@
             @foreach( $events as $ev )
 
                 <li id="event-item-{{ $ev->id }}" class="event clear {{ ($event && $event->id === $ev->id) ? 'event--active' : '' }}">
-                    <a href="{{ route('{city}.events.show', array(Request::segment(1), $ev->slug)) }}">
+                    <a href="{{ route('{city}.events.show', array(Request::route()->getParameter('city'), $ev->slug)) }}">
                         <div class="event-item-date">
                             <span class="meta-data">{!! $ev->shortDates() !!}</span>
                         </div>

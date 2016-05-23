@@ -9,7 +9,7 @@
         <p>We’ll email you a weekly round-up of things to See+Do in Manchester.</p>
     </div>
 
-    {!! Form::open(['action' => 'SubscribersController@store', 'class' => 'form']) !!}
+    {!! Form::open(['action' => array('SubscribersController@store', Request::segment(1)), 'class' => 'form']) !!}
 
         @include('subscribers.subscriberForm')
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Subscriber;
+use App\City;
 use Illuminate\Http\Request;
 use Input;
 use Mail;
@@ -43,8 +44,9 @@ class SubscribersController extends Controller
             'name'  => 'required|max:70',
             'email' => 'required|email|unique:subscribers',
         ]);
-
         $subscriber = new Subscriber(Input::all());
+        $city = City::findByIATA($request->route()->getParameter('city'))->first();
+        $subscriber->city_id = $city->id;
         $subscriber->save();
         $subscriber->createNewToken();
         Mail::send('emails.subscribers.hello', ['subscriber' => $subscriber], function ($m) use ($subscriber) {
@@ -55,7 +57,7 @@ class SubscribersController extends Controller
                 ->addTextHeader('X-MC-Subaccount', 'see-do');
         });
 
-        return Redirect::to('/subscribers/hello');
+        return Redirect::to($request->route()->getParameter('city') . '/subscribers/hello');
     }
 
     /**

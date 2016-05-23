@@ -24,7 +24,7 @@
         </p>
         <p class="meta-data event-info--user">
             <span class="event-icon">@include('svg.event-user-icon')</span>
-            <span class="js-event-info-user"><a href="/users/{{ $event ? $event->user->slug : '' }}">{{ $event ? $event->user->username : '' }}</a></span>
+            <span class="js-event-info-user"><a href="{{Request::route()->getParameter('city')}}/users/{{ $event ? $event->user->slug : '' }}">{{ $event ? $event->user->username : '' }}</a></span>
         </p>
     </div>
 
@@ -38,8 +38,8 @@
     </div>
     <div class="event-info--navigation clear">
         <p class="event-info--share meta-data">
-            <a class="js-event-info-fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $event ? rawurlencode(route('events.show', ['slug' => $event->slug])) : '' }}">f</a>
-            <a class="js-event-info-twitter" target="_blank" href="https://twitter.com/home?status={{ $event ? rawurlencode($event->title . ' ' . route('events.show', ['slug' => $event->slug])) : '' }}">t</a>
+            <a class="js-event-info-fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $event ? rawurlencode(route('{city}.events.show', ['slug' => $event->slug, 'city' => Request::route()->getParameter('city')])) : '' }}">f</a>
+            <a class="js-event-info-twitter" target="_blank" href="https://twitter.com/home?status={{ $event ? rawurlencode($event->title . ' ' . route('{city}.events.show', ['slug' => $event->slug, 'city' => Request::route()->getParameter('city')])) : '' }}">t</a>
         </p>
         <div class="event-info--nav-arrows clear js-event-next-prev"></div>
     </div>

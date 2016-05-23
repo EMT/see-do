@@ -33,19 +33,19 @@ Route::model('icons', 'App\Icon');
 Route::resource('icons', 'IconsController');
 
 // Subscriber routes
-Route::get('subscribers/hello', function () {
+Route::get('/{city}/subscribers/hello', function () {
     return view('subscribers.hello');
 });
-Route::get('subscribers/updated', function () {
+Route::get('/{city}/subscribers/updated', function () {
     return view('subscribers.updated');
 });
-Route::get('subscribers/unsubscribed', function () {
+Route::get('/{city}/subscribers/unsubscribed', function () {
     return view('subscribers.unsubscribed');
 });
-Route::get('subscribers/{token}/edit', 'SubscribersController@edit');
-Route::put('subscribers/{token}', 'SubscribersController@update');
-Route::get('subscribers/{token}/unsubscribe', 'SubscribersController@destroy');
-Route::resource('subscribers', 'SubscribersController');
+Route::get('/{city}/subscribers/{token}/edit', 'SubscribersController@edit');
+Route::put('/{city}/subscribers/{token}', 'SubscribersController@update');
+Route::get('/{city}/subscribers/{token}/unsubscribe', 'SubscribersController@destroy');
+Route::resource('/{city}/subscribers', 'SubscribersController');
 
 // Mailer routes
 // Route::model('mailers', 'App\Mailer');

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Category;
+use App\City;
 use App\Event;
 use App\Mailer;
 use App\Subscriber;
@@ -42,43 +43,51 @@ class SendMailer extends Command
      */
     public function handle()
     {
-        $events = Event::where('time_end', '>=', date('Y-m-d H:i:s'))
-                        ->where('time_end', '<=', date('Y-m-d H:i:s', strtotime('+2 weeks')))
-                        ->orderBy('time_start', 'asc')
-                        ->get();
+        $cities = City::all();
+        // Grab all the cities and then do a for each.
+        // run this for each of them.
+        foreach ($cities as $city) {
+            $events = Event::where('city_id', '=', $city->id)
+                            ->where('time_end', '>=', date('Y-m-d H:i:s'))
+                            ->where('time_end', '<=', date('Y-m-d H:i:s', strtotime('+2 weeks')))
+                            ->orderBy('time_start', 'asc')
+                            ->get();
 
-        if (!count($events)) {
-            $this->comment('No events found. Mailer aborted.');
-            exit();
+            if (!count($events)) {
+                $this->comment('No events found for '.$city->name.'. Mailer not sent.');
+                continue;
+            }
+
+            $categories = Category::orderBy('title', 'asc')->get();
+
+            if ($this->option('email')) {
+                $subscriber = new Subscriber();
+                $subscriber->name = 'Test User';
+                $subscriber->email = $this->option('email');
+                $subscribers = [$subscriber];
+
+                $this->comment('Sent test email to '.$this->option('email'));
+            } else {
+                $subscribers = Subscriber::where('city_id', '=', $city->id)->get();
+            }
+
+            $count = 0;
+
+            foreach ($subscribers as $subscriber) {
+                Mail::send('emails.subscribers.mailer', ['subscriber' => $subscriber, 'events' => $events, 'categories' => $categories, 'city' => $city], function ($m) use ($subscriber, $city) {
+                    $m->from('messages@madebyfieldwork.com', 'See+Do')
+                        ->to($subscriber->email, $subscriber->name)
+                        ->subject('Weekly Round-Up of Things to See+Do in ' . $city->name)
+                        ->getHeaders()
+                        ->addTextHeader('X-MC-Subaccount', 'see-do');
+                });
+
+                $count++;
+            }
+
+            $this->comment('Sent to '.$count.' email addresses in '.$city->name.'.');
+            $count = 0;
         }
 
-        $categories = Category::orderBy('title', 'asc')->get();
-
-        if ($this->option('email')) {
-            $subscriber = new Subscriber();
-            $subscriber->name = 'Test User';
-            $subscriber->email = $this->option('email');
-            $subscribers = [$subscriber];
-
-            $this->comment('Sent test email to '.$this->option('email'));
-        } else {
-            $subscribers = Subscriber::all();
-        }
-
-        $count = 0;
-
-        foreach ($subscribers as $subscriber) {
-            Mail::send('emails.subscribers.mailer', ['subscriber' => $subscriber, 'events' => $events, 'categories' => $categories], function ($m) use ($subscriber) {
-                $m->from('messages@madebyfieldwork.com', 'See+Do')
-                    ->to($subscriber->email, $subscriber->name)
-                    ->subject('Weekly Round-Up of Things to See+Do in Manchester')
-                    ->getHeaders()
-                    ->addTextHeader('X-MC-Subaccount', 'see-do');
-            });
-
-            $count++;
-        }
-
-        $this->comment('Sent to '.$count.' email addresses.');
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Events\PostSuccessfullAuth;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\City;
+use App\Token;
 use Event;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -72,14 +74,20 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $token = Token::where('token','=',$data['registration_token'])->first();
+        $city = City::where('city_id', '=', $token->city_id);
+
         Event::fire(new PostSuccessfullAuth($data['registration_token']));
-        return User::create([
+        User::create([
             'name_first' => $data['name_first'],
             'name_last'  => $data['name_last'],
             'username'   => $data['username'],
             'bio'        => $data['bio'],
             'email'      => $data['email'],
             'password'   => bcrypt($data['password']),
+            'city_id'    => $city->id
         ]);
+
+        return redirect('/'.$city->iata);
     }
 }

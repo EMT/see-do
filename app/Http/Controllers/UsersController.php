@@ -62,26 +62,30 @@ class UsersController extends Controller
         return view('users.show', compact('city', 'user', 'events', 'event') + ['event' => null]);
     }
 
-    public function create() {
-    	return view('users.create');
+    public function create($city_code) {
+        $city = City::findByIATA($city_code)->first();
+
+    	return view('users.create', compact('city'));
     }
 
     public function registerEmail(Request $request) {
+        $city = City::findByIATA($request->route()->getParameter('city'))->first();
+
         $token = new Token();
         $token->save();
-        $token->createNewToken();
+        $token->createNewToken($city->id);
 
-		Mail::send('emails.registration.token', ['token' => $token, 'request' => $request], function ($m) use ($token, $request) {
+		Mail::send('emails.registration.token', ['token' => $token, 'request' => $request, 'city' => $city], function ($m) use ($token, $request, $city) {
             $m->from('messages@madebyfieldwork.com', 'See+Do')
                 ->to($request->email,$request->name)
-                ->subject('Here is your registration link to start contributing to See+Do')
+                ->subject('Here is your registration link to start contributing to See+Do in '.$city->name.'.')
                 ->getHeaders()
                 ->addTextHeader('X-MC-Subaccount', 'see-do');
         });
 
 		Notification::success('Registration email sent to '. $request->name . ' at ' . $request->email);
 
-        return redirect('/users');
+        return redirect('/'.$city->iata.'/users');
     }
 
     /**

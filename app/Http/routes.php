@@ -57,7 +57,6 @@ Route::get('/', 'CitiesController@index');
 Route::resource('cities', 'CitiesController');
 
 // User Profile routes
-// TODO: Fix common/header.php link to collaborators page
 Route::post('{city}/users/create', array('uses' => 'UsersController@registerEmail'));
 Route::resource('{city}/users', 'UsersController');
 

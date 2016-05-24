@@ -52,7 +52,7 @@ class Authenticate
 
                 return redirect()->guest('auth/login');
             }
-        } else if ($this->auth->user()->city_id !== $city->id) {
+        } else if ($city && $this->auth->user()->city_id !== $city->id) {
 
             Notification::error('You don\'t have permissions for that city.');
 

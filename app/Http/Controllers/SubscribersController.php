@@ -26,9 +26,10 @@ class SubscribersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($city_code)
     {
-        return view('subscribers.create');
+        $city = City::findByIATA($city_code)->first();
+        return view('subscribers.create', compact('city'));
     }
 
     /**

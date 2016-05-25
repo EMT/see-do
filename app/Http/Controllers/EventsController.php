@@ -72,14 +72,6 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        if (!$request->color_scheme_id && $request->category_id) {
-            $category = Category::find($request->category_id);
-
-            if ($category && $category->color_scheme_id) {
-                $request->merge(['color_scheme_id' => $category->color_scheme_id]);
-            }
-        }
-
         $request->merge(['icons' => implode(',', $request->icons)]);
 
         $this->validate($request, [
@@ -94,15 +86,10 @@ class EventsController extends Controller
         ]);
 
         $event = new Event(Input::except(['tweet, city_id']));
-        $event->user_id = $request->user()->id;
+        $event->user_id = Auth::user()->id;
 
         $city_code = Input::get('city_code');
-        $city = City::findByIATA($city_code)->first();
-        $event->city_id = $city->id;
-
-        if (!$event->color_scheme_id && $event->category_id) {
-            $event->color_scheme_id = $event->category->color_scheme_id;
-        }
+        $event->city_id = City::getIdfromIATA($city_code);
 
         $event->save();
 

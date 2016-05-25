@@ -5,8 +5,7 @@
 @section('content')
     <h2 class="aligned">Edit Event</h2>
 
-    {!! Form::model($event, ['route' => ['events.update', $event->slug], 'method' => 'put', 'class' => 'form']) !!}
-
+    {!! Form::model($event, ['route' => ['{city}.events.update', $event->slug, Request::route()->getParameter('city')], 'method' => 'put', 'class' => 'form']) !!}
 		@include('events.eventForm')
 
     {!! Form::close() !!}

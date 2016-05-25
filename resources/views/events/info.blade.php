@@ -46,7 +46,7 @@
 
    @if (Auth::check() && Auth::user()->city->iata === Request::route()->getParameter('city'))
         <div class="event-info--admin meta-data">
-            <a class="js-edit-event" href="{{ $event ? route('events.edit', ['slug' => $event->slug]) : '' }}">Edit Event</a>
+            <a class="js-edit-event" href="{{ $event ? route('{city}.events.edit', ['slug' => $event->slug, 'city' => Request::route()->getParameter('city')]) : '' }}">Edit Event</a>
         </div>
     @endif
 </div>

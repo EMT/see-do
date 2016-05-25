@@ -113,7 +113,7 @@
 </div>
 
 
-{!! Form::hidden('city_code', Request::segment(1)) !!}
+{!! Form::hidden('city_code', Request::route()->getParameter('city')) !!}
 
 <div class="form-row">
     <div class="form-row-body">

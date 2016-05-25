@@ -94,7 +94,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($city_code, $id) {
         $user = User::findBySlugOrId($id);
         return view('users.edit', compact('user'));
     }
@@ -106,7 +106,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $city_code)
     {
 	   $user = User::findBySlugOrId($id);
 
@@ -131,13 +131,12 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($city_code, $id)
     {
 	   $user = User::findBySlugOrId($id);
-       $user_events = Event::where('user_id','=',$user->id);
-       dd($user_events);
+       // $user_events = Event::where('user_id','=',$user->id)->get();
        $user->delete();
 
-       return redirect('/users');
+       return redirect('/'.$city_code.'/users');
     }
 }

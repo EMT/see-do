@@ -4,75 +4,28 @@
 |--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
 */
 
-
-// Category routes
-// Provide controller methods with object instead of ID
-Route::model('{city}/categories', 'Category');
-// Use slugs rather than IDs in URLs
-Route::bind('{city}/categories', function ($value, $route) {
-    return App\Category::whereSlug($value)->first();
-});
-Route::resource('{city}/categories', 'CategoriesController');
-
+/*
+|--------------------------------------------------------------------------
+| Shared across cities
+|--------------------------------------------------------------------------
+|
+| Anything that doesn't need to be restricted to invidiual cities,
+| such as Authentication and Registration.
+|
+| Icons and color schemes are also global to keep the design of the
+| site consistent.
+|
+*/
 
 // Color Scheme routes
 Route::model('color-schemes', 'App\ColorScheme');
 Route::resource('color-schemes', 'ColorSchemesController');
 
-
-
 // Color Scheme routes
 Route::model('icons', 'App\Icon');
 Route::resource('icons', 'IconsController');
-
-// Subscriber routes
-Route::get('/{city}/subscribers/hello', function () {
-    return view('subscribers.hello');
-});
-Route::get('/{city}/subscribers/updated', function () {
-    return view('subscribers.updated');
-});
-Route::get('/{city}/subscribers/unsubscribed', function () {
-    return view('subscribers.unsubscribed');
-});
-Route::get('/{city}/subscribers/{token}/edit', 'SubscribersController@edit');
-Route::put('/{city}/subscribers/{token}', 'SubscribersController@update');
-Route::get('/{city}/subscribers/{token}/unsubscribe', 'SubscribersController@destroy');
-Route::resource('/{city}/subscribers', 'SubscribersController');
-
-// Mailer routes
-// Route::model('mailers', 'App\Mailer');
-// Route::post('mailers/generate', 'MailersController@generate');
-// Route::get('mailers/now', 'MailersController@now');
-// Route::resource('mailers', 'MailersController');
-
-Route::get('/', 'CitiesController@index');
-Route::resource('cities', 'CitiesController');
-
-// User Profile routes
-Route::post('{city}/users/create', array('uses' => 'UsersController@registerEmail'));
-Route::model('{city}/users', 'User');
-Route::bind('{city}/users', function ($value, $route) {
-	dd($value);
-    return App\Users::whereSlug($value)->first();
-});
-Route::resource('{city}/users', 'UsersController');
-
-Route::get('/{city}', 'EventsController@index');
-Route::get('/{city}/events', 'EventsController@index');
-Route::get('/{city}/events/create', 'EventsController@create');
-Route::get('/{city}/events/{slug}.json', 'EventsController@showJson');
-Route::get('/{city}/events/{slug}', 'EventsController@show');
-
-
-Route::resource('{city}/events', 'EventsController');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -90,4 +43,55 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+/*
+|--------------------------------------------------------------------------
+| City routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/', 'CitiesController@index');
+Route::resource('cities', 'CitiesController');
+
+// Category routes
+// Provide controller methods with object instead of ID
+Route::model('{city}/categories', 'Category');
+// Use slugs rather than IDs in URLs
+Route::bind('{city}/categories', function ($value, $route) {
+    return App\Category::whereSlug($value)->first();
+});
+Route::resource('{city}/categories', 'CategoriesController');
+
+// Subscriber routes
+Route::get('/{city}/subscribers/hello', function () {
+    return view('subscribers.hello');
+});
+Route::get('/{city}/subscribers/updated', function () {
+    return view('subscribers.updated');
+});
+Route::get('/{city}/subscribers/unsubscribed', function () {
+    return view('subscribers.unsubscribed');
+});
+Route::get('/{city}/subscribers/{token}/edit', 'SubscribersController@edit');
+Route::put('/{city}/subscribers/{token}', 'SubscribersController@update');
+Route::get('/{city}/subscribers/{token}/unsubscribe', 'SubscribersController@destroy');
+Route::resource('/{city}/subscribers', 'SubscribersController');
+
+// User Profile routes
+Route::post('{city}/users/create', array('uses' => 'UsersController@registerEmail'));
+Route::model('{city}/users', 'User');
+Route::bind('{city}/users', function ($value, $route) {
+	dd($value);
+    return App\Users::whereSlug($value)->first();
+});
+Route::resource('{city}/users', 'UsersController');
+
+
+Route::get('/{city}', 'EventsController@index');
+Route::get('/{city}/events', 'EventsController@index');
+Route::get('/{city}/events/create', 'EventsController@create');
+Route::get('/{city}/events/{slug}.json', 'EventsController@showJson');
+Route::get('/{city}/events/{slug}', 'EventsController@show');
+
+Route::resource('{city}/events', 'EventsController');
 

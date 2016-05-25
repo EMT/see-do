@@ -8,6 +8,8 @@ use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
+use App\City;
+
 class Event extends Model implements SluggableInterface, MarkdownInterface
 {
     use SluggableTrait;
@@ -153,5 +155,26 @@ class Event extends Model implements SluggableInterface, MarkdownInterface
     public static function futureEvents()
     {
         return self::where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc');
+    }
+
+    /**
+     * Returns all events in with time_end in the future.
+     *
+     * @return Collection A collection of Events
+     */
+    public static function futureEventsByCityId($city_id)
+    {
+        return self::futureEvents()->where('city_id', '=', $city_id);
+    }
+
+    /**
+     * Returns all events in with time_end in the future.
+     *
+     * @return Collection A collection of Events
+     */
+    public static function futureEventsByCityIATA($city_code)
+    {
+        $city = City::findByIATA($city_code)->first();
+        return self::futureEvents()->where('city_id', '=', $city->id);
     }
 }

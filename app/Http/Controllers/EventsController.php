@@ -41,7 +41,7 @@ class EventsController extends Controller
     public function index($city_code)
     {
         $city = City::findByIATA($city_code)->first();
-        $events = Event::futureEvents()->where('city_id', '=', $city->id)->get();
+        $events = Event::futureEventsByCityId($city->id)->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
         return view('events.index', compact('city', 'events', 'event', 'categories') + ['event' => null]);
@@ -122,12 +122,11 @@ class EventsController extends Controller
     {
         $city = City::findByIATA($city_code)->first();
 
-        $events = Event::futureEvents()->where('city_id', '=', $city->id)->get();
+        $events = Event::futureEventsByCityId($city->id)->get();
         $event = Event::findBySlug($slug);
 
         $event_owner = User::find($event->user_id);
         $event->user = $event_owner;
-
 
         return view('events.index', compact('city', 'events', 'event'));
     }
@@ -141,8 +140,6 @@ class EventsController extends Controller
      */
     public function showJson($city_code, $slug)
     {
-        $city = City::findByIATA($city_code)->first();
-
         $event = Event::findBySlug($slug);
         $event_owner = User::find($event->user_id);
         $event->user = $event_owner;

@@ -58,7 +58,7 @@ class UsersController extends Controller
         $user = User::findBySlugOrId($id);
         $city = City::findByIATA($city_code)->first();
 
-        $events = Event::futureEvents()->where('user_id', '=', $user->id)->where('city_id','=',$city->id)->get();
+        $events = Event::futureEventsByCityId($city->id)->where('user_id', '=', $user->id)->get();
         return view('users.show', compact('city', 'user', 'events', 'event') + ['event' => null]);
     }
 
@@ -134,6 +134,8 @@ class UsersController extends Controller
     public function destroy($id)
     {
 	   $user = User::findBySlugOrId($id);
+       $user_events = Event::where('user_id','=',$user->id);
+       dd($user_events);
        $user->delete();
 
        return redirect('/users');

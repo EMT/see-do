@@ -23,12 +23,16 @@ class City extends Model
     }
 
  	/**
-     * Returns all events in with time_end in the future.
+     * Returns a city based on the iata
      *
-     * @return Collection A collection of Events
+     * @return A city
      */
     public static function findByIATA($iata)
     {
         return self::where('iata', '=', $iata);
+    }
+
+    public static function getIdfromIATA($iata) {
+        return self::findByIATA($iata)->first()->id;
     }
 }

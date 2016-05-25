@@ -44,7 +44,7 @@
         <div class="event-info--nav-arrows clear js-event-next-prev"></div>
     </div>
 
-    @if (Auth::check())
+   @if (Auth::check() && Auth::user()->city->iata === Request::route()->getParameter('city'))
         <div class="event-info--admin meta-data">
             <a class="js-edit-event" href="{{ $event ? route('events.edit', ['slug' => $event->slug]) : '' }}">Edit Event</a>
         </div>

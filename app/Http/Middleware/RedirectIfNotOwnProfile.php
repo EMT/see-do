@@ -19,8 +19,7 @@ class RedirectIfNotOwnProfile
     public function handle($request, Closure $next)
     {
         $route = app()->router->getCurrentRoute();
-        $routeParam = $route->getParameter('users');
-        $requestedUser = User::findBySlugOrId($routeParam);
+        $requestedUser = $route->getParameter('user');
         $sessionUser = Auth::user();
 
         // Restrict the logged in user to only editing their information unless they are an admin.

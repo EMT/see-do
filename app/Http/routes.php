@@ -78,13 +78,10 @@ Route::get('/{city}/subscribers/{token}/unsubscribe', 'SubscribersController@des
 Route::resource('/{city}/subscribers', 'SubscribersController');
 
 // User Profile routes
-Route::post('{city}/users/create', array('uses' => 'UsersController@registerEmail'));
-Route::model('{city}/users', 'User');
-Route::bind('{city}/users', function ($value, $route) {
-	dd($value);
-    return App\Users::whereSlug($value)->first();
-});
-Route::resource('{city}/users', 'UsersController');
+Route::post('/{city}/users/create', array('uses' => 'UsersController@registerEmail'));
+Route::resource('/{city}/users', 'UsersController', [
+    'parameters' => 'singular'
+]);
 
 
 Route::get('/{city}', 'EventsController@index');

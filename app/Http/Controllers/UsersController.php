@@ -54,8 +54,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($city_code, $id) {
-        $user = User::findBySlugOrId($id);
+    public function show($city_code, User $user) {
         $city = City::findByIATA($city_code)->first();
 
         $events = Event::futureEventsByCityId($city->id)->where('user_id', '=', $user->id)->get();
@@ -94,8 +93,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($city_code, $id) {
-        $user = User::findBySlugOrId($id);
+    public function edit($city_code, User $user) {
         return view('users.edit', compact('user'));
     }
 
@@ -106,10 +104,8 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $city_code)
+    public function update(Request $request, User $user, $city_code)
     {
-	   $user = User::findBySlugOrId($id);
-
        $this->validate($request, [
             'name_first' => 'required',
             'name_last' => 'required',
@@ -131,9 +127,8 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($city_code, $id)
+    public function destroy($city_code, User $user)
     {
-	   $user = User::findBySlugOrId($id);
        // $user_events = Event::where('user_id','=',$user->id)->get();
        $user->delete();
 

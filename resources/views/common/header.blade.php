@@ -7,12 +7,12 @@
                     <span class="category-title">{{ $category->title }}</span>
                 @endif
 			</h1>
-			@if (Request::route()->getParameter('city')->iata || Auth::check())
+			@if (Request::route()->getParameter('city') || Auth::check())
 			<a href="#" class="menu-link js-menu-toggle">Menu</a></li>
 			<div class="js-menu hidden-nav">
 				<nav>
 					<ul>
-					@if(Request::route()->getParameter('city')->iata)
+					@if(Request::route()->getParameter('city'))
 						<li><a href="#" class="filter">Filter</a></li>
 						<li><a href="{{ route('{city}.subscribers.create', ['city' => Request::route()->getParameter('city')]) }}">Subscribe</a></li>
 						<li><a href="{{ URL::route('{city}.users.index', ['city' => Request::route()->getParameter('city')->iata])}}">Collaborators</a></li>

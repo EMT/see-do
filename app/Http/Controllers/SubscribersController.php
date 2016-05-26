@@ -26,9 +26,8 @@ class SubscribersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($city_code)
+    public function create(City $city)
     {
-        $city = City::findByIATA($city_code)->first();
         return view('subscribers.create', compact('city'));
     }
 
@@ -39,14 +38,13 @@ class SubscribersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(City $city, Request $request)
     {
         $this->validate($request, [
             'name'  => 'required|max:70',
             'email' => 'required|email|unique:subscribers',
         ]);
         $subscriber = new Subscriber(Input::all());
-        $city = City::findByIATA($request->route()->getParameter('city'))->first();
         $subscriber->city_id = $city->id;
         $subscriber->save();
         $subscriber->createNewToken();
@@ -58,7 +56,7 @@ class SubscribersController extends Controller
                 ->addTextHeader('X-MC-Subaccount', 'see-do');
         });
 
-        return Redirect::to($request->route()->getParameter('city') . '/subscribers/hello');
+        return Redirect::to($city->iata . '/subscribers/hello');
     }
 
     /**
@@ -68,10 +66,8 @@ class SubscribersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($token)
+    public function edit(Subscriber $subscriber)
     {
-        $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
-
         return view('subscribers.edit', compact('subscriber'));
     }
 
@@ -83,10 +79,8 @@ class SubscribersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $token)
+    public function update(Request $request, Subscriber $subscriber)
     {
-        $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
-
         $this->validate($request, [
             'name'  => 'required|max:70',
             'email' => 'required|email|unique:subscribers,email,'.$subscriber->id,
@@ -112,9 +106,8 @@ class SubscribersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($token)
+    public function destroy(Subscriber $subscriber)
     {
-        $subscriber = Subscriber::where(['token' => $token])->firstOrFail();
         $subscriber->delete();
 
         return Redirect::to('/subscribers/unsubscribed');

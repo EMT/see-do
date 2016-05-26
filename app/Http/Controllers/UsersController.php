@@ -35,8 +35,7 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($city_code) {
-        $city = City::findByIATA($city_code)->first();
+    public function index(City $city) {
         $users = User::orderBy('name_first', 'asc')->where('city_id', '=', $city->id)->get();
 
         foreach($users as $user) {
@@ -54,15 +53,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($city_code, User $user) {
-        $city = City::findByIATA($city_code)->first();
+    public function show(City $city, User $user) {
 
         $events = Event::futureEventsByCityId($city->id)->where('user_id', '=', $user->id)->get();
         return view('users.show', compact('city', 'user', 'events', 'event') + ['event' => null]);
     }
 
-    public function create($city_code) {
-        $city = City::findByIATA($city_code)->first();
+    public function create(City $city) {
 
     	return view('users.create', compact('city'));
     }

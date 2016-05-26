@@ -91,7 +91,7 @@ $(function() {
 
 	$eventInfoClose.on('click touch', function(e) {
 		e.preventDefault();
-
+		console.log(location.pathname.split('/')[1]);
 		stateHandler.push({
 			url: '/' + location.pathname.split('/')[1],
 			title: 'See&Do',

@@ -38,15 +38,15 @@
     </div>
     <div class="event-info--navigation clear">
         <p class="event-info--share meta-data">
-            <a class="js-event-info-fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $event ? rawurlencode(route('{city}.events.show', ['slug' => $event->slug, 'city' => Request::route()->getParameter('city')])) : '' }}">f</a>
-            <a class="js-event-info-twitter" target="_blank" href="https://twitter.com/home?status={{ $event ? rawurlencode($event->title . ' ' . route('{city}.events.show', ['slug' => $event->slug, 'city' => Request::route()->getParameter('city')])) : '' }}">t</a>
+            <a class="js-event-info-fb" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $event ? rawurlencode(route('{city}.events.show', ['slug' => $event->slug, 'city' => Request::route()->getParameter('city')->iata])) : '' }}">f</a>
+            <a class="js-event-info-twitter" target="_blank" href="https://twitter.com/home?status={{ $event ? rawurlencode($event->title . ' ' . route('{city}.events.show', ['slug' => $event->slug, 'city' => Request::route()->getParameter('city')->iata])) : '' }}">t</a>
         </p>
         <div class="event-info--nav-arrows clear js-event-next-prev"></div>
     </div>
 
-   @if (Auth::check() && Auth::user()->city->iata === Request::route()->getParameter('city'))
+   @if (Auth::check() && Auth::user()->city->iata === Request::route()->getParameter('city')->iata)
         <div class="event-info--admin meta-data">
-            <a class="js-edit-event" href="{{ $event ? route('{city}.events.edit', ['slug' => $event->slug, 'city' => Request::route()->getParameter('city')]) : '' }}">Edit Event</a>
+            <a class="js-edit-event" href="{{ $event ? URL::route('{city}.events.edit', ['city' => Request::route()->getParameter('city')->iata, 'slug' => $event->slug]) : '' }}">Edit Event</a>
         </div>
     @endif
 </div>

@@ -17,6 +17,11 @@ class City extends Model
         'iata',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'iata';
+    }
+
     public function events()
     {
         return $this->hasMany('App\Event');

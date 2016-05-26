@@ -66,12 +66,10 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($city_code, $slug)
+    public function show(City $city, Category $category)
     {
         $event = null;
-        $category = Category::findBySlug($slug);
-        $city = City::findByIATA($city_code)->first();
-        $events = $category->futureEvents($city_code)->get();
+        $events = $category->futureEvents($city)->get();
         $categories = Category::orderBy('title', 'asc')->get();
 
         return view('events.index', compact('city', 'events', 'event', 'category', 'categories'));

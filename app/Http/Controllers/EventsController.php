@@ -38,9 +38,8 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($city_code)
+    public function index(City $city)
     {
-        $city = City::findByIATA($city_code)->first();
         $events = Event::futureEventsByCityId($city->id)->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
@@ -52,7 +51,7 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($city_code)
+    public function create(City $city)
     {
         $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
             ->orderBy('created_at', 'desc')
@@ -105,16 +104,9 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($city_code, $slug)
+    public function show(City $city, Event $event)
     {
-        $city = City::findByIATA($city_code)->first();
-
         $events = Event::futureEventsByCityId($city->id)->get();
-        $event = Event::findBySlug($slug);
-
-        $event_owner = User::find($event->user_id);
-        $event->user = $event_owner;
-
         return view('events.index', compact('city', 'events', 'event'));
     }
 
@@ -125,18 +117,16 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showJson($city_code, $slug)
+    public function showJson(City $city, Event $event)
     {
-        $event = Event::findBySlug($slug);
-        $event_owner = User::find($event->user_id);
-        $event->user = $event_owner;
+        $event->user = $event->user; // Eh? Doesn't work without this ?
         $event->colorScheme;
         $event->category;
         $event->parsedContent = $event->parseMarkdown('content');
         $event->shortDates = $event->shortDates();
         $event->longDates = $event->longDates();
         $event->times = $event->times();
-        $event->url = action('EventsController@show', ['city_code' => $city_code, 'slug' => $event->slug]);
+        $event->url = action('EventsController@show', ['city_code' => $city->iata, 'slug' => $event->slug]);
 
 
         return response()->json($event);
@@ -149,7 +139,7 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit(City $city, Event $event)
     {
         $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
             ->orderBy('created_at', 'desc')
@@ -168,16 +158,8 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, City $city, Event $event)
     {
-        if (!$request->color_scheme_id && $request->category_id) {
-            $category = Category::find($request->category_id);
-
-            if ($category && $category->color_scheme_id) {
-                $request->merge(['color_scheme_id' => $category->color_scheme_id]);
-            }
-        }
-
         $request->merge(['icons' => implode(',', $request->icons)]);
 
         $this->validate($request, [
@@ -195,7 +177,7 @@ class EventsController extends Controller
 
         event(new SocialBroadcastEvent($event, $request));
 
-        return Redirect::route('events.index')->with('message', 'Event updated');
+        return Redirect::route('{city}.events.index', $city->iata)->with('message', 'Event updated');
     }
 
     /**
@@ -205,9 +187,9 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(City $city, Event $event)
     {
         $event->delete();
-        return redirect('events');
+        return Redirect::route('{city}.events.index', $city->iata)->with('message', 'Event Removed');
     }
 }

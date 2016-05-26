@@ -53,14 +53,9 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::get('/', 'CitiesController@index');
 Route::resource('cities', 'CitiesController');
 
-// Category routes
-// Provide controller methods with object instead of ID
-Route::model('{city}/categories', 'Category');
-// Use slugs rather than IDs in URLs
-Route::bind('{city}/categories', function ($value, $route) {
-    return App\Category::whereSlug($value)->first();
-});
-Route::resource('{city}/categories', 'CategoriesController');
+Route::resource('{city}/categories', 'CategoriesController', [
+    'parameters' => 'singular'
+]);
 
 // Subscriber routes
 Route::get('/{city}/subscribers/hello', function () {
@@ -72,10 +67,12 @@ Route::get('/{city}/subscribers/updated', function () {
 Route::get('/{city}/subscribers/unsubscribed', function () {
     return view('subscribers.unsubscribed');
 });
-Route::get('/{city}/subscribers/{token}/edit', 'SubscribersController@edit');
-Route::put('/{city}/subscribers/{token}', 'SubscribersController@update');
-Route::get('/{city}/subscribers/{token}/unsubscribe', 'SubscribersController@destroy');
-Route::resource('/{city}/subscribers', 'SubscribersController');
+Route::get('/{city}/subscribers/{subscriber}/edit', 'SubscribersController@edit');
+Route::put('/{city}/subscribers/{subscriber}', 'SubscribersController@update');
+Route::get('/{city}/subscribers/{subscriber}/unsubscribe', 'SubscribersController@destroy');
+Route::resource('/{city}/subscribers', 'SubscribersController', [
+    'parameters' => 'singular'
+]);
 
 // User Profile routes
 Route::post('/{city}/users/create', array('uses' => 'UsersController@registerEmail'));
@@ -83,12 +80,12 @@ Route::resource('/{city}/users', 'UsersController', [
     'parameters' => 'singular'
 ]);
 
-
 Route::get('/{city}', 'EventsController@index');
 Route::get('/{city}/events', 'EventsController@index');
 Route::get('/{city}/events/create', 'EventsController@create');
-Route::get('/{city}/events/{slug}.json', 'EventsController@showJson');
-Route::get('/{city}/events/{slug}', 'EventsController@show');
+Route::get('/{city}/events/{event}.json', 'EventsController@showJson');
 
-Route::resource('{city}/events', 'EventsController');
+Route::resource('{city}/events', 'EventsController', [
+    'parameters' => 'singular'
+]);
 

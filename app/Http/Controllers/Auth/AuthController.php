@@ -75,10 +75,9 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         $token = Token::where('token','=',$data['registration_token'])->first();
-        $city = City::where('city_id', '=', $token->city_id);
+        $city = City::where('id', '=', $token->city_id)->first();
 
-        Event::fire(new PostSuccessfullAuth($data['registration_token']));
-        User::create([
+        $user = User::create([
             'name_first' => $data['name_first'],
             'name_last'  => $data['name_last'],
             'username'   => $data['username'],
@@ -88,6 +87,8 @@ class AuthController extends Controller
             'city_id'    => $city->id
         ]);
 
-        return redirect('/'.$city->iata);
+        Event::fire(new PostSuccessfullAuth($data['registration_token']));
+
+        return $user;
     }
 }

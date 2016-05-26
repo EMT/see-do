@@ -11,7 +11,7 @@
 	<div class="form no-mgt">
 		<div class="form-row">
 		    <div class="form-row-body">
-		        {!! delete_form(['{city}.events.destroy', Request::route()->getParameter('city')->iata, $event->slug]) !!}
+		        {!! delete_form( array('{city}.events.destroy',  Request::route()->getParameter('city')->iata, $event->slug)) !!}
 		    </div>
 		</div>
 	</div>

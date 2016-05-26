@@ -60,16 +60,13 @@ class UsersController extends Controller
     }
 
     public function create(City $city) {
-
     	return view('users.create', compact('city'));
     }
 
-    public function registerEmail(Request $request) {
-        $city = City::findByIATA($request->route()->getParameter('city'))->first();
-
+    public function registerEmail(Request $request, City $city) {
         $token = new Token();
         $token->save();
-        $token->createNewToken($city->id);
+        $token->createNewToken($city);
 
 		Mail::send('emails.registration.token', ['token' => $token, 'request' => $request, 'city' => $city], function ($m) use ($token, $request, $city) {
             $m->from('messages@madebyfieldwork.com', 'See+Do')
@@ -101,7 +98,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user, $city_code)
+    public function update(Request $request, City $city, User $user)
     {
        $this->validate($request, [
             'name_first' => 'required',
@@ -115,7 +112,7 @@ class UsersController extends Controller
         $user->resluggify();
         $user->save();
 
-        return Redirect::route('users.index')->with('message', 'User updated');
+        return Redirect::route('{city}.users.index', $city->iata)->with('message', 'User updated');
     }
 
     /**
@@ -124,11 +121,11 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($city_code, User $user)
+    public function destroy(Request $request, City $city, User $user)
     {
-       // $user_events = Event::where('user_id','=',$user->id)->get();
+       // If we decide to remove events associated with a user on deletion.
+       // $user_events = Event::where('user_id','=',$user->id)->delete();
        $user->delete();
-
-       return redirect('/'.$city_code.'/users');
+       return Redirect::route('{city}.users.index', $city->iata)->with('message', 'User removed');
     }
 }

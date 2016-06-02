@@ -123,8 +123,7 @@ class UsersController extends Controller
      */
     public function destroy(Request $request, City $city, User $user)
     {
-       // If we decide to remove events associated with a user on deletion.
-       // $user_events = Event::where('user_id','=',$user->id)->delete();
+       $user_events = Event::where('user_id','=',$user->id)->delete();
        $user->delete();
        return Redirect::route('{city}.users.index', $city->iata)->with('message', 'User removed');
     }

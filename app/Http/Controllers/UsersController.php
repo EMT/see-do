@@ -39,7 +39,7 @@ class UsersController extends Controller
         $users = User::orderBy('name_first', 'asc')->where('city_id', '=', $city->id)->get();
 
         foreach($users as $user) {
-            $user->user_events_count = Event::futureEvents()->where('user_id', '=', $user->id)->count();
+            $user->user_events_count = Event::futureEventsByCityId($city->id)->where('user_id', '=', $user->id)->count();
         }
 
         $users->sortBy('user_events_count');

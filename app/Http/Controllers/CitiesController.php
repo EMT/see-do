@@ -62,6 +62,10 @@ class CitiesController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'iata' => 'required',
+            'twitter_consumer_key' => 'required',
+            'twitter_consumer_secret' => 'required',
+            'twitter_access_token' => 'required',
+            'twitter_access_token_secret' => 'required'
         ]);
 
 
@@ -70,7 +74,7 @@ class CitiesController extends Controller
         $city->user_id = $request->user()->id;
         $city->save();
 
-        return redirect('/')->with('message', 'City created');
+        return redirect('/')->with('message', $city->name.' successfully created!');
 
     }
 }

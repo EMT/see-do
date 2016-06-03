@@ -9,6 +9,7 @@ use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 use App\City;
+use Auth;
 
 class Event extends Model implements SluggableInterface, MarkdownInterface
 {
@@ -63,6 +64,16 @@ class Event extends Model implements SluggableInterface, MarkdownInterface
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function setOwner(User $user)
+    {
+        $this->user_id = $user->id;
+    }
+
+    public function setOwnerCurrentUser()
+    {
+        $this->user_id = Auth::user()->id;
     }
 
     public function icons()

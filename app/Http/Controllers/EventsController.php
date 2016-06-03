@@ -85,7 +85,7 @@ class EventsController extends Controller
         ]);
 
         $event = new Event(Input::except(['tweet, city_id']));
-        $event->user_id = Auth::user()->id;
+        $event->setOwnerCurrentUser();
 
         $city_code = Input::get('city_code');
         $event->city_id = City::getIdfromIATA($city_code);

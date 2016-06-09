@@ -82,13 +82,13 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(City $city, Category $category)
     {
         $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
             ->orderBy('created_at', 'desc')
             ->lists('colors', 'id');
 
-        return redirect('/events');
+        return redirect($city->iata.'/events');
     }
 
     /**

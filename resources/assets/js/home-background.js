@@ -41,24 +41,46 @@ var mouseConstraint = MouseConstraint.create(engine, {
 });
 World.add(engine.world, mouseConstraint)
 
-var platform_one = Bodies.rectangle(400, 575, 810, 60, {
-  isStatic: true,
-  render: {
-    lineWidth: 3,
-    strokeStyle: '#000000',
-    fillStyle: '#FFFFFF'
-  }
-});
+// var platform_one = Bodies.rectangle(400, 575, 810, 60, {
+//   isStatic: true,
+//   render: {
+//     lineWidth: 3,
+//     strokeStyle: '#000000',
+//     fillStyle: '#FFFFFF'
+//   }
+// });
 
-var platform_two = Bodies.rectangle(w - 300, 625, 810, 60, {
-  isStatic: true,
-  angle: -0.2,
-  render: {
-    lineWidth: 3,
-    strokeStyle: '#000000',
-    fillStyle: '#FFFFFF'
-  }
-});
+// var platform_two = Bodies.rectangle(w - 300, 625, 810, 60, {
+//   isStatic: true,
+//   angle: -0.2,
+//   render: {
+//     lineWidth: 3,
+//     strokeStyle: '#000000',
+//     fillStyle: '#FFFFFF'
+//   }
+// });
+//
+
+$('.city a h2').each(function() {
+  var width = $(this).width();
+  var height = $(this).height();
+  var cords = $(this).offset();
+  var x = cords.left + width / 2;
+  var y = cords.top + height / 2;
+
+  console.log(width, height, cords.left, cords.top)
+
+  var platform = Bodies.rectangle(x, y, width + 30, height + 10, {
+    isStatic: true,
+    render: {
+      lineWidth: 0,
+      strokeStyle: '#FFFFFF',
+      fillStyle: '#FFFFFF'
+    }
+  });
+
+  World.addBody(engine.world, platform);
+})
 
 var rows = 2;
 var itemsPerRow = 15;
@@ -96,8 +118,6 @@ for (var i = 0; i <= loop; i++) {
       }
     }));
   }
-
-
 }
 
 var offset = 20;
@@ -112,7 +132,7 @@ World.addBody(engine.world, Bodies.rectangle(w / 2, h + offset, w + 2 * offset, 
 
 
 // add all of the bodies to the world
-World.add(engine.world, [platform_one, platform_two]);
+World.add(engine.world, []);
 
 // run the engine
 Engine.run(engine);

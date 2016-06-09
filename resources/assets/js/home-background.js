@@ -2,145 +2,117 @@
 var Engine = Matter.Engine,
     Render = Matter.Render,
     World = Matter.World,
-    Body = Matter.Body,
-    Bodies = Matter.Bodies,
-    Composite = Matter.Composite,
-    Composites = Matter.Composites,
     Common = Matter.Common,
+    Bodies = Matter.Bodies,
     Constraint = Matter.Constraint,
     Events = Matter.Events,
     MouseConstraint = Matter.MouseConstraint;
+
 
 var w = $(window).width();
 var h = $(window).height();
 
 // create an engine
-var engine = Engine.create({
-	render: {
-		element: document.body,
-	    options: {
-	      width: w,
-	      height: h,
-	      wireframes: false,
-	      background: '#ffffff'
-	    }
-	}
+var engine = Engine.create(document.body, {
+  render: {
+    options: {
+       width: w,
+       height: h,
+       wireframes: false,
+       background: '#ffffff'
+    }
+  }
 });
 
-engine.timing.timeScale = 1;
+// engine.timing.timeScale = 0;
 
-engine.world.gravity.x = 0;
-engine.world.gravity.y = 1;
+// engine.world.gravity.x = 0;
+// engine.world.gravity.y = 0;
 
 engine.world.bounds.max.x = w;
 engine.world.bounds.max.y = h;
 
-// add a mouse controlled constraint
-var mouseConstraint = MouseConstraint.create(engine);
-World.add(engine.world, mouseConstraint);
+var mouseConstraint = MouseConstraint.create(engine, {
+  constraint: {
+    render: {
+      visible: false
+    }
+  }
+});
+World.add(engine.world, mouseConstraint)
 
-var sceneEvents =[];
+var platform_one = Bodies.rectangle(400, 575, 810, 60, {
+  isStatic: true,
+  render: {
+    lineWidth: 3,
+    strokeStyle: '#000000',
+    fillStyle: '#FFFFFF'
+  }
+});
 
-var explosion = function(engine) {
-    var bodies = Composite.allBodies(engine.world);
+var platform_two = Bodies.rectangle(w - 300, 625, 810, 60, {
+  isStatic: true,
+  angle: -0.2,
+  render: {
+    lineWidth: 3,
+    strokeStyle: '#000000',
+    fillStyle: '#FFFFFF'
+  }
+});
 
-    for (var i = 0; i < bodies.length; i++) {
-        var body = bodies[i];
+var rows = 2;
+var itemsPerRow = 15;
 
-        if (!body.isStatic) {
-            var forceMagnitude = 0.01* body.mass;
+var loop = itemsPerRow * rows;
+var horizontalSpacing = w / itemsPerRow;
+var col = 0;
+var verticalOffset = 50;
 
-            Body.applyForce(body, body.position, {
-                x: (forceMagnitude + Common.random() * forceMagnitude) * Common.choose([1, -1]),
-                y: (forceMagnitude + Common.random() * forceMagnitude)  * Common.choose([1, -1])
-            });
+for (var i = 0; i <= loop; i++) {
+  var horizontalOffset = horizontalSpacing * col;
+  col++;
+
+  if (i > 0 && i % itemsPerRow == 0) {
+    verticalOffset = verticalOffset + 80;
+    col = 0;
+  }
+
+  switch (Math.round(Common.random(0, 1))) {
+  case 0:
+    World.addBody(engine.world, Bodies.rectangle(horizontalOffset, verticalOffset, 80, 80, {
+      render: {
+        sprite: {
+          texture: 'http://i.imgur.com/MAFn8RF.png'
         }
-    }
-};
-
- var timeScaleTarget = 1,
-            counter = 0;
-
-        sceneEvents.push(
-            Events.on(engine, 'afterUpdate', function(event) {
-                // tween the timescale for bullet time slow-mo
-                engine.timing.timeScale += (timeScaleTarget - engine.timing.timeScale) * 0.05;
-
-                counter += 1;
-
-                // every 1.5 sec
-                if (counter >= 60 * 30) {
+      }
+    }));
+    break;
+  case 1:
+    World.addBody(engine.world, Bodies.circle(horizontalOffset, verticalOffset, 40, {
+      render: {
+        sprite: {
+         texture: 'http://i.imgur.com/nATHDrx.png'
+        }
+      }
+    }));
+  }
 
 
-                    // create some random forces
-                    explosion(engine);
+}
 
-                    // reset counter
-                    counter = 0;
-                }
-            })
-        );
-
-var offset = 5;
-
+var offset = 20;
 // Top
-World.addBody(engine.world, Bodies.rectangle(w / 2, -offset - 2, w + 2 * offset, 10, { isStatic: true }));
+World.addBody(engine.world, Bodies.rectangle(w / 2, -offset - 2, w + 2 * offset, 40, { isStatic: true, fillStyle: '#ffffff', lineWidth: 0 }));
 // Right
-World.addBody(engine.world, Bodies.rectangle(w + offset, h / 2, 10, h + 2 * offset, { isStatic: true }));
+World.addBody(engine.world, Bodies.rectangle(w + offset, h / 2, 40, h + 2 * offset, { isStatic: true, fillStyle: '#ffffff', lineWidth: 0 }));
 // Left
-World.addBody(engine.world, Bodies.rectangle(-offset, h / 2, 10, h + 2 * offset, { isStatic: true }));
+World.addBody(engine.world, Bodies.rectangle(-offset, h / 2, 40, h + 2 * offset, { isStatic: true, fillStyle: '#ffffff', lineWidth: 0 }));
 // Bottom
-World.addBody(engine.world, Bodies.rectangle(w / 2, h + offset, w + 2 * offset, 10, { isStatic: true }));
+World.addBody(engine.world, Bodies.rectangle(w / 2, h + offset, w + 2 * offset, 40, { isStatic: true, fillStyle: '#ffffff', lineWidth: 0 }));
 
-var emojis = [];
-
-var joypad = Bodies.rectangle((w / 2), (w / 2), 80, 63, {
-  restitution: 0.5,
-  render: {
-     sprite: {
-        texture: 'http://i.imgur.com/FeI6266.png'
-    }
-  }
-})
-
-var painting = Bodies.rectangle((w / 2), (w / 2), 80, 80, {
-  restitution: 0.5,
-  render: {
-    sprite: {
-        texture: 'http://i.imgur.com/MAFn8RF.png'
-    }
-  }
-})
-
-var laugh = Bodies.circle(750, 200, 46, {
-  restitution: 0.5,
-  render: {
-    sprite: {
-        texture: 'http://i.imgur.com/nATHDrx.png'
-    }
-  }
-});
-
-var beer = Bodies.rectangle((w / 2), (w / 2), 66, 66, {
-  restitution: 0.5,
-  render: {
-    sprite: {
-      texture: 'http://i.imgur.com/ApqxXZu.png'
-    }
-  }
-});
-
-var film = Bodies.rectangle((w / 2), (w / 2), 80, 73, {
-  restitution: 0.5,
-  render: {
-    sprite: {
-      texture: 'http://seeanddo.dev/assets/img/homepage/film.png'
-    }
-  }
-});
 
 // add all of the bodies to the world
-World.add(engine.world, [painting, laugh, beer, film, joypad]);
+World.add(engine.world, [platform_one, platform_two]);
 
 // run the engine
 Engine.run(engine);

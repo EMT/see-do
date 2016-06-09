@@ -1,3 +1,5 @@
+debug = false;
+
 // module aliases
 var Engine = Matter.Engine,
     Render = Matter.Render,
@@ -67,14 +69,19 @@ $('.city a h2').each(function() {
   var cords = $(this).offset();
   var x = cords.left + width / 2;
   var y = cords.top + height / 2;
+  var outline = '#FFFFFF';
+
+  if (debug) {
+    outline = "#FFF000"
+  }
 
   console.log(width, height, cords.left, cords.top)
 
-  var platform = Bodies.rectangle(x, y, width + 30, height + 10, {
+  var platform = Bodies.rectangle(x, y, width + 25, height, {
     isStatic: true,
     render: {
       lineWidth: 0,
-      strokeStyle: '#FFFFFF',
+      strokeStyle: outline,
       fillStyle: '#FFFFFF'
     }
   });

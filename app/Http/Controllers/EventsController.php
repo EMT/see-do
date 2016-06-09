@@ -53,9 +53,7 @@ class EventsController extends Controller
      */
     public function create(City $city)
     {
-        $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
-            ->orderBy('created_at', 'desc')
-            ->lists('colors', 'id');
+        $colorSchemes = ColorScheme::listRaw();
         $icons = Icon::orderBy('created_at', 'desc')->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
@@ -141,9 +139,7 @@ class EventsController extends Controller
      */
     public function edit(City $city, Event $event)
     {
-        $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
-            ->orderBy('created_at', 'desc')
-            ->lists('colors', 'id');
+        $colorSchemes = ColorScheme::listRaw();
         $icons = Icon::orderBy('created_at', 'desc')->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 

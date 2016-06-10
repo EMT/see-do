@@ -63,7 +63,7 @@ World.add(engine.world, mouseConstraint)
 // });
 //
 
-$('.city a h2').each(function() {
+$('.city a h2, .city a h3, .js-site-title').each(function() {
   var width = $(this).width();
   var height = $(this).height();
   var cords = $(this).offset();

@@ -65,6 +65,8 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
       col = 0,
       verticalOffset = -300;
 
+  limitBodies(emojis, 100)
+
   if (removeOnGeneration) {
     removeBodies(emojis);
   }
@@ -108,6 +110,14 @@ function removeBodies(bodies) {
   for (var i = bodies.length - 1; i >= 0; i--) {
     if (debug) console.log(bodies[i]);
     Matter.Composite.remove(engine.world, bodies[i]);
+  }
+}
+
+function limitBodies(bodies, limit) {
+  if (bodies.length > limit) {
+    var diff = bodies.length - limit;
+    if (debug) console.log(diff);
+    removeBodies(bodies.splice(0, diff));
   }
 }
 
@@ -232,6 +242,7 @@ function createEngine() {
          wireframes: debug,
          showAngleIndicator: debug,
          background: '#ffffff',
+
       }
     }
   });

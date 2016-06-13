@@ -19,7 +19,10 @@ var platforms = [],
 // create an engine
 var engine = createEngine()
 
-if (w <= 900) {
+  // engine.world.gravity.x = 0
+  // engine.world.gravity.y = 0;
+
+if (w <= 800) {
   init(true);
 } else {
   init()
@@ -36,9 +39,6 @@ function init(mobile) {
   drawBounds(bounds);
 
   if (mobile) {
-    //  => Accelerometer
-    //  => reduced spwan numbers
-    //  => no title hitboxes ?
     setupAccelerometer()
     resizeCanvas(mobile);
     generateRandomEmojis(1, 10);

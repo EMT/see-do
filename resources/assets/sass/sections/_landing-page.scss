@@ -1,0 +1,58 @@
+canvas {
+	position: fixed;
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0.8;
+
+	@media (min-width: 800px) {
+		opacity: 1;
+	}
+}
+
+header a, .city a, .alert {
+	position: relative;
+	z-index: 2;
+}
+
+.city-list {
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+    max-height: 80%;
+	width: 100%;
+
+	@media (min-width: 800px) {
+		pointer-events: none;
+	}
+
+	.city {
+		width: 100%;
+		text-align: center;
+		padding: 2em;
+
+		@media (min-width: 800px) {
+			width: 50%;
+			float: left;
+		}
+
+		h2 {
+			font-size: 3em;
+		}
+
+		a {
+			pointer-events: all;
+			color: inherit;
+			text-decoration: none;
+			display: inline-block;
+		}
+
+		h3 {
+		    display: inline-block;
+		}
+	}
+}

@@ -10,7 +10,6 @@ var Engine = Matter.Engine,
     Events = Matter.Events,
     MouseConstraint = Matter.MouseConstraint;
 
-
 var w = $(window).width();
 var h = $(window).height();
 var platforms = [],
@@ -18,34 +17,41 @@ var platforms = [],
     emojis    = [];
 
 // create an engine
-var engine = Engine.create(document.body, {
-  render: {
-    options: {
-       width: w,
-       height: h,
-       wireframes: debug,
-       showAngleIndicator: debug,
-       background: '#ffffff',
-    }
+var engine = createEngine()
+
+if (w <= 900) {
+  init(true);
+} else {
+  init()
+}
+
+
+function init(mobile) {
+  var mobile = typeof mobile !== 'undefined' ?  mobile : false;
+
+  engine.world.bounds.max.x = w;
+  engine.world.bounds.max.y = h;
+
+  addMouseInteraction();
+  drawBounds(bounds);
+
+  if (mobile) {
+    //  => Accelerometer
+    //  => reduced spwan numbers
+    //  => no title hitboxes ?
+    resizeCanvas(mobile);
+    generateRandomEmojis(1, 10);
+  } else {
+    resizeCanvas();
+    drawPlatforms(platforms);
+    generateRandomEmojis(2, 15);
+
+    setInterval(function(){
+      generateRandomEmojis(2, 20, true)
+    },10000)
+
   }
-});
-
-// engine.timing.timeScale = 0;
-// engine.world.gravity.x = 0;
-// engine.world.gravity.y = 0;
-
-engine.world.bounds.max.x = w;
-engine.world.bounds.max.y = h;
-
-resizeCanvas();
-drawBounds(bounds);
-addMouseInteraction();
-drawPlatforms(platforms);
-generateRandomEmojis(2, 15);
-
-setInterval(function(){
-  generateRandomEmojis(2, 20, true)
-},10000)
+}
 
 
 function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
@@ -63,7 +69,7 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
   }
 
   for (var i = 0; i <= loop; i++) {
-    var horizontalOffset = horizontalSpacing * col;
+    var horizontalOffset = (horizontalSpacing * col);
     col++;
 
     if (i > 0 && i % itemsPerRow == 0) {
@@ -173,7 +179,9 @@ function addMouseInteraction() {
   World.add(engine.world, mouseConstraint)
 }
 
-function resizeCanvas() {
+function resizeCanvas(mobile) {
+  var mobile = typeof mobile !== 'undefined' ?  mobile : false;
+
   window.addEventListener('resize', resizeCanvas, false);
 
   w = document.documentElement.clientWidth
@@ -188,8 +196,25 @@ function resizeCanvas() {
   engine.render.canvas.width = w;
   engine.render.canvas.height = h;
 
-  drawPlatforms(platforms)
+  if (!mobile) {
+    drawPlatforms(platforms)
+  }
+
   drawBounds(bounds);
+}
+
+function createEngine() {
+  return Engine.create(document.body, {
+    render: {
+      options: {
+         width: w,
+         height: h,
+         wireframes: debug,
+         showAngleIndicator: debug,
+         background: '#ffffff',
+      }
+    }
+  });
 }
 
 // run the engine

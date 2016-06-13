@@ -249,7 +249,7 @@ function getRandomInt(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-engine.enableSleeping = true;
+// engine.enableSleeping = true;
 
 // run the engine
 Engine.run(engine);

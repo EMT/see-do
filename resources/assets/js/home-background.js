@@ -70,7 +70,7 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
   }
 
   for (var i = 0; i <= loop; i++) {
-    var horizontalOffset = (horizontalSpacing * col);
+    var horizontalOffset = (horizontalSpacing * col) * getRandomInt(1.1, 1.4);
     col++;
 
     if (i > 0 && i % itemsPerRow == 0) {
@@ -237,6 +237,10 @@ function createEngine() {
       }
     }
   });
+}
+
+function getRandomInt(min, max) {
+  return Math.random() * (max - min) + min;
 }
 
 // run the engine

@@ -14,7 +14,8 @@ var w = $(window).width();
 var h = $(window).height();
 var platforms = [],
     bounds    = [],
-    emojis    = [];
+    emojis    = [],
+    mobile    = false;
 
 // create an engine
 var engine = createEngine()
@@ -23,14 +24,12 @@ var engine = createEngine()
   // engine.world.gravity.y = 0;
 
 if (w <= 800) {
-  init(true);
-} else {
-  init()
+  mobile = true;
 }
 
+init()
 
-function init(mobile) {
-  var mobile = typeof mobile !== 'undefined' ?  mobile : false;
+function init() {
 
   engine.world.bounds.max.x = w;
   engine.world.bounds.max.y = h;
@@ -188,9 +187,7 @@ function addMouseInteraction() {
   World.add(engine.world, mouseConstraint)
 }
 
-function resizeCanvas(mobile) {
-  var mobile = typeof mobile !== 'undefined' ?  mobile : false;
-
+function resizeCanvas() {
   window.addEventListener('resize', resizeCanvas, false);
 
   w = document.documentElement.clientWidth

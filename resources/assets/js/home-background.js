@@ -39,6 +39,7 @@ function init(mobile) {
     //  => Accelerometer
     //  => reduced spwan numbers
     //  => no title hitboxes ?
+    setupAccelerometer()
     resizeCanvas(mobile);
     generateRandomEmojis(1, 10);
   } else {
@@ -201,6 +202,27 @@ function resizeCanvas(mobile) {
   }
 
   drawBounds(bounds);
+}
+
+function setupAccelerometer() {
+  if(window.DeviceMotionEvent){
+    window.addEventListener("devicemotion", motion, false);
+  }else{
+    console.log("DeviceMotionEvent is not supported");
+  }
+}
+
+function motion(event){
+  if (debug) {
+    console.log("Accelerometer: "
+      + event.accelerationIncludingGravity.x + ", "
+      + event.accelerationIncludingGravity.y + ", "
+      + event.accelerationIncludingGravity.z
+    );
+  }
+
+  engine.world.gravity.x = event.accelerationIncludingGravity.x;
+  engine.world.gravity.y = -event.accelerationIncludingGravity.y;
 }
 
 function createEngine() {

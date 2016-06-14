@@ -20,9 +20,6 @@ var platforms = [],
 // create an engine
 var engine = createEngine()
 
-  // engine.world.gravity.x = 0
-  // engine.world.gravity.y = 0;
-
 if (w <= 800) {
   mobile = true;
 }
@@ -111,17 +108,22 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
   }
 }
 
-function removeBodies(bodies) {
+function removeBodies(bodies, fall) {
+  var fall = typeof fall !== 'undefined' ?  fall : false;
+
   for (var i = bodies.length - 1; i >= 0; i--) {
     if (debug) console.log(bodies[i]);
+    var body = bodies[i];
 
-    if (bodies[i].collisionFilter) {
+    if (bodies[i].collisionFilter && fall) {
       bodies[i].collisionFilter.mask = 2
-      var that = bodies[i];
 
       setTimeout(function() {
-        Matter.Composite.remove(engine.world, that);
+        Matter.Composite.remove(engine.world, body);
+        console.log('deleted');
       },2000)
+    } else {
+      Matter.Composite.remove(engine.world, body);
     }
   }
 }
@@ -130,7 +132,7 @@ function limitBodies(bodies, limit) {
   if (bodies.length > limit) {
     var diff = bodies.length - limit;
     if (debug) console.log(diff);
-    removeBodies(bodies.splice(0, diff));
+    removeBodies(bodies.splice(0, diff), true);
   }
 }
 

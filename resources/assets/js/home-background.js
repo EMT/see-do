@@ -111,6 +111,7 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
     }
 
     var randomNumber = Math.floor(getRandomInt(0, emojiTypes.length))
+    var randomAngle = Math.floor(getRandomInt(0, 360))
 
     if (debug) console.log('New Emoji ['+randomNumber+'] :', emojiTypes[randomNumber]);
 
@@ -121,7 +122,8 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
            texture: emojiTypes[randomNumber].sprite
           }
         },
-        restitution: 0.3
+        restitution: 0.3,
+        angle: randomAngle
       });
     }
 
@@ -132,7 +134,8 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
             texture: emojiTypes[randomNumber].sprite
           }
         },
-        restitution: 0.3
+        restitution: 0.3,
+        angle: randomAngle
       });
     }
 
@@ -143,7 +146,8 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
             texture: emojiTypes[randomNumber].sprite
           }
         },
-        restitution: 0.3
+        restitution: 0.3,
+        angle: randomAngle
       })
     }
 

@@ -17,6 +17,36 @@ var platforms = [],
     emojis    = [],
     mobile    = false;
 
+var emojiTypes = [
+  {
+    name: 'Laugh',
+    shape: 'circle',
+    radius: 38.75,
+    sprite: 'http://i.imgur.com/9Nj59hX.png'
+  },
+  {
+    name: 'Picture',
+    shape: 'rectangle',
+    width: 80,
+    height: 65,
+    sprite: 'http://i.imgur.com/MAFn8RF.png'
+  },
+  {
+    name: 'Love',
+    shape: 'circle',
+    radius: 38.75,
+    sprite: 'http://i.imgur.com/IOADJCL.png'
+  },
+  {
+    name: 'Pizza',
+    shape: 'triangle',
+    points: [
+      { x: 0, y: 0 }, { x: -40, y: -80 }, { x: -80, y: 0 }
+    ],
+    sprite: 'http://i.imgur.com/AbJKujs.png'
+  }
+]
+
 // create an engine
 var engine = createEngine()
 
@@ -80,31 +110,45 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
       col = 0;
     }
 
-    switch (Math.round(Common.random(0, 1))) {
-    case 0:
-      var emoji = Bodies.rectangle(horizontalOffset, verticalOffset, 80, 80, {
+    var randomNumber = Math.floor(getRandomInt(0, emojiTypes.length))
+
+    console.log('New Emoji ['+randomNumber+'] :', emojiTypes[randomNumber]);
+
+    if (emojiTypes[randomNumber].shape === 'circle') {
+      var emoji = Bodies.circle(horizontalOffset, verticalOffset, emojiTypes[randomNumber].radius, {
         render: {
           sprite: {
-            texture: 'http://i.imgur.com/MAFn8RF.png'
+           texture: emojiTypes[randomNumber].sprite
           }
         },
         restitution: 0.3
       });
-      World.addBody(engine.world, emoji);
-      emojis.push(emoji);
-      break;
-    case 1:
-      var emoji = Bodies.circle(horizontalOffset, verticalOffset, 40, {
-        render: {
-          sprite: {
-           texture: 'http://i.imgur.com/nATHDrx.png'
-          }
-        },
-        restitution: 0.3
-      });
-      World.addBody(engine.world, emoji);
-      emojis.push(emoji);
     }
+
+    if (emojiTypes[randomNumber].shape === 'rectangle') {
+      var emoji = Bodies.rectangle(horizontalOffset, verticalOffset, emojiTypes[randomNumber].width, emojiTypes[randomNumber].height, {
+        render: {
+          sprite: {
+            texture: emojiTypes[randomNumber].sprite
+          }
+        },
+        restitution: 0.3
+      });
+    }
+
+    if (emojiTypes[randomNumber].shape === 'triangle') {
+      var emoji = Bodies.fromVertices(horizontalOffset, verticalOffset, emojiTypes[randomNumber].points, {
+        render: {
+          sprite: {
+            texture: emojiTypes[randomNumber].sprite
+          }
+        },
+        restitution: 0.3
+      })
+    }
+
+    World.addBody(engine.world, emoji);
+    emojis.push(emoji);
   }
 }
 
@@ -112,7 +156,7 @@ function removeBodies(bodies, fall) {
   var fall = typeof fall !== 'undefined' ?  fall : false;
 
   for (var i = bodies.length - 1; i >= 0; i--) {
-    if (debug) console.log(bodies[i]);
+    if (debug) console.log('Removing : ', bodies[i]);
     var body = bodies[i];
 
     if (bodies[i].collisionFilter && fall) {
@@ -120,7 +164,6 @@ function removeBodies(bodies, fall) {
 
       setTimeout(function() {
         Matter.Composite.remove(engine.world, body);
-        console.log('deleted');
       },2000)
     } else {
       Matter.Composite.remove(engine.world, body);
@@ -138,7 +181,7 @@ function limitBodies(bodies, limit) {
 
 function drawPlatforms(platforms) {
 
-  if (debug) console.log(platforms);
+  if (debug) console.log('New Platforms : ', platforms);
 
   if (platforms.length) {
     removeBodies(platforms);
@@ -157,8 +200,6 @@ function drawPlatforms(platforms) {
     } else {
       outline = 'transparent'
     }
-
-    if (debug) console.log(width, height, cords.left, cords.top)
 
     var platform = Bodies.rectangle(x, y, width + 25, height, {
       isStatic: true,
@@ -206,6 +247,7 @@ function addMouseInteraction() {
   });
 
   World.add(engine.world, mouseConstraint)
+  if (debug) console.log('MouseConstraint added');
 }
 
 function resizeCanvas() {
@@ -239,14 +281,6 @@ function setupAccelerometer() {
 }
 
 function motion(event){
-  if (debug) {
-    console.log("Accelerometer: "
-      + event.accelerationIncludingGravity.x + ", "
-      + event.accelerationIncludingGravity.y + ", "
-      + event.accelerationIncludingGravity.z
-    );
-  }
-
   engine.world.gravity.x = event.accelerationIncludingGravity.x;
   engine.world.gravity.y = -event.accelerationIncludingGravity.y;
 }

@@ -10,8 +10,8 @@ var Engine = Matter.Engine,
     Events = Matter.Events,
     MouseConstraint = Matter.MouseConstraint;
 
-var w = window.outerWidth;
-var h = window.outerHeight;
+var w = $(document).outerWidth();
+var h = $(document).outerHeight(true);
 var platforms = [],
     bounds    = [],
     emojis    = [],
@@ -131,8 +131,8 @@ function drawPlatforms(platforms) {
   }
 
   $('.city a h2, .city a h3, .js-site-title').each(function() {
-    var width = $(this).outerWidth();
-    var height = $(this).outerHeight();
+    var width = $(this).width();
+    var height = $(this).height();
     var cords = $(this).offset();
     var x = cords.left + width / 2;
     var y = cords.top + height / 2;
@@ -180,7 +180,7 @@ function addMouseInteraction() {
   var mouseConstraint = MouseConstraint.create(engine, {
     constraint: {
       render: {
-        visible: true
+        visible: debug
       }
     }
   });
@@ -191,8 +191,8 @@ function addMouseInteraction() {
 function resizeCanvas() {
   window.addEventListener('resize', resizeCanvas, false);
 
-  w = window.outerWidth;
-  h = window.outerHeight;
+  w = $(document).outerWidth();
+  h = $(document).outerHeight(true);
 
   engine.world.bounds.max.x = w;
   engine.world.bounds.max.y = h;

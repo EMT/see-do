@@ -1,4 +1,4 @@
-debug = false;
+debug = true;
 
 // module aliases
 var Engine = Matter.Engine,
@@ -131,8 +131,8 @@ function drawPlatforms(platforms) {
   }
 
   $('.city a h2, .city a h3, .js-site-title').each(function() {
-    var width = $(this).width();
-    var height = $(this).height();
+    var width = $(this).outerWidth();
+    var height = $(this).outerHeight();
     var cords = $(this).offset();
     var x = cords.left + width / 2;
     var y = cords.top + height / 2;
@@ -180,7 +180,7 @@ function addMouseInteraction() {
   var mouseConstraint = MouseConstraint.create(engine, {
     constraint: {
       render: {
-        visible: false
+        visible: true
       }
     }
   });

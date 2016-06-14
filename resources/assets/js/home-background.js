@@ -146,8 +146,7 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
             texture: emojiTypes[randomNumber].sprite
           }
         },
-        restitution: 0.3,
-        angle: randomAngle
+        restitution: 0.3
       })
     }
 

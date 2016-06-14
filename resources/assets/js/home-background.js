@@ -112,7 +112,7 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
 
     var randomNumber = Math.floor(getRandomInt(0, emojiTypes.length))
 
-    console.log('New Emoji ['+randomNumber+'] :', emojiTypes[randomNumber]);
+    if (debug) console.log('New Emoji ['+randomNumber+'] :', emojiTypes[randomNumber]);
 
     if (emojiTypes[randomNumber].shape === 'circle') {
       var emoji = Bodies.circle(horizontalOffset, verticalOffset, emojiTypes[randomNumber].radius, {

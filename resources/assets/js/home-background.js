@@ -114,7 +114,15 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
 function removeBodies(bodies) {
   for (var i = bodies.length - 1; i >= 0; i--) {
     if (debug) console.log(bodies[i]);
-    Matter.Composite.remove(engine.world, bodies[i]);
+
+    if (bodies[i].collisionFilter) {
+      bodies[i].collisionFilter.mask = 2
+      var that = bodies[i];
+
+      setTimeout(function() {
+        Matter.Composite.remove(engine.world, that);
+      },2000)
+    }
   }
 }
 

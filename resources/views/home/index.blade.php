@@ -13,5 +13,5 @@
 			</li>
 		@endforeach
 	</ul>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.10.0/matter.js"></script>
+	<script src="{{ elixir('js/homepage.js') }}"></script>
 @stop

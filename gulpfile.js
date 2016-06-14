@@ -30,14 +30,24 @@ elixir(function(mix) {
         'forms.js',
         'color-scheme-select.js',
         'icon-select.js',
-	    'date-time-input.js',
+	    'date-time-input.js'
+	],
+	'public/js/all.js'
+	)
+	.scripts([
+        'vendor/jquery.min.js',
+		'poly-decomp.js',
+		'matter.js',
 	    'home-background.js'
-	]);
+	],
+	'public/js/homepage.js'
+	);
 
     // Rename with hash and save into dir: public/build
 	mix.version([
 		'css/app.css',
-		'js/all.js'
+		'js/all.js',
+		'js/homepage.js'
 	]);
 });
 

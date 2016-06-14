@@ -10,8 +10,8 @@ var Engine = Matter.Engine,
     Events = Matter.Events,
     MouseConstraint = Matter.MouseConstraint;
 
-var w = $(window).width();
-var h = $(window).height();
+var w = window.outerWidth;
+var h = window.outerHeight;
 var platforms = [],
     bounds    = [],
     emojis    = [],
@@ -191,8 +191,8 @@ function addMouseInteraction() {
 function resizeCanvas() {
   window.addEventListener('resize', resizeCanvas, false);
 
-  w = document.documentElement.clientWidth
-  h = document.documentElement.clientHeight
+  w = window.outerWidth;
+  h = window.outerHeight;
 
   engine.world.bounds.max.x = w;
   engine.world.bounds.max.y = h;

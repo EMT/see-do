@@ -164,15 +164,12 @@ function drawBounds(bounds, offset) {
     removeBodies(bounds);
   }
 
-  // Right
   var right = Bodies.rectangle(w + offset, h / 2, 40, h + 2 * offset, { isStatic: true, fillStyle: '#ffffff', strokeStyle: '#ffffff', lineWidth: 0 });
-  // Bottom
   var bottom = Bodies.rectangle(w / 2, h + offset, w + 2 * offset, 40, { isStatic: true, fillStyle: '#ffffff', strokeStyle: '#ffffff', lineWidth: 0 });
-  // Left
   var left = Bodies.rectangle(-offset, h / 2, 40, h + 2 * offset, { isStatic: true, fillStyle: '#ffffff', strokeStyle: '#ffffff', lineWidth: 0 });
 
-  World.add(engine.world, [right,bottom,left])
   bounds.push([right,bottom,left]);
+  World.add(engine.world, [right,bottom,left])
 }
 
 function addMouseInteraction() {
@@ -248,8 +245,6 @@ function createEngine() {
 function getRandomInt(min, max) {
   return Math.random() * (max - min) + min;
 }
-
-// engine.enableSleeping = true;
 
 // run the engine
 Engine.run(engine);

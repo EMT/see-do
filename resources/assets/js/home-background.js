@@ -1,4 +1,4 @@
-debug = true;
+debug = false;
 
 // module aliases
 var Engine = Matter.Engine,

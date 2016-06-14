@@ -140,6 +140,8 @@ function drawPlatforms(platforms) {
 
     if (debug) {
       outline = "#FFF000"
+    } else {
+      outline = 'transparent'
     }
 
     if (debug) console.log(width, height, cords.left, cords.top)
@@ -149,7 +151,7 @@ function drawPlatforms(platforms) {
       render: {
         lineWidth: 0,
         strokeStyle: outline,
-        fillStyle: '#FFFFFF'
+        fillStyle: 'transparent'
       }
     });
 

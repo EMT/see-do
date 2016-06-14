@@ -86,7 +86,8 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
           sprite: {
             texture: 'http://i.imgur.com/MAFn8RF.png'
           }
-        }
+        },
+        restitution: 0.3
       });
       World.addBody(engine.world, emoji);
       emojis.push(emoji);
@@ -97,7 +98,8 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
           sprite: {
            texture: 'http://i.imgur.com/nATHDrx.png'
           }
-        }
+        },
+        restitution: 0.3
       });
       World.addBody(engine.world, emoji);
       emojis.push(emoji);

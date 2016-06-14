@@ -64,6 +64,10 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
       col = 0,
       verticalOffset = -300;
 
+  if (mobile) {
+    verticalOffset = 50;
+  }
+
   limitBodies(emojis, 100)
 
   if (removeOnGeneration) {
@@ -168,6 +172,12 @@ function drawBounds(bounds, offset) {
     removeBodies(bounds);
   }
 
+  if (mobile) {
+    var top = Bodies.rectangle(w / 2, -offset - 2, w + 2 * offset, 40, { isStatic: true, fillStyle: '#ffffff', lineWidth: 0 });
+    bounds.push(top);
+    World.add(engine.world, top);
+  }
+
   var right = Bodies.rectangle(w + offset, h / 2, 40, h + 2 * offset, { isStatic: true, fillStyle: '#ffffff', strokeStyle: '#ffffff', lineWidth: 0 });
   var bottom = Bodies.rectangle(w / 2, h + offset, w + 2 * offset, 40, { isStatic: true, fillStyle: '#ffffff', strokeStyle: '#ffffff', lineWidth: 0 });
   var left = Bodies.rectangle(-offset, h / 2, 40, h + 2 * offset, { isStatic: true, fillStyle: '#ffffff', strokeStyle: '#ffffff', lineWidth: 0 });
@@ -239,8 +249,7 @@ function createEngine() {
          height: h,
          wireframes: debug,
          showAngleIndicator: debug,
-         background: '#ffffff',
-
+         background: '#ffffff'
       }
     }
   });

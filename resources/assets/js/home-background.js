@@ -221,7 +221,7 @@ function drawPlatforms(platforms) {
     removeBodies(platforms);
   }
 
-  $('.city a h2, .city a h3, .js-site-title').each(function() {
+  $('.js-canvas-dom').each(function() {
     var width = $(this).width();
     var height = $(this).height();
     var cords = $(this).offset();

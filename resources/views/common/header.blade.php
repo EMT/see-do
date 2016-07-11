@@ -2,7 +2,7 @@
 	<div class="site-wrapper clear">
 		<div class="left-align-wrapper">
 			<h1 class="site-title aligned">
-				<a class="js-site-title" href="/">See+Do</a>
+				<a class="js-site-title js-canvas-dom" href="/">See+Do</a>
 				@if (!empty($category))
                     <span class="category-title">{{ $category->title }}</span>
                 @endif

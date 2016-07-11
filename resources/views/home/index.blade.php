@@ -7,8 +7,8 @@
 		@foreach( $cities as $city)
 			<li class="city">
 				<a href="/{{$city->iata}}">
-					<h3>{{$city->iata}}</h3>
-					<h2>{{$city->name}}</h2>
+					<h3 class="js-canvas-dom">{{$city->iata}}</h3>
+					<h2 class="js-canvas-dom">{{$city->name}}</h2>
 				</a>
 			</li>
 		@endforeach

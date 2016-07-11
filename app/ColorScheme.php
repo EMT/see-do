@@ -32,4 +32,10 @@ class ColorScheme extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public static function listRaw() {
+        return ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
+        ->orderBy('created_at', 'desc')
+        ->lists('colors', 'id');
+    }
 }

@@ -6,10 +6,10 @@
     <h2 class="aligned">Subscribe</h2>
 
     <div class="article-body aligned">
-        <p>We’ll email you a weekly round-up of things to See+Do in Manchester.</p>
+        <p>We’ll email you a weekly round-up of things to See+Do in {{$city->name}}.</p>
     </div>
 
-    {!! Form::open(['action' => 'SubscribersController@store', 'class' => 'form']) !!}
+    {!! Form::open(['action' => array('SubscribersController@store', $city->iata), 'class' => 'form']) !!}
 
         @include('subscribers.subscriberForm')
 

@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Token;
 use App\Event;
+use App\City;
+
 use Bican\Roles\Models\Role;
 use Notification;
 
@@ -17,6 +19,7 @@ use Notification;
 use Input;
 use Redirect;
 use Mail;
+
 
 class UsersController extends Controller
 {
@@ -32,11 +35,11 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $users = User::orderBy('name_first', 'asc')->get();
+    public function index(City $city) {
+        $users = User::orderBy('name_first', 'asc')->where('city_id', '=', $city->id)->get();
 
         foreach($users as $user) {
-            $user->user_events_count = Event::futureEvents()->where('user_id', '=', $user->id)->count();
+            $user->user_events_count = Event::futureEventsByCityId($city->id)->where('user_id', '=', $user->id)->count();
         }
 
         $users->sortBy('user_events_count');
@@ -50,32 +53,32 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        $user = User::findBySlugOrId($id);
-        $events = Event::futureEvents()->where('user_id', '=', $user->id)->get();
-        return view('users.show', compact('user', 'events', 'event') + ['event' => null]);
+    public function show(City $city, User $user) {
+
+        $events = Event::futureEventsByCityId($city->id)->where('user_id', '=', $user->id)->get();
+        return view('users.show', compact('city', 'user', 'events', 'event') + ['event' => null]);
     }
 
-    public function create() {
-    	return view('users.create');
+    public function create(City $city) {
+    	return view('users.create', compact('city'));
     }
 
-    public function registerEmail(Request $request) {
+    public function registerEmail(Request $request, City $city) {
         $token = new Token();
         $token->save();
-        $token->createNewToken();
+        $token->createNewToken($city);
 
-		Mail::send('emails.registration.token', ['token' => $token, 'request' => $request], function ($m) use ($token, $request) {
+		Mail::send('emails.registration.token', ['token' => $token, 'request' => $request, 'city' => $city], function ($m) use ($token, $request, $city) {
             $m->from('messages@madebyfieldwork.com', 'See+Do')
                 ->to($request->email,$request->name)
-                ->subject('Here is your registration link to start contributing to See+Do')
+                ->subject('Here is your registration link to start contributing to See+Do in '.$city->name.'.')
                 ->getHeaders()
                 ->addTextHeader('X-MC-Subaccount', 'see-do');
         });
 
 		Notification::success('Registration email sent to '. $request->name . ' at ' . $request->email);
 
-        return redirect('/users');
+        return redirect('/'.$city->iata.'/users');
     }
 
     /**
@@ -84,8 +87,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        $user = User::findBySlugOrId($id);
+    public function edit($city_code, User $user) {
         return view('users.edit', compact('user'));
     }
 
@@ -96,10 +98,8 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, City $city, User $user)
     {
-	   $user = User::findBySlugOrId($id);
-
        $this->validate($request, [
             'name_first' => 'required',
             'name_last' => 'required',
@@ -112,7 +112,7 @@ class UsersController extends Controller
         $user->resluggify();
         $user->save();
 
-        return Redirect::route('users.index')->with('message', 'User updated');
+        return Redirect::route('{city}.users.index', $city->iata)->with('message', 'User updated');
     }
 
     /**
@@ -121,11 +121,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, City $city, User $user)
     {
-	   $user = User::findBySlugOrId($id);
+       $user_events = Event::where('user_id','=',$user->id)->delete();
        $user->delete();
-
-       return redirect('/users');
+       return Redirect::route('{city}.users.index', $city->iata)->with('message', 'User removed');
     }
 }

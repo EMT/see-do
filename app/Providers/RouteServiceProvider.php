@@ -25,7 +25,25 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
+       $router->bind('user', function ($value) {
+            return \App\User::whereSlug($value)->firstOrFail();
+       });
+
+       $router->bind('category', function ($value) {
+            return \App\Category::whereSlug($value)->firstOrFail();
+       });
+
+       $router->bind('event', function ($value) {
+            return \App\Event::whereSlug($value)->firstOrFail();
+       });
+
+       $router->bind('city', function ($value) {
+            return \App\City::where('iata', $value)->firstOrFail();
+       });
+
+       $router->bind('subscriber', function($value) {
+            return \App\Subscriber::where('token', $value)->firstOrFail();
+       });
 
         parent::boot($router);
     }

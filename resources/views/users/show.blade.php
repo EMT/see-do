@@ -9,9 +9,7 @@
                 <h2 class="page-intro-title">{{$user->username}}</h2>
                 <p>{!! nl2br($user->bio) !!}</p>
                 @if (Auth::check())
-                    @if (Auth::user()->slug == Request::segment(2))
-                        <a class="link-effect edit-user-details" href="{{ URL::to('users/' . $user->slug . '/edit') }}">Edit your details</a>
-                    @endif
+                        <a class="link-effect edit-user-details" href="{{ route('{city}.users.edit', ['city' => Request::route()->getParameter('city')->iata, 'users' => $user->slug])}}">Edit your details</a>
                 @endif
             </div>
         </div>
@@ -23,7 +21,7 @@
             @foreach( $events as $ev )
 
                 <li id="event-item-{{ $ev->id }}" class="event clear {{ ($event && $event->id === $ev->id) ? 'event--active' : '' }}">
-                    <a href="{{ route('events.show', $ev->slug) }}">
+                    <a href="{{ route('{city}.events.show', array(Request::route()->getParameter('city')->iata, $ev->slug)) }}">
                         <div class="event-item-date">
                             <span class="meta-data">{!! $ev->shortDates() !!}</span>
                         </div>

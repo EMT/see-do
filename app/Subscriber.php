@@ -18,6 +18,11 @@ class Subscriber extends Model
         'token',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'token';
+    }
+
     public function createNewToken()
     {
         $this->token = hash_hmac('sha256', $this->id + '/' + Str::random(40), config('app.key'));

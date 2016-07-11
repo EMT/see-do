@@ -13,7 +13,7 @@
         <ul>
             @foreach($categories as $cat)
                 <li>
-                    <a href="{{ route('categories.show', $cat->slug) }}">{{ $cat->title }}</a>
+                    <a href="{{ route('{city}.categories.show', ['category'=>$cat->slug, 'city' => Request::segment(1)]) }}">{{ $cat->title }}</a>
                     @if ( $cat->colorScheme )
                         <div class="color-scheme">
                             <span class="color-scheme-color" style="background-color: {{ $cat->colorScheme->color_1 }}">{{ $cat->colorScheme->color_1 }}</span>

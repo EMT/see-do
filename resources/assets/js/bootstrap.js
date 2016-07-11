@@ -91,9 +91,9 @@ $(function() {
 
 	$eventInfoClose.on('click touch', function(e) {
 		e.preventDefault();
-
+		console.log(location.pathname.split('/')[1]);
 		stateHandler.push({
-			url: '/',
+			url: '/' + location.pathname.split('/')[1],
 			title: 'See&Do',
 			eventId: null
 		});
@@ -226,7 +226,7 @@ function setEventDetails(url, callback) {
 		$('.js-event-info-date').html(response.longDates);
 		$('.js-event-info-time').html(response.times);
 		$('.js-event-info-venue').html(response.venue);
-		$('.js-event-info-user').html('<a href="/users/'+response.user.slug+'">'+response.user.username+'</a>');
+		$('.js-event-info-user').html('<a href="/' + $(location).prop('pathname').split('/')[1] + '/users/'+response.user.slug+'">'+response.user.username+'</a>');
 		$('.js-event-info-fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURI(response.url));
 		$('.js-event-info-twitter').attr('href', 'https://twitter.com/home?status=' + encodeURI(response.title + ' ' + response.url));
 		$('.js-edit-event').attr('href', encodeURI(response.url + '/edit'));

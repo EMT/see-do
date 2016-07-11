@@ -5,10 +5,10 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Notification;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-use Notification;
 
 class Handler extends ExceptionHandler
 {
@@ -52,7 +52,14 @@ class Handler extends ExceptionHandler
 
         if ($e instanceof \Bican\Roles\Exceptions\RoleDeniedException) {
             Notification::error('You don\'t have permission to access that resource');
-            return redirect('/');
+
+            $city = $request->route()->getParameter('city');
+
+            if ($city) {
+                return redirect('/'.$city);
+            } else {
+                return redirect('/');
+            }
         }
 
         return parent::render($request, $e);

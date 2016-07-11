@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\Inspire::class,
-        Commands\SendMailer::class
+        Commands\SendMailer::class,
     ];
 
     /**
@@ -30,6 +30,5 @@ class Kernel extends ConsoleKernel
                  ->weekly()
                  ->thursdays()
                  ->at('12:00');
-        
     }
 }

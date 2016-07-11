@@ -6,7 +6,7 @@
     <h2 class="aligned">Add a User</h2>
     <p class="aligned">Send an email to a new user, make sure that the email is the same<br> as the one they will sign up with or they won't be able to signup.</p>
 
-    {!! Form::open(['action' => 'UsersController@registerEmail', 'class' => 'form']) !!}
+    {!! Form::open(['action' => ['UsersController@registerEmail', $city->iata], 'class' => 'form']) !!}
 
 		<div class="form-row">
 		    {!! Form::label('name', 'Name') !!}

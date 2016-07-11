@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\SocialBroadcastEvent;
 use App\Category;
+use App\City;
 use App\ColorScheme;
 use App\Event;
+use App\Events\SocialBroadcastEvent;
 use App\Icon;
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
 use Input;
 use Redirect;
-use Notification;
-use Auth;
 
 class EventsController extends Controller
 {
@@ -24,7 +24,7 @@ class EventsController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  Auth  $user
+     * @param Auth $user
      * @return void
      */
     public function __construct(Auth $user)
@@ -38,12 +38,12 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(City $city)
     {
-        $events = Event::futureEvents()->get();
+        $events = Event::futureEventsByCityId($city->id)->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
-        return view('events.index', compact('events', 'event', 'categories') + ['event' => null]);
+        return view('events.index', compact('city', 'events', 'event', 'categories') + ['event' => null]);
     }
 
     /**
@@ -51,11 +51,9 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(City $city)
     {
-        $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
-            ->orderBy('created_at', 'desc')
-            ->lists('colors', 'id');
+        $colorSchemes = ColorScheme::listRaw();
         $icons = Icon::orderBy('created_at', 'desc')->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
@@ -71,14 +69,6 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        if (!$request->color_scheme_id && $request->category_id) {
-            $category = Category::find($request->category_id);
-
-            if ($category && $category->color_scheme_id) {
-                $request->merge(['color_scheme_id' => $category->color_scheme_id]);
-            }
-        }
-
         $request->merge(['icons' => implode(',', $request->icons)]);
 
         $this->validate($request, [
@@ -92,18 +82,17 @@ class EventsController extends Controller
             'icons'           => 'required',
         ]);
 
-        $event = new Event(Input::except('tweet'));
-        $event->user_id = $request->user()->id;
+        $event = new Event(Input::except(['tweet, city_id']));
+        $event->setOwnerCurrentUser();
 
-        if (!$event->color_scheme_id && $event->category_id) {
-            $event->color_scheme_id = $event->category->color_scheme_id;
-        }
+        $city_code = Input::get('city_code');
+        $event->city_id = City::getIdfromIATA($city_code);
 
         $event->save();
 
         event(new SocialBroadcastEvent($event, $request));
 
-        return Redirect::route('events.index')->with('message', 'Event created');
+        return redirect('/'.$city_code)->with('message', 'Event created');
     }
 
     /**
@@ -113,14 +102,10 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(City $city, Event $event)
     {
-        $events = Event::futureEvents()->get();
-        $event_owner = User::find($event->user_id);
-        $event->user = $event_owner;
-
-
-        return view('events.index', compact('events', 'event'));
+        $events = Event::futureEventsByCityId($city->id)->get();
+        return view('events.index', compact('city', 'events', 'event'));
     }
 
     /**
@@ -130,18 +115,16 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showJson($slug)
+    public function showJson(City $city, Event $event)
     {
-        $event = Event::findBySlug($slug);
-        $event_owner = User::find($event->user_id);
-        $event->user = $event_owner;
+        $event->user = $event->user; // Eh? Doesn't work without this ?
         $event->colorScheme;
         $event->category;
         $event->parsedContent = $event->parseMarkdown('content');
         $event->shortDates = $event->shortDates();
         $event->longDates = $event->longDates();
         $event->times = $event->times();
-        $event->url = action('EventsController@show', ['slug' => $event->slug]);
+        $event->url = action('EventsController@show', ['city_code' => $city->iata, 'slug' => $event->slug]);
 
 
         return response()->json($event);
@@ -154,11 +137,9 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit(City $city, Event $event)
     {
-        $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
-            ->orderBy('created_at', 'desc')
-            ->lists('colors', 'id');
+        $colorSchemes = ColorScheme::listRaw();
         $icons = Icon::orderBy('created_at', 'desc')->get();
         $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
 
@@ -173,16 +154,8 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, City $city, Event $event)
     {
-        if (!$request->color_scheme_id && $request->category_id) {
-            $category = Category::find($request->category_id);
-
-            if ($category && $category->color_scheme_id) {
-                $request->merge(['color_scheme_id' => $category->color_scheme_id]);
-            }
-        }
-
         $request->merge(['icons' => implode(',', $request->icons)]);
 
         $this->validate($request, [
@@ -200,7 +173,7 @@ class EventsController extends Controller
 
         event(new SocialBroadcastEvent($event, $request));
 
-        return Redirect::route('events.index')->with('message', 'Event updated');
+        return Redirect::route('{city}.events.index', $city->iata)->with('message', 'Event updated');
     }
 
     /**
@@ -210,9 +183,9 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(City $city, Event $event)
     {
         $event->delete();
-        return redirect('events');
+        return Redirect::route('{city}.events.index', $city->iata)->with('message', 'Event Removed');
     }
 }

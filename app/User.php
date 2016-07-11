@@ -45,7 +45,8 @@ class User extends Model implements AuthenticatableContract,
         'username',
         'email',
         'password',
-        'bio'
+        'bio',
+        'city_id',
     ];
 
     protected $sluggable = [
@@ -59,6 +60,10 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function city() {
+        return $this->belongsTo('App\City');
+    }
 
     public function categories()
     {

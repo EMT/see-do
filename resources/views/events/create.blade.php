@@ -5,8 +5,8 @@
 @section('content')
     <h2 class="aligned">Add an Event</h2>
 
-    {!! Form::open(['action' => 'EventsController@store', 'class' => 'form']) !!}
-		
+    {!! Form::open(['action' => array('EventsController@store', Request::segment(1)), 'class' => 'form']) !!}
+
 		@include('events.eventForm')
 
     {!! Form::close() !!}

@@ -20,7 +20,7 @@ class RedirectIfOnlyCity
         $route = $request->path();
         $cities = City::all();
 
-        if (count($cities) <= 2 && $route == '/' ) {
+        if (count($cities) < 2 && $route == '/' ) {
             return redirect('/mcr');
         } else {
             return $next($request);

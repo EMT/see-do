@@ -126,6 +126,12 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
     verticalOffset = 50;
   }
 
+  function sortNumber(a,b) {
+      return b.position.y - a.position.y;
+  }
+
+  emojis.sort(sortNumber)
+
   limitBodies(emojis, 100)
 
   if (removeOnGeneration) {

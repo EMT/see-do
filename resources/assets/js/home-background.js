@@ -1,4 +1,4 @@
-debug = false;
+debug = true;
 
 // module aliases
 var Engine = Matter.Engine,
@@ -16,6 +16,31 @@ var platforms = [],
     bounds    = [],
     emojis    = [],
     mobile    = false;
+
+// Define the different kinds of Emojis that can spawn.
+//
+// The following basic shapes have methods to create them. Triangle
+// can be used for more complex polygon shapes by just adding more
+// points to the array.
+//
+// Circle:
+//  name: String
+//  shape: 'circle'
+//  radius: Integer
+//  sprite: String - file location
+//
+// Rectangle
+//  name: String
+//  shape: 'rectangle'
+//  width: Integer
+//  height: Integer
+//  sprite: String - file location
+//
+// Triangle
+//  name: String
+//  shape: 'triangle'
+//  points: Array of x/y co-ordinates.
+//  sprite: String - file location
 
 var emojiTypes = [
   {
@@ -48,38 +73,44 @@ var emojiTypes = [
 ]
 
 // create an engine
-var engine = createEngine()
+var engine = Engine.create(document.body, {
+  render: {
+    options: {
+       width: w,
+       height: h,
+       wireframes: debug,
+       showAngleIndicator: debug,
+       background: '#ffffff'
+    }
+  }
+});
 
 if (w <= 800) {
   mobile = true;
 }
 
-init()
+engine.world.bounds.max.x = w;
+engine.world.bounds.max.y = h;
 
-function init() {
+addMouseInteraction();
+drawBounds(bounds);
 
-  engine.world.bounds.max.x = w;
-  engine.world.bounds.max.y = h;
+if (mobile) {
+  setupAccelerometer()
+  resizeCanvas(mobile);
+  generateRandomEmojis(1, 10);
+} else {
+  resizeCanvas();
+  drawPlatforms(platforms);
+  generateRandomEmojis(3, 15);
 
-  addMouseInteraction();
-  drawBounds(bounds);
-
-  if (mobile) {
-    setupAccelerometer()
-    resizeCanvas(mobile);
-    generateRandomEmojis(1, 10);
-  } else {
-    resizeCanvas();
-    drawPlatforms(platforms);
-    generateRandomEmojis(3, 15);
-
-    setInterval(function(){
+  setInterval(function(){
+   if (document.hasFocus()) {
      generateRandomEmojis(2, 4, false);
-    },10000)
+   }
+  },10000)
 
-  }
 }
-
 
 function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
   var rows = typeof rows !== 'undefined' ?  rows : 2;
@@ -196,12 +227,10 @@ function drawPlatforms(platforms) {
     var cords = $(this).offset();
     var x = cords.left + width / 2;
     var y = cords.top + height / 2;
-    var outline = '#FFFFFF';
+    var outline = 'transparent';
 
     if (debug) {
       outline = "#FFF000"
-    } else {
-      outline = 'transparent'
     }
 
     var platform = Bodies.rectangle(x, y, width + 25, height, {
@@ -286,20 +315,6 @@ function setupAccelerometer() {
 function motion(event){
   engine.world.gravity.x = event.accelerationIncludingGravity.x;
   engine.world.gravity.y = -event.accelerationIncludingGravity.y;
-}
-
-function createEngine() {
-  return Engine.create(document.body, {
-    render: {
-      options: {
-         width: w,
-         height: h,
-         wireframes: debug,
-         showAngleIndicator: debug,
-         background: '#ffffff'
-      }
-    }
-  });
 }
 
 function getRandomInt(min, max) {

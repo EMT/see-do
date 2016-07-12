@@ -128,7 +128,7 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
 
   emojis.sort(sortPositionY)
 
-  limitBodies(emojis, 100)
+  limitBodies(emojis, 50)
 
   if (removeOnGeneration) {
     removeBodies(emojis);

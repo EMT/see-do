@@ -126,7 +126,9 @@ function generateRandomEmojis(rows, itemsPerRow, removeOnGeneration) {
     verticalOffset = 50;
   }
 
-  limitBodies(emojis, 100)
+  emojis.sort(sortPositionY)
+
+  limitBodies(emojis, 50)
 
   if (removeOnGeneration) {
     removeBodies(emojis);
@@ -191,16 +193,15 @@ function removeBodies(bodies, fall) {
 
   for (var i = bodies.length - 1; i >= 0; i--) {
     if (debug) console.log('Removing : ', bodies[i]);
-    var body = bodies[i];
 
     if (bodies[i].collisionFilter && fall) {
       bodies[i].collisionFilter.mask = 2
 
-      setTimeout(function() {
-        Matter.Composite.remove(engine.world, body);
-      },2000)
+      setTimeout(function(bodies, i) {
+        Matter.Composite.remove(engine.world, bodies[i]);
+      }.bind(this, bodies, i),2000)
     } else {
-      Matter.Composite.remove(engine.world, body);
+      Matter.Composite.remove(engine.world, bodies[i]);
     }
   }
 }
@@ -221,7 +222,7 @@ function drawPlatforms(platforms) {
     removeBodies(platforms);
   }
 
-  $('.city a h2, .city a h3, .js-site-title').each(function() {
+  $('.js-canvas-dom').each(function() {
     var width = $(this).width();
     var height = $(this).height();
     var cords = $(this).offset();
@@ -302,6 +303,10 @@ function resizeCanvas() {
   }
 
   drawBounds(bounds);
+}
+
+function sortPositionY(a,b) {
+    return b.position.y - a.position.y;
 }
 
 function setupAccelerometer() {

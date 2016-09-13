@@ -18,7 +18,7 @@ class RedirectIfOnlyCity
     public function handle($request, Closure $next)
     {
         $route = $request->path();
-        $cities = City::all();
+        $cities = City::where('hidden', '!=', 1)->get();
 
         if (count($cities) < 2 && $route == '/' ) {
             return redirect('/mcr');

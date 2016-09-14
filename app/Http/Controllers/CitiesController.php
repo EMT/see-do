@@ -36,7 +36,11 @@ class CitiesController extends Controller
      */
     public function index()
     {
-        $cities = City::where('hidden', '!=', 1)->get();
+        if ($this->user) {
+            $cities = City::all();
+        } else {
+            $cities = City::where('hidden', '!=', 1)->get();
+        }
 
         return view('home.index', compact('cities'));
     }

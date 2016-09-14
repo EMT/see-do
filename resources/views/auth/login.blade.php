@@ -3,7 +3,7 @@
 @section('title', 'Log In — See&Do')
 
 @section('content')
-    <h2 class="aligned">Log In</h2>
+    <h2 class="aligned" style="clear:both;">Log In</h2>
 
     {!! Form::open(['action' => 'Auth\AuthController@postLogin', 'class' => 'form']) !!}
 

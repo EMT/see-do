@@ -4,6 +4,8 @@
 
 @section('content')
     <h2 class="aligned">Create Your Account</h2>
+    @php ($last_name = explode(" ",Input::get('name')))
+    @php ($first_name = array_shift($last_name))
 
     {!! Form::open(['action' => 'Auth\AuthController@postRegister', 'class' => 'form']) !!}
 
@@ -14,7 +16,7 @@
             {!! Form::label('name_first', 'First Name') !!}
 
             <div class="form-row-body">
-                {!! Form::text('name_first', explode(" ", Input::get('name'))[0] , ['class' => 'input-text', 'placeholder' => 'Marty']) !!}
+                {!! Form::text('name_first', $first_name , ['class' => 'input-text', 'placeholder' => 'Marty']) !!}
 
                 @include('common.forms.field-errors', ['errors' => $errors->get('name_first')])
             </div>
@@ -25,7 +27,7 @@
             {!! Form::label('name_last', 'Last Name') !!}
 
             <div class="form-row-body">
-                {!! Form::text('name_last', empty(Input::get('name')[1]) ? explode(" ", Input::get('name'))[1] : null, ['class' => 'input-text', 'placeholder' => 'McFly']) !!}
+                {!! Form::text('name_last', join(' ', $last_name), ['class' => 'input-text', 'placeholder' => 'McFly']) !!}
 
                 @include('common.forms.field-errors', ['errors' => $errors->get('name_last')])
             </div>
@@ -47,7 +49,7 @@
             {!! Form::label('bio', 'User Bio') !!}
 
             <div class="form-row-body">
-                {!! Form::textarea('bio', null, ['class' => 'input-text', 'placeholder' => 'This is heavy-duty, Doc. This is great. Uh, does it run, like, on regular unleaded gasoline? ']) !!}
+                {!! Form::textarea('bio', null, ['class' => 'input-text', 'placeholder' => 'Tell us a bit about yourself and what you do. Keep it short, about two or three sentences. ']) !!}
 
                 @include('common.forms.field-errors', ['errors' => $errors->get('bio')])
             </div>

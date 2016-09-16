@@ -35,6 +35,7 @@
                                     <p>You can now register for See+Do with the following url.</p>
                                     <a href="{{ URL::to('/') }}/auth/register/{{ $token->token }}?name={{$request->name}}&email={{$request->email}}">{{ URL::to('/') }}/auth/register/{{ $token->token }}</a>
                                     <br>
+                                    <p>After you have created your account you can log in at: <a href="https://see-and-do.com/auth/login">https://see-and-do.com/auth/login</a></p>
                                     <p>Thank You,</p>
                                     <p>See+Do</p>
                                 </td>

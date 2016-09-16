@@ -29,8 +29,6 @@ class TweetSender
      */
     public function handle(SocialBroadcastEvent $eventPosted)
     {
-        // Log::info('Fired event for new event [EVENT INFO]: '.$eventPosted->event);
-        // Log::info('Fired event for new event [REQUEST INFO]: '.$eventPosted->request);
         $request = $eventPosted->request;
         $event = $eventPosted->event;
 
@@ -40,6 +38,8 @@ class TweetSender
     }
 
     private function tweet($event) {
+        // Add check to see if the city has consumer secret/keys set, if not then add warning with url for city settings page.
+
         $city = City::where('id','=',$event->city_id)->first();
         $title = $event->title;
         $date = date('d/m/y', strtotime($event->time_start));
@@ -54,8 +54,6 @@ class TweetSender
             'token' => $city->twitter_access_token,
             'secret' => $city->twitter_access_token_secret
         ]);
-
-        // YOU WERE ABOUT TO: Test the NYC twitter account and see if it changes the details.
 
         Twitter::postTweet(array('status' => $status, 'format' => 'json'));
         Log::info($status);

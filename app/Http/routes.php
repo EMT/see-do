@@ -57,6 +57,9 @@ Route::resource('{city}/categories', 'CategoriesController', [
     'parameters' => 'singular'
 ]);
 
+Route::get('/{city}/settings', 'CitiesController@edit');
+Route::put('/{city}', 'CitiesController@update');
+
 // Subscriber routes
 Route::get('/{city}/subscribers/hello', function () {
     return view('subscribers.hello');

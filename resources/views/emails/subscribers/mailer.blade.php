@@ -22,14 +22,14 @@
                             <tr style="width: 100%;">
                                 <td valign="top" style="width: 100%; padding-bottom: 8px;">
                                     <p>Hi {{ $subscriber->name }},</p>
-                                    <p>A few things you might like to See+Do in Manchester over the next couple of weeks…</p>
+                                    <p>A few things you might like to See+Do in {{$city->name}} over the next couple of weeks…</p>
                                 </td>
                             </tr>
 
                             @foreach($events as $ev)
                                 <tr style="width: 100%;">
                                     <td valign="top" style="width: 100%; padding-top: 16px; border-bottom: 1px solid #EEEEEE;">
-                                        <div style="font-weight: bold;"><a href="{{ route('events.show', $ev->slug) }}" style="text-decoration: none; color: #2e69ff;">{!! $ev->title !!}</a></div>
+                                        <div style="font-weight: bold;"><a href="{{ route('{city}.events.show', array($city->iata, $ev->slug)) }}" style="text-decoration: none; color: #2e69ff;">{!! $ev->title !!}</a></div>
                                         <div>{{ $ev->longDates() }}</div>
                                         <div>{!! $ev->parseMarkdown('content') !!}</div>
                                     </td>
@@ -47,9 +47,9 @@
                                     <div style="border-bottom: 1px solid #EEEEEE; padding-bottom: 7px; margin-bottom: 8px">More from See+Do</div>
 
                                     @foreach( $categories as $cat )
-                                        @if( $cat->futureEventsCount() )
-                                            —<a href="{{ route('categories.show', ['slug' => $cat->slug]) }}?utm_source=See%2BDo%20Email%20Footer&utm_medium=Email&utm_campaign=See%2BDo%20Email%20Footer">
-                                                    {{ $cat->title }} <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">{{ $cat->futureEventsCount() }}</span><span class="nav-close-bracket">]</span></span>
+                                        @if( $cat->futureEventsCount($city->iata) )
+                                            —<a href="{{ route('{city}.categories.show', ['slug' => $cat->slug, 'city' => $city->iata]) }}?utm_source=See%2BDo%20Email%20Footer&utm_medium=Email&utm_campaign=See%2BDo%20Email%20Footer">
+                                                    {{ $cat->title }} <span class="nav-num"><span class="nav-open-bracket">[</span><span class="nav-num-inner">{{ $cat->futureEventsCount($city->iata) }}</span><span class="nav-close-bracket">]</span></span>
                                                 </a>
                                             <br />
                                         @endif

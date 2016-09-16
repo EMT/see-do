@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\City;
 use App\ColorScheme;
 use Illuminate\Http\Request;
 use Input;
@@ -65,13 +66,13 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(City $city, Category $category)
     {
         $event = null;
-        $events = $category->events()->where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc')->get();
+        $events = $category->futureEvents($city)->get();
         $categories = Category::orderBy('title', 'asc')->get();
 
-        return view('events.index', compact('events', 'event', 'category', 'categories'));
+        return view('events.index', compact('city', 'events', 'event', 'category', 'categories'));
     }
 
     /**
@@ -81,13 +82,13 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(City $city, Category $category)
     {
         $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
             ->orderBy('created_at', 'desc')
             ->lists('colors', 'id');
 
-        return redirect('/events');
+        return redirect($city->iata.'/events');
     }
 
     /**

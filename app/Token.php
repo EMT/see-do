@@ -18,9 +18,10 @@ class Token extends Model
     ];
 
 
-    public function createNewToken()
+    public function createNewToken(City $city)
     {
         $this->token = hash_hmac('sha256', Str::random(40), config('app.key'));
+        $this->city_id = $city->id;
         $this->save();
 
         return $this->token;

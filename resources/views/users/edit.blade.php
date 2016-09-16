@@ -5,7 +5,7 @@
 @section('content')
     <h2 class="aligned">Edit Profile - {{$user->username}}</h2>
 
-    {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put', 'class' => 'form']) !!}
+    {!! Form::model($user, ['route' => ['{city}.users.update', Request::route()->getParameter('city')->iata, $user->slug], 'method' => 'put', 'class' => 'form']) !!}
 
     <div class="form-row">
         {!! Form::label('email', 'Email') !!}
@@ -70,7 +70,7 @@
 		<div class="form no-mgt">
 			<div class="form-row">
 			    <div class="form-row-body">
-			        {!! delete_form(['users.destroy', $user->id]) !!}
+			        {!! delete_form(['{city}.users.destroy', Request::route()->getParameter('city')->iata, $user->slug]) !!}
 			    </div>
 			</div>
 		</div>

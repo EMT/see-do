@@ -79,7 +79,7 @@
 	{!! Form::label('color_scheme_id', 'Color Scheme') !!}
 
     <div class="form-row-body">
-    	{!! Form::select('color_scheme_id', [0 => 'Select…'] + $colorSchemes->toArray(), ($event && $event->colorScheme) ? $event->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select', 'data-default-text' => 'Use the category colour scheme', 'selected' => '1']); !!}
+    	{!! Form::select('color_scheme_id', [0 => 'Select…'] + $colorSchemes->toArray(), ($event && $event->colorScheme) ? $event->colorScheme->id: null, ['class' => 'color-scheme-select js-color-scheme-select', 'data-default-text' => 'Pick a colour scheme', 'selected' => '1']); !!}
 
     	@include('common.forms.field-errors', ['errors' => $errors->get('color_scheme_id')])
     </div>
@@ -111,6 +111,9 @@
         </div>
     </div>
 </div>
+
+
+{!! Form::hidden('city_code', Request::route()->getParameter('city')->iata) !!}
 
 <div class="form-row">
     <div class="form-row-body">

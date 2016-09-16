@@ -32,7 +32,5 @@ class RemoveRegToken
         $storedToken->delete();
 
         Notification::success('Registration successful, welcome to See+Do');
-
-        return redirect('/');
     }
 }

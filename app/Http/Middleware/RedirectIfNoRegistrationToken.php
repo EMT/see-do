@@ -24,7 +24,7 @@ class RedirectIfNoRegistrationToken
         if ($paramToken) {
             return $next($request);
         } else {
-            Notification::error('Your registration token has expired, please contact hello@madebyfieldwork.com for a new one');
+            Notification::error('Your registration token has expired, please contact harry@madebyfieldwork.com for a new one');
             return redirect('/');
         }
 

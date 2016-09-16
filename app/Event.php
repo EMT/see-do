@@ -8,8 +8,10 @@ use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model implements SluggableInterface,
-                                     MarkdownInterface
+use App\City;
+use Auth;
+
+class Event extends Model implements SluggableInterface, MarkdownInterface
 {
     use SluggableTrait;
     use MarkdownTrait;
@@ -36,7 +38,13 @@ class Event extends Model implements SluggableInterface,
         'color_scheme_id',
         'icons',
         'category_id',
+        'city_id',
     ];
+
+    public function city()
+    {
+        return $this->belongsTo('App\City');
+    }
 
     public function category()
     {
@@ -56,6 +64,16 @@ class Event extends Model implements SluggableInterface,
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function setOwner(User $user)
+    {
+        $this->user_id = $user->id;
+    }
+
+    public function setOwnerCurrentUser()
+    {
+        $this->user_id = Auth::user()->id;
     }
 
     public function icons()
@@ -135,7 +153,8 @@ class Event extends Model implements SluggableInterface,
         return $times;
     }
 
-    public function isLongerThanOneDay(){
+    public function isLongerThanOneDay()
+    {
         return date('d.m.y', strtotime($this->time_start)) != date('d.m.y', strtotime($this->time_end));
     }
 
@@ -147,5 +166,26 @@ class Event extends Model implements SluggableInterface,
     public static function futureEvents()
     {
         return self::where('time_end', '>=', date('Y-m-d H:i:s'))->orderBy('time_start', 'asc');
+    }
+
+    /**
+     * Returns all events in with time_end in the future.
+     *
+     * @return Collection A collection of Events
+     */
+    public static function futureEventsByCityId($city_id)
+    {
+        return self::futureEvents()->where('city_id', '=', $city_id);
+    }
+
+    /**
+     * Returns all events in with time_end in the future.
+     *
+     * @return Collection A collection of Events
+     */
+    public static function futureEventsByCityIATA($city_code)
+    {
+        $city = City::findByIATA($city_code)->first();
+        return self::futureEvents()->where('city_id', '=', $city->id);
     }
 }

@@ -22,6 +22,8 @@
 					@endif
 					@if (Auth::check())
 						<li><a href="/auth/logout">Log Out</a></li>
+					@else
+						<li><a href="/auth/login">Log In</a></li>
 					@endif
 					</ul>
 				</nav>

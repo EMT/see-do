@@ -8,7 +8,7 @@
 	    <div class="page-intro">
 	        <div class="page-intro-inner">
 	            <h2 class="page-intro-title">Our Collaborators</h2>
-				<p>Here's a list of our creators and collaborators that help us select what to see and do.</p>
+				<p>{{ trans('pages.collaborators')}}</p>
 
 	        </div>
 	    </div>
@@ -20,7 +20,7 @@
 		<div class="page-intro">
 			<div class="page-intro-inner">
 				<h2 class="page-intro-title">Our Collaborators</h2>
-				<p>Here's a list of our creators and collaborators that help us select what to see and do.</p>
+				<p>{{ trans('pages.collaborators')}}</p>
 			</div>
 		</div>
 		<ul>

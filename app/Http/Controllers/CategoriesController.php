@@ -83,6 +83,11 @@ class CategoriesController extends Controller
      */
     public function edit(City $city, Category $category)
     {
+        // overwrite the given category with one that has the same slug and the right cityID,
+        // this wouldn't be a problem if we used unique slugs but its better to be consistent with
+        // the category urls
+        $category = Category::where([['city_id', '=', $city->id], ['slug', '=', $category->slug]])->first();
+
         return view('categories.edit', compact('category'));
     }
 
@@ -99,9 +104,12 @@ class CategoriesController extends Controller
         $this->validate($request, [
             'title'           => 'required|max:255'
         ]);
-
-        // update the slug as well.
-
+        // overwrite the given category with one that has the same slug and the right cityID,
+        // this wouldn't be a problem if we used unique slugs but its better to be consistent with
+        // the category urls
+        $category = Category::where([['city_id', '=', $city->id], ['slug', '=', $category->slug]])->first();
+        // Set slug to null to reset the slug on update.
+        $category->slug = null;
         $category->fill(Input::all());
         $category->save();
 

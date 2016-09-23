@@ -22,10 +22,9 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(City $city)
     {
-        $categories = Category::orderBy('title', 'asc')->get();
-
+        $categories = Category::where('city_id', $city->id)->orderBy('title', 'asc')->get();
         return view('categories.index', compact('categories'));
     }
 
@@ -99,17 +98,19 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, City $city, Category $category)
     {
         $this->validate($request, [
             'title'           => 'required|max:255',
             'color_scheme_id' => 'required|numeric|min:1',
         ]);
 
+        // update the slug as well.
+
         $category->fill(Input::all());
         $category->save();
 
-        return Redirect::route('categories.index')->with('message', 'Category updated');
+        return Redirect::route('{city}.categories.index', $city->iata)->with('message', 'Category updated');
     }
 
     /**

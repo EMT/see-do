@@ -14,6 +14,7 @@ class Category extends Model implements SluggableInterface
     protected $sluggable = [
         'build_from' => 'title',
         'save_to'    => 'slug',
+        'unique'     => false,
     ];
 
     /**
@@ -25,6 +26,7 @@ class Category extends Model implements SluggableInterface
         'title',
         'slug',
         'user_id',
+        'city_id',
         'color_scheme_id',
         'icon',
     ];

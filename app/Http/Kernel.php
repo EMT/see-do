@@ -38,5 +38,6 @@ class Kernel extends HttpKernel
         'token'      => \App\Http\Middleware\RedirectIfNoRegistrationToken::class,
         'remove-token' => \App\Http\Middleware\RemoveRegistrationToken::class,
         'hidden-city' => \App\Http\Middleware\SetNotificationForHiddenCity::class,
+        'locale' => \App\Http\Middleware\SetLocaleForCity::class,
     ];
 }

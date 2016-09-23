@@ -29,6 +29,7 @@ class CitiesController extends Controller
 
         $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('hidden-city');
+        $this->middleware('locale');
     }
 
     /**

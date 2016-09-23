@@ -31,6 +31,7 @@ class EventsController extends Controller
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'showJson']]);
         $this->middleware('hidden-city');
+        $this->middleware('locale');
 
         $this->user = Auth::user();
     }

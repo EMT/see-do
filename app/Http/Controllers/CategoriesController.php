@@ -83,11 +83,7 @@ class CategoriesController extends Controller
      */
     public function edit(City $city, Category $category)
     {
-        $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
-            ->orderBy('created_at', 'desc')
-            ->lists('colors', 'id');
-
-        return redirect($city->iata.'/events');
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -101,8 +97,7 @@ class CategoriesController extends Controller
     public function update(Request $request, City $city, Category $category)
     {
         $this->validate($request, [
-            'title'           => 'required|max:255',
-            'color_scheme_id' => 'required|numeric|min:1',
+            'title'           => 'required|max:255'
         ]);
 
         // update the slug as well.

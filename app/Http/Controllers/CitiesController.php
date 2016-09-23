@@ -25,8 +25,10 @@ class CitiesController extends Controller
      */
     public function __construct(Auth $user)
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->user = Auth::user();
+
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('hidden-city');
     }
 
     /**

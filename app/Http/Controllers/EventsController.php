@@ -30,6 +30,8 @@ class EventsController extends Controller
     public function __construct(Auth $user)
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'showJson']]);
+        $this->middleware('hidden-city');
+
         $this->user = Auth::user();
     }
 

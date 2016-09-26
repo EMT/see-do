@@ -67,6 +67,10 @@ class CategoriesController extends Controller
      */
     public function show(City $city, Category $category)
     {
+        // overwrite the given category with one that has the same slug and the right cityID,
+        // this wouldn't be a problem if we used unique slugs but its better to be consistent with
+        // the category urls
+        $category = Category::where([['city_id', '=', $city->id], ['slug', '=', $category->slug]])->first();
         $event = null;
         $events = $category->futureEvents($city)->get();
         $categories = Category::orderBy('title', 'asc')->get();

@@ -58,7 +58,7 @@ class EventsController extends Controller
     {
         $colorSchemes = ColorScheme::listRaw();
         $icons = Icon::orderBy('created_at', 'desc')->get();
-        $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
+        $categories = Category::where('city_id', $city->id)->orderBy('title', 'asc')->lists('title', 'id');
 
         return view('events.create', compact('categories', 'colorSchemes', 'icons') + ['event' => null]);
     }
@@ -144,7 +144,7 @@ class EventsController extends Controller
     {
         $colorSchemes = ColorScheme::listRaw();
         $icons = Icon::orderBy('created_at', 'desc')->get();
-        $categories = Category::orderBy('title', 'asc')->lists('title', 'id');
+        $categories = Category::where('city_id', $city->id)->orderBy('title', 'asc')->lists('title', 'id');
 
         return view('events.edit', compact('event', 'categories', 'colorSchemes', 'icons'));
     }

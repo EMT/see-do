@@ -19,8 +19,7 @@ class Kernel extends HttpKernel
         \Krucas\Notification\Middleware\NotificationMiddleware::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \App\Http\Middleware\VerifyCsrfToken::class,
-        \App\Http\Middleware\RedirectIfOnlyCity::class,
-        \App\Http\Middleware\SetNotificationForHiddenCity::class,
+        \App\Http\Middleware\RedirectIfOnlyCity::class
     ];
 
     /**
@@ -38,5 +37,7 @@ class Kernel extends HttpKernel
         'level'      => \Bican\Roles\Middleware\VerifyLevel::class,
         'token'      => \App\Http\Middleware\RedirectIfNoRegistrationToken::class,
         'remove-token' => \App\Http\Middleware\RemoveRegistrationToken::class,
+        'hidden-city' => \App\Http\Middleware\SetNotificationForHiddenCity::class,
+        'locale' => \App\Http\Middleware\SetLocaleForCity::class,
     ];
 }

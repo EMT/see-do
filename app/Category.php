@@ -14,6 +14,7 @@ class Category extends Model implements SluggableInterface
     protected $sluggable = [
         'build_from' => 'title',
         'save_to'    => 'slug',
+        'unique'     => false,
     ];
 
     /**
@@ -25,6 +26,7 @@ class Category extends Model implements SluggableInterface
         'title',
         'slug',
         'user_id',
+        'city_id',
         'color_scheme_id',
         'icon',
     ];
@@ -51,12 +53,12 @@ class Category extends Model implements SluggableInterface
 
     public function futureEvents(City $city)
     {
-        return $this->events()->where('city_id', '=', $city->id)->where('time_end', '>=', date('Y-m-d H:i:s'));
+        return $this->events()->where('city_id', $city->id)->where('time_end', '>=', date('Y-m-d H:i:s'));
     }
 
     public function futureEventsCount(City $city)
     {
-        return $this->events()->where('city_id', '=', $city->id)->where('time_end', '>=', date('Y-m-d H:i:s'))->count();
+        return $this->events()->where('city_id', $city->id)->where('time_end', '>=', date('Y-m-d H:i:s'))->count();
     }
 
 }

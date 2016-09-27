@@ -25,7 +25,7 @@
                     <?php $previousMonth = date('F', strtotime($events->first()->time_start)) ?>
                 @endif
 
-                <h2 class="month-title">{{ $previousMonth }}</h2>
+                <h2 class="month-title">{{ trans('months.'.strtolower($previousMonth)) }}</h2>
 
                 <ul>
                     @foreach( $events as $ev )
@@ -36,7 +36,7 @@
                         @if ( $month !== $previousMonth && strtotime($ev->time_start) > strtotime(date('Y-m-d H:i:s')))
                             <?php $previousMonth = $month ?>
                             </ul>
-                            <h2 class="month-title">{{ $month }}</h2>
+                            <h2 class="month-title">{{ trans('months.'.strtolower($month)) }}</h2>
                             <ul>
                         @endif
 

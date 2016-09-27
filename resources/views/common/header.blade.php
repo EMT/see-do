@@ -17,7 +17,11 @@
 						<li><a href="{{ route('{city}.subscribers.create', ['city' => Request::route()->getParameter('city')]) }}">{{ trans('navigation.subscribe') }}</a></li>
 						<li><a href="{{ URL::route('{city}.users.index', ['city' => Request::route()->getParameter('city')->iata])}}">{{ trans('navigation.collaborators') }}</a></li>
 						@if (Auth::check() && Auth::user()->city->iata === Request::route()->getParameter('city')->iata)
+
 							<li><a href="{{ URL::route('{city}.events.create', ['city' => Request::route()->getParameter('city')->iata]) }}">Add Event</a></li>
+						@endif
+						@if (Request::route()->getParameter('category'))
+							<li><a href="{{ route('{city}.categories.edit', ['category'=>Request::route()->getParameter('category')->slug, 'city' => Request::route()->getParameter('city')->iata]) }}">Edit Category</a></li>
 						@endif
 					@endif
 					@if (Auth::check())

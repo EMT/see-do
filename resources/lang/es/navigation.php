@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'menu' => 'Menù',
+    'menu' => 'Menu',
     'filter' => 'Filter',
     'subscribe' => 'Subscribe',
     'collaborators' => 'Collaborators'

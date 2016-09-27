@@ -15,6 +15,13 @@ class AddCityIdToCategories extends Migration
      */
     public function up()
     {
+
+        echo 'Warning: Running this migration is not completely backwards compatible and will make changes to event \'category_id\' references and category \'id\' references. Cancel out of this migration within the next 10 seconds if you dont have a backup...';
+        echo "\n";
+        sleep(15);
+        echo 'Continuing with migration...';
+        echo "\n";
+
         Schema::table('categories', function (Blueprint $table) {
             $table->integer('city_id');
         });

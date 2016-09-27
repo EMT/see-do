@@ -6,7 +6,7 @@
     <h2 class="aligned">Subscribe</h2>
 
     <div class="article-body aligned">
-        <p>We’ll email you a weekly round-up of things to See+Do in {{$city->name}}.</p>
+        <p>{{ trans('pages.subscribe')}} {{$city->name}}.</p>
     </div>
 
     {!! Form::open(['action' => array('SubscribersController@store', $city->iata), 'class' => 'form']) !!}

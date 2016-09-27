@@ -14,7 +14,10 @@ class NavComposer
      */
     public function __construct()
     {
-        $this->categories = Category::orderBy('title', 'asc')->get();
+        $route = app()->router->getCurrentRoute();
+        $city = $route->getParameter('city');
+
+        $this->categories = Category::where('city_id', $city->id)->orderBy('title', 'asc')->get();
     }
 
     /**

@@ -22,10 +22,9 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(City $city)
     {
-        $categories = Category::orderBy('title', 'asc')->get();
-
+        $categories = Category::where('city_id', $city->id)->orderBy('title', 'asc')->get();
         return view('categories.index', compact('categories'));
     }
 
@@ -68,6 +67,10 @@ class CategoriesController extends Controller
      */
     public function show(City $city, Category $category)
     {
+        // overwrite the given category with one that has the same slug and the right cityID,
+        // this wouldn't be a problem if we used unique slugs but its better to be consistent with
+        // the category urls
+        $category = Category::where([['city_id', '=', $city->id], ['slug', '=', $category->slug]])->first();
         $event = null;
         $events = $category->futureEvents($city)->get();
         $categories = Category::orderBy('title', 'asc')->get();
@@ -84,11 +87,12 @@ class CategoriesController extends Controller
      */
     public function edit(City $city, Category $category)
     {
-        $colorSchemes = ColorScheme::selectRaw('id, CONCAT(color_1, "/", color_2, "/", color_3) AS colors')
-            ->orderBy('created_at', 'desc')
-            ->lists('colors', 'id');
+        // overwrite the given category with one that has the same slug and the right cityID,
+        // this wouldn't be a problem if we used unique slugs but its better to be consistent with
+        // the category urls
+        $category = Category::where([['city_id', '=', $city->id], ['slug', '=', $category->slug]])->first();
 
-        return redirect($city->iata.'/events');
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -99,17 +103,21 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, City $city, Category $category)
     {
         $this->validate($request, [
-            'title'           => 'required|max:255',
-            'color_scheme_id' => 'required|numeric|min:1',
+            'title'           => 'required|max:255'
         ]);
-
+        // overwrite the given category with one that has the same slug and the right cityID,
+        // this wouldn't be a problem if we used unique slugs but its better to be consistent with
+        // the category urls
+        $category = Category::where([['city_id', '=', $city->id], ['slug', '=', $category->slug]])->first();
+        // Set slug to null to reset the slug on update.
+        $category->slug = null;
         $category->fill(Input::all());
         $category->save();
 
-        return Redirect::route('categories.index')->with('message', 'Category updated');
+        return Redirect::route('{city}.categories.index', $city->iata)->with('message', 'Category updated');
     }
 
     /**

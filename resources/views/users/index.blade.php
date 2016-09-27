@@ -4,23 +4,10 @@
 
 @section('content')
 <div class="left-align-wrapper events-list">
-    @if ( !$users->count() )
-	    <div class="page-intro">
-	        <div class="page-intro-inner">
-	            <h2 class="page-intro-title">Our Collaborators</h2>
-				<p>Here's a list of our creators and collaborators that help us select what to see and do.</p>
-
-	        </div>
-	    </div>
-
-	    <ul>
-	         <li class="aligned no-records">Sorry, there aren't any collaborators for this city yet.<img class="error-emoji" src="/assets/img/error-emoji.svg" alt="Error"></li>
-	    </ul>
-    @else
 		<div class="page-intro">
 			<div class="page-intro-inner">
 				<h2 class="page-intro-title">Our Collaborators</h2>
-				<p>Here's a list of our creators and collaborators that help us select what to see and do.</p>
+				<p>{{ trans('pages.collaborators')}}</p>
 			</div>
 		</div>
 		<ul>
@@ -36,6 +23,5 @@
 				</li>
 			@endforeach
 		</ul>
-	@endif
 </div>
 @stop

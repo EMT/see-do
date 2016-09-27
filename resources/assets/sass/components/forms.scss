@@ -8,6 +8,12 @@ select,
     border-radius: 0;
 }
 
+h2.aligned:before {
+    content: '';
+    display: block;
+    clear: both;
+}
+
 .form {
     font: $body--mono;
     margin-top: 3em;

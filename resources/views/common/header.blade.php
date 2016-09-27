@@ -20,7 +20,7 @@
 
 							<li><a href="{{ URL::route('{city}.events.create', ['city' => Request::route()->getParameter('city')->iata]) }}">Add Event</a></li>
 						@endif
-						@if (Request::route()->getParameter('category'))
+						@if (Auth::check() && Request::route()->getParameter('category'))
 							<li><a href="{{ route('{city}.categories.edit', ['category'=>Request::route()->getParameter('category')->slug, 'city' => Request::route()->getParameter('city')->iata]) }}">Edit Category</a></li>
 						@endif
 					@endif

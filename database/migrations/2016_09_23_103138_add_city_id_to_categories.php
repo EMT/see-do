@@ -70,6 +70,14 @@ class AddCityIdToCategories extends Migration
      */
     public function down()
     {
+        $categories = Category::all();
+
+        foreach ($categories as $category) {
+            if ($category->city_id != 1) {
+                $category->delete();
+            }
+        }
+
         Schema::table('categories', function (Blueprint $table) {
             $table->dropColumn('city_id');
         });
